@@ -1,0 +1,124 @@
+/* Global Styles */
+
+body {
+  margin: 5mm 5mm 5mm 5mm;
+  background-color: #fff;
+}
+
+h1 {
+  margin-top: 5px;
+  text-align: center;
+}
+
+h2 {
+  margin-top: 5px;
+  text-align: center;
+}
+
+h3 {
+    margin-top: 5px;
+    text-align: center;
+}
+
+h4 {
+    margin-top: 5px;
+    text-align: center;
+}
+
+h5 {
+    margin-top: 5px;
+    margin-bottom: 7px;
+    text-align: left;
+}
+
+h6 {
+    text-align: left;
+}
+
+div.header {
+  position: relative;
+  width: 681px;
+  height: 260px;
+  /*border: 3px solid #73AD21;*/
+} 
+
+div.izquierda {
+  position: absolute;
+  top: 10px;
+  right: 350;
+  width: 300px;
+  height: 90px;
+  /*border: 3px solid #73ADFA;*/
+}
+
+div.derecha {
+  position: absolute;
+  top: 10px;
+  right: 5;
+  width: 135px;
+  height: 90px;
+ /* border: 3px solid #73ADFA;*/
+}
+
+div.cont-img {
+  position: absolute;
+  top: 75px;
+  right: 180;
+  width: 200px;
+  height: 110px;
+  /*border: 3px solid #73ADFA;*/
+}  
+
+#logo img {
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    padding: 5px;
+    width: 190px; 
+    height: 100px;
+}
+
+div.nombre {
+  position: absolute;
+  top: 190px;
+  right: 80;
+  width: 456px;
+  height: 27px;
+  /*border: 3px solid #73ADFA;*/
+}
+
+h2.nombre {
+    margin-top: 5px;
+    text-align: center;
+    color: #00a293;
+}
+
+/* Styles Tabla */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    font-size: 13px;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+th, td {
+    border-bottom: 1.5px solid black;
+}
+
+tr:hover {background-color: #572364}
+
+tr:nth-child(even) {background-color: #f5f5f5}
+
+th {
+    background-color: #FFF9C8;
+    color: #7D3C98;
+}
+

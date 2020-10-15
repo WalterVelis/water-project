@@ -1,0 +1,13 @@
+/public/hot
+/storage/*.key
+/packages
+.history/
+.phpintel/
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+*.orig
+/.vscode
+

@@ -1,0 +1,25 @@
+<?php
+    return [
+        'welcome' => 'Cotizador Agua H2O',
+        'um' => 'GU',
+        'rm' => 'GR',
+        'up' => 'PU',
+        'showtable' => 'Mostrar _MENU_ registros',
+        'infotable' => 'Mostrando página _PAGE_ de _PAGE_',
+        'emptytable' => 'No hay registros disponibles',
+        'emptyrecord' => 'Registro no encontrado',
+        'filterrecord' => '(Total de registros filtrados _MAX_)',
+        'bs' => 'SP',
+        'bb' => 'BP',
+        'ba' => 'CP',
+        'bc' => 'CP',
+        'HT' => 'AG',
+        'SC' => 'CS',
+        'gb' => 'PG',
+        'ab' => 'PA',
+        'v' => 'P',
+        'sc'=> 'CS',
+        's' => 'S',
+        'c' => 'C',
+    ];
+?>

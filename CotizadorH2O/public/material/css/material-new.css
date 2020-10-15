@@ -1,0 +1,130 @@
+.uni,.mult,.tax-fee,.myAccount{
+    background-color: white;
+  }
+  .btn.btn-white,
+  .btn.btn-default.btn-white {
+    background-color: transparent;
+    color: #ffffff;
+    box-shadow: none;
+  }
+  .btn.btn-white:hover,
+  .btn.btn-white:focus,
+  .btn.btn-white:active,
+  .btn.btn-default.btn-white:hover,
+  .btn.btn-default.btn-white:focus,
+  .btn.btn-default.btn-white:active {
+    background-color: transparent;
+    color: #ffffff;
+  }
+.photo2 { /*Medida /16*/
+    width: 1.25rem;
+    height: 1.375rem;
+    overflow: hidden;
+    float: left;
+    z-index: 5;
+    margin-right: 1.5625rem;
+    border-radius: 50%;
+  }
+.photo2 img,.btn-add img {
+    width: 100%;
+  }
+#datatables tr:hover td {
+    background-color: #bcc2fc;
+  }
+#accordion .row{
+  margin-top: 0.5%;
+  margin-bottom: 0.5%;
+}
+.text-dark th{
+  font-weight: 400 !important;
+}
+.btn-add {
+  width: 1.875rem;
+  height: 1.875rem;
+  overflow: hidden;
+  margin-left: 0.625rem;
+  float: right;
+  z-index: 5;
+  border-radius: 50%;
+}
+.btn-ns{
+  width: 1.875rem;
+  height: 1.875rem;
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  margin: 0px;
+  padding: 0px;
+}
+.btn.btn-ns:active:focus:hover{
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none;
+}
+.btn.btn-ns:hover{
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none;
+}
+.btn.btn-gray,
+.btn.btn-default.btn-gray{
+  background-color: transparent;
+  color: #686868;
+  box-shadow: none;
+}
+.dp-one{
+  color: rgb(230, 227, 227) !important;
+  background-color: #5094C7 !important;
+}
+.dp-one:hover{
+  color: white !important;;
+  background-color: #5094C7 !important;
+}
+.dp-two{
+  color: #808080 !important;
+  background-color: #D2E9FC !important;
+}
+.dp-two:hover{
+  color:black !important;;
+  background-color: #D2E9FC !important;
+}
+.dp-three{
+  color: #808080 !important;
+  background-color: #ffffff !important;
+}
+.dp-three:hover{
+  color: black !important;;
+  background-color: #ffffff !important;
+}
+#datatables td{
+  line-height: 150%;
+}
+.divRol{
+  overflow: auto;
+  position: relative;
+}
+.divRol table{
+  width: 99%;
+  margin-bottom: 0px;
+}
+.total-sum{
+  margin-bottom: 3px;
+  background-color: #0f3d62;
+  width: 98.8%;
+}
+.thisTitle{
+  margin-left: 10px;
+}
+.btn-topbar{
+ border: 1px solid #fff!important;
+ background-color: transparent !important;
+ height: 30px !important;
+ min-width: 30px !important;
+ width: 30px !important;
+}
+.btn-topbar i{
+ margin-bottom: 0px !important;
+ margin-right: 0px !important;
+ height: 3.4375rem !important;
+ margin-top: -7px !important;
+}
