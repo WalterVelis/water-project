@@ -16,8 +16,8 @@ class CreateFormatsTable extends Migration
         Schema::create('formats', function (Blueprint $table) {
             $table->increments('id');
             $table->date('date');
-            $table->unsignedInteger('state');
-            $table->unsignedInteger('municipality');
+            $table->string('state');
+            $table->string('municipality');
             $table->string('client');
             $table->string('main_contact');
             $table->string('position'); //puesto
@@ -36,7 +36,7 @@ class CreateFormatsTable extends Migration
             $table->string('obtaining_water');
             $table->decimal('water_consumption'); // lt, m3
             $table->decimal('cost_average');
-            $table->string('water quality');
+            $table->string('water_quality');
             $table->unsignedInteger('roof_type');
             $table->decimal('rainwater_area');
             $table->unsignedInteger('property_type');
