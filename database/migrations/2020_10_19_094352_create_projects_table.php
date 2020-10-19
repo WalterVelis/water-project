@@ -18,8 +18,11 @@ class CreateProjectsTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->unsignedInteger('status');
+            $table->unsignedInteger('format_id');
+            $table->unsignedInteger('created_by');
+            $table->unsignedInteger('updated_by');
             $table->timestamps();
-            $table->foreign('format_id')->references('id')->on('formats');
+            $table->foreign('format_id')->references('id')->on('projects');
             $table->foreign('created_by')->references('id')->on('users');
             $table->foreign('updated_by')->references('id')->on('users');
         });

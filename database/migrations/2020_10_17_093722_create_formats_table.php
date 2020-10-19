@@ -28,8 +28,6 @@ class CreateFormatsTable extends Migration
             $table->unsignedInteger('has_educational_programs');
             $table->unsignedInteger('children')->nullable();
             $table->unsignedInteger('classrooms')->nullable();
-            $table->unsignedInteger('state'); // !
-            $table->unsignedInteger('municipality'); // !
             $table->string('colony');
             $table->string('street');
             $table->unsignedInteger('users');
@@ -44,11 +42,13 @@ class CreateFormatsTable extends Migration
             $table->unsignedInteger('property_type');
             $table->unsignedInteger('current_year_resources');
             $table->unsignedInteger('resources_type')->nullable();
-            $table->foreign('planning_entity_id')->references('id')->on('entities'); // nombre, puesto, correo, teléfono
-            $table->foreign('auth_entity_id')->references('id')->on('entities');
+            $table->unsignedInteger('project_id');
+            $table->unsignedInteger('planning_entity_id'); // nombre, puesto, correo, teléfono
+            $table->unsignedInteger('auth_entity_id');
+            // $table->unsignedInteger('created_by');
+            // $table->unsignedInteger('updated_by');
             $table->date('implementation_date');
             $table->string('notes')->nullable();
-            $table->foreign('project_id')->references('id')->on('projects');
             $table->timestamps();
         });
     }
