@@ -514,5 +514,9 @@
     "Display previous values": "Ver valores anteriores",
     "Display proposed values": "Ver valores propuestos",
     "Taxes": "Impuestos",
-    "Status": "Estado"
+
+    "Status": "Estado",
+    "No records found": "No se encontraron registros",
+    "Projects": "Proyectos"
+
 }

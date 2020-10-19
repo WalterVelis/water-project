@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route; // Para desactivar errores en VSC, se puede omitir
 
 /*
 |--------------------------------------------------------------------------
@@ -12,11 +13,11 @@
 */
 
 Route::get('/', function () {
-  if(auth()->check()){
-    return redirect('home');
-  }else{
-    return view('auth.login');
-  }
+    if(auth()->check()){
+        return redirect('home');
+    }else{
+        return view('auth.login');
+    }
 })->name('login');
 Route::get('lang/{locale}', 'LocalizationController@index');
 
@@ -34,7 +35,7 @@ Route::group(['middleware' => ['auth','change']], function () {
     Route::get('role/uniqueName/{text}', 'RoleController@nameUniqueRol');
     Route::get('role/uniqueUpdateName/{text}/{text2}', 'RoleController@nameUniqueUpdateRol');
     Route::get('roleAllPdf/{all}', 'RoleController@query1PdfRole')->name('rolePdf');
-    
+
     Route::resource('user', 'UserController', ['except' => ['show']]);
     Route::get('userAllPdf/{all}', 'UserController@query1PdfUser')->name('userPdf');
     Route::get('userInactiveAllPdf/{all}', 'UserController@query2PdfUser')->name('user2Pdf');
@@ -55,9 +56,10 @@ Route::group(['middleware' => ['auth','change']], function () {
     Route::post('profile/dobleFactorActivate', 'ProfileController@doubleFactorAuthenticationActivate')->name('doubleFactorEmail');
     Route::post('profile/dobleFactorDeactivate', 'ProfileController@doubleFactorAuthenticationDeactivate')->name('doubleFactorDeactivate');
 
-    //projects
-    Route::resource('projects', 'ProjectController'); 
-    
+    Route::resources([
+        'projects' => 'ProjectController',
+    ]);
+
     //Permission Route
     Route::get('permission/searchName/{text}', 'PermissionController@searchNamePermissions');
     Route::get('permission/all', 'PermissionController@searchAllPermissions');
@@ -73,4 +75,4 @@ Route::group(['middleware' => ['auth','change']], function () {
 
     Route::post('/vendor/showPreview', 'VendorController@showPreview')->name('showPreview');
     Route::post('/watchDocument', 'VendorController@watchDocument')->name('watchDocument');
-  });
+});
