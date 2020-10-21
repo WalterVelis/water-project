@@ -38,6 +38,9 @@
   <link rel="stylesheet" href="{{asset('css/vendorsTable.css')}}">
 
   <style>
+      .ps-container.ps-active-x>.ps-scrollbar-x-rail, .ps-container.ps-active-y>.ps-scrollbar-y-rail {
+          background: none!important;
+      }
     .loaderSpinner {
       border: 16px solid #f3f3f3;
       border-radius: 50%;
@@ -46,17 +49,17 @@
       height: 120px;
       display: block;
       margin-left: auto;
-      margin-right: auto;      
+      margin-right: auto;
       -webkit-animation: spin 2s linear infinite; /* Safari */
       animation: spin 2s linear infinite;
     }
-    
+
     /* Safari */
     @-webkit-keyframes spin {
       0% { -webkit-transform: rotate(0deg); }
       100% { -webkit-transform: rotate(360deg); }
     }
-    
+
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
@@ -73,17 +76,17 @@
     height: 80px;
     display: block;
     margin-left: auto;
-    margin-right: auto;      
+    margin-right: auto;
     -webkit-animation: spin 2s linear infinite; /* Safari */
     animation: spin 2s linear infinite;
   }
-  
+
   /* Safari */
   @-webkit-keyframes spin {
     0% { -webkit-transform: rotate(0deg); }
     100% { -webkit-transform: rotate(360deg); }
   }
-  
+
   @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }

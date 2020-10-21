@@ -1,4 +1,4 @@
-<div class="sidebar viewConnection" style="background-color: #51809b" data-color="rose" data-background-color="black">
+<div class="sidebar viewConnection" style="background-color: #fafafa;color: #000;" data-color="rose" data-background-color="black">
   <!-- colores de fondo: 1- #32526f 2- #51809b 3- #7dabc3 4- #c9dbe7
     Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 

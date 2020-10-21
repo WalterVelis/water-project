@@ -16,6 +16,40 @@
  */
 
 /*     brand Colors              */
+
+* {
+    color:#32526F;
+}
+
+.username {
+    font-weight: bold;
+    color:#32526F;
+}
+
+table * {
+    color: #000;
+}
+
+table td a i.material-icons{
+    color:#80868b;
+}
+
+.card-icon i.material-icons {
+    color: #FAFAFA;
+}
+
+.btn-topbar i {
+    color: #32526F;
+}
+
+.nav-link:hover {
+    background:  #7DABC3!important;
+}
+
+.main-panel {
+    background: #eee;
+}
+
 #email-error{
   height:30px;
   margin-left:54px;
@@ -4602,7 +4636,7 @@ tbody.collapse.show {
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid #eeeeee;
-  border-radius: 0.25rem;  
+  border-radius: 0.25rem;
 }
 
 .card>hr {
@@ -15528,7 +15562,7 @@ thead.thead-inverse th,
   margin-top: 30px;
   border-radius: 15px;
   color: #333333;
-  background: rgba(255, 255, 255, 0.8);
+  background: #7DABC3;
   width: 100%;
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
@@ -16584,7 +16618,7 @@ thead.thead-inverse th,
 }
 
 .card-collapse .card-header {
-  /* border-bottom: 1px solid #ddd;  Original*/ 
+  /* border-bottom: 1px solid #ddd;  Original*/
   padding: 0px 10px 1px 10px; /*Original  padding: 25px 10px 5px 0px;*/
   margin: 0;
   box-shadow: none !important;
@@ -28013,7 +28047,7 @@ select.selectpicker {
 .ps-container.ps-active-y>.ps-scrollbar-y-rail {
   display: block;
   background-color: white;
-  opacity: 0.6; 
+  opacity: 0.6;
 }
 
 .ps-container.ps-in-scrolling.ps-x>.ps-scrollbar-x-rail {

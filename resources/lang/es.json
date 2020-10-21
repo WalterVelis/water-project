@@ -517,6 +517,9 @@
 
     "Status": "Estado",
     "No records found": "No se encontraron registros",
-    "Projects": "Proyectos"
+    "Projects": "Proyectos",
+    "VALIDATION": "VALIDACIÓN",
+    "FEATURES & NEEDS": "CARACTERÍSTICAS Y NECESIDADES",
+    "GENERAL DATA": "DATOS GENERALES"
 
 }
