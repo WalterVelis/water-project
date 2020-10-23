@@ -14,7 +14,8 @@ class AddForeignKeyFormatsTable extends Migration
     public function up()
     {
         Schema::table('formats', function (Blueprint $table) {
-            $table->foreign('project_id')->references('id')->on('projects');
+            // $table->foreign('project_id')->references('id')->on('projects');
+            $table->foreign('country_id')->references('id')->on('countries');
             $table->foreign('planning_entity_id')->references('id')->on('entities'); // nombre, puesto, correo, teléfono
             $table->foreign('auth_entity_id')->references('id')->on('entities');
             // $table->foreign('created_by')->references('id')->on('users');

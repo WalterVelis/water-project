@@ -18,6 +18,7 @@ class CreateFormatsTable extends Migration
             $table->date('date');
             $table->string('state');
             $table->string('municipality');
+            $table->string('country_id');
             $table->string('client');
             $table->string('main_contact');
             $table->string('position'); //puesto
@@ -30,6 +31,8 @@ class CreateFormatsTable extends Migration
             $table->unsignedInteger('classrooms')->nullable();
             $table->string('colony');
             $table->string('street');
+            $table->string('n_ext')->nullable();
+            $table->string('n_int')->nullable();
             $table->unsignedInteger('users');
             $table->unsignedInteger('has_water_lack');
             $table->string('frequency')->nullable();
@@ -38,11 +41,10 @@ class CreateFormatsTable extends Migration
             $table->decimal('cost_average');
             $table->string('water_quality');
             $table->unsignedInteger('roof_type');
-            $table->decimal('rainwater_area');
             $table->unsignedInteger('property_type');
             $table->unsignedInteger('current_year_resources');
             $table->unsignedInteger('resources_type')->nullable();
-            $table->unsignedInteger('project_id');
+            // $table->unsignedInteger('project_id');
             $table->unsignedInteger('planning_entity_id'); // nombre, puesto, correo, teléfono
             $table->unsignedInteger('auth_entity_id');
             // $table->unsignedInteger('created_by');
