@@ -19,6 +19,8 @@ class CreateEntitiesTable extends Migration
             $table->string('email');
             $table->string('telephone');
             $table->string('position');
+            $table->unsignedInteger('project_id');
+            $table->foreign('project_id')->references('id')->on('users');
         });
     }
 
