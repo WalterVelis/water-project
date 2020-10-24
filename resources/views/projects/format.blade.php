@@ -137,7 +137,7 @@
                                 <div class="col-12 col-md-6">
                                     <label class="c_label col-12 col-form-label">{{ __('Environment') }}</label>
                                     <div class="col-sm-12">
-                                        <select class="structure form-control" name="structure">
+                                        <select class="environment form-control" name="environment">
                                             {{-- <option selected>{{ __('Choose...') }}</option> --}}
                                             <option selected value="0"> {{ __('Urban') }} </option>
                                             <option value="1"> {{ __('Rural') }} </option>
@@ -282,7 +282,7 @@
                                     <label class="c_label col-12 col-form-label">{{ __('Water Quality') }}</label>
                                     {{-- <div class="col-sm-12">
                                     </div> --}}
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-12 mt-2">
 
                                         <div class="form-check">
                                             <label class="form-check-label">
@@ -324,7 +324,7 @@
 
                                 <div class="col-12 col-md-6">
                                     <label class="c_label col-12 col-form-label">{{ __('Roof Type') }}</label>
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-12 mt-2">
                                         <div class="form-check">
                                             <label class="form-check-label">
                                                 <input name="roof_type[]" class="form-check-input" type="checkbox" value="{{ __('Arch Ceiling') }}"> {{ __('Arch Ceiling') }}
@@ -362,7 +362,8 @@
                                 <div class="col-12 col-md-6">
                                     <label class="c_label col-12 col-form-label">{{ __('Rainwater Area') }}</label>
                                     <div class="col-sm-12">
-                                        <input class="form-control" name="rainwater_area" type="number" value="{{-- $project->format->rainwater_area --}}" />
+                                        <input class="form-control" id="rainwater_area" name="rainwater_area" type="number" value="" />
+                                        <input readonly disabled class="form-control" id="storage" type="text" placeholder="[m3]" value="" />
                                     </div>
                                 </div>
                             </div>
@@ -525,6 +526,24 @@ $('.has_water_lack').on('change', function () {
 $('#water_consumption_lt').on('keyup', function () {
     let total = $('#water_consumption_lt').val() * 0.001;
     $('#water_consuption').val(total+" m3");
+});
+
+$('#rainwater_area').on('keyup', function () {
+    let total = $('#rainwater_area').val();
+    if( $('.environment').val() == 0 )
+        multiplier = 20;
+    else
+        multiplier = 30;
+    $('#storage').val(total * multiplier + " m3");
+});
+
+$('.environment').on('change', function () {
+    let total = $('#rainwater_area').val();
+    if( $('.environment').val() == 0 )
+        multiplier = 20;
+    else
+        multiplier = 30;
+    $('#storage').val(total * multiplier + "m3");
 });
 
 $('#water_quality-other').on('click', function () {
