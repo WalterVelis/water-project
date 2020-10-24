@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Project;
+use App\Country;
 use App\Format;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('projects.create');
+        $countries = Country::all();
+        return view('projects.format', compact('countries'));
     }
 
     /**
@@ -49,8 +51,9 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
+        $countries = Country::all();
         $project->load('format');
-        return view('projects.format', compact('project'));
+        return view('projects.format', compact('project', 'countries'));
     }
 
     /**

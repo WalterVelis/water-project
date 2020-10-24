@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Route; // Para desactivar errores en VSC, se pued
 |
 */
 
+
+
 Route::get('/', function () {
     if(auth()->check()){
         return redirect('home');
@@ -26,6 +28,8 @@ Route::post('user/doubleFactor','DfaController@checkDoubleFactor')->name('loginD
 Route::post('user/doubleFactor/tokenEmail/verificate','DfaController@tokenByEmail');
 Route::post('user/doubleFactor/tokenGoogle/verificate','DfaController@tokenByGoogle');
 
+Route::get('states', 'CountryController@states');
+Route::get('municipality/{stateId}', 'CountryController@municipality');
 
 Route::get('home', 'HomeController@index')->name('home');
 Route::get('dashboard', 'HomeController@index')->name('home');
