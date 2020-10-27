@@ -35,6 +35,10 @@ Route::get('home', 'HomeController@index')->name('home');
 Route::get('dashboard', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth','change']], function () {
+
+    Route::get('entities/{projectId}/{type}', 'EntityController@getEntities');
+    Route::post('entities', 'EntityController@store');
+    Route::delete('entities/{entity}', 'EntityController@destroy');
     Route::resource('role', 'RoleController');
     Route::get('role/uniqueName/{text}', 'RoleController@nameUniqueRol');
     Route::get('role/uniqueUpdateName/{text}/{text2}', 'RoleController@nameUniqueUpdateRol');

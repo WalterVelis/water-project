@@ -63,16 +63,22 @@
                                     style="display:none">
                                     <thead class="text-primary">
                                         <th>
-                                            {{ __('#') }}
+                                            {{ __('Page') }}
                                         </th>
                                         <th>
-                                            {{ __('Name') }}
+                                            {{ __('Client') }}
                                         </th>
                                         <th>
-                                            {{ __('Description') }}
+                                            {{ __('Main Contact') }}
                                         </th>
                                         <th>
-                                            {{ __('Status') }}
+                                            {{ __('Place') }}
+                                        </th>
+                                        <th>
+                                            {{ __('First Contact') }}
+                                        </th>
+                                        <th>
+                                            {{ __('Quotation Date') }}
                                         </th>
                                         <th>
                                             {{ __('Actions') }}
@@ -83,19 +89,25 @@
                                         @foreach($projects as $item)
                                         <tr>
                                             <td>
-                                                {{ $item->id }}
+                                                {{ $item->page }}
                                             </td>
                                             <td>
-                                                {{ $item->name }}
+                                                {{ $item->client }}
                                             </td>
                                             <td>
-                                                {{ $item->description }}
+                                                {{ $item->main_contact }}
                                             </td>
                                             <td>
-                                                {{ $item->status }}
+                                                {{ $item->state }}, {{ $item->municipality }}
+                                            </td>
+                                            <td>
+                                                {{ $item->date }}
+                                            </td>
+                                            <td>
+                                                {{ $item->created_at }}
                                             </td>
                                             <td class="td-actions text-right">
-                                                <a href="{{ route('projects.show', $item->id) }}"><i class="material-icons">remove_red_eye</i></a>
+                                                <!-- <a href="{{ route('projects.show', $item->id) }}"><i class="material-icons">remove_red_eye</i></a> -->
                                                 <a href="{{ route('projects.edit', $item->id) }}"><i class="material-icons">edit</i></a>
                                                 {{-- <i class="material-icons">close</i> --}}
                                             </td>
