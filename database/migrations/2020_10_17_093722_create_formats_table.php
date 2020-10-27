@@ -50,6 +50,10 @@ class CreateFormatsTable extends Migration
             $table->unsignedInteger('auth_entity_id');
             $table->date('implementation_date');
             $table->string('notes')->nullable();
+            $table->unsignedInteger('created_by');
+            $table->unsignedInteger('updated_by');
+            $table->foreign('created_by')->references('id')->on('users');
+            $table->foreign('updated_by')->references('id')->on('users');
             $table->timestamps();
         });
     }
