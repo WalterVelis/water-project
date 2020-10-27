@@ -16,6 +16,7 @@ class CreateFormatsTable extends Migration
         Schema::create('formats', function (Blueprint $table) {
             $table->increments('id');
             $table->date('date');
+            $table->string('page')->unique();
             $table->string('state');
             $table->string('municipality');
             $table->string('country_id');
@@ -31,6 +32,7 @@ class CreateFormatsTable extends Migration
             $table->unsignedInteger('classrooms')->nullable();
             $table->string('colony');
             $table->string('street');
+            $table->string('zip_code');
             $table->string('n_ext')->nullable();
             $table->string('n_int')->nullable();
             $table->unsignedInteger('users');
@@ -44,11 +46,8 @@ class CreateFormatsTable extends Migration
             $table->unsignedInteger('property_type');
             $table->unsignedInteger('current_year_resources');
             $table->unsignedInteger('resources_type')->nullable();
-            // $table->unsignedInteger('project_id');
             $table->unsignedInteger('planning_entity_id'); // nombre, puesto, correo, teléfono
             $table->unsignedInteger('auth_entity_id');
-            // $table->unsignedInteger('created_by');
-            // $table->unsignedInteger('updated_by');
             $table->date('implementation_date');
             $table->string('notes')->nullable();
             $table->timestamps();
