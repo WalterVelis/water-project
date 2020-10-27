@@ -52,9 +52,11 @@
                         {{ __('Create Project') }}
                     </h3>
                     @include('layouts.navbars.stepnav')
-                    <div id="format-content">
+                    <form method="post" action="{{ route('projects.update', $format) }}" autocomplete="off" class="form-horizontal">
+                        @csrf
+                        @method('put')
 
-                        <form method="post" action="{{ route('projects.store') }}" autocomplete="off" class="form-horizontal">
+                        <div id="format-content">
                             <div class="row">
                                 <div class="">
                                     <div class="card-header card-header-rose card-header-icon">
@@ -67,9 +69,6 @@
                                     <div class="card-body ">
 
                                         <!-- Inicio -->
-
-                                        @csrf
-                                        @method('patch')
                                         <div class="row pb-5">
                                             <div class="col-12 col-md-6">
                                                 <label class="c_label col-12 col-form-label">{{ __('Date') }}</label>
@@ -459,44 +458,41 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                        
+                            <div class="row">
+                                
+                                    <input type="hidden" name="project_id" value="{{ $format->id }}">
+                                    <input type="hidden" name="entity_type" value="0">
+                                    <div class="col-12 mt-5">
+                                        <span>{{ __('People involved in planning and validation') }}</span>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <input class="form-control mt-2" type="text" placeholder="{{ __('Name') }}"
+                                            name="name">
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <input class="form-control mt-2" type="text" placeholder="{{ __('Email') }}"
+                                            name="email">
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <input class="form-control mt-2" type="text" placeholder="{{ __('Telephone') }}"
+                                            name="telephone">
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <input class="form-control mt-2" type="text" placeholder="{{ __('Position') }}"
+                                            name="position">
+                                    </div>
+                                    <div class="col-12">
+                                        <button type="button" class="btn btn-primary float-right"
+                                            onclick="addPlanning()">Agregar</button>
+                                    </div>
+                            </div>
 
-                        <div class="row">
-                            <form class="col-12 row" method="post" id="form-planning">
-                                @csrf
+                            <div class="col-12 mt-4" id="planning"></div>
+                            <br>
+                            <div class="row">
+                                
                                 <input type="hidden" name="project_id" value="{{ $format->id }}">
-                                <input type="hidden" name="entity_type" value="0">
-                                <div class="col-12 mt-5">
-                                    <span>{{ __('People involved in planning and validation') }}</span>
-                                </div>
-                                <div class="col-12 col-md-4">
-                                    <input class="form-control mt-2" type="text" placeholder="{{ __('Name') }}"
-                                        name="name">
-                                </div>
-                                <div class="col-12 col-md-4">
-                                    <input class="form-control mt-2" type="text" placeholder="{{ __('Email') }}"
-                                        name="email">
-                                </div>
-                                <div class="col-12 col-md-4">
-                                    <input class="form-control mt-2" type="text" placeholder="{{ __('Telephone') }}"
-                                        name="telephone">
-                                </div>
-                                <div class="col-12 col-md-4">
-                                    <input class="form-control mt-2" type="text" placeholder="{{ __('Position') }}"
-                                        name="position">
-                                </div>
-                                <div class="col-12">
-                                    <button type="button" class="btn btn-primary float-right"
-                                        onclick="addPlanning()">Agregar</button>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-12 mt-4" id="planning"></div>
-                        <br>
-                        <div class="row">
-                            <form class="col-12 row" method="post" id="form-auth">
-                                <input type="hidden" name="project_id" value="{{ $format->id }}">
-                                @csrf
                                 <input type="hidden" name="entity_type" value="1">
                                 <div class="col-12 mt-5">
                                     <span>{{ __('Persons involved in project authorization') }}</span>
@@ -521,26 +517,24 @@
                                     <button type="button" class="btn btn-primary float-right"
                                         onclick="addAuth()">Agregar</button>
                                 </div>
-                            </form>
+                             
+                            </div>
+                            <div class="col-12" id="auth"></div>
                         </div>
-                        <div class="col-12" id="auth"></div>
-                    </div>
-
-                    <br>
-
-                    <!-- Fin -->
-
+                        
+                        <input type="hidden" name='id' value="{{$format->id}}" id='ìd'>
+                        <div class="card-footer d-flex flex-row-reverse">
+                            <button type="submit" class="btn btn-rose btn-lg btn-round">{{ __('Save') }}</button>
+                        </div>
+                    </form> 
+                     <!-- Form End -->
                 </div>
             </div>
-
-            <input name="" id="" class="btn btn-rose" type="submit" value="{{ __('Save') }}">
-
-
         </div>
     </div>
 </div>
-</div>
 @endsection
+
 @push('js')
 
 <script>

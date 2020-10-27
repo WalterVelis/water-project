@@ -132,8 +132,16 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
+        $format = Format::find($request->id);
+        $format->date = $request->date;
+        $format->client = $request->client;
+        $format->main_contact = $request->main_contact;
+        $format->position = $request->position;
+        $format->phone = $request->phone;
+        $format->email = $request->email;
+        $format->update();
         // dd(Project::find($project)->update($request->all()));
-        $project->update($request->all());
+        // $project->update($request->all());
         // Project::find($project)->update($request->all());
         return redirect()->route('projects.index')->with('success', 'Project Updated');
     }
