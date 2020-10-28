@@ -12,7 +12,7 @@
       <p>{{ __('Profile Vendor') }}</p>
   </a>
 </li>
-    
+
 @endif
 
 @if(App\User::hasPermissions('Role Index') || App\User::hasPermissions('User Index'))
@@ -28,7 +28,7 @@
   <div class="collapse {{ ($menuParent == 'user') ? ' show' : '' }}" id="bfUser">
     <ul class="nav">
 
-      
+
       @if(App\User::hasPermissions('Role Index'))
       <li class="nav-item{{ $activePage == 'role-management' ? ' active' : '' }}">
         <a class="nav-link" href="{{ route('role.index') }}">
@@ -45,11 +45,17 @@
         </a>
       </li>
 
+
     </ul>
   </div>
 </li>
 @endif
-
+<li class="nav-item{{ $activePage == 'projects-management' ? ' actives' : '' }}">
+    <a class="nav-link" href="{{ route('projects.index') }}">
+    <span class="sidebar-mini"></span>
+        <span class="sidebar-normal"> {{ __('Projects') }} </span>
+    </a>
+</li>
 @if(App\User::hasPermissions("Vendor Index"))
 <li class="nav-item {{ ($menuParent == 'vendor') ? ' active' : '' }}">
   <a class="nav-link" data-toggle="collapse" href="#bfVendor" {{ ($menuParent == 'vendor') ? ' aria-expanded="true"' : '' }}>

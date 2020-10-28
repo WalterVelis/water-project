@@ -87,7 +87,7 @@
                                     <tbody>
 
                                         @foreach($projects as $item)
-                                        <tr>
+                                        <tr {{ $item->status == 0 ? 'style=opacity:0.5' : '' }}>
                                             <td>
                                                 {{ $item->page }}
                                             </td>

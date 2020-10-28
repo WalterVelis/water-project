@@ -15,6 +15,7 @@ class CreateFormatsTable extends Migration
     {
         Schema::create('formats', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('status')->default(0);
             $table->date('date');
             $table->string('page')->unique();
             $table->string('state');

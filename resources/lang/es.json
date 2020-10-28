@@ -520,6 +520,13 @@
     "Projects": "Proyectos",
     "VALIDATION": "VALIDACIÓN",
     "FEATURES & NEEDS": "CARACTERÍSTICAS Y NECESIDADES",
-    "GENERAL DATA": "DATOS GENERALES"
+    "GENERAL DATA": "DATOS GENERALES",
+    "House": "Casa",
+    "School": "Escuela",
+    "Industry": "Industria",
+    "Bussiness": "Negocio",
+    "Other": "Otro",
+    "Urban": "Urbano",
+    "specify...": "especifique..."
 
 }

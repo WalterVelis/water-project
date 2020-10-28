@@ -51,10 +51,10 @@ class ProfileController extends Controller
                 return view('profile.vieDoubleFactor');
             }else{
                 return redirect('/vendor/'.auth()->user()->vendor->id.'/edit')->withStatus(__('Completa el perfil'));
-            }            
+            }
         }else{
-            return view('profile.vieDoubleFactor');            
-        }        
+            return view('profile.vieDoubleFactor');
+        }
     }
 
     /**
@@ -103,13 +103,13 @@ class ProfileController extends Controller
     public function tokenEmailCode(Request $request){
 
         $user = User::findorFail(auth()->user()->id);
-  
+
         if( $user->token_login == $request['code'] ){
-          return ['token_code_controller' => true]; 
+          return ['token_code_controller' => true];
         }else{
-          return ['token_code_controller' => false]; 
+          return ['token_code_controller' => false];
         }
-  
+
       }
 
     public function doubleFactorAuthenticationDeactivate(Request $request){
@@ -145,7 +145,7 @@ class ProfileController extends Controller
         auth()->user()->update();
         $user = auth()->user();
 
- 
+
         $urlQR = $this->createUserUrlQR($user);
         return ['urlQR' => $urlQR, 'user' =>$user];
     }
@@ -157,30 +157,30 @@ class ProfileController extends Controller
         new RendererStyle(200),
         new ImagickImageBackEnd()
     ));
- 
+
     $data = $bacon->writeString(
         (new Google2FA)->getQRCodeUrl(
             config('app.name'),
             $user->email,
             $user->token_login_google
         ), 'utf-8');
- 
+
     return 'data:image/png;base64,' . base64_encode($data);
 }
 
 public function login2FA(Request $request)
 {
     $user = User::findorFail(auth()->user()->id);
- 
+
     if ((new Google2FA())->verifyKey($user->token_login_google, $request['code_verification'])) {
         $user->activate_2fa_google = "1";
         $user->update();
-        return ['statusCode' => true];        
+        return ['statusCode' => true];
     }else{
-        
+
         return ['statusCode' => false];
     }
- 
+
     //return redirect()->back()->withErrors(['error'=> 'Código de verificación incorrecto']);
 }
 
@@ -191,5 +191,5 @@ public function activateGoogle(){
 }
 
 
-    
+
 }

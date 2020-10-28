@@ -9,9 +9,8 @@
 }
 
 .c_label {
-    font-size: 1.1em !important;
+    /* font-size: 1.1em !important; */
     padding: 0 !important;
-    font-weight: 600;
     margin-left: 0px !important;
     width: auto !important;
     margin-top: 30px;
@@ -36,27 +35,25 @@
     color: white;
     background: #32526f;
 }
+
+form .col-12 {
+    margin-top: 1rem;
+}
+
 </style>
 @section('content')
 <div class="content">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-12 text-right">
-                        <a href="{{ route('projects.index') }}" class="btn btn-sm btn-rose">{{ __('Back to list') }}</a>
-                    </div>
-                </div>
                 <div id="all-container">
                     <h3 style="margin-top:-10px;">
                         {{ __('Create Project') }}
                     </h3>
                     @include('layouts.navbars.stepnav')
-                    <form method="post" action="{{ route('projects.update', $format) }}" autocomplete="off" class="form-horizontal">
-                        @csrf
-                        @method('put')
+                    <div id="format-content">
 
-                        <div id="format-content">
+                        <form id="form-update" method="post" action="{{ route('projects.update', $format) }}" autocomplete="off" class="form-horizontal">
                             <div class="row">
                                 <div class="">
                                     <div class="card-header card-header-rose card-header-icon">
@@ -69,29 +66,39 @@
                                     <div class="card-body ">
 
                                         <!-- Inicio -->
+
+                                        @csrf
+                                        @method('patch')
                                         <div class="row pb-5">
-                                            <div class="col-12 col-md-6">
-                                                <label class="c_label col-12 col-form-label">{{ __('Date') }}</label>
+                                            <div class="col-12 col-md-4">
+                                                <label class="c_label col-12 col-form-label">{{ __('Page') }}</label>
                                                 <div class="col-sm-12">
-                                                    <input class="form-control" name="date" type="date"
-                                                        value="{{-- $project->format->date --}}" />
+                                                    <input readonly class="form-control" name="page" type="text"
+                                                        value="{{ $format->page }}" />
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-md-6">
+                                            <div class="col-12 col-md-4">
+                                                <label class="c_label col-12 col-form-label">{{ __('First Meet') }}</label>
+                                                <div class="col-sm-12">
+                                                    <input class="form-control" name="date" type="date"
+                                                        value="{{ $format->date }}" />
+                                                </div>
+                                            </div>
+                                            <div class="col-offset-md-4 col-12 col-md-6">
                                                 <label class="c_label col-12 col-form-label">{{ __('Client') }}</label>
                                                 <div class="col-sm-12">
                                                     <input class="form-control" name="client" type="text"
-                                                        value="{{-- $project->format->client --}}" />
+                                                        value="{{ $format->client }}" />
                                                 </div>
                                             </div>
 
 
 
                                             <div class="col-12 col-md-6">
-                                                <label class="c_label col-12 col-form-label">{{ __('Contact') }}</label>
+                                                <label class="c_label col-12 col-form-label">{{ __('Main Contact') }}</label>
                                                 <div class="col-sm-12">
                                                     <input class="form-control" name="main_contact" type="text"
-                                                        value="{{-- $project->format->main_contact --}}" />
+                                                        value="{{ $format->main_contact }}" />
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
@@ -99,7 +106,7 @@
                                                     class="c_label col-12 col-form-label">{{ __('Job Position') }}</label>
                                                 <div class="col-sm-12">
                                                     <input class="form-control" name="position" type="text"
-                                                        value="{{-- $project->format->position --}}" />
+                                                        value="{{ $format->position }}" />
                                                 </div>
                                             </div>
 
@@ -107,14 +114,14 @@
                                                 <label class="c_label col-12 col-form-label">{{ __('Phone') }}</label>
                                                 <div class="col-sm-12">
                                                     <input class="form-control" name="phone" type="text"
-                                                        value="{{-- $project->format->phone --}}" />
+                                                        value="{{ $format->phone }}" />
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <label class="c_label col-12 col-form-label">{{ __('Email') }}</label>
                                                 <div class="col-sm-12">
                                                     <input class="form-control" name="email" type="email"
-                                                        value="{{-- $project->format->email --}}" />
+                                                        value="{{ $format->email }}" />
                                                 </div>
                                             </div>
                                         </div>
@@ -132,17 +139,16 @@
                                     <label class="c_label col-12 col-form-label">{{ __('Structure') }}</label>
                                     <div class="col-sm-12">
                                         <select class="structure form-control" name="structure">
-                                            <option selected>{{ __('Choose...') }}</option>
-                                            <option value="{{ __('Building') }}"> {{ __('Building') }} </option>
-                                            <option value="{{ __('House') }}"> {{ __('House') }} </option>
-                                            <option value="{{ __('School') }}"> {{ __('School') }} </option>
-                                            <option value="{{ __('Bussiness') }}"> {{ __('Bussiness') }} </option>
-                                            <option id="structure-other" value="0"> {{ __('Other') }} </option>
+                                            @php ($set = 0)
+                                            <option @if ($format->structure == __('House')) selected @php ($set = 1) @endif value="{{ __('House') }}"> {{ __('House') }} </option>
+                                            <option @if ($format->structure == __('School')) selected @php ($set = 1) @endif value="{{ __('School') }}"> {{ __('School') }} </option>
+                                            <option @if ($format->structure == __('Industry')) selected @php ($set = 1) @endif value="{{ __('Industry') }}"> {{ __('Industry') }} </option>
+                                            <option @if ($format->structure == __('Bussiness')) selected @php ($set = 1) @endif value="{{ __('Bussiness') }}"> {{ __('Bussiness') }} </option>
+                                            <option {{ $set == 1 ? '' : 'selected' }} id="structure-other" value="0"> {{ __('Other') }} </option>
                                         </select>
                                     </div>
                                     <div class="col-12">
-                                        <input id="input-structure-other" style="display:none;" class="form-control mt-2"
-                                            type="text" placeholder="{{ __('specify...') }}">
+                                        <input id="input-structure-other" style="{{ $set == 1 ? 'display:none;' : '' }}" class="form-control mt-2" type="text" placeholder="{{ __('specify...') }}" name="structure_other" value="{{ $format->structure }}">
                                     </div>
                                     <script>
 
@@ -153,9 +159,8 @@
                                     <label class="c_label col-12 col-form-label">{{ __('Environment') }}</label>
                                     <div class="col-sm-12">
                                         <select class="environment form-control" name="environment">
-                                            {{-- <option selected>{{ __('Choose...') }}</option> --}}
-                                            <option selected value="0"> {{ __('Urban') }} </option>
-                                            <option value="1"> {{ __('Rural') }} </option>
+                                            <option {{ $format->environment == 0 ? 'selected' : '' }} value="0"> {{ __('Urban') }} </option>
+                                            <option {{ $format->environment == 1 ? 'selected' : '' }} value="1"> {{ __('Rural') }} </option>
                                         </select>
                                     </div>
                                 </div>
@@ -166,25 +171,26 @@
                                     {{-- <div class="col-sm-12">
                                         </div> --}}
                                     <div class="col-sm-12">
-                                        <select class="education form-control" name="structure">
-                                            <option selected value="0">{{ __('No') }}</option>
-                                            <option value="1"> {{ __('Yes') }} </option>
+                                        <select class="education form-control" name="has_educational_programs">
+                                            @php ($set = 0)
+                                            <option {{ $format->has_educational_programs == 0 ? 'selected' : '' }} value="0">{{ __('No') }}</option>
+                                            <option @if ($format->has_educational_programs == 1) selected @php ($set = 1) @endif value="1"> {{ __('Yes') }} </option>
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-4 input-education-childs">
+                                    <div class="col-12 col-md-4 input-education-childs" style="{{ $set == 0 ? 'display:none;' : '' }}">
                                     <label class="c_label col-12 col-form-label">{{ __('# of Children') }}</label>
                                     <div class="col-sm-12">
                                         <input class="form-control" name="children" type="text"
-                                            value="{{-- $project->format->children --}}" />
+                                            value="{{ $format->children }}" />
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-md-4 input-education-childs">
+                                <div class="col-12 col-md-4 input-education-childs" style="{{ $set == 0 ? 'display:none;' : '' }}>
                                     <label class="c_label col-12 col-form-label">{{ __('# of Classrooms') }}</label>
                                     <div class="col-sm-12">
                                         <input class="form-control" name="classrooms" type="text"
-                                            value="{{-- $project->format->classrooms --}}" />
+                                            value="{{ $format->classrooms }}" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
@@ -203,8 +209,7 @@
                                     <label class="c_label col-12 col-form-label">{{ __('State') }}</label>
                                     <div class="col-sm-12">
                                         <div id="state">
-                                            <input class="form-control" class="" name="state" type="text"
-                                                value="{{-- $project->format->state --}}" />
+                                            <input class="form-control" class="" name="state" type="text" value="{{ $format->state }}" />
                                         </div>
                                     </div>
                                 </div>
@@ -212,8 +217,7 @@
                                     <label class="c_label col-12 col-form-label">{{ __('Municipality') }}</label>
                                     <div class="col-sm-12">
                                         <div id="municipality">
-                                            <input class="form-control" name="municipality" type="text"
-                                                value="{{-- $project->format->municipality --}}" />
+                                            <input class="form-control" name="municipality" type="text" value="{{ $format->municipality }}" />
                                         </div>
                                     </div>
                                 </div>
@@ -221,7 +225,7 @@
                                     <label class="c_label col-12 col-form-label">{{ __('colony') }}</label>
                                     <div class="col-sm-12">
                                         <input class="form-control" name="colony" type="text"
-                                            value="{{-- $project->format->colony --}}" />
+                                            value="{{-- $format->colony --}}" />
                                     </div>
                                 </div>
 
@@ -229,7 +233,7 @@
                                     <label class="c_label col-12 col-form-label">{{ __('Street') }}</label>
                                     <div class="col-sm-12">
                                         <input class="form-control" name="street" type="text"
-                                            value="{{-- $project->format->street --}}" />
+                                            value="{{-- $format->street --}}" />
                                     </div>
                                 </div>
 
@@ -237,14 +241,14 @@
                                     <label class="c_label col-12 col-form-label">{{ __('# Exterior') }}</label>
                                     <div class="col-sm-12">
                                         <input class="form-control" name="n_ext" type="text"
-                                            value="{{-- $project->format->frequency --}}" />
+                                            value="{{-- $format->frequency --}}" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-3">
                                     <label class="c_label col-12 col-form-label">{{ __('# Interior') }}</label>
                                     <div class="col-sm-12">
                                         <input class="form-control" name="n_int" type="text"
-                                            value="{{-- $project->format->frequency --}}" />
+                                            value="{{-- $format->frequency --}}" />
                                     </div>
                                 </div>
 
@@ -252,7 +256,7 @@
                                     <label class="c_label col-12 col-form-label">{{ __('# of Users') }}</label>
                                     <div class="col-sm-12">
                                         <input class="form-control" name="users" type="text"
-                                            value="{{-- $project->format->users --}}" />
+                                            value="{{-- $format->users --}}" />
                                     </div>
                                 </div>
 
@@ -303,7 +307,7 @@
                                         class="c_label col-12 col-form-label">{{ __('Average Cost Water/Year [pesos]') }}</label>
                                     <div class="col-sm-12">
                                         <input class="form-control" name="cost_average" type="number"
-                                            value="{{-- $project->format->cost_average --}}" />
+                                            value="{{-- $format->cost_average --}}" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
@@ -446,7 +450,7 @@
                                     <label class="c_label col-12 col-form-label">{{ __('Implementation Date') }}</label>
                                     <div class="col-sm-12">
                                         <input class="form-control" name="implementation_date" type="date"
-                                            value="{{-- $project->format->implementation_date --}}" />
+                                            value="{{-- $format->implementation_date --}}" />
                                     </div>
                                 </div>
 
@@ -454,45 +458,48 @@
                                     <label class="c_label col-12 col-form-label">{{ __('Notes and Observations') }}</label>
                                     <div class="col-sm-12">
                                         <input class="form-control" name="notes" type="text"
-                                            value="{{-- $project->format->notes --}}" />
+                                            value="{{-- $format->notes --}}" />
                                     </div>
                                 </div>
                             </div>
-                        
-                            <div class="row">
-                                
-                                    <input type="hidden" name="project_id" value="{{ $format->id }}">
-                                    <input type="hidden" name="entity_type" value="0">
-                                    <div class="col-12 mt-5">
-                                        <span>{{ __('People involved in planning and validation') }}</span>
-                                    </div>
-                                    <div class="col-12 col-md-4">
-                                        <input class="form-control mt-2" type="text" placeholder="{{ __('Name') }}"
-                                            name="name">
-                                    </div>
-                                    <div class="col-12 col-md-4">
-                                        <input class="form-control mt-2" type="text" placeholder="{{ __('Email') }}"
-                                            name="email">
-                                    </div>
-                                    <div class="col-12 col-md-4">
-                                        <input class="form-control mt-2" type="text" placeholder="{{ __('Telephone') }}"
-                                            name="telephone">
-                                    </div>
-                                    <div class="col-12 col-md-4">
-                                        <input class="form-control mt-2" type="text" placeholder="{{ __('Position') }}"
-                                            name="position">
-                                    </div>
-                                    <div class="col-12">
-                                        <button type="button" class="btn btn-primary float-right"
-                                            onclick="addPlanning()">Agregar</button>
-                                    </div>
-                            </div>
+                        </form>
 
-                            <div class="col-12 mt-4" id="planning"></div>
-                            <br>
-                            <div class="row">
-                                
+                        <div class="row">
+                            <form class="col-12 row" method="post" id="form-planning">
+                                @csrf
                                 <input type="hidden" name="project_id" value="{{ $format->id }}">
+                                <input type="hidden" name="entity_type" value="0">
+                                <div class="col-12 mt-5">
+                                    <span>{{ __('People involved in planning and validation') }}</span>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <input class="form-control mt-2" type="text" placeholder="{{ __('Name') }}"
+                                        name="name">
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <input class="form-control mt-2" type="text" placeholder="{{ __('Email') }}"
+                                        name="email">
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <input class="form-control mt-2" type="text" placeholder="{{ __('Telephone') }}"
+                                        name="telephone">
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <input class="form-control mt-2" type="text" placeholder="{{ __('Position') }}"
+                                        name="position">
+                                </div>
+                                <div class="col-12">
+                                    <button type="button" class="btn btn-primary float-right"
+                                        onclick="addPlanning()">Agregar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-12 mt-4" id="planning"></div>
+                        <br>
+                        <div class="row">
+                            <form class="col-12 row" method="post" id="form-auth">
+                                <input type="hidden" name="project_id" value="{{ $format->id }}">
+                                @csrf
                                 <input type="hidden" name="entity_type" value="1">
                                 <div class="col-12 mt-5">
                                     <span>{{ __('Persons involved in project authorization') }}</span>
@@ -517,24 +524,31 @@
                                     <button type="button" class="btn btn-primary float-right"
                                         onclick="addAuth()">Agregar</button>
                                 </div>
-                             
-                            </div>
-                            <div class="col-12" id="auth"></div>
+                            </form>
                         </div>
-                        
-                        <input type="hidden" name='id' value="{{$format->id}}" id='ìd'>
-                        <div class="card-footer d-flex flex-row-reverse">
-                            <button type="submit" class="btn btn-rose btn-lg btn-round">{{ __('Save') }}</button>
+                        <div class="col-12" id="auth"></div>
+
+                        <div class="row float-right mr-4">
+                            <a href="{{ route('projects.index') }}" class="btn btn-rose">{{ __('CANCEL') }}</a>
+                            <button onclick="$('#form-update').submit();" class="btn btn-primary">{{ __('SAVE') }}</button>
                         </div>
-                    </form> 
-                     <!-- Form End -->
+                    </div>
+
+                    <br>
+
+                    <!-- Fin -->
+
                 </div>
             </div>
+
+
+
+
         </div>
     </div>
 </div>
+</div>
 @endsection
-
 @push('js')
 
 <script>
@@ -566,13 +580,12 @@ $('.country').on('change', function() {
     // if country is Mexico
     if ($(this).val() == 142) {
         $('#state').load('/states')
-        console.log($(this).val());
     } else {
         $('#state').html(
-            `<input class="form-control" class="" name="state" type="text" value="{{-- $project->format->state --}}" />`
+            `<input class="form-control" class="" name="state" type="text" value="{{ $format->state }}" />`
         );
         $('#municipality').html(
-            `<input class="form-control" class="" name="state" type="text" value="{{-- $project->format->municipality --}}" />`
+            `<input class="form-control" class="" name="municipality" type="text" value="{{ $format->municipality }}" />`
         );
     }
 });
@@ -645,8 +658,6 @@ $('#water_quality-other').on('click', function() {
 
 var projectId = {{ $format->id }};
 
-$('.input-education-childs').hide();
-
 
 function addPlanning() {
     $.ajax({
@@ -697,6 +708,16 @@ $(function() {
     loadAuth();
 });
 
+setInterval(() => {
+    $.ajax({
+        type: "patch",
+        url: "{{ route('projects.update', $format) }}",
+        data: $('#form-update').serialize(),
+        success: function (response) {
+            console.log('Saved');
+        }
+    });
+}, 10000);
 
 </script>
 
