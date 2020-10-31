@@ -43,9 +43,10 @@ class CreateFormatsTable extends Migration
             $table->decimal('water_consumption'); // lt, m3
             $table->decimal('cost_average');
             $table->string('water_quality');
-            $table->unsignedInteger('roof_type');
+            $table->string('roof_type');
             $table->unsignedInteger('property_type');
             $table->unsignedInteger('current_year_resources');
+            $table->string('rainwater_area');
             $table->unsignedInteger('resources_type')->nullable();
             $table->unsignedInteger('planning_entity_id'); // nombre, puesto, correo, teléfono
             $table->unsignedInteger('auth_entity_id');
