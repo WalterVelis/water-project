@@ -6,7 +6,7 @@
         <span class="navbar-toggler-bar navbar-kebab"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav" style="    padding-bottom: 10px; transform: scale(1.3); padding: 10px 0px; left: 1px; margin-left: 20px;">
             <li class="nav-item active">
                 <a class="nav-link" href="#">{{ __('Needs Diagnosis') }} <span class="sr-only">(current)</span></a>
             </li>
