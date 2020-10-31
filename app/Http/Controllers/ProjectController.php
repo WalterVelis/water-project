@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+
 use App\Project;
+use App\State;
 use App\Country;
 use App\Format;
 use App\Entity;
@@ -62,6 +65,7 @@ class ProjectController extends Controller
         $format->street = "";
         $format->n_ext = "";
         $format->n_int = "";
+        $format->zip_code = "";
         $format->users = "";
         $format->has_water_lack = "";
         $format->frequency = "";
@@ -77,8 +81,8 @@ class ProjectController extends Controller
         $format->auth_entity_id = "";
         $format->implementation_date = "";
         $format->notes = "";
-        $format->created_by = 1;
-        $format->updated_by = 1;
+        $format->created_by = Auth::id();
+        $format->updated_by = Auth::id();
         $format->status = 0;
         $format->save();
         return redirect()->to('projects/'.$newId.'/edit');
@@ -135,9 +139,28 @@ class ProjectController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+
+        //validar que implode tenga valor
+        $water_quality = implode(",",$request->water_quality);
+        $roof_type = implode(",",$request->roof_type);
+
+        // If is an Mexico's State's ID, find the name
+        if (is_numeric($request->state)) {
+            $state = State::find($request->state);
+            $estado = $state->estado;
+        } else {
+            $estado = $request->state;
+        }
+
         $structure = $request->structure;
         if ($structure === "0") {
             $structure = $request->structure_other;
+        }
+
+        $obtaining_water = $request->obtaining_water;
+        if ($obtaining_water === "0") {
+            $obtaining_water = $request->obtaining_water_other;
         }
 
         $format = Format::find($id);
@@ -152,6 +175,9 @@ class ProjectController extends Controller
         $format->has_educational_programs = $request->has_educational_programs;
         $format->children = $request->children;
         $format->classrooms = $request->classrooms;
+        $format->country_id = $request->country;
+        $format->state = $estado;
+        $format->municipality = $request->municipality;
         $format->colony = $request->colony;
         $format->zip_code = $request->zip_code;
         $format->street = $request->street;
@@ -160,11 +186,12 @@ class ProjectController extends Controller
         $format->users = $request->users;
         $format->has_water_lack = $request->has_water_lack;
         $format->frequency = $request->frequency;
-        $format->obtaining_water = $request->obtaining_water;
+        $format->obtaining_water = $obtaining_water;
+        $format->rainwater_area = $request->rainwater_area;
         $format->water_consumption = $request->water_consumption;
         $format->cost_average = $request->cost_average;
-        $format->water_quality = $request->water_quality;
-        $format->roof_type = $request->roof_type;
+        $format->water_quality = $water_quality;
+        $format->roof_type = $roof_type;
         $format->property_type = $request->property_type;
         $format->current_year_resources = $request->current_year_resources;
         $format->resources_type = $request->resources_type;
@@ -172,14 +199,14 @@ class ProjectController extends Controller
         $format->auth_entity_id = $request->auth_entity_id;
         $format->implementation_date = $request->implementation_date;
         $format->notes = $request->notes;
-
+        $format->updated_by = Auth::id();
         $format->status = 1;
 
         $format->update();
         // dd(Project::find($project)->update($request->all()));
         // $project->update($request->all());
         // Project::find($project)->update($request->all());
-        return redirect()->route('projects.index')->with('success', 'Project Updated');
+        return redirect()->route('projects.index');
     }
 
     /**

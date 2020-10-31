@@ -1,8 +1,10 @@
-{{-- This File is an Alias for 'create' --}}
-@extends('layouts.app', ['activePage' => 'budgetaccount-management', 'menuParent' => 'catalog', 'sublevel' => 'budget',
-'titlePage' => __('Budget Account Management')])
+{{-- ThisFileisanAliasfor'create' --}}
+@extends('layouts.app', ['activePage' => 'budgetaccount-management', 'menuParent' => 'catalog', 'sublevel' => 'budget', 'titlePage' => __('Budget Account Management')])
 <style>
 
+.form-check .form-check-label {
+    padding-right: 0px!important;
+}
 .nav-item:not(.active) .nav-link{
     color: #3d5c7780!important;
     cursor:not-allowed
@@ -118,7 +120,7 @@ form .col-12 {
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
-                                                <label class="c_label col-12 col-form-label">{{ __('Email') }}</label>
+                                                <label class="c_label col-12 col-form-label">{{ __('EEmail') }}</label>
                                                 <div class="col-sm-12">
                                                     <input class="form-control" name="email" type="email"
                                                         value="{{ $format->email }}" />
@@ -139,11 +141,11 @@ form .col-12 {
                                     <label class="c_label col-12 col-form-label">{{ __('Structure') }}</label>
                                     <div class="col-sm-12">
                                         <select class="structure form-control" name="structure">
-                                            @php ($set = 0)
-                                            <option @if ($format->structure == __('House')) selected @php ($set = 1) @endif value="{{ __('House') }}"> {{ __('House') }} </option>
-                                            <option @if ($format->structure == __('School')) selected @php ($set = 1) @endif value="{{ __('School') }}"> {{ __('School') }} </option>
-                                            <option @if ($format->structure == __('Industry')) selected @php ($set = 1) @endif value="{{ __('Industry') }}"> {{ __('Industry') }} </option>
-                                            <option @if ($format->structure == __('Bussiness')) selected @php ($set = 1) @endif value="{{ __('Bussiness') }}"> {{ __('Bussiness') }} </option>
+                                            @php ($set = 0) @endphp
+                                            <option @if ($format->structure == __('House')) selected @php ($set = 1) @endphp @endif value="{{ __('House') }}"> {{ __('House') }} </option>
+                                            <option @if ($format->structure == __('School')) selected @php ($set = 1) @endphp @endif value="{{ __('School') }}"> {{ __('School') }} </option>
+                                            <option @if ($format->structure == __('Industry')) selected @php ($set = 1) @endphp @endif value="{{ __('Industry') }}"> {{ __('Industry') }} </option>
+                                            <option @if ($format->structure == __('Bussiness')) selected @php ($set = 1) @endphp @endif value="{{ __('Bussiness') }}"> {{ __('Bussiness') }} </option>
                                             <option {{ $set == 1 ? '' : 'selected' }} id="structure-other" value="0"> {{ __('Other') }} </option>
                                         </select>
                                     </div>
@@ -168,13 +170,11 @@ form .col-12 {
                                 <div class="col-12 col-md-4">
                                     <label
                                         class="c_label col-12 col-form-label">{{ __('Has Educational Programs?') }}</label>
-                                    {{-- <div class="col-sm-12">
-                                        </div> --}}
                                     <div class="col-sm-12">
                                         <select class="education form-control" name="has_educational_programs">
-                                            @php ($set = 0)
+                                            @php ($set = 0) @endphp
                                             <option {{ $format->has_educational_programs == 0 ? 'selected' : '' }} value="0">{{ __('No') }}</option>
-                                            <option @if ($format->has_educational_programs == 1) selected @php ($set = 1) @endif value="1"> {{ __('Yes') }} </option>
+                                            <option @if ($format->has_educational_programs == 1) selected @php ($set = 1) @endphp @endif value="1"> {{ __('Yes') }} </option>
                                         </select>
                                     </div>
                                 </div>
@@ -196,9 +196,8 @@ form .col-12 {
                                 <div class="col-12 col-md-4">
                                     <label class="c_label col-12 col-form-label">{{ __('Country') }}</label>
                                     <div class="col-sm-12">
-                                        <select class="country form-control">
-                                            <option selected>{{ __('Choose...') }}</option>
-                                            <option value="142"> México </option>
+                                        <select class="country form-control" name="country">
+                                            <option selected value="142"> México </option>
                                             @foreach($countries as $item)
                                             <option value="{{ $item->id }}"> {{ $item->name }} </option>
                                             @endforeach
@@ -222,10 +221,10 @@ form .col-12 {
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
-                                    <label class="c_label col-12 col-form-label">{{ __('colony') }}</label>
+                                    <label class="c_label col-12 col-form-label">{{ __('Colony') }}</label>
                                     <div class="col-sm-12">
                                         <input class="form-control" name="colony" type="text"
-                                            value="{{-- $format->colony --}}" />
+                                            value="{{ $format->colony }}" />
                                     </div>
                                 </div>
 
@@ -233,7 +232,7 @@ form .col-12 {
                                     <label class="c_label col-12 col-form-label">{{ __('Street') }}</label>
                                     <div class="col-sm-12">
                                         <input class="form-control" name="street" type="text"
-                                            value="{{-- $format->street --}}" />
+                                            value="{{ $format->street }}" />
                                     </div>
                                 </div>
 
@@ -241,36 +240,42 @@ form .col-12 {
                                     <label class="c_label col-12 col-form-label">{{ __('# Exterior') }}</label>
                                     <div class="col-sm-12">
                                         <input class="form-control" name="n_ext" type="text"
-                                            value="{{-- $format->frequency --}}" />
+                                            value="{{ $format->n_ext }}" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-3">
                                     <label class="c_label col-12 col-form-label">{{ __('# Interior') }}</label>
                                     <div class="col-sm-12">
                                         <input class="form-control" name="n_int" type="text"
-                                            value="{{-- $format->frequency --}}" />
+                                            value="{{ $format->n_int }}" />
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-3">
+                                    <label class="c_label col-12 col-form-label">{{ __('Postal Code') }}</label>
+                                    <div class="col-sm-12">
+                                        <input class="form-control" name="zip_code" type="text"
+                                            value="{{ $format->zip_code }}" />
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-md-4">
+                                <!-- <div class="col-12 col-md-4">
                                     <label class="c_label col-12 col-form-label">{{ __('# of Users') }}</label>
                                     <div class="col-sm-12">
                                         <input class="form-control" name="users" type="text"
-                                            value="{{-- $format->users --}}" />
+                                            value="{{ $format->users }}" />
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <div class="col-12 col-md-6">
                                     <label class="c_label col-12 col-form-label">{{ __('Has Water Lack?') }}</label>
                                     <div class="col-sm-12">
                                         <select class="has_water_lack form-control" name="has_water_lack">
-                                            <option selected value="0">{{ __('No') }}</option>
-                                            <option value="1"> {{ __('Yes') }} </option>
+                                            <option {{ $format->has_water_lack == 0 ? 'selected' : '' }} value="0">{{ __('No') }}</option>
+                                            <option {{ $format->has_water_lack == 1 ? 'selected' : '' }} value="1"> {{ __('Yes') }} </option>
                                         </select>
                                     </div>
                                     <div class="col-12">
-                                        <input id="input-has_water_lack-other" name="frequency" style="display:none;"
-                                            class="form-control mt-2" type="text" placeholder="{{ __('Frequency') }}">
+                                        <input id="input-has_water_lack-other" name="frequency" style="{{ $format->has_water_lack == 0 ? 'display:none;' : '' }}" value="{{ $format->frequency }}" class="form-control mt-2" type="text" placeholder="{{ __('Frequency') }}">
                                     </div>
 
                                 </div>
@@ -280,23 +285,21 @@ form .col-12 {
                                     <label class="c_label col-12 col-form-label">{{ __('Water Obtaining Method') }}</label>
                                     <div class="col-sm-12">
                                         <select class="obtaining form-control" name="obtaining_water">
-                                            <option selected value="{{ __('Own water system') }}">
-                                                {{ __('Own water system') }}
-                                            </option>
-                                            <option value="{{ __('Pipes') }}"> {{ __('Pipes') }} </option>
-                                            <option id="obtaining-other" value="0"> {{ __('Other') }} </option>
+                                            @php ($set = 0) @endphp
+                                            <option @if ($format->obtaining_water == __('Own water system')) selected @php ($set = 1) @endphp @endif value="{{ __('Own water system') }}"> {{ __('Own water system') }} </option>
+                                            <option @if ($format->obtaining_water == __('Pipes')) selected @php ($set = 1) @endphp @endif value="{{ __('Pipes') }}"> {{ __('Pipes') }} </option>
+                                            <option {{ $set == 1 ? '' : 'selected' }} id="obtaining-other" value="0"> {{ __('Other') }} </option>
                                         </select>
                                     </div>
                                     <div class="col-12">
-                                        <input id="input-obtaining-other" style="display:none;" class="form-control mt-2"
-                                            type="text" placeholder="{{ __('specify...') }}">
+                                        <input id="input-obtaining-other" name="obtaining_water_other" style="{{ $set == 1 ? 'display:none;' : '' }}" value="{{ $format->obtaining_water }}" class="form-control mt-2" type="text" placeholder="{{ __('specify...') }}">
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <label class="c_label col-12 col-form-label">{{ __('Water Consumption [lt]') }}</label>
                                     <div class="col-sm-12">
                                         <input id="water_consumption_lt" class="form-control" name="water_consumption"
-                                            type="number" value="" />
+                                            type="number" value="{{ $format->water_consumption }}" />
                                         <input readonly disabled id="water_consuption" class="form-control" type="text"
                                             value="" placeholder="[m3]" />
                                     </div>
@@ -307,98 +310,117 @@ form .col-12 {
                                         class="c_label col-12 col-form-label">{{ __('Average Cost Water/Year [pesos]') }}</label>
                                     <div class="col-sm-12">
                                         <input class="form-control" name="cost_average" type="number"
-                                            value="{{-- $format->cost_average --}}" />
+                                            value="{{ $format->cost_average }}" />
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-12">
                                     <label class="c_label col-12 col-form-label">{{ __('Water Quality') }}</label>
-                                    {{-- <div class="col-sm-12">
-                                        </div> --}}
-                                    <div class="col-sm-12 mt-2">
-
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input name="water_quality[]" class="form-check-input" type="checkbox"
-                                                    value="{{ __('WC and Watering') }}"> {{ __('WC and Watering') }}
-                                                <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-                                            </label>
+                                        <div class="row">
+                                            @php
+                                                $water_quality = explode(",",$format->water_quality);
+                                            @endphp
+                                            <div class="col-12 col-md-2">
+                                                <div class="form-check">
+                                                    <label class="form-check-label">
+                                                        <input {{ in_array(__('WC and Watering'), $water_quality) ? 'checked' : '' }} name="water_quality[]" class="form-check-input" type="checkbox"
+                                                            value="{{ __('WC and Watering') }}"> {{ __('WC and Watering') }}
+                                                        <span class="form-check-sign">
+                                                            <span class="check"></span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-2">
+                                                <div class="form-check">
+                                                    <label class="form-check-label">
+                                                        <input {{ in_array(__('Hygiene and personal care'), $water_quality) ? 'checked' : '' }} name="water_quality[]" class="form-check-input" type="checkbox"
+                                                            value="{{ __('Hygiene and personal care') }}">
+                                                        {{ __('Hygiene and personal care') }}
+                                                        <span class="form-check-sign">
+                                                            <span class="check"></span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-2">
+                                                <div class="form-check">
+                                                    <label class="form-check-label">
+                                                        <input {{ in_array(__('Purified'), $water_quality) ? 'checked' : '' }} name="water_quality[]" class="form-check-input" type="checkbox"
+                                                            value="{{ __('Purified') }}"> {{ __('Purified') }}
+                                                        <span class="form-check-sign">
+                                                            <span class="check"></span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-2">
+                                                <div class="form-check">
+                                                    <label class="form-check-label">
+                                                        <input {{ in_array(__('Other'), $water_quality) ? 'checked' : '' }} name="water_quality[]" id="water_quality-other"
+                                                            class="form-check-input" type="checkbox" value="{{ __('Other') }}"> {{ __('Other') }}
+                                                        <span class="form-check-sign">
+                                                            <span class="check"></span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        <div class="col-12 col-md-4">
+                                            <input id="input-quality-other" value="{{ end($water_quality) }}" name="water_quality[]" style="{{ in_array(__('Other'), $water_quality) ? '' : 'display:none;' }}" class="form-control mt-2"
+                                                type="text" placeholder="{{ __('specify...') }}">
                                         </div>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input name="water_quality[]" class="form-check-input" type="checkbox"
-                                                    value="{{ __('Hygiene and personal care') }}">
-                                                {{ __('Hygiene and personal care') }}
-                                                <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input name="water_quality[]" class="form-check-input" type="checkbox"
-                                                    value="{{ __('Purified') }}"> {{ __('Purified') }}
-                                                <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-                                            </label>
-                                        </div>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input name="water_quality[]" id="water_quality-other"
-                                                    class="form-check-input" type="checkbox" value=""> {{ __('Other') }}
-                                                <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <input id="input-quality-other" style="display:none;" class="form-control mt-2"
-                                            type="text" placeholder="{{ __('specify...') }}">
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-12">
                                     <label class="c_label col-12 col-form-label">{{ __('Roof Type') }}</label>
-                                    <div class="col-sm-12 mt-2">
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input name="roof_type[]" class="form-check-input" type="checkbox"
-                                                    value="{{ __('Arch Ceiling') }}"> {{ __('Arch Ceiling') }}
-                                                <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-                                            </label>
+                                    @php
+                                        $roof_type = explode(",",$format->roof_type);
+                                    @endphp
+                                    <div class="row col-sm-12 mt-2">
+                                        <div class="col-12 col-md-3">
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input {{ in_array(__('Arch Ceiling'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input" type="checkbox"
+                                                        value="{{ __('Arch Ceiling') }}"> {{ __('Arch Ceiling') }}
+                                                    <span class="form-check-sign">
+                                                        <span class="check"></span>
+                                                    </span>
+                                                </label>
+                                            </div>
                                         </div>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input name="roof_type[]" class="form-check-input" type="checkbox"
-                                                    value="{{ __('Two Waters') }}"> {{ __('Two Waters') }}
-                                                <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-                                            </label>
+                                        <div class="col-12 col-md-3">
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input {{ in_array(__('Two Waters'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input" type="checkbox"
+                                                        value="{{ __('Two Waters') }}"> {{ __('Two Waters') }}
+                                                    <span class="form-check-sign">
+                                                        <span class="check"></span>
+                                                    </span>
+                                                </label>
+                                            </div>
                                         </div>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input name="roof_type[]" class="form-check-input" type="checkbox"
-                                                    value="{{ __('Flat With Pending') }}"> {{ __('Flat With Pending') }}
-                                                <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-                                            </label>
+                                        <div class="col-12 col-md-3">
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input {{ in_array(__('Flat With Pending'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input" type="checkbox"
+                                                        value="{{ __('Flat With Pending') }}"> {{ __('Flat With Pending') }}
+                                                    <span class="form-check-sign">
+                                                        <span class="check"></span>
+                                                    </span>
+                                                </label>
+                                            </div>
                                         </div>
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input name="roof_type[]" class="form-check-input" type="checkbox"
-                                                    value="{{ __('Flat Without Pending') }}">
-                                                {{ __('Flat Without Pending') }}
-                                                <span class="form-check-sign">
-                                                    <span class="check"></span>
-                                                </span>
-                                            </label>
+                                        <div class="col-12 col-md-3">
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                    <input {{ in_array(__('Flat Without Pending'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input" type="checkbox"
+                                                        value="{{ __('Flat Without Pending') }}">
+                                                    {{ __('Flat Without Pending') }}
+                                                    <span class="form-check-sign">
+                                                        <span class="check"></span>
+                                                    </span>
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -406,7 +428,7 @@ form .col-12 {
                                     <label class="c_label col-12 col-form-label">{{ __('Rainwater Area') }}</label>
                                     <div class="col-sm-12">
                                         <input class="form-control" id="rainwater_area" name="rainwater_area" type="number"
-                                            value="" />
+                                            value="{{ $format->rainwater_area }}" />
                                         <input readonly disabled class="form-control" id="storage" type="text"
                                             placeholder="[m3]" value="" />
                                     </div>
@@ -422,17 +444,17 @@ form .col-12 {
                                     <label class="c_label col-12 col-form-label">{{ __('Property Type') }}</label>
                                     <div class="col-sm-12">
                                         <select class="form-control" name="property_type">
-                                            <option value="{{ __('Own') }}" selected>{{ __('Own') }}</option>
-                                            <option value="{{ __('Rent') }}"> {{ __('Rent') }} </option>
+                                            <option {{ $format->property_type == 0 ? 'selected' : '' }} value="0">{{ __('Own') }}</option>
+                                            <option {{ $format->property_type == 1 ? 'selected' : '' }} value="1"> {{ __('Rent') }} </option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
-                                    <label class="c_label col-12 col-form-label">{{ __('current_year_resources') }}</label>
+                                    <label class="c_label col-12 col-form-label">{{ __('Has Resource for this Year?') }}</label>
                                     <div class="col-sm-12">
                                         <select class="form-control" name="current_year_resources">
-                                            <option value="{{ __('Yes') }}" selected>{{ __('Yes') }}</option>
-                                            <option value="{{ __('No') }}"> {{ __('No') }} </option>
+                                            <option {{ $format->current_year_resources == 0 ? 'selected' : '' }} value="0"> {{ __('No') }} </option>
+                                            <option {{ $format->current_year_resources == 1 ? 'selected' : '' }} value="1">{{ __('Yes') }}</option>
                                         </select>
                                     </div>
                                 </div>
@@ -441,8 +463,8 @@ form .col-12 {
                                     <label class="c_label col-12 col-form-label">{{ __('Resources Type') }}</label>
                                     <div class="col-sm-12">
                                         <select class="form-control" name="resources_type">
-                                            <option value="{{ __('Own') }}" selected>{{ __('Own') }}</option>
-                                            <option value="{{ __('Third Party') }}"> {{ __('Third Party') }} </option>
+                                            <option {{ $format->resources_type == 0 ? 'selected' : '' }} value="0" selected>{{ __('Own') }}</option>
+                                            <option {{ $format->resources_type == 1 ? 'selected' : '' }} value="1"> {{ __('Third Party') }} </option>
                                         </select>
                                     </div>
                                 </div>
@@ -450,7 +472,7 @@ form .col-12 {
                                     <label class="c_label col-12 col-form-label">{{ __('Implementation Date') }}</label>
                                     <div class="col-sm-12">
                                         <input class="form-control" name="implementation_date" type="date"
-                                            value="{{-- $format->implementation_date --}}" />
+                                            value="{{ $format->implementation_date }}" />
                                     </div>
                                 </div>
 
@@ -458,7 +480,7 @@ form .col-12 {
                                     <label class="c_label col-12 col-form-label">{{ __('Notes and Observations') }}</label>
                                     <div class="col-sm-12">
                                         <input class="form-control" name="notes" type="text"
-                                            value="{{-- $format->notes --}}" />
+                                            value="{{ $format->notes }}" />
                                     </div>
                                 </div>
                             </div>
@@ -625,12 +647,12 @@ $('.has_water_lack').on('change', function() {
         $('#input-has_water_lack-other').fadeOut();
 });
 
-$('#water_consumption_lt').on('keyup', function() {
-    let total = $('#water_consumption_lt').val() * 0.001;
-    $('#water_consuption').val(total + " m3");
+$('#water_consumption_lt').on('change', function() {
+    let rtotal = $('#water_consumption_lt').val() * 0.001;
+    $('#water_consuption').val(rtotal + " m3");
 });
 
-$('#rainwater_area').on('keyup', function() {
+$('#rainwater_area').on('change', function() {
     let total = $('#rainwater_area').val();
     if ($('.environment').val() == 0)
         multiplier = 20;
@@ -703,25 +725,49 @@ function loadAuth() {
     $('#auth').load('/entities/'+projectId+'/1');
 }
 
+saving = false;
+
+function saveWork() {
+    console.log(saving);
+    if(!saving) {
+        saving = true;
+        $.ajax({
+            type: "patch",
+            url: "{{ route('projects.update', $format) }}",
+            data: $('#form-update').serialize(),
+            complete: function (response) {
+                console.log('Saved');
+                saving = false;
+            }
+        });
+}
+}
+
 $(function() {
     loadPlanning();
     loadAuth();
+
+    $("input").blur(function(){
+        saveWork();
+    });
+
+    let total = $('#rainwater_area').val();
+    if ($('.environment').val() == 0)
+        multiplier = 20;
+    else
+        multiplier = 30;
+    $('#storage').val(total * multiplier + " m3");
+
+    let rtotal = $('#water_consumption_lt').val() * 0.001;
+    $('#water_consuption').val(rtotal + " m3");
 });
 
-setInterval(() => {
-    $.ajax({
-        type: "patch",
-        url: "{{ route('projects.update', $format) }}",
-        data: $('#form-update').serialize(),
-        success: function (response) {
-            console.log('Saved');
-        }
-    });
-}, 10000);
+
+
 
 </script>
 
 @endpush
 
 
-{{-- un hidden que sea el valor real (specify...) --}}
+{{-- unhiddenqueseaelvalorreal(specify...) --}}

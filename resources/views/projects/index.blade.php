@@ -31,7 +31,7 @@
 
                         <div class="row col-12">
                             <div class="col-lg-11 col-md-11 col-sm-11 col-xs-12 text-right">
-                                <a name="" id="" class="btn btn-rose" href="{{ route('projects.create') }}" role="button">{{ __('New') }}</a>
+                                <a name="" id="" class="btn btn-primary btn-sm btn-round" style="color:white; padding:5px;" href="{{ route('projects.create') }}" role="button"><i style="color:white;font-size: 1em;padding: 4px;" class="fa fa-plus fw" aria-hidden="true"></i></a>
                                 @if(App\User::hasPermissions("Budget Create Account"))
                                     <a href="{{ route('projects.create') }}"
                                         class="btn btn-sm btn-rose">{{ __('Nuevo Proyecto') }}</a>
@@ -39,7 +39,7 @@
                             </div>
                             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12 text-right">
                                 <div class="dropdown">
-                                    <button title="Download Data" class="dropdown-toggle btn btn-sm btn-primary"
+                                    <button title="Download Data" class="dropdown-toggle" style="background: none; border: none; font-size: 1.5em; margin-top: 6px;"
                                         type="button" id="dropdownMenuButton" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">
                                         <i class="fa fa-download" aria-hidden="true"></i>
