@@ -49,7 +49,7 @@ class RoleController extends Controller
             return view('roles.index', ['roles' => $model->all()]);
         }else{
             return redirect('/');
-        }        
+        }
     }
 
     /**
@@ -67,7 +67,7 @@ class RoleController extends Controller
             return redirect('/');
         }
 
-        
+
     }
 
     /**
@@ -95,8 +95,7 @@ class RoleController extends Controller
 
         }
 
-
-        return redirect('/role/'.$rolNew->id)->withStatus(__('Role successfully created.'));
+        return redirect()->route('role.index')->withStatus(__('Role successfully created.'));
 
         //dd($request);
     }
@@ -114,7 +113,7 @@ class RoleController extends Controller
             return view('roles.edit', compact('role'));
         }else{
             return redirect('/');
-        }        
+        }
     }
 
     /**
@@ -161,8 +160,7 @@ class RoleController extends Controller
             }
 
         }
-
-        return redirect('/role/'.$role->id)->withStatus(__('Role successfully updated.'));
+        return redirect()->route('role.index')->withStatus(__('Role successfully updated.'));
     }
 
     public function show($id)
@@ -173,11 +171,11 @@ class RoleController extends Controller
             return view('roles.show',compact('rol'));
         }else{
             return redirect('/');
-        } 
+        }
 
     }
 
-    public function nameUniqueRol($text){        
+    public function nameUniqueRol($text){
         $roles = DB::table('roles')->where('name', $text)->get();
         if($roles!=null){
           return Response::json($roles);
@@ -186,7 +184,7 @@ class RoleController extends Controller
         }
     }
 
-    public function nameUniqueUpdateRol($text, $text2){        
+    public function nameUniqueUpdateRol($text, $text2){
         $roles = DB::table('roles')->where('name', $text)->where('name', '!=',$text2)->get();
         if($roles!=null){
           return Response::json($roles);
@@ -215,17 +213,17 @@ class RoleController extends Controller
         }else{
             return redirect('/');
         }
-        
+
     }
 
-    public function excelExport_xlsx() 
+    public function excelExport_xlsx()
     {
         $date=new Carbon();
         $fecha = $date->format('d-m-Y');
         return Excel::download(new Role_xlsx, 'Roles '.$fecha.'.xlsx');
     }
 
-    public function excelExport_csv() 
+    public function excelExport_csv()
     {
         $date=new Carbon();
         $fecha = $date->format('d-m-Y');
@@ -240,18 +238,18 @@ class RoleController extends Controller
 
         $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
         //Spanish=es    English=en
-        if($lang == 'es'){            
+        if($lang == 'es'){
             $fecha=$date->locale('es')->isoFormat('dddd, DD MMMM YYYY');
-            $idioma = "1";            
+            $idioma = "1";
         }else{
             $fecha=$date->locale('en')->isoFormat('dddd, DD MMMM YYYY');
             $idioma = "0";
-        } 
+        }
         $hora=$date->locale('es')->isoFormat('H:mm:ss');
-        $fechaC = $date->format('Y');       
+        $fechaC = $date->format('Y');
         //log logica
         $name= __("Roles");
-        
+
 
         $pdf = PDF::loadView('roles.options.pdfAll', compact('name', 'query1', 'fecha', 'hora', 'idioma'));
 
