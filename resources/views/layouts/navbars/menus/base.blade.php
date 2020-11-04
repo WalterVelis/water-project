@@ -89,6 +89,12 @@ $sublevel="";
         <span class="sidebar-normal"> {{ __('Projects') }} </span>
     </a>
 </li>
+<li class="nav-item{{ $activePage == 'provider' ? ' actives' : '' }}">
+    <a class="nav-link" href="{{ route('providers.index') }}">
+        <span class="sidebar-mini photo2"><i class="material-icons">assignment_ind</i></span>
+        <span class="sidebar-normal"> {{ __('Proveedores') }} </span>
+    </a>
+</li>
 @if(App\User::hasPermissions("Vendor Index"))
 <li class="nav-item {{ ($menuParent == 'vendor') ? ' active' : '' }}">
     <a class="nav-link" data-toggle="collapse" href="#bfVendor"

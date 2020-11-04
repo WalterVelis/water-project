@@ -24,12 +24,6 @@
                         </div>
                         <div class="card-body text-center">
                             <div class="row">
-                                <div class="col-md-12 text-right">
-                                    <a href="{{ route('user.index') }}" class="btn-add"><img
-                                            src="{{asset("img/icons").'/Regresar.png'}}"></a>
-                                </div>
-                            </div>
-                            <div class="row">
                                 <label class="col-sm-2 col-form-label">{{ __('Profile photo') }}</label>
                                 <div class="col-sm-7">
                                     <div class="fileinput fileinput-new text-center" data-provides="fileinput">
@@ -228,10 +222,10 @@
                     </div>--}}
             </div>
             <input type="hidden" name="created_by" value="{{auth()->user()->id}}">
-            <div class="card-footer d-flex flex-row-reverse">
-                <p onclick="validationSaveUpdate();" class="btn btn-rose btn-round btn-lg">{{ __('Save') }}</p>
-                <button id="saveUser" type="submit"
-                    class="btn btn-rose btn-round btn-lg d-none">{{ __('Save') }}</button>
+            <div class="card-footer d-flex flex-row-reverse" style="    justify-content: end;">
+                <p onclick="validationSaveUpdate();" class="btn btn-primary btn-lg">{{ __('Save') }}</p>
+                <a href="{{ route('user.index') }}" class="btn btn-rose btn-lg">{{ __('Cancelar') }}</a>
+                <button id="saveUser" type="submit" class="btn btn-rose btn-lg d-none">{{ __('Save') }}</button>
 
                 {{-- @if ($vendorStatus->is_status_approved == "0")
 
