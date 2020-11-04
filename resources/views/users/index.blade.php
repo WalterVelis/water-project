@@ -9,7 +9,7 @@ Management')])
                 <div class="card">
                     <div class="card-header card-header-rose card-header-icon">
                         <div class="card-icon">
-                            <i class="material-icons">supervisor_account</i>
+                            <span style="color:white;">GU</span>
                         </div>
                         <div class="card-body">
 
@@ -17,11 +17,9 @@ Management')])
                             <div class="row col-12">
                                 <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 text-right">
                                     @if($status)
-                                    <a href="{{ url("/user?status=0") }}" class="btn-add"><img
-                                            src="{{asset("img/icons").'/.png'}}"></a>
-                                    @if (App\User::hasPermissions("User Create"))
-                                    <a href="{{ route('user.create') }}" class="btn-add" style="margin-right: 20px"><i style="    line-height: 1em;background: #0b6696; color: white; font-size: 1em; width: 30px; padding: 10px; border-radius: 50px;" class="fa fa-plus fw" aria-hidden="true"></i></a>
-                                    @endif
+                                        @if (App\User::hasPermissions("User Create"))
+                                        <a href="{{ route('user.create') }}" class="btn-add" style="margin-right: 20px"><i style="    line-height: 1em;background: #0b6696; color: white; font-size: 1em; width: 30px; padding: 10px; border-radius: 50px;" class="fa fa-plus fw" aria-hidden="true"></i></a>
+                                        @endif
                                     @else
                                     <a href="{{ url("/user?status=1") }}" class="btn-add"><img
                                             src="{{asset("img/icons").'/Gestion_Usuario.png'}}"></a>
@@ -30,11 +28,10 @@ Management')])
                                 @if ($status)
                                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-left">
                                     <div class="dropdown">
-                                        <button title="Download Data" class="btn btn-ns" type="button"
-                                            id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            <a href="{{ route('role.create') }}" class="btn-add"><img
-                                                    src="{{asset("img/icons").'/Descargar.png'}}"></a>
+                                        <button title="Download Data" class="dropdown-toggle" style="background: none; border: none; font-size: 1.5em;    width: 90px;"
+                                            type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-download" aria-hidden="true"></i>
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                             <p class="dropdown-item" onclick="exportDataCsv();"><i
@@ -98,6 +95,9 @@ Management')])
                                     style="display:none; width: 100%">
                                     <thead class="text-dark">
                                         <th>
+                                            {{ __('Photo') }}
+                                        </th>
+                                        <th>
                                             {{ __('Name') }}
                                         </th>
                                         <th>
@@ -116,6 +116,11 @@ Management')])
                                     <tbody>
                                         @foreach($users as $user)
                                         <tr>
+                                            <td>
+                                                <div class="avatar avatar-sm rounded-circle img-circle" style="width:4.0625rem; height:4.0625rem;overflow: hidden;">
+                                                    <img src="{{ $user->profilePicture() }}" alt="" style="width: 100%; height:100%">
+                                                </div>
+                                            </td>
                                             <td>
                                                 {{ $user->name }}
                                             </td>

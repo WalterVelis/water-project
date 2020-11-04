@@ -56,7 +56,7 @@ class UserController extends Controller
             $status=$request->status;
             if($status == null){$status = 1;}
             $users=User::search($status);
-    
+
             return view('users.index',compact('users','status'));
         }else{
             return redirect('/');
@@ -103,13 +103,13 @@ class UserController extends Controller
                 $flagSendEmail = false;
                 echo($e);
             }
-            
+
             if($flagSendEmail){
                 $model->create($request->merge([
                     'picture' => $request->photo ? $request->photo->store('profile', 'public') : null,
                     'password' => Hash::make($password2)
                 ])->all());
-        
+
                 if($request->get('rol-text')== 'Vendor'){
                     //
                     $userNew = User::where('email', $request->email)->get()->first();
@@ -120,8 +120,8 @@ class UserController extends Controller
                     //0 interno 1 externo
                     $vendor->is_status_complete = '0';
                     $vendor->save();
-        
-                }     
+
+                }
                 return redirect()->route('user.index')->withStatus(__('User successfully created.'));
             }else{
                 //return back()->withError(__('A conflict occurred when sending the email.'));
@@ -142,12 +142,13 @@ class UserController extends Controller
     public function edit(User $user, Role $model)
     {
         if(User::hasPermissions("User Update")){
-            $vendorStatus = Vendor::where('user_id', $user->id)->get()->first();
+            // $vendorStatus = Vendor::where('user_id', $user->id)->get()->first();
+            $vendorStatus = 0;
             $classVendor = 'd-none';
             $roles = Role::where('name', '!=', 'Vendor')->orderBy('name')->get();
             if( $user->role->name == 'Vendor' ){
                 $roles = Role::orderBy('name')->get();
-            }            
+            }
             $isVendor = '';
             if($user->role->name == 'Vendor'){
 
@@ -155,16 +156,16 @@ class UserController extends Controller
 
             }
 
-            if($vendorStatus == null){
-                $vendorStatus = new Vendor();
-                $vendorStatus->is_status_approved = "0";
-                $vendorStatus->is_external = "2";
-                $classVendor= 'd-none';
-            }else{
-                if($vendorStatus->is_status_approved == '1'){
-                    $classVendor = 'd-none';
-                }
-            }
+            // if($vendorStatus == null){
+            //     $vendorStatus = new Vendor();
+            //     $vendorStatus->is_status_approved = "0";
+            //     $vendorStatus->is_external = "2";
+            //     $classVendor= 'd-none';
+            // }else{
+            //     if($vendorStatus->is_status_approved == '1'){
+            //         $classVendor = 'd-none';
+            //     }
+            // }
             return view('users.edit', ['user' => $user->load('role'), 'roles' => $roles, 'vendorStatus' => $vendorStatus, 'classVendor' => $classVendor, 'isVendor' => $isVendor]);
         }else{
             return redirect('/');
@@ -185,7 +186,7 @@ class UserController extends Controller
         if($user->role->name == 'Vendor'){
             if($user->role->name != $request->get('rol-text')){
                 $vendor = Vendor::where('user_id', $user->id)->get()->first();
-                $vendor->delete();                
+                $vendor->delete();
             }
         }
 
@@ -199,15 +200,15 @@ class UserController extends Controller
                     $vendor->is_external = $request->get('is_external');
                     //0 interno 1 externo
                     $vendor->is_status_complete = '0';
-                    
+
 
                     $password2 = Str::random(10);
                     $user->password = bcrypt($password2);
                     $user->email = $request->email;
                     $user->role_id = $request->role_id;
-                    
-            
-                    
+
+
+
 
                     $userInformation= new User;
                     $userInformation->name = $request->name;
@@ -228,7 +229,7 @@ class UserController extends Controller
                         $user->update();
                     }else{
                         return back()->withError(__('A conflict occurred when sending the email.'));
-                    }                    
+                    }
                 }
             }
             $flagSendEmail = true;
@@ -245,7 +246,7 @@ class UserController extends Controller
                 $userInformation->password = $password2;
                 $userInformation->email = $request->email;
                 $userInformation->role_id = $request->role_id;
-                $emailSend = $request->email;            
+                $emailSend = $request->email;
                 try{
                     Mail::to($emailSend)->send(new EmailInformation($userInformation));
                 } catch(\Exception $e){
@@ -264,10 +265,10 @@ class UserController extends Controller
 
             }else{
                 return back()->withError(__('A conflict occurred when sending the email.'));
-            }   
+            }
         }else{
             return redirect('/');
-        }     
+        }
     }
 
     /**
@@ -288,11 +289,11 @@ class UserController extends Controller
         if(($user->status && User::hasPermissions("User Deactivate")) || (!$user->status && User::hasPermissions("User Activate"))){
             $user->status=!$user->status;
             $user->save();
-            
+
             return redirect('user?status='.(int)!$user->status)->withStatus(__('Status successfully changed.'));
         }else{
             return redirect('/');
-        }  
+        }
     }
 
     public function email2Reset($userId){
@@ -329,15 +330,15 @@ class UserController extends Controller
             return back()->withError(__('A conflict occurred when sending the email.'));
         }
 
-        
 
 
-        
+
+
 
     }
 
     public function userVendorModal(Request $request){
-        
+
         try{
             $password2 = Str::random(10);
             $userInformation= new User;
@@ -352,7 +353,7 @@ class UserController extends Controller
             $userVendor->name = $request->name;
             $userVendor->password = bcrypt($password2);
             $userVendor->email = $request->email;
-            $userVendor->created_by = auth()->user()->id;            
+            $userVendor->created_by = auth()->user()->id;
 
             $flagSendEmail = true;
             try{
@@ -398,7 +399,7 @@ class UserController extends Controller
     }
 
 
-    public function emailUniqueUser($text){        
+    public function emailUniqueUser($text){
         $users = DB::table('users')->where('email', $text)->get();
         if($users!=null){
           return Response::json($users);
@@ -408,7 +409,7 @@ class UserController extends Controller
     }
 
 
-    public function emailUniqueUserEdit($text, $text2){        
+    public function emailUniqueUserEdit($text, $text2){
         $users = DB::table('users')->where('email', $text)->where('email', '!=', $text2)->get();
         if($users!=null){
           return Response::json($users);
@@ -417,7 +418,7 @@ class UserController extends Controller
         }
     }
 
- /*    public function nameUniqueUpdateRol($text, $text2){        
+ /*    public function nameUniqueUpdateRol($text, $text2){
         $roles = DB::table('roles')->where('name', $text)->where('name', '!=',$text2)->get();
         if($roles!=null){
           return Response::json($roles);
@@ -425,29 +426,29 @@ class UserController extends Controller
           return null;
         }
     } */
-    
-    public function excelExport_xlsx() 
+
+    public function excelExport_xlsx()
     {
         $date=new Carbon();
         $fecha = $date->format('d-m-Y');
         return Excel::download(new User_xlsx, __('Users').' '.$fecha.'.xlsx');
     }
 
-    public function excelExport_csv() 
+    public function excelExport_csv()
     {
         $date=new Carbon();
         $fecha = $date->format('d-m-Y');
         return Excel::download(new  User_csv, __('Users').' '.$fecha.'.csv');
     }
 
-    public function excelExport_xlsx2() 
+    public function excelExport_xlsx2()
     {
         $date=new Carbon();
         $fecha = $date->format('d-m-Y');
         return Excel::download(new User_xlsx2, __('Inactive Users').' '.$fecha.'.xlsx');
     }
 
-    public function excelExport_csv2() 
+    public function excelExport_csv2()
     {
         $date=new Carbon();
         $fecha = $date->format('d-m-Y');
@@ -463,18 +464,18 @@ class UserController extends Controller
 
         $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
         //Spanish=es    English=en
-        if($lang == 'es'){            
+        if($lang == 'es'){
             $fecha=$date->locale('es')->isoFormat('dddd, DD MMMM YYYY');
-            $idioma = "1";            
+            $idioma = "1";
         }else{
             $fecha=$date->locale('en')->isoFormat('dddd, DD MMMM YYYY');
             $idioma = "0";
-        } 
+        }
         $hora=$date->locale('es')->isoFormat('H:mm:ss');
-        $fechaC = $date->format('Y');       
+        $fechaC = $date->format('Y');
         //log logica
         $name= __("Users");
-        
+
 
         $pdf = PDF::loadView('users.options.pdfAll', compact('name', 'query1', 'fecha', 'hora', 'idioma'));
 
@@ -496,18 +497,18 @@ class UserController extends Controller
 
         $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
         //Spanish=es    English=en
-        if($lang == 'es'){            
+        if($lang == 'es'){
             $fecha=$date->locale('es')->isoFormat('dddd, DD MMMM YYYY');
-            $idioma = "1";            
+            $idioma = "1";
         }else{
             $fecha=$date->locale('en')->isoFormat('dddd, DD MMMM YYYY');
             $idioma = "0";
-        } 
+        }
         $hora=$date->locale('es')->isoFormat('H:mm:ss');
-        $fechaC = $date->format('Y');       
+        $fechaC = $date->format('Y');
         //log logica
         $name= __("Inactive Users");
-        
+
 
         $pdf = PDF::loadView('users.options.pdfAll', compact('name', 'query1', 'fecha', 'hora', 'idioma'));
 

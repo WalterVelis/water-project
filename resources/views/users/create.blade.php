@@ -11,16 +11,13 @@
 
             <div class="card ">
               <div class="card-header card-header-rose card-header-icon">
-                <div class="card-icon" style="background-image: url({{asset("img/icons").'/Gestion_Usuario.png'}});">
-                  <i class="material-icons">f</i>
+                <div class="card-icon">
+                  <i class="material-icons">supervisor_account</i>
                 </div>
                 <h4 class="card-title">{{ __('Add User') }}</h4>
               </div>
               <div class="card-body  text-center">
                 <div class="row">
-                  <div class="col-md-12 text-right">
-                      <a href="{{ route('user.index') }}" class="btn-add"><img src="{{asset("img/icons").'/Regresar.png'}}"></a>
-                  </div>
                 </div>
                 <div class="row">
                   <label class="col-sm-2 col-form-label">{{ __('Profile photo') }}</label>
@@ -31,8 +28,8 @@
                       </div>
                       <div class="fileinput-preview fileinput-exists thumbnail img-circle"></div>
                       <div>
-                        <span class="btn btn-rose btn-file">
-                          <span class="fileinput-new">{{ __('Select image') }}</span>
+                        <span class="btn btn-primary btn-file">
+                          <span style="color:white!important;" class="fileinput-new">{{ __('Select image') }}</span>
                           <span class="fileinput-exists">{{ __('Change') }}</span>
                           <input type="file" name="photo" id = "input-picture" />
                         </span>
@@ -70,7 +67,7 @@
                       <select onchange="roleDetection();" class="js-example-basic-single js-states form-control" style="width: 100%" id="role_input" name="role_id" data-style="select-with-transition" title="" data-size="100" required>
                         <option value="">{{ __('Choose a role') }}</option>
                         @foreach ($roles as $role)
-                      <option value="{{$role->id}}">{{ $role->name }}</option>
+                            <option value="{{$role->id}}">{{ $role->name }}</option>
                         @endforeach
                       </select>
                       <span id="errorRoleUser" class="d-none">@lang('The email field cannot be empty')</span>
@@ -107,11 +104,11 @@
                       <span id="errorVendor" class="d-none">@lang('You must select a vendor type')</span>
                     </div>
 
-                    
-                    
+
+
 
                     </div>
-                    
+
                   </div>
 
                   <div class="row d-none">
@@ -132,13 +129,14 @@
                     <div class="form-group">
                       <input class="form-control" name="password_confirmation" id="input-password-confirmation" type="password" placeholder="{{ __('Confirm Password') }}" />
                     </div>
-                  </div> 
+                  </div>
                 </div>--}}
               </div>
               <input type="hidden" name="change_password" value="0">
               <input type="hidden" name="created_by" value="{{auth()->user()->id}}">
               <div class="card-footer d-flex flex-row-reverse">
-                <p onclick="validationSave();" class="btn btn-rose btn-round btn-lg">{{ __('Save') }}</p>
+                  <p onclick="validationSave();" class="btn btn-primary btn-lg">{{ __('Save') }}</p>
+                  <a href="{{ route('user.index') }}" class="btn-rose btn btn-lg">{{ __('Cancelar') }}</a>
                 <button id="saveUser" type="submit" class="btn btn-rose btn-round btn-lg d-none">{{ __('Save') }}</button>
 
                 <button id="saveUser2" type="button" class="d-none" data-original-title="" title="" onclick="
@@ -161,7 +159,7 @@
         </button>
 
 
-                
+
               </div>
             </div>
           </form>
