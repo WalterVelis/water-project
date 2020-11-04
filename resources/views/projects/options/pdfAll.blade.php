@@ -49,18 +49,18 @@
             <table width="100%">
                 <tr>
                     <td align="left" style="width: 20%;">
-                        <img src="{{ public_path()}}/email/logo-bf.png" alt="Balassa Films" width="64" class="logo"/>
-        
+                        <img src="{{ public_path()}}/email/logo-bf.png" alt="Cotizador Agua H2O" width="64" class="logo"/>
+
                     </td>
                     <td align="center">
-                        <h1>{{$name}}</h1>                
+                        <h1>{{$name}}</h1>
                     </td>
                     <td align="right" style="width: 20%;">
                     </td>
                 </tr>
-        
+
             </table>
-        </div>       
+        </div>
      </div>
      <div id="footer">
         <div class="information" style="position: absolute; bottom: 0;">
@@ -72,11 +72,11 @@
                     <td align="right" style="width: 50%;">
                     </td>
                 </tr>
-        
+
             </table>
         </div>
      </div>
-     <div class="invoice" style="margin-left: 30px">    
+     <div class="invoice" style="margin-left: 30px">
         <table width="100%">
             <thead>
               <tr>
@@ -112,7 +112,7 @@
                         </tr>
                       @endforeach
             </tbody>
-    
+
         </table>
     </div>
 
@@ -124,7 +124,7 @@
           $font = $fontMetrics->getFont("Lato", "regular");
           $pdf->page_text(530, 770, "Página: {PAGE_NUM} de {PAGE_COUNT}", $font, 10, array(255,255,255));
       }
-    </script>  
+    </script>
     @else
     <script type="text/php">
       if ( isset($pdf) ) {

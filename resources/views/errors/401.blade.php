@@ -1,4 +1,4 @@
-@extends('errors.layout', ['classPage' => 'error-page', 'activePage' => '401', 'title' => __('Balassa Films'), 'pageBackground' => asset("material").'/img/licons/log-black.png'])
+@extends('errors.layout', ['classPage' => 'error-page', 'activePage' => '401', 'title' => __('Cotizador Agua H2O'), 'pageBackground' => asset("material").'/img/licons/log-black.png'])
 
 @section('content')
   <div class="container text-center">

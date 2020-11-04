@@ -3,7 +3,7 @@
 namespace App\Exports;
 
 use App\User;
-use Maatwebsite\Excel\Concerns\RegistersEventListeners; 
+use Maatwebsite\Excel\Concerns\RegistersEventListeners;
 use Maatwebsite\Excel\Concerns\WithCustomStartCell;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
@@ -41,7 +41,7 @@ class User_xlsx implements FromCollection, ShouldAutoSize, WithHeadings, WithCus
     {
         return 'A6';
     }
-    
+
     public function title(): string  // Is where the file name is specified.
     {
         return __("Users");
@@ -50,7 +50,7 @@ class User_xlsx implements FromCollection, ShouldAutoSize, WithHeadings, WithCus
     public function drawings()
     {
         $drawing = new Drawing();
-        $drawing->setName('Balassa Films');
+        $drawing->setName('Cotizador Agua H2O');
         $drawing->setDescription('BF');
         $drawing->setPath(public_path('/email/logo-bf.png'));
         $drawing->setHeight(90);
@@ -62,17 +62,17 @@ class User_xlsx implements FromCollection, ShouldAutoSize, WithHeadings, WithCus
     }
 
     public function registerEvents(): array  // Function where styles are detailed.
-    {	
+    {
         return [
-        	
+
     	   	Sheet::macro('styleCells', function (Sheet $sheet, string $cellRange, array $style) {
 			 	$sheet->getDelegate()->getStyle($cellRange)->applyFromArray($style);
 			}),
-			     
+
     		AfterSheet::class => function(AfterSheet $event) {
 
     			$col='D';  // We pass the column where it ends the headers
- 
+
                 $event->sheet->mergeCells('A1:'.$col.'5');    // combine cells
 	            $event->sheet->setCellValue('A1', __('Users'));    // Insert text
 				$event->sheet->getRowDimension('5')->setRowHeight(20);
@@ -95,7 +95,7 @@ class User_xlsx implements FromCollection, ShouldAutoSize, WithHeadings, WithCus
                         ],
                     ],
                 ]);
-                
+
 	            $event->sheet->getStyle('A6:'.$col.'6')->applyFromArray([
 	            	'font' => [
                         'bold' => true,
@@ -115,16 +115,16 @@ class User_xlsx implements FromCollection, ShouldAutoSize, WithHeadings, WithCus
     			        ]
     			    ],
                 ]);
-       			
+
        			$conteo=DB::table('users as us')
                         ->join('roles as r','r.id','=','us.role_id') // Query to get the number of rows
    						->select(DB::raw('count(*) as cantidad'))->get();
 
    				foreach ($conteo as $c){
                 	$cant= $c->cantidad;
-            	} 
+            	}
 
-            	$cant+=6; 
+            	$cant+=6;
        			$cellRange='A7:'.$col.$cant;
 				$event->sheet->styleCells($cellRange,   // Add border to table, we pass the parameter of the number of rows.
 				    [
@@ -141,6 +141,6 @@ class User_xlsx implements FromCollection, ShouldAutoSize, WithHeadings, WithCus
 				    ]
 				);
         	}
-        ];    
+        ];
     }
 }

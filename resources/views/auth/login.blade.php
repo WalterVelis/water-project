@@ -2,7 +2,7 @@
   'class' => 'off-canvas-sidebar',
   'classPage' => 'login-page',
   'activePage' => 'login',
-  'title' => __('Balassa Films'),
+  'title' => __('Cotizador Agua H2O'),
   'pageBackground' => asset("img").'/agua-fondo-3.png'
 ])
 {{-- Change logo-bf.webp to log-black.png --}}
