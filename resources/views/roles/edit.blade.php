@@ -13,12 +13,7 @@
                         <h4 class="card-title">{{ __('Edit Role') }}</h4>
                     </div>
                     <div class="card-body ">
-                        <div class="row">
-                            <div class="col-md-12 text-right">
-                                <a href="{{ route('role.index') }}" class="btn-add"><img
-                                        src="{{asset("img/icons").'/Regresar.png'}}"></a>
-                            </div>
-                        </div>
+
                         <form method="post" action="{{ route('role.update', $role->id) }}" autocomplete="off"
                             class="form-horizontal">
                             @csrf
