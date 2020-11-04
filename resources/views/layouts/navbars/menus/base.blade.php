@@ -23,6 +23,12 @@
         height: 30px;
         line-height: 30px;
     }
+
+    .sidebar[data-background-color="black"] .nav .nav-item i {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 1.3em;
+        margin-left: -1px;
+    }
 </style>
 @php
 if(!isset($sublevel)){
