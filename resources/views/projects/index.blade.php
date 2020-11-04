@@ -78,6 +78,12 @@
                                             {{ __('First Contact') }}
                                         </th>
                                         <th>
+                                            {{ __('Email') }}
+                                        </th>
+                                        <th>
+                                            {{ __('Phone') }}
+                                        </th>
+                                        <th>
                                             {{ __('Quotation Date') }}
                                         </th>
                                         <th>
@@ -97,12 +103,20 @@
                                             <td>
                                                 {{ $item->main_contact }}
                                             </td>
+
                                             <td>
                                                 {{ $item->state }}, {{ $item->municipality }}
                                             </td>
                                             <td>
                                                 {{ $item->date }}
                                             </td>
+                                            <td>
+                                                {{ $item->email }}
+                                            </td>
+                                            <td>
+                                                {{ $item->phone }}
+                                            </td>
+
                                             <td>
                                                 {{ $item->created_at }}
                                             </td>
