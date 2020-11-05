@@ -68,6 +68,7 @@ Route::group(['middleware' => ['auth','change']], function () {
         'projects' => 'ProjectController',
         'techformat' => 'TechFormatController',
         'providers' => 'ProviderController',
+        'materials' => 'MaterialController',
         'costs' => 'CostsCenterController',
     ]);
 

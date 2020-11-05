@@ -83,6 +83,47 @@ $sublevel="";
     </div>
 </li>
 @endif
+
+<li class="nav-item {{ ($menuParent == 'costs-parent') ? ' active' : '' }}">
+    <a class="nav-link" data-toggle="collapse" href="#bfCosts"
+        {{ ($menuParent == 'laravel' || $activePage == 'costs') ? ' aria-expanded="true"' : '' }}>
+        <div class="photo2 sidebar-image">
+            <i class="material-icons">request_page</i>
+        </div>
+        <p>{{ __('Centro de costos') }}
+            <b class="caret"></b>
+        </p>
+    </a>
+    <div class="collapse {{ ($menuParent == 'costs-parent') ? ' show' : '' }}" id="bfCosts">
+        <ul class="nav">
+
+
+            <li class="nav-item{{ $activePage == 'costs-me' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('materials.index') }}">
+                    <span class="sidebar-mini sub-itm">ME</span>
+                    <span class="sidebar-normal"> {{ __('Materiales extra') }} </span>
+                </a>
+            </li>
+
+            <li class="nav-item{{ $activePage == 'costs-iu' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('user.index') }}">
+                    <span class="sidebar-mini  sub-itm">AI</span>
+                    <span class="sidebar-normal"> {{ __('Accesorios IU') }} </span>
+                </a>
+            </li>
+
+            <li class="nav-item{{ $activePage == 'costs-mo' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('costs.index') }}">
+                    <span class="sidebar-mini  sub-itm">MO</span>
+                    <span class="sidebar-normal"> {{ __('Mano de obra') }} </span>
+                </a>
+            </li>
+
+
+        </ul>
+    </div>
+</li>
+
 <li class="nav-item{{ $activePage == 'projects-management' ? ' actives' : '' }}">
     <a class="nav-link" href="{{ route('projects.index') }}">
         <span class="sidebar-mini photo2"><i class="material-icons">work</i></span>
