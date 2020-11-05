@@ -86,6 +86,14 @@ class ProviderController extends Controller
      */
     public function update(Request $request, Provider $provider)
     {
+        $request->validate([
+            'denomination' => ['required'],
+            'contact_name' => ['required'],
+            'job_title' => ['required'],
+            'email' => ['required'],
+            'phone' => ['required'],
+            'product_type' => ['required'],
+        ]);
         $provider->update($request->all());
         return redirect()->route('providers.index');
     }

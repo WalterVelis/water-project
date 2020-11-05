@@ -68,6 +68,7 @@ Route::group(['middleware' => ['auth','change']], function () {
         'projects' => 'ProjectController',
         'techformat' => 'TechFormatController',
         'providers' => 'ProviderController',
+        'costs' => 'CostsCenterController',
     ]);
 
     //Permission Route
