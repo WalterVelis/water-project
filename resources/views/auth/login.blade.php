@@ -45,6 +45,7 @@
                       <i class="material-icons" style="color:#212121">email</i>
                     </span>
                   </div>
+                  {{-- <Picker prompt="selected" --}}
                   <input type="email" class="form-control" id="exampleEmails" name="email" placeholder="{{ __('Email') }}..." value="{{ old('email') }}" required>
                   @include('alerts.feedback', ['field' => 'email'])
                 </div>

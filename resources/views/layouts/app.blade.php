@@ -38,9 +38,12 @@
   <link rel="stylesheet" href="{{asset('css/vendorsTable.css')}}">
 
   <style>
-      .ps-container.ps-active-x>.ps-scrollbar-x-rail, .ps-container.ps-active-y>.ps-scrollbar-y-rail {
-          background: none!important;
-      }
+    .has-danger .form-control, .is-focused .has-danger .form-control {
+        background-image: linear-gradient(to top, #f44336 2px, rgba(244, 67, 54, 0) 2px), linear-gradient(to top, #FF5722 1px, rgba(210, 210, 210, 0) 1px);
+    }
+    .ps-container.ps-active-x>.ps-scrollbar-x-rail, .ps-container.ps-active-y>.ps-scrollbar-y-rail {
+        background: none!important;
+    }
     .loaderSpinner {
       border: 16px solid #f3f3f3;
       border-radius: 50%;

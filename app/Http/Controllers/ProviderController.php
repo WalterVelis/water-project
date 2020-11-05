@@ -42,6 +42,15 @@ class ProviderController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
+        $request->validate([
+            'denomination' => ['required'],
+            'contact_name' => ['required'],
+            'job_title' => ['required'],
+            'email' => ['required'],
+            'phone' => ['required'],
+            'product_type' => ['required'],
+        ]);
         Provider::create($request->all());
         return redirect()->route('providers.index');
     }
