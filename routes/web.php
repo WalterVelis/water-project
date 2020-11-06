@@ -70,6 +70,7 @@ Route::group(['middleware' => ['auth','change']], function () {
         'providers' => 'ProviderController',
         'materials' => 'MaterialController',
         'costs' => 'CostsCenterController',
+        'accesory' => 'AccesoryUrbanController',
     ]);
 
     //Permission Route
