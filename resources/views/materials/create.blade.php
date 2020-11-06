@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'costs-me', 'menuParent' => 'costs-me', 'titlePage' => 'Materiales extra'])
+@extends('layouts.app', ['activePage' => 'costs-me', 'menuParent' => 'costs-parent', 'titlePage' => 'Materiales extra'])
 @section('content')
 <div class="content">
     <div class="container-fluid">
@@ -13,7 +13,7 @@
                     <div class="card ">
                         <div class="card-header card-header-rose card-header-icon">
                             <div class="card-icon">
-                                <i class="material-icons">supervisor_account</i>
+                                <i class="material-icons">build</i>
                             </div>
                             <h4 class="card-title">Materiales extra</h4>
                         </div>
@@ -78,7 +78,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer d-flex flex-row-reverse">
+                        <div class="card-footer d-flex flex-row-reverse" style="justify-content: end;">
                             <p onclick="validationSave();" class="btn btn-primary">{{ __('Save') }}</p>
                             <a href="{{ route('materials.index') }}" class="btn-rose btn">{{ __('Cancelar') }}</a>
                             <button id="saveUser" type="submit" class="btn btn-rose btn-round d-none">{{ __('Save') }}</button>

@@ -134,7 +134,7 @@
               </div>
               <input type="hidden" name="change_password" value="0">
               <input type="hidden" name="created_by" value="{{auth()->user()->id}}">
-              <div class="card-footer d-flex flex-row-reverse">
+              <div class="card-footer d-flex flex-row-reverse" style="justify-content: end;">
                   <p onclick="validationSave();" class="btn btn-primary btn-lg">{{ __('Save') }}</p>
                   <a href="{{ route('user.index') }}" class="btn-rose btn btn-lg">{{ __('Cancelar') }}</a>
                 <button id="saveUser" type="submit" class="btn btn-rose btn-round btn-lg d-none">{{ __('Save') }}</button>

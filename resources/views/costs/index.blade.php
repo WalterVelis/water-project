@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'costs', 'menuParent' => 'costs', 'titlePage' => __('Centro de Costos')])
+@extends('layouts.app', ['activePage' => 'costs', 'menuParent' => 'costs-parent', 'titlePage' => __('Centro de Costos')])
 
 @section('content')
 <div class="content">
@@ -10,6 +10,7 @@
                         <div class="card-icon">
                             <span style="color:white;"><i class="material-icons">build</i></span>
                         </div>
+                        <h4 class="card-title">Mano de Obra</h4>
                         <div class="card-body">
 
                             {{-- @can('create', App\User::class) --}}

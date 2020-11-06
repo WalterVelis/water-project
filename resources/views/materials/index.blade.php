@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'costs-me', 'menuParent' => 'costs-me', 'titlePage' => __('Materiales extra')])
+@extends('layouts.app', ['activePage' => 'costs-me', 'menuParent' => 'costs-parent', 'titlePage' => __('Accesorios IU')])
 
 @section('content')
 <div class="content">
@@ -10,6 +10,7 @@
                         <div class="card-icon">
                             <span style="color:white;"><i class="material-icons">build</i></span>
                         </div>
+                        <h4 class="card-title">Materiales extra</h4>
                         <div class="card-body">
 
                             {{-- @can('create', App\User::class) --}}

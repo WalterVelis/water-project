@@ -15,7 +15,7 @@
                             <div class="card-icon">
                                 <i class="material-icons">supervisor_account</i>
                             </div>
-                            <h4 class="card-title">Agregar Proveedor</h4>
+                            <h4 class="card-title">Editar Proveedor</h4>
                         </div>
                         <br>
                         <div class="card-body">
@@ -86,7 +86,7 @@
 
                             </div>
                         </div>
-                        <div class="card-footer d-flex flex-row-reverse">
+                        <div class="card-footer d-flex flex-row-reverse" style="justify-content: end;">
                             <p onclick="validationSave();" class="btn btn-primary">{{ __('Save') }}</p>
                             <a href="{{ route('providers.index') }}" class="btn-rose btn">{{ __('Cancelar') }}</a>
                             <button id="saveUser" type="submit" class="btn btn-rose btn-round d-none">{{ __('Save') }}</button>

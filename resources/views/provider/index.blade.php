@@ -10,6 +10,7 @@
                         <div class="card-icon">
                             <span style="color:white;">GP</span>
                         </div>
+                        <h4 class="card-title">Gestor de Proveedor</h4>
                         <div class="card-body">
 
                             {{-- @can('create', App\User::class) --}}

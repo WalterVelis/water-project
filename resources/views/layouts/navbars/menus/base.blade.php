@@ -106,13 +106,13 @@ $sublevel="";
             </li>
 
             <li class="nav-item{{ $activePage == 'costs-iu' ? ' active' : '' }}">
-                <a class="nav-link" href="{{ route('user.index') }}">
+                <a class="nav-link" href="{{ route('accesory.index') }}">
                     <span class="sidebar-mini  sub-itm">AI</span>
                     <span class="sidebar-normal"> {{ __('Accesorios IU') }} </span>
                 </a>
             </li>
 
-            <li class="nav-item{{ $activePage == 'costs-mo' ? ' active' : '' }}">
+            <li class="nav-item{{ $activePage == 'costs' ? ' active' : '' }}">
                 <a class="nav-link" href="{{ route('costs.index') }}">
                     <span class="sidebar-mini  sub-itm">MO</span>
                     <span class="sidebar-normal"> {{ __('Mano de obra') }} </span>
@@ -130,7 +130,7 @@ $sublevel="";
         <span class="sidebar-normal"> {{ __('Projects') }} </span>
     </a>
 </li>
-<li class="nav-item{{ $activePage == 'provider' ? ' actives' : '' }}">
+<li class="nav-item{{ $activePage == 'provider' ? ' active' : '' }}">
     <a class="nav-link" href="{{ route('providers.index') }}">
         <span class="sidebar-mini photo2"><i class="material-icons">assignment_ind</i></span>
         <span class="sidebar-normal"> {{ __('Proveedores') }} </span>
