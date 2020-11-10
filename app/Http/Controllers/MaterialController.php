@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Material;
+use App\MaterialProvider;
 use App\Provider;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        $materials = Material::with('provider')->get();
+        $materials = MaterialProvider::with(['material', 'provider'])->get();
         return view('materials.index',compact('materials'));
     }
 
@@ -38,15 +39,22 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => ['required'],
-            'qty' => ['required'],
-            'type' => ['required'],
-            'cost' => ['required'],
-            'provider_id' => ['required'],
-        ]);
-        Material::create($request->all());
-        return redirect()->route('materials.index');
+        // $request->validate([
+        //     'name' => ['required'],
+        //     'type' => ['required'],
+        //     'unit' => ['required'],
+        // ]);
+        $material = Material::create($request->all());
+        foreach($request->provider_id as $k => $v) {
+            $materialProvider = new MaterialProvider;
+            $materialProvider->provider_id = $v;
+            $materialProvider->qty = $request->qty[$k];
+            $materialProvider->unit_cost = $request->unit_cost[$k];
+            $materialProvider->material_id = $material->id;
+            $materialProvider->save();
+        }
+        dd($request->all());
+
     }
 
     /**
