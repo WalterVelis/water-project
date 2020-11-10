@@ -87,6 +87,9 @@
                                             {{ __('Quotation Date') }}
                                         </th>
                                         <th>
+                                            {{ __('Estado') }}
+                                        </th>
+                                        <th>
                                             {{ __('Actions') }}
                                         </th>
                                     </thead>
@@ -119,6 +122,9 @@
 
                                             <td>
                                                 {{ $item->created_at }}
+                                            </td>
+                                            <td>
+                                                {{ $item->statusLabel() }}
                                             </td>
                                             <td class="td-actions text-right">
                                                 <!-- <a href="{{ route('projects.show', $item->id) }}"><i class="material-icons">remove_red_eye</i></a> -->
