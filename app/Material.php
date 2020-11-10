@@ -8,14 +8,12 @@ class Material extends Model
 {
     protected $fillable = [
         'name',
-        'qty',
         'type',
-        'cost',
-        'provider_id',
+        'unit',
     ];
 
-    public function provider()
+    public function providers()
     {
-        return $this->belongsTo('App\Provider');
+        return $this->hasMany('App\MaterialProvider');
     }
 }

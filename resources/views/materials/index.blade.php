@@ -94,13 +94,13 @@
                                                 {{ $material->qty }}
                                             </td>
                                             <td>
-                                                {{ $material->name }}
+                                                {{ $material->material->name }}
                                             </td>
                                             <td>
-                                                {{ $material->type }}
+                                                {{ $material->material->type }}
                                             </td>
                                             <td>
-                                                {{ $material->cost }}
+                                                {{ $material->unit_cost }}
                                             </td>
                                             <td>
                                                 {{ $material->updated_at }}
@@ -109,8 +109,8 @@
                                                 {{ $material->provider->contact_name }}
                                             </td>
                                             <td class="td-actions text-right">
-                                                <a href="{{ route('materials.edit', $material->id) }}"><i class="material-icons">edit</i></a>
-                                                <form style="cursor: pointer;display: inline-block;transform: translateY(6px)" action="{{ route('materials.destroy', $material->id) }}" method="POST">
+                                                <a href="{{ route('materials.edit', $material->material->id) }}"><i class="material-icons">edit</i></a>
+                                                <form style="cursor: pointer;display: inline-block;transform: translateY(6px)" action="{{ route('materials.destroy', $material->material->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" title="delete" style="border: none; background-color:transparent;">
