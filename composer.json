@@ -12,6 +12,7 @@
         "bacon/bacon-qr-code": "^2.0",
         "barryvdh/laravel-dompdf": "^0.8.6",
         "doctrine/dbal": "^2.10",
+        "facade/ignition": "^2.5",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "^7.0",
         "laravel/telescope": "^3.0",
