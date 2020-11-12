@@ -483,6 +483,13 @@ form .col-12 {
                                             value="{{ $format->notes }}" />
                                     </div>
                                 </div>
+                                <div class="col-12 col-md-6 mt-3">
+                                    <label class="c_label col-12 col-form-label">{{ __('¿Es factible?') }}</label>
+                                    <div class="col-sm-12">
+                                        <input {{ $format->status == 3 ? 'checked' : '' }} class="d-inline mt-3" name="factible" type="radio" value="0" id="is_factible" /> <label class="mr-3" for="is_factible">Es factible</label>
+                                        <input {{ $format->status == 2 ? 'checked' : '' }} class="d-inline" name="factible" type="radio" value="1" id="is_not_factible" /> <label for="is_not_factible">No es factible</label>
+                                    </div>
+                                </div>
                             </div>
                         </form>
 
