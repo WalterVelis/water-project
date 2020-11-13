@@ -69,6 +69,60 @@
     }
     </style>
 
+<style>
+    .c-nav.step-navbar {
+        box-shadow: none;
+        background: transparent!important;
+        margin-bottom: 10px;
+    }
+
+    .c-nav .navbar.step-navbar .collapse .navbar-nav .nav-item .nav-link {
+        margin-left: 25px;
+    }
+
+    .c-nav .step-navbar .nav-item.active {
+        color: white;
+        background: transparent;
+        border-radius: 4px;
+        font-weight: bold;
+    }
+
+    .c-nav .step-navbar .nav-item.active a {
+        color: white;
+        background: #32526f!important;
+        border-radius: 4px;
+        font-weight: bold;
+    }
+
+    .c-nav .navbar.step-navbar .collapse .navbar-nav .nav-item .nav-link {
+        font-weight: bold;
+    }
+
+    .c-nav .nav-item:not(.active):not(.c-enabled) .nav-link{
+        color: #3d5c7780;
+        cursor:not-allowed
+    }
+
+    nav.c-nav li.nav-item a.nav-link.c-enabled {
+        color: #32526f!important;
+        cursor: pointer!important;
+        font-weight: bold!important;
+    }
+
+    .c-nav.navbar .navbar-nav {
+        margin: 0 auto;
+    }
+
+    .c-nav .nav-item {
+        margin-right: 3px;
+        margin-left: 3px;
+    }
+
+    .c-nav .nav-link  {
+        font-size: 14px!important;
+    }
+
+</style>
 
 <style>
   .loaderSpinnerLogin {
@@ -195,6 +249,20 @@
               });
             @endif
           });
+
+function formatMoney(number, decPlaces, decSep, thouSep) {
+    decPlaces = isNaN(decPlaces = Math.abs(decPlaces)) ? 2 : decPlaces,
+    decSep = typeof decSep === "undefined" ? "." : decSep;
+    thouSep = typeof thouSep === "undefined" ? "," : thouSep;
+    var sign = number < 0 ? "-$" : "$";
+    var i = String(parseInt(number = Math.abs(Number(number) || 0).toFixed(decPlaces)));
+    var j = (j = i.length) > 3 ? j % 3 : 0;
+
+    return sign +
+        (j ? i.substr(0, j) + thouSep : "") +
+        i.substr(j).replace(/(\decSep{3})(?=\decSep)/g, "$1" + thouSep) +
+        (decPlaces ? decSep + Math.abs(number - i).toFixed(decPlaces).slice(2) : "");
+}
         </script>
         @stack('js')
 </body>

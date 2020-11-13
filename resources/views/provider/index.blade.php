@@ -78,6 +78,12 @@
                                             {{ __('Teléfono') }}
                                         </th>
                                         <th>
+                                            {{ __('RFC') }}
+                                        </th>
+                                        <th>
+                                            {{ __('Dirección') }}
+                                        </th>
+                                        <th>
                                             {{ __('Tipo de Producto') }}
                                         </th>
                                         <th class="text-right">
@@ -105,6 +111,13 @@
                                             <td>
                                                 {{ $provider->phone }}
                                             </td>
+                                            <td>
+                                                {{ $provider->rfc }}
+                                            </td>
+                                            <td>
+                                                {{ $provider->direccion }}
+                                            </td>
+
                                             <td>
                                                 {{ $provider->productTypeLabels() }}
                                             </td>

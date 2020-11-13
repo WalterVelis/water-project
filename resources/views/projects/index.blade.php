@@ -159,6 +159,9 @@
                     [10, 25, 50, "All"]
                 ],
                 responsive: true,
+                buttons: [
+                    'excel'
+                ],
                 language: {
                     search: "_INPUT_",
                     searchPlaceholder: $('#SearchTable').val(),

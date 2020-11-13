@@ -11,6 +11,8 @@ class Provider extends Model
         'contact_name',
         'job_title',
         'email',
+        'rfc',
+        'direccion',
         'phone',
         'product_type'
     ];

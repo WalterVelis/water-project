@@ -61,6 +61,36 @@
                                     </div>
                                 </div>
                                 <div class="row mt-4">
+                                    <label class="col-12" style="margin-bottom:-12px; font-weight:bold;">{{ __('RFC') }}</label>
+                                    <div class="col-sm-12">
+                                        <div class="form-group{{ $errors->has('rfc') ? ' has-danger' : '' }}">
+                                            <input class="form-control{{ $errors->has('rfc') ? ' is-invalid' : '' }}" name="rfc" id="input-rfc" type="text" value="{{ old('rfc') }}"  />
+                                            <span id="errorNameUser" class="d-none">@lang('The name field cannot be empty')</span>
+                                            @include('alerts.feedback', ['field' => 'rfc'])
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <label class="col-12" style="margin-bottom:-12px; font-weight:bold;">{{ __('direccion') }}</label>
+                                    <div class="col-sm-12">
+                                        <div class="form-group{{ $errors->has('direccion') ? ' has-danger' : '' }}">
+                                            <input class="form-control{{ $errors->has('direccion') ? ' is-invalid' : '' }}" name="direccion" id="input-direccion" type="text" value="{{ old('direccion') }}"  />
+                                            <span id="errorNameUser" class="d-none">@lang('The name field cannot be empty')</span>
+                                            @include('alerts.feedback', ['field' => 'direccion'])
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
+                                    <label class="col-12" style="margin-bottom:-12px; font-weight:bold;">{{ __('Teléfono') }}</label>
+                                    <div class="col-sm-12">
+                                        <div class="form-group{{ $errors->has('phone') ? ' has-danger' : '' }}">
+                                            <input class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" id="input-phone" type="text" value="{{ old('phone') }}"  />
+                                            <span id="errorNameUser" class="d-none">@lang('The name field cannot be empty')</span>
+                                            @include('alerts.feedback', ['field' => 'phone'])
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-4">
                                     <label class="col-12" style="margin-bottom:-12px; font-weight:bold;">{{ __('Correo electrónico') }}</label>
                                     <div class="col-sm-12">
                                         <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">

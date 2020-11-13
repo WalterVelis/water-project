@@ -71,7 +71,14 @@ Route::group(['middleware' => ['auth','change']], function () {
         'materials' => 'MaterialController',
         'costs' => 'CostsCenterController',
         'accesory' => 'AccesoryUrbanController',
+        'costformat' => 'CostFormatController',
+        'materialformat' => 'MaterialFormatController',
+        'accesoryformat' => 'AccesoryFormatController',
     ]);
+
+    Route::get('getCosts/{projectId}', 'CostFormatController@getCosts');
+    Route::get('getMaterials/{projectId}', 'MaterialFormatController@getMaterials');
+    Route::get('getAccesories/{projectId}', 'AccesoryFormatController@getAccesories');
 
     //Permission Route
     Route::get('permission/searchName/{text}', 'PermissionController@searchNamePermissions');

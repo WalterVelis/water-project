@@ -8,6 +8,7 @@ use App\Project;
 use App\State;
 use App\Country;
 use App\Format;
+use App\TechFormat;
 use App\Entity;
 use Illuminate\Http\Request;
 
@@ -85,6 +86,36 @@ class ProjectController extends Controller
         $format->updated_by = Auth::id();
         $format->status = 0;
         $format->save();
+
+        $techFormat = new TechFormat;
+        $techFormat->water_quality = "";
+        $techFormat->obtaining_water = "";
+        $techFormat->rooftop = "";
+        $techFormat->rainwater_area = "";
+        $techFormat->gutter = "";
+        $techFormat->anual_precipitation = "";
+        $techFormat->water_tank = "";
+        $techFormat->distance = "";
+        $techFormat->cleanliness = "";
+        $techFormat->roof_slope = "";
+        $techFormat->tube = "";
+        $techFormat->diameter = "";
+        $techFormat->pump = "";
+        $techFormat->diameter_inch = "";
+        $techFormat->pump_below_tank = 0;
+        $techFormat->pump_inundation = 0;
+        $techFormat->filter_stall = 0;
+        $techFormat->notes = "";
+        $techFormat->excavation = 0.00;
+        $techFormat->d_float = 0;
+        $techFormat->control = 0;
+        $techFormat->require_connection = 0;
+        $techFormat->electro = 0;
+        $techFormat->subnotes = "";
+        $techFormat->format_id = $newId;
+        $techFormat->description = "";
+
+        $techFormat->save();
         return redirect()->to('projects/'.$newId.'/edit');
         $countries = Country::all();
         return view('projects.format', compact('countries', 'format'));
@@ -141,6 +172,14 @@ class ProjectController extends Controller
     {
 
 
+        $status = 1;
+        dump($request->factible);
+        if($request->factible) {
+            $status = 2;
+        } else if($request->factible === "0") {
+            $status = 3;
+        }
+        dump($status);
         //validar que implode tenga valor
         $water_quality = implode(",",$request->water_quality);
         $roof_type = implode(",",$request->roof_type);
@@ -200,7 +239,7 @@ class ProjectController extends Controller
         $format->implementation_date = $request->implementation_date;
         $format->notes = $request->notes;
         $format->updated_by = Auth::id();
-        $format->status = 1;
+        $format->status = $status;
 
         $format->update();
         // dd(Project::find($project)->update($request->all()));

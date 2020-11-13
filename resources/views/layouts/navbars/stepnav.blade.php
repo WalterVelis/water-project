@@ -10,7 +10,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="#">{{ __('Needs Diagnosis') }} <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="#">{{ __('Technical Lift') }}</a>
             </li>
             <li class="nav-item">

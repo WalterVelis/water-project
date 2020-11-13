@@ -5,10 +5,6 @@
 .form-check .form-check-label {
     padding-right: 0px!important;
 }
-.nav-item:not(.active) .nav-link{
-    color: #3d5c7780!important;
-    cursor:not-allowed
-}
 
 .c_label {
     /* font-size: 1.1em !important; */
@@ -50,9 +46,38 @@ form .col-12 {
             <div class="col-md-12">
                 <div id="all-container">
                     <h3 style="margin-top:-10px;">
-                        {{ __('Create Project') }}
+                        {{-- {{ __('Create Project') }} --}}
                     </h3>
-                    @include('layouts.navbars.stepnav')
+
+                    <nav class="navbar step-navbar navbar-expand-lg c-nav">
+                        <div class="container">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-bar navbar-kebab"></span>
+                            <span class="navbar-toggler-bar navbar-kebab"></span>
+                            <span class="navbar-toggler-bar navbar-kebab"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                                <ul class="navbar-nav" style="">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{{ route('projects.edit', $format) }}">{{ __('Needs Diagnosis') }} <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('techformat.edit', $format) }}">{{ __('Technical Lift') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">{{ __('Quotation') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">{{ __('Purchase Order') }}</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">{{ __('Assignment') }}</a>
+                                </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+
                     <div id="format-content">
 
                         <form id="form-update" method="post" action="{{ route('projects.update', $format) }}" autocomplete="off" class="form-horizontal">
