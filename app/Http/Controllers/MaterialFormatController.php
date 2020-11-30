@@ -3,14 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\MaterialFormat;
+use App\MaterialProvider;
+use App\MaterialProviderFormat;
 use Illuminate\Http\Request;
 
 class MaterialFormatController extends Controller
 {
     public function getMaterials($projectId)
     {
-        $project_materials = MaterialFormat::with('materials.providers.provider')->where('format_id', $projectId)->get();
-        return view('techformat._materials', compact('project_materials'));
+        // Proveedores que tengan X material
+        // En la vista, un ajax que recorra cada foreach
+        $materialId = 9;
+        $project_materials = MaterialFormat::with('materials.providers.provider')->with('materials.providers.materialProvider')->where('format_id', $projectId)->get();
+        // dd($project_materials);
+        foreach($project_materials as $pm) {
+            $materialProvider[$pm->material_id] = MaterialProvider::with('provider')->with('materialProvider')->where('material_id', $pm->material_id)->get();
+        }
+        // dd($materialProvider);
+        // $mp = MaterialProvider::with('provider')->where('material_id', $materialId)->get();
+        // dd($mp);
+        // $project_materials = MaterialProvider::whereHas('materialProvider', function($query) use ($projectId) {
+        //     $query->where('format_id', $projectId);
+        // })->get();
+        // dd($project_materials);
+        // $project_materials = MaterialFormat::with('materials.providers.provider')->with('materials.providers.materialProvider')->where('format_id', $projectId)->get();
+        // $project_materials = MaterialFormat::whereHas('materials.providers.materialProvider', function($query) use ($projectId) { $query->where('format_id', $projectId);})->get();
+        // dd($project_materials);
+        // $pj = MaterialProviderFormat::whereHas('providers', function($query) use ($projectId) { $query->where('provider_id', $projectId);})->with('providers.material')->with('providers.provider')->where('format_id', $projectId)->get();
+        // dd($pj);
+        return view('techformat._materials', compact('project_materials', 'materialProvider'));
     }
 
     /**

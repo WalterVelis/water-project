@@ -1,5 +1,5 @@
 {{-- ThisFileisanAliasfor'create' --}}
-@extends('layouts.app', ['activePage' => 'budgetaccount-management', 'menuParent' => 'catalog', 'sublevel' => 'budget', 'titlePage' => __('Budget Account Management')])
+@extends('layouts.app', ['activePage' => 'budgetaccount-management', 'menuParent' => 'catalog', 'sublevel' => 'budget', 'titlePage' => __('Gestión de Proyectos')])
 <style>
 
 .form-check .form-check-label {
@@ -427,7 +427,7 @@ form .col-12 {
                                 <div class="col-12 col-md-6">
                                     <label class="c_label col-12 col-form-label">{{ __('Rainwater Area') }}</label>
                                     <div class="col-sm-12">
-                                        <input class="form-control" id="rainwater_area" name="rainwater_area" type="number"
+                                        <input class="@if(User::hasPermision('tecnico') i-enabled @endif)form-control" id="rainwater_area" name="rainwater_area" type="number"
                                             value="{{ $format->rainwater_area }}" />
                                         <input readonly disabled class="form-control" id="storage" type="text"
                                             placeholder="[m3]" value="" />

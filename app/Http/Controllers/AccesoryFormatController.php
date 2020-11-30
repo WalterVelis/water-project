@@ -79,6 +79,27 @@ class AccesoryFormatController extends Controller
         //
     }
 
+    public function updateCost(Request $request, $id, $projectId)
+    {
+        $data = AccesoryFormat::where(['id' => $id, 'format_id' => $projectId])->first();
+        $data->cost = $request->cost;
+        $data->save();
+    }
+
+    public function updateDiscount(Request $request, $id, $projectId)
+    {
+        $data = AccesoryFormat::where(['id' => $id, 'format_id' => $projectId])->first();
+        $data->discount = $request->discount;
+        $data->save();
+    }
+
+    public function updateDetails(Request $request, $id, $projectId)
+    {
+        $data = AccesoryFormat::where(['id' => $id, 'format_id' => $projectId])->first();
+        $data->details = $request->details;
+        $data->save();
+    }
+
     /**
      * Remove the specified resource from storage.
      *

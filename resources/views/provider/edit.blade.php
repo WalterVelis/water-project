@@ -61,7 +61,7 @@
                                     </div>
                                 </div>
                                 <div class="row mt-4">
-                                    <label class="col-12" style="margin-bottom:-12px; font-weight:bold;">{{ __('direccion') }}</label>
+                                    <label class="col-12" style="margin-bottom:-12px; font-weight:bold;">{{ __('Dirección') }}</label>
                                     <div class="col-sm-12">
                                         <div class="form-group{{ $errors->has('direccion') ? ' has-danger' : '' }}">
                                             <input class="form-control{{ $errors->has('direccion') ? ' is-invalid' : '' }}" name="direccion" id="input-direccion" type="text" value="{{ $provider->direccion }}" required />

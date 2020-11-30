@@ -19,7 +19,7 @@
                 <td> {{ $item->email }} </td>
                 <td> {{ $item->telephone }} </td>
                 <td> {{ $item->position }} </td>
-                <td> <i onclick="removePerson({{ $item->id }})" class="fa fa-trash" aria-hidden="true"></i> </td>
+                <td> <i data-toggle="tooltip" data-placement="top" title="Eliminar" onclick="removePerson({{ $item->id }})" class="fa fa-trash" aria-hidden="true"></i> </td>
             </tr>
         @endforeach
     </tbody>

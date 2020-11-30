@@ -6,6 +6,7 @@ use App\TechFormat;
 use App\Material;
 use App\AccesoryUrban;
 use App\CostsCenter;
+use App\Format;
 use Illuminate\Http\Request;
 
 class TechFormatController extends Controller
@@ -60,11 +61,12 @@ class TechFormatController extends Controller
      */
     public function edit($id)
     {
+        $format = Format::find($id);
         $costs = CostsCenter::all();
         $materials = Material::all();
         $accesories = AccesoryUrban::all();
-        $techFormat = TechFormat::find($id);
-        return view('techformat.edit', compact('techFormat', 'costs', 'materials', 'accesories'));
+        $techFormat = TechFormat::where('format_id', $id)->first();
+        return view('techformat.edit', compact('format', 'techFormat', 'costs', 'materials', 'accesories'));
     }
 
     /**
@@ -76,6 +78,9 @@ class TechFormatController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        // dd($request->status);
+
         $water_quality = implode(",",$request->water_quality);
         $roof_type = implode(",",$request->roof_type);
         $rooftop = implode(",",$request->rooftop);
@@ -108,6 +113,16 @@ class TechFormatController extends Controller
         $techFormat->description = $request->description;
 
         $techFormat->save();
+
+        $internalStatus = 0;
+        if($request->status)
+            $internalStatus = 2;
+
+        $format = Format::find($id);
+        if($format->internal_status >= 2)
+            $internalStatus = $format->internal_status;
+        $format->internal_status = $internalStatus;
+        $format->save();
 
         return redirect()->route('techformat.edit', $id)->with('success', 'Project Deleted');
     }

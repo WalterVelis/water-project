@@ -17,4 +17,10 @@ class MaterialProvider extends Model
     {
         return $this->hasOne('App\Material', 'id', 'material_id');
     }
+
+    public function materialProvider()
+    {
+        return $this->hasOne('App\MaterialProviderFormat', 'materialprovider_id','id');
+        // return $this->hasOne('App\Format', 'id', 'format_id');
+    }
 }

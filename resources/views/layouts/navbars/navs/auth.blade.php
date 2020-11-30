@@ -8,14 +8,14 @@
             <i class="material-icons design_bullet-list-67 visible-on-sidebar-mini">view_list</i>
           </button>
         </div>
-        <a class="navbar-brand" href="#pablo">{{ $titlePage }}</a>
+        <a class="navbar-brand" href="#">{{ $titlePage }}</a>
       </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
         <span class="sr-only">Toggle navigation</span>
         <span class="navbar-toggler-icon icon-bar"></span>
         <span class="navbar-toggler-icon icon-bar"></span>
         <span class="navbar-toggler-icon icon-bar"></span>
-      </button>   
+      </button>
       <div class="collapse navbar-collapse justify-content-end">
         <ul class="navbar-nav">
           <li class="nav-item dropdown">
@@ -25,21 +25,21 @@
               $notificacions=App\Notification::countNotificationActive();
               @endphp
               @foreach ($notificacions as $item)
-              @if ($item->notifications == 0)                  
+              @if ($item->notifications == 0)
               @else
-              <span class="notification">{{$item->notifications}}</span>                  
-              @endif                                
-              @endforeach              
+              <span class="notification">{{$item->notifications}}</span>
+              @endif
+              @endforeach
               <p class="d-lg-none d-md-block">
                 {{ __('Notifications') }}
               </p>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
               @php
-              $notificacionsInfo=App\Notification::textNotificationActive();              
+              $notificacionsInfo=App\Notification::textNotificationActive();
               @endphp
               @if (count($notificacionsInfo) == 0)
-              <a class="dropdown-item disabled" href="#">{{ __("You don't have any system notifications") }}</a>                  
+              <a class="dropdown-item disabled" href="#">{{ __("You don't have any system notifications") }}</a>
               @else
               @foreach ($notificacionsInfo as $item)
               @php
@@ -51,8 +51,8 @@
                   @endphp
               @endif
               <a class="dropdown-item" {{$textOnclick}} href="{{$item->action_url}}">@lang($item->description) &nbsp;&nbsp;&nbsp;<span class="notification">{{$item->total}}</span></a>
-              @endforeach                   
-              @endif                           
+              @endforeach
+              @endif
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -61,12 +61,12 @@
                 <i class="material-icons">feedback</i></button>
               <p class="d-lg-none d-md-block">
                   {{ __('Help') }}
-              </p>              
+              </p>
             </a>
             <a  id="urlHelp" class="btn btn-primary d-none" target="_blank">help</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link" href="#pablo" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link" href="#" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <button class="btn btn-primary btn-round btn-fab btn-topbar">
               <i class="material-icons">person</i></button>
               <p class="d-lg-none d-md-block">

@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 
+use App\User;
 use App\Project;
 use App\State;
 use App\Country;
 use App\Format;
 use App\TechFormat;
+use App\Quotation;
 use App\Entity;
 use Illuminate\Http\Request;
 
@@ -21,8 +23,26 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Format::all();
-        return view('projects.index', compact('projects'));
+
+        if(User::hasPermissions("Vendor")){
+            // $projects = Format::all();
+            $projects = Format::where('created_by', Auth::id())->get();
+            return view('projects.index', compact('projects'));
+        }
+
+        if(User::hasPermissions("Tecnico")){
+            // $format = Format::where('tech_assigned');
+            // $countries = Country::all();
+            // return view('projects.format', compact('countries', 'format'));
+
+            $projects = Format::where('tech_assigned', Auth::id())->orWhere('created_by', Auth::id())->get();
+            return view('projects.index', compact('projects'));
+        }
+
+        if(User::hasPermissions("Admin")){
+            $projects = Format::all();
+            return view('projects.index', compact('projects'));
+        }
     }
 
     /**
@@ -85,6 +105,9 @@ class ProjectController extends Controller
         $format->created_by = Auth::id();
         $format->updated_by = Auth::id();
         $format->status = 0;
+        $format->tech_assigned = 0;
+        $format->vendor_assigned = 0;
+        $format->admin_assigned = 0;
         $format->save();
 
         $techFormat = new TechFormat;
@@ -116,6 +139,18 @@ class ProjectController extends Controller
         $techFormat->description = "";
 
         $techFormat->save();
+
+        $quotation = new Quotation;
+        $quotation->version = "";
+        $quotation->validity = "";
+        $quotation->currency = "";
+        $quotation->web = "";
+        $quotation->delivery = "";
+        $quotation->payment = "";
+        $quotation->notes = "";
+        $quotation->format_id = $newId;
+        $quotation->save();
+
         return redirect()->to('projects/'.$newId.'/edit');
         $countries = Country::all();
         return view('projects.format', compact('countries', 'format'));
@@ -171,9 +206,11 @@ class ProjectController extends Controller
     public function update(Request $request, $id)
     {
 
+        $internalStatus = 0;
+        if($request->status)
+            $internalStatus = 1;
 
         $status = 1;
-        dump($request->factible);
         if($request->factible) {
             $status = 2;
         } else if($request->factible === "0") {
@@ -203,6 +240,8 @@ class ProjectController extends Controller
         }
 
         $format = Format::find($id);
+        if($format->internal_status >= 1)
+            $internalStatus = $format->internal_status;
         $format->date = $request->date;
         $format->client = $request->client;
         $format->main_contact = $request->main_contact;
@@ -240,6 +279,7 @@ class ProjectController extends Controller
         $format->notes = $request->notes;
         $format->updated_by = Auth::id();
         $format->status = $status;
+        $format->internal_status = $internalStatus;
 
         $format->update();
         // dd(Project::find($project)->update($request->all()));

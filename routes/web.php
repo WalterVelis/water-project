@@ -74,7 +74,22 @@ Route::group(['middleware' => ['auth','change']], function () {
         'costformat' => 'CostFormatController',
         'materialformat' => 'MaterialFormatController',
         'accesoryformat' => 'AccesoryFormatController',
+        'quotation' => 'QuotationController',
+        'assignment' => 'AssignmentController',
     ]);
+    Route::get('order/{id}', 'OrderController@index');
+    Route::get('getorder/{id}/{formatId}/{oderId}', 'OrderController@genPdf');
+    Route::put('quotationschool', 'QuotationController@updateSchool');
+    Route::patch('applyutility/{id}', 'QuotationController@applyUtility');
+    Route::patch('applyindividualutility', 'QuotationController@applyIndividualUtility');
+    Route::patch('applyindividualschoolutility', 'QuotationController@applyIndividualSchoolUtility');
+    Route::patch('applyindividualmaterialutility', 'QuotationController@applyIndividualMaterialUtility');
+    Route::patch('applyindividualquotationutility', 'QuotationController@applyIndividualQuotationlUtility');
+    Route::put('costformat/{costId}/{projectId}', 'CostFormatController@updateCost');
+    Route::put('accesoryformat/cost/{id}/{projectId}', 'AccesoryFormatController@updateCost');
+    Route::put('accesoryformat/discount/{id}/{projectId}', 'AccesoryFormatController@updateDiscount');
+    Route::put('accesoryformat/details/{id}/{projectId}', 'AccesoryFormatController@updateDetails');
+    Route::get('quotationformat/{id}/table', 'QuotationController@getTable');
 
     Route::get('getCosts/{projectId}', 'CostFormatController@getCosts');
     Route::get('getMaterials/{projectId}', 'MaterialFormatController@getMaterials');

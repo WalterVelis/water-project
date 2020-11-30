@@ -97,11 +97,11 @@
                                                 {{ $cost->updated_at }}
                                             </td>
                                             <td class="td-actions text-right">
-                                                <a href="{{ route('costs.edit', $cost->id) }}"><i class="material-icons">edit</i></a>
+                                                <a data-toggle="tooltip" data-placement="top" title="Editar" href="{{ route('costs.edit', $cost->id) }}"><i class="material-icons">edit</i></a>
                                                 <form style="cursor: pointer;display: inline-block;transform: translateY(6px)" action="{{ route('costs.destroy', $cost->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" title="delete" style="border: none; background-color:transparent;">
+                                                    <button data-toggle="tooltip" data-placement="top" title="Eliminar" type="submit" title="delete" style="border: none; background-color:transparent;">
                                                         <i class="material-icons">close</i>
                                                     </button>
                                                 </form>

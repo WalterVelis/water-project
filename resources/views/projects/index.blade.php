@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'projects-management', 'menuParent' => 'projects', 'sublevel' => 'necesidades', 'titlePage' => __('Proyectos')])
+@extends('layouts.app', ['activePage' => 'projects-management', 'menuParent' => 'projects', 'sublevel' => 'necesidades', 'titlePage' => __('Gestión de Proyectos')])
 
 
 @section('content')
@@ -128,7 +128,7 @@
                                             </td>
                                             <td class="td-actions text-right">
                                                 <!-- <a href="{{ route('projects.show', $item->id) }}"><i class="material-icons">remove_red_eye</i></a> -->
-                                                <a href="{{ route('projects.edit', $item->id) }}"><i class="material-icons">edit</i></a>
+                                                <a data-toggle="tooltip" data-placement="top" title="Editar" href="{{ route('projects.edit', $item->id) }}"><i class="material-icons">edit</i></a>
                                                 {{-- <i class="material-icons">close</i> --}}
                                             </td>
                                         </tr>
@@ -159,8 +159,9 @@
                     [10, 25, 50, "All"]
                 ],
                 responsive: true,
+                dom: 'Bfrtip',
                 buttons: [
-                    'excel'
+                    'copy', 'excel', 'pdf'
                 ],
                 language: {
                     search: "_INPUT_",

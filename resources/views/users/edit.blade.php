@@ -41,7 +41,7 @@
                                                 <span class="fileinput-exists">{{ __('Change') }}</span>
                                                 <input type="file" name="photo" id="input-picture" />
                                             </span>
-                                            <a href="#pablo" class="btn btn-danger btn-round fileinput-exists"
+                                            <a href="#" class="btn btn-danger btn-round fileinput-exists"
                                                 data-dismiss="fileinput"><i class="fa fa-times"></i>
                                                 {{ __('Remove') }}</a>
                                         </div>

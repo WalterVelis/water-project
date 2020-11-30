@@ -6,8 +6,8 @@
     <div class="row">
       <div class="col-md-8">
         @if (auth()->user()->change_password == 1)
-            
-        
+
+
         <div class="card">
         <div class="card-header card-header-icon card-header-rose">
             <div class="card-icon" style="background-image: url({{asset("img/icons").'/Editar_Perfil.png'}});">
@@ -39,7 +39,7 @@
                         <span class="fileinput-exists">{{ __('Change') }}</span>
                         <input type="file" name="photo" id = "input-picture" />
                       </span>
-                        <a href="#pablo" class="btn btn-danger fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> {{ __('Remove') }}</a>
+                        <a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> {{ __('Remove') }}</a>
                     </div>
                     @include('alerts.feedback', ['field' => 'photo'])
                   </div>
@@ -114,7 +114,7 @@
             </form>
           </div>
         </div>
-        
+
       </div>
 
       @if(!auth()->user()->change_password)
@@ -131,7 +131,7 @@
 
       @if (auth()->user()->change_password == 1)
       <div class="col-md-4">
-        <div class="card card-profile">          
+        <div class="card card-profile">
           <div class="card-body">
             <br><br><br>
             <div class="card-avatar">
@@ -141,8 +141,8 @@
           </div>
         </div>
 
-        
-        
+
+
       </div>
       @endif
 

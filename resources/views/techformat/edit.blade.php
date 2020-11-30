@@ -1,5 +1,5 @@
 {{-- ThisFileisanAliasfor'create' --}}
-@extends('layouts.app', ['activePage' => 'budgetaccount-management', 'menuParent' => 'catalog', 'sublevel' => 'budget', 'titlePage' => __('Budget Account Management')])
+@extends('layouts.app', ['activePage' => 'budgetaccount-management', 'menuParent' => 'catalog', 'sublevel' => 'budget', 'titlePage' => __('Gestión de Proyectos')])
 <style>
 /* PDF, CSV, XLS */
 /* 11:00 */
@@ -91,21 +91,21 @@ form .col-12 {
                             </button>
                             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                                 <ul class="navbar-nav" style="">
-                                <li class="nav-item enabled">
-                                    <a class="nav-link c-enabled" href="{{ route('projects.edit', $techFormat->id) }}">{{ __('Needs Diagnosis') }} <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="{{ route('techformat.edit', $techFormat->id) }}">{{ __('Technical Lift') }}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">{{ __('Quotation') }}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">{{ __('Purchase Order') }}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">{{ __('Assignment') }}</a>
-                                </li>
+                                    <li class="nav-item {{ $format->internal_status >= 0 ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status >= 0 ? route('projects.edit', $format) : "#" }}">{{ __('Needs Diagnosis') }}</a>
+                                    </li>
+                                    <li class="nav-item active {{ $format->internal_status >= 1 ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status >= 1 ? route('techformat.edit', $format) : "#" }}">{{ __('Technical Lift') }}</a>
+                                    </li>
+                                    <li class="nav-item {{ $format->internal_status >= 2 ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status >= 2 ? "/quotation/$format->id/edit" : "#" }}">{{ __('Quotation') }}</a>
+                                    </li>
+                                    <li class="nav-item {{ $format->internal_status >= 3 ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status >= 3 ? "/order/$format->id" : "#" }}">{{ __('Purchase Order') }}</a>
+                                    </li>
+                                    <li class="nav-item {{ $format->internal_status >= 4 ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status >= 4 ? "/assignment/$format->id" : "#" }}">{{ __('Assignment') }}</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -114,12 +114,13 @@ form .col-12 {
                     <div class="accordion" id="accordionExample">
                         <div class="card crd">
                             <div class="card-header bg-b" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                <h5 class="mb-0 text-uppercase">Levantamiento Técnico</h5>
+                                <h5 class="mb-0 text-uppercase d-inline">Levantamiento Técnico</h5>
                             </div>
                             <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                                 <form action="{{ route('techformat.update', $techFormat->id) }}" method="post" id="form-techformat">
                                     @csrf
                                     @method('put')
+                                    <input type="hidden" name="status" class="set-status" value="0">
                                     <div class="card-body bg-white" style="max-height: 540px;overflow: scroll">
                                         <div class="col-12 col-md-12">
                                             <h4 class="mb-0 mt-2" style="font-weight: bold!important">Características</h4>
@@ -301,13 +302,13 @@ form .col-12 {
                                             <div class="col-12 col-md-4">
                                                 <label class="c_label col-12 col-form-label">{{ __('Promedio anual de captación de lluvia estimada') }}</label>
                                                 <div class="col-sm-12">
-                                                    <input required class="form-control" disabled id="" name="" type="text" value="" />
+                                                    <input required class="form-control" disabled id="pa" name="" type="text" value="" />
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-4">
                                                 <label class="c_label col-12 col-form-label">{{ __('Volumen de almacenamiento cisterna (lts)') }}</label>
                                                 <div class="col-sm-12">
-                                                    <input required class="form-control" disabled id="" name="" type="text" value="" />
+                                                    <input required class="form-control" disabled id="va" name="" type="text" value="" />
                                                 </div>
                                             </div>
 
@@ -493,7 +494,7 @@ form .col-12 {
                         </div>
                         <div class="card crd">
                             <div class="card-header bg-b" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                <h5 class="mb-0 text-uppercase">Mano de obra y Herramientas</h5>
+                                <h5 class="mb-0 text-uppercase d-inline">Mano de obra y Herramientas</h5><div style="color:white; margin-right: 26px;" class="d-inline float-right" id="total-cost">$0.00</div>
                             </div>
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                 <div class="card-body bg-white">
@@ -522,7 +523,7 @@ form .col-12 {
                         </div>
                         <div class="card crd">
                             <div class="card-header bg-b" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                <h5 class="mb-0 text-uppercase">Listado de Materiales</h5>
+                                <h5 class="mb-0 text-uppercase d-inline">Listado de Materiales</h5><div style="color:white; margin-right: 26px;" class="d-inline float-right" id="total-material">$0.00</div>
                             </div>
                             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                                 <div class="card-body bg-white">
@@ -551,7 +552,7 @@ form .col-12 {
                         </div>
                         <div class="card crd">
                             <div class="card-header bg-b" id="headingFour" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                <h5 class="mb-0 text-uppercase">KIT Isla Urbana</h5>
+                                <h5 class="mb-0 text-uppercase d-inline">KIT Isla Urbana</h5><div style="color:white; margin-right: 26px;" class="d-inline float-right" id="total-accesory">$0.00</div>
                             </div>
                             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                                 <div class="card-body bg-white">
@@ -586,10 +587,20 @@ form .col-12 {
                         </form>
 
                     <br>
-
+                    <div class="row w-100">
+                        <div class="col-12 col-md-8">
+                        </div>
+                        {{-- <div class="col-12 col-md-2">
+                            <a href="{{ route('projects.index') }}" class="btn btn-rose float-right">{{ __('CANCEL') }}</a>
+                        </div> --}}
+                        <div class="col-12 col-md-2">
+                            <button onclick="$('.set-status').val(1);$('#form-techformat').submit();" class="btn btn-primary">{{ __('FINALIZAR') }}</button>
+                        </div>
+                    </div>
                     <!-- Fin -->
 
                 </div>
+
             </div>
 
 
@@ -681,14 +692,6 @@ $('#water_consumption_lt').on('change', function() {
     $('#water_consuption').val(rtotal + " m3");
 });
 
-$('#rainwater_area').on('change', function() {
-    let total = $('#rainwater_area').val();
-    if ($('.environment').val() == 0)
-        multiplier = 20;
-    else
-        multiplier = 30;
-    $('#storage').val(total * multiplier + " m3");
-});
 
 $('.environment').on('change', function() {
     let total = $('#rainwater_area').val();
@@ -696,7 +699,7 @@ $('.environment').on('change', function() {
         multiplier = 20;
     else
         multiplier = 30;
-    $('#storage').val(total * multiplier + "m3");
+    $('#va').val(total * multiplier * 0.85 + "m3");
 });
 
 $('#water_quality-other').on('click', function() {
@@ -783,14 +786,44 @@ function saveWork() {
                 saving = false;
             }
         });
+    }
 }
-}
+
+
+$('#anual_precipitation').change(() => {
+    console.log('l');
+    nval = $('#anual_precipitation').val() * $('#rainwater_area').val() * 0.85;
+    $('#pa').val(nval)
+});
+$('#rainwater_area').change(() => {
+    nval = $('#anual_precipitation').val() * $('#rainwater_area').val() * 0.85;
+    $('#pa').val(nval)
+
+    let total = $('#rainwater_area').val();
+    if ($('.environment').val() == 0)
+        multiplier = 20;
+    else
+        multiplier = 30;
+        $('#va').val(total * multiplier * 0.85 + "m3");
+});
+
+
+
 
 $(function() {
     loadCosts();
     loadMaterials();
     loadAccesory();
 
+    // setTotals();
+    nval = $('#anual_precipitation').val() * $('#rainwater_area').val() * 0.85;
+    $('#pa').val(nval)
+    let total2 = $('#rainwater_area').val();
+    if ($('.environment').val() == 0)
+        multiplier = 20;
+    else
+        multiplier = 30;
+    $('#va').val(total2 * multiplier * 0.85 + "m3");
     $("input").blur(function(){
         saveWork();
     });

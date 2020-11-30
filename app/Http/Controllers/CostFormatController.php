@@ -88,6 +88,15 @@ class CostFormatController extends Controller
         //
     }
 
+    public function updateCost(Request $request, $costId, $projectId)
+    {
+        $data = CostFormat::where(['id' => $costId, 'format_id' => $projectId])->first();
+        $data->cost = $request->cost;
+        $data->save();
+    }
+
+
+
     /**
      * Remove the specified resource from storage.
      *

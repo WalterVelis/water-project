@@ -1,3 +1,4 @@
+{{-- @dd($pj) --}}
 <style>
     .table thead tr.c-2 th {
         font-size: 0.9rem;
@@ -23,7 +24,11 @@
         text-align: center;
     }
 
-
+    .max-error {
+        border-bottom: solid 1px red;
+        background: #fce4ec;
+        transition: all ease 0.2s;
+    }
 </style>
 {{-- @dd($project_materials) --}}
 <div class="row">
@@ -47,7 +52,7 @@
                         <td>{{ $item->materials->unit }}</td>
                         <td>{{ $item->qty }}</td>
                         <td>{{ $item->materials->type }}</td>
-                        <td><i class="fa fa-trash" aria-hidden="true" onclick="removeMaterial({{ $item->id }})"></i></td>
+                        <td><i data-toggle="tooltip" data-placement="top" title="Eliminar" class="fa fa-trash" aria-hidden="true" onclick="removeMaterial({{ $item->id }})"></i></td>
                     </tr>
                 @endforeach
             </tbody>
@@ -66,34 +71,63 @@
             <span>Tipo de material</span>
         </div>
         @foreach($project_materials as $item)
-            <div class="row mt-3 d-flex justify-content-around" style="border-bottom: solid 2px #efefef; padding-bottom: 4px;">
-                <div style="cursor: pointer;" onclick="showTable({{ $item->id }})">{{ $item->id }} <div class="d-inline-block" style="transform: translateY(8px);"><i class="material-icons">arrow_drop_down</i></div></div>
+        {{-- @foreach($materialProvider[$item->id] as $mp) --}}
+        {{-- @dd($project_materials) --}}
+        {{-- @endforeach --}}
+        @php($currentId = $item->id)
+        @foreach($item->materials->providers as $mProvider)
+        {{-- @dump($mProvider->materialProvider) --}}
+        @endforeach
+            <div class="row mt-3 d-flex justify-content-around" style="    background: #fafafa; padding-top: 10px; padding-bottom: 10px;">
+                <div style="cursor: pointer;    margin-top: -8px;" onclick="showTable({{ $item->id }})">{{ $item->id }} <div class="d-inline-block" style="transform: translateY(8px);"><i class="material-icons">arrow_drop_down</i></div></div>
                 <div>{{ $item->materials->name }}</div>
                 <div>{{ $item->materials->unit }}</div>
                 <div>{{ $item->qty }}</div>
                 <div>{{ $item->materials->type }}</div>
             </div>
             <div id="t-{{ $item->id }}" style="display: none" class="mt-2 mb-4">
+
                 <table class="table c-table">
                     <thead>
                         <tr class="cc c-2">
                             <th>Proveedor</th>
                             <th>Existencia</th>
                             <th>Costo Unitario</th>
-                            <th>Cantidad</th>
+                            <th style="width:8%;">Cantidad</th>
                             <th>Total</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($item->materials->providers as $mProvider)
+                        @php($total = 0)
+
+                        @foreach($materialProvider[$item->material_id] as $mp)
+                        @if($mp->qty <= 0)
+                            @continue
+                        @endif
+                            @php($total += $mp->qty * $mp->unit_cost)
                             <tr>
-                                <td scope="row">{{ $mProvider->provider->contact_name }}</td>
-                                <td>{{ $mProvider->qty }}</td>
-                                <td>${{ $mProvider->unit_cost }}</td>
-                                <td><input type="number" class="form-control" value="{{ $mProvider->qty }}"></td>
-                                <td>${{ $mProvider->qty * $mProvider->unit_cost }}</td>
+                                <td scope="row">{{ $mp->provider->contact_name }}</td>
+                                <td>{{ $mp->qty }}</td>
+                                <td>{{ Helper::formatMoney($mp->unit_cost) }}</td>
+                                <td><input max="{{ $mp->qty }}" class="total-item-{{ $currentId }} form-control data-material" data-id="{{ $mp->provider->id }}" type="number" value="{{ $mp->materialProvider ? $mp->materialProvider->qty : "0" }}"></td>
+                                <td>{{ Helper::formatMoney($mp->qty * $mp->unit_cost) }}</td>
                             </tr>
                         @endforeach
+                        <script>
+                            $('.total-item-{{ $currentId }}').on('change keyup', () => {
+                                total = parseFloat(0.00);
+                                $('.total-item-{{ $currentId }}').each(function() {
+                                    total += parseFloat($(this).val());
+                                    if(total > {{ $item->qty }}) {
+                                        console.log('Error');
+                                        $('.total-item-{{ $currentId }}').addClass('max-error')
+                                    } else {
+                                        $('.total-item-{{ $currentId }}').removeClass('max-error')
+                                    }
+                                })
+
+                            })
+                        </script>
                     </tbody>
                 </table>
             </div>
@@ -134,4 +168,28 @@
         loadMaterials();
     });
     }
+
+    var delayer;
+    $('.data-material').on('change keyup', function() {
+        id = $(this).attr('data-id');
+        data = $(this).val();
+        console.log(id);
+        clearTimeout(delayer);
+        delayer = setTimeout(function() {
+            $.ajax({
+                type: 'PUT',
+                url: '/accesoryformat/'+id+'/'+projectId,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "qty": data
+                }
+            }).done(function(data) {
+                loadCosts();
+            });
+        }, 500);
+
+    });
+    $(function () {
+        $('#total-material').html("{{ Helper::formatMoney($total) }}");
+    });
 </script>

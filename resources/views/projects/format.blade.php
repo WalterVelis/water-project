@@ -1,5 +1,5 @@
 {{-- ThisFileisanAliasfor'create' --}}
-@extends('layouts.app', ['activePage' => 'budgetaccount-management', 'menuParent' => 'catalog', 'sublevel' => 'budget', 'titlePage' => __('Budget Account Management')])
+@extends('layouts.app', ['activePage' => 'budgetaccount-management', 'menuParent' => 'catalog', 'sublevel' => 'budget', 'titlePage' => __('Gestión de Proyectos')])
 <style>
 
 .form-check .form-check-label {
@@ -58,21 +58,21 @@ form .col-12 {
                             </button>
                             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                                 <ul class="navbar-nav" style="">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="{{ route('projects.edit', $format) }}">{{ __('Needs Diagnosis') }} <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('techformat.edit', $format) }}">{{ __('Technical Lift') }}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">{{ __('Quotation') }}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">{{ __('Purchase Order') }}</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">{{ __('Assignment') }}</a>
-                                </li>
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="{{ route('projects.edit', $format) }}">{{ __('Needs Diagnosis') }} <span class="sr-only">(current)</span></a>
+                                    </li>
+                                    <li class="nav-item {{ $format->internal_status >= 1 ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status >= 1 ? route('techformat.edit', $format) : "#" }}">{{ __('Technical Lift') }}</a>
+                                    </li>
+                                    <li class="nav-item {{ $format->internal_status >= 2 ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status >= 2 ? "/quotation/$format->id/edit" : "#" }}">{{ __('Quotation') }}</a>
+                                    </li>
+                                    <li class="nav-item {{ $format->internal_status >= 3 ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status >= 3 ? "/order/$format->id" : "#" }}">{{ __('Purchase Order') }}</a>
+                                    </li>
+                                    <li class="nav-item {{ $format->internal_status >= 4 ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status >= 4 ? "/assignment/$format->id" : "#" }}">{{ __('Assignment') }}</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -405,7 +405,7 @@ form .col-12 {
                                         <div class="col-12 col-md-3">
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                    <input {{ in_array(__('Arch Ceiling'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input" type="checkbox"
+                                                    <input {{ in_array(__('Arch Ceiling'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input @if (App\User::hasPermissions("Tecnico")) i-enabled @endif" type="checkbox"
                                                         value="{{ __('Arch Ceiling') }}"> {{ __('Arch Ceiling') }}
                                                     <span class="form-check-sign">
                                                         <span class="check"></span>
@@ -416,7 +416,7 @@ form .col-12 {
                                         <div class="col-12 col-md-3">
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                    <input {{ in_array(__('Two Waters'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input" type="checkbox"
+                                                    <input {{ in_array(__('Two Waters'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input @if (App\User::hasPermissions("Tecnico")) i-enabled @endif" type="checkbox"
                                                         value="{{ __('Two Waters') }}"> {{ __('Two Waters') }}
                                                     <span class="form-check-sign">
                                                         <span class="check"></span>
@@ -427,7 +427,7 @@ form .col-12 {
                                         <div class="col-12 col-md-3">
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                    <input {{ in_array(__('Flat With Pending'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input" type="checkbox"
+                                                    <input {{ in_array(__('Flat With Pending'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input @if (App\User::hasPermissions("Tecnico")) i-enabled @endif" type="checkbox"
                                                         value="{{ __('Flat With Pending') }}"> {{ __('Flat With Pending') }}
                                                     <span class="form-check-sign">
                                                         <span class="check"></span>
@@ -438,7 +438,7 @@ form .col-12 {
                                         <div class="col-12 col-md-3">
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                    <input {{ in_array(__('Flat Without Pending'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input" type="checkbox"
+                                                    <input {{ in_array(__('Flat Without Pending'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input @if (App\User::hasPermissions("Tecnico")) i-enabled @endif" type="checkbox"
                                                         value="{{ __('Flat Without Pending') }}">
                                                     {{ __('Flat Without Pending') }}
                                                     <span class="form-check-sign">
@@ -452,7 +452,7 @@ form .col-12 {
                                 <div class="col-12 col-md-6">
                                     <label class="c_label col-12 col-form-label">{{ __('Rainwater Area') }}</label>
                                     <div class="col-sm-12">
-                                        <input class="form-control" id="rainwater_area" name="rainwater_area" type="number"
+                                        <input class="@if (App\User::hasPermissions("Tecnico")) i-enabled @endif form-control" id="rainwater_area" name="rainwater_area" type="number"
                                             value="{{ $format->rainwater_area }}" />
                                         <input readonly disabled class="form-control" id="storage" type="text"
                                             placeholder="[m3]" value="" />
@@ -516,6 +516,7 @@ form .col-12 {
                                     </div>
                                 </div>
                             </div>
+                            <input type="hidden" name="status" class="set-status" value="0">
                         </form>
 
                         <div class="row">
@@ -578,13 +579,14 @@ form .col-12 {
                                     <button type="button" class="btn btn-primary float-right"
                                         onclick="addAuth()">Agregar</button>
                                 </div>
+
                             </form>
                         </div>
                         <div class="col-12" id="auth"></div>
 
                         <div class="row float-right mr-4">
                             <a href="{{ route('projects.index') }}" class="btn btn-rose">{{ __('CANCEL') }}</a>
-                            <button onclick="$('#form-update').submit();" class="btn btn-primary">{{ __('SAVE') }}</button>
+                            <button onclick="$('.set-status').val(1);$('#form-update').submit();" class="btn btn-primary">{{ __('SAVE') }}</button>
                         </div>
                     </div>
 
@@ -794,12 +796,15 @@ $(function() {
     $('#water_consuption').val(rtotal + " m3");
 });
 
-
+// @if (App\User::hasPermissions("Tecnico"))
+//     $('input, select').attr('disabled', 'true')
+//     $('input, select').attr('readonly', 'true')
+//     $('input.i-enabled').removeAttr('disabled')
+//     $('input.i-enabled').removeAttr('readonly')
+// @endif
 
 
 </script>
 
 @endpush
 
-
-{{-- unhiddenqueseaelvalorreal(specify...) --}}

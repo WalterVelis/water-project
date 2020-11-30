@@ -10,6 +10,9 @@ class Format extends Model
     const STATUS_IN_PROCESS = 1;
     const STATUS_NO_FACTIBLE = 2;
     const STATUS_FACTIBLE = 3;
+    const STATUS_QUOTED = 4;
+    const STATUS_NEGOTIATION = 5;
+    const STATUS_ADVANCE = 6;
 
     /**
      * Return list of status codes and labels
@@ -39,5 +42,10 @@ class Format extends Model
         return isset($list[$this->status])
             ? $list[$this->status]
             : $this->status;
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'created_by');
     }
 }
