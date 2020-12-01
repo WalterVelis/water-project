@@ -75,8 +75,8 @@
                             </div>
                         </div>
                         <div class="card-footer d-flex flex-row-reverse" style="justify-content: end;">
-                            <p onclick="validationSave();" class="btn btn-primary">{{ __('Save') }}</p>
-                            <button id="saveUser" type="submit" class="btn btn-rose btn-round d-none">{{ __('Save') }}</button>
+                            {{-- <p onclick="validationSave();" class="btn btn-primary">{{ __('Save') }}</p> --}}
+                            <button id="saveUser" type="submit" class="btn btn-primary">{{ __('Save') }}</button>
                         </div>
                     </div>
                 </form>
