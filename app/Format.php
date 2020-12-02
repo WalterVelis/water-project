@@ -26,6 +26,9 @@ class Format extends Model
             self::STATUS_IN_PROCESS => 'En proceso',
             self::STATUS_NO_FACTIBLE => 'No factible',
             self::STATUS_FACTIBLE => 'Factible',
+            self::STATUS_QUOTED => 'Cotizado',
+            self::STATUS_NEGOTIATION => 'Negociación',
+            self::STATUS_ADVANCE => 'Anticipo',
         ];
     }
 /**

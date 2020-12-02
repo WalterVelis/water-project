@@ -12,6 +12,8 @@ use App\Format;
 use App\TechFormat;
 use App\Quotation;
 use App\Entity;
+use Barryvdh\DomPDF\PDF;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -168,6 +170,15 @@ class ProjectController extends Controller
     {
         // Project::create($request->all());
         // return redirect()->route('projects.index')->with('success', 'Project Created');
+    }
+
+    public function genPdf($id)
+    {
+        $format = Format::find($id);
+        return view('layouts.pdf.format', compact('format'));
+        $pdf =  PDF::loadView('layouts.pdf.format', compact('format'));
+        $name = Carbon::now()->toDateTimeString().'.pdf';
+        return $pdf->setPaper('letter', 'landscape')->download($name);
     }
 
     /**

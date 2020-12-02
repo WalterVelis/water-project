@@ -11,7 +11,7 @@ class AssignmentController extends Controller
     public function edit($id)
     {
         $users = User::all();
-        $assignmentData = Format::find($id);
+        $assignmentData = Format::with('user')->find($id);
         return view('assignment.edit', compact('assignmentData', 'users'));
     }
 

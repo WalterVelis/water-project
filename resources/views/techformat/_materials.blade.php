@@ -109,7 +109,13 @@
                                 <td scope="row">{{ $mp->provider->contact_name }}</td>
                                 <td>{{ $mp->qty }}</td>
                                 <td>{{ Helper::formatMoney($mp->unit_cost) }}</td>
-                                <td><input max="{{ $mp->qty }}" class="total-item-{{ $currentId }} form-control data-material" data-id="{{ $mp->provider->id }}" type="number" value="{{ $mp->materialProvider ? $mp->materialProvider->qty : "0" }}"></td>
+                                <td>
+                                    @if($mp->materialProvider)
+                                        <input max="{{ $mp->qty }}" class="total-item-{{ $currentId }} form-control data-material" data-id="{{ $mp->materialProvider->id }}" type="number" value="{{ $mp->materialProvider->qty }}">
+                                    @else
+                                        <input max="{{ $mp->qty }}" class="total-item-{{ $currentId }} form-control data-material" data-id="{{ $mp->id }}" type="number" value="0">
+                                    @endif
+                                </td>
                                 <td>{{ Helper::formatMoney($mp->qty * $mp->unit_cost) }}</td>
                             </tr>
                         @endforeach
@@ -178,7 +184,7 @@
         delayer = setTimeout(function() {
             $.ajax({
                 type: 'PUT',
-                url: '/accesoryformat/'+id+'/'+projectId,
+                url: '/materialformat/'+id+'/'+projectId,
                 data: {
                     "_token": "{{ csrf_token() }}",
                     "qty": data

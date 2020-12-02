@@ -44,6 +44,14 @@ class MaterialFormatController extends Controller
         //
     }
 
+    public function setMaterialProviderFormatQty(Request $request, $id, $formatId)
+    {
+        $materialProviderFormat = MaterialProviderFormat::find($id);
+        // dd($materialProviderFormat);
+        $materialProviderFormat->qty = $request->qty;
+        $materialProviderFormat->save();
+    }
+
     /**
      * Show the form for creating a new resource.
      *
