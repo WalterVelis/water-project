@@ -1,5 +1,4 @@
-@extends('layouts.app', ['activePage' => 'user-management', 'menuParent' => 'user', 'titlePage' => __('User
-Management')])
+@extends('layouts.app', ['activePage' => 'user-management', 'menuParent' => 'user', 'titlePage' => __('Gestión de usuarios')])
 
 @section('content')
 <div class="content">

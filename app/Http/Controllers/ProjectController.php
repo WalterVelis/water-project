@@ -12,9 +12,11 @@ use App\Format;
 use App\TechFormat;
 use App\Quotation;
 use App\Entity;
-use Barryvdh\DomPDF\PDF;
+use App\Mail\AdminNotification;
+use PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ProjectController extends Controller
 {
@@ -108,7 +110,7 @@ class ProjectController extends Controller
         $format->updated_by = Auth::id();
         $format->status = 0;
         $format->tech_assigned = 0;
-        $format->vendor_assigned = 0;
+        $format->vendor_assigned = Auth::id();
         $format->admin_assigned = 0;
         $format->save();
 
@@ -174,9 +176,11 @@ class ProjectController extends Controller
 
     public function genPdf($id)
     {
-        $format = Format::find($id);
-        return view('layouts.pdf.format', compact('format'));
-        $pdf =  PDF::loadView('layouts.pdf.format', compact('format'));
+        $entities[0] = Entity::where(['project_id' => $id, 'entity_type' => 0])->get();
+        $entities[1] = Entity::where(['project_id' => $id, 'entity_type' => 1])->get();
+        $format = Format::with('country')->find($id);
+        return view('layouts.pdf.format', compact('format', 'entities'));
+        $pdf =  PDF::loadView('layouts.pdf.format', compact('format', 'entities'));
         $name = Carbon::now()->toDateTimeString().'.pdf';
         return $pdf->setPaper('letter', 'landscape')->download($name);
     }
@@ -202,9 +206,10 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
+        $admins = User::whereRole_id('1')->get();
         $format = Format::find($id);
         $countries = Country::all();
-        return view('projects.format', compact('countries', 'format'));
+        return view('projects.format', compact('countries', 'format', 'admins'));
     }
 
     /**
@@ -217,6 +222,7 @@ class ProjectController extends Controller
     public function update(Request $request, $id)
     {
 
+
         $internalStatus = 0;
         if($request->status)
             $internalStatus = 1;
@@ -227,7 +233,7 @@ class ProjectController extends Controller
         } else if($request->factible === "0") {
             $status = 3;
         }
-        dump($status);
+        // dump($status);
         //validar que implode tenga valor
         $water_quality = implode(",",$request->water_quality);
         $roof_type = implode(",",$request->roof_type);
@@ -293,6 +299,14 @@ class ProjectController extends Controller
         $format->internal_status = $internalStatus;
 
         $format->update();
+
+        if($request->sendMail) {
+            // dd($request->all());
+            $data = Format::with('user')->find($id);
+            // dump($data);
+            Mail::to($request->mail)->send(new AdminNotification($data));
+            // dd("sened");
+        }
         // dd(Project::find($project)->update($request->all()));
         // $project->update($request->all());
         // Project::find($project)->update($request->all());
@@ -307,8 +321,6 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        // * Validar que no tenga formato
-        // Eliminar también el formato correspondiente
         $project->delete();
         return redirect()->route('projects.index')->with('success', 'Project Deleted');
     }

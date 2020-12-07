@@ -96,6 +96,8 @@ form .col-12 {
 
                                         @csrf
                                         @method('patch')
+                                        <input id="isend" type="hidden" value="0" name="sendMail">
+                                        <input id="this-mail" type="hidden" value="0" name="mail">
                                         <div class="row pb-5">
                                             <div class="col-12 col-md-4">
                                                 <label class="c_label col-12 col-form-label">{{ __('Page') }}</label>
@@ -586,7 +588,7 @@ form .col-12 {
 
                         <div class="row float-right mr-4">
                             <a href="{{ route('projects.index') }}" class="btn btn-rose">{{ __('CANCEL') }}</a>
-                            <button onclick="$('.set-status').val(1);$('#form-update').submit();" class="btn btn-primary">{{ __('SAVE') }}</button>
+                            <button data-toggle="modal" data-target="#mail" onclick="$('.set-status').val(1);" class="btn btn-primary">{{ __('SAVE') }}</button>
                         </div>
                     </div>
 
@@ -604,6 +606,30 @@ form .col-12 {
     </div>
 </div>
 </div>
+
+<div class="modal fade" id="mail" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Seleccione un administrador para asignar un técnico</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <select class="form-control" name="mail" id="smail">
+              @foreach($admins as $admin)
+              <option value="{{ $admin->email }}">{{ $admin->name }}</option>
+              @endforeach
+          </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" data-dismiss="modal" class="btn btn-primary" onclick="sendAdmin();">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection
 @push('js')
 
@@ -803,6 +829,12 @@ $(function() {
 //     $('input.i-enabled').removeAttr('readonly')
 // @endif
 
+function sendAdmin() {
+    $('#isend').val(1);
+    $('#this-mail').val($('#smail').val());
+    $('#form-update').submit();
+
+}
 
 </script>
 

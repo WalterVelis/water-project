@@ -23,7 +23,7 @@
   <link rel="icon" type="image/png" href="{{ asset('material') }}/img/licons/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    IIASA
+    Cotizador Agua H2O
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -60,6 +60,23 @@
       animation: spin 2s linear infinite;
     }
 
+    .btn.btn-primary, .btn.btn-primary:hover, .btn.btn-rose, .btn.btn-rose:hover {
+        box-shadow: none!important;
+    }
+    .btn.btn-rose {
+        border: none!important;
+        margin-right: 5px;
+        min-width: 115px;
+    }
+    .copyright  {
+        color: #607D8B!important;
+    }
+
+    @media (max-width: 991px){
+        .card .card-body .col-form-label, .card .card-body .label-on-right {
+            padding-left: 15px!important;
+        }
+    }
     /* Safari */
     @-webkit-keyframes spin {
       0% { -webkit-transform: rotate(0deg); }

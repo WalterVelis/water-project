@@ -12,6 +12,7 @@
         padding: 2px;
     }
 </style>
+
 @section('content')
 <div class="content">
     <div class="container-fluid">

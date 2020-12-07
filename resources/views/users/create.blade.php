@@ -28,12 +28,12 @@
                       </div>
                       <div class="fileinput-preview fileinput-exists thumbnail img-circle"></div>
                       <div>
-                        <span class="btn btn-primary btn-file">
-                          <span style="color:white!important;" class="fileinput-new">{{ __('Select image') }}</span>
-                          <span class="fileinput-exists">{{ __('Change') }}</span>
+                        <span class="btn btn-primary btn-file" style="width: 150px;">
+                          <span style="color:white!important;" class="fileinput-new">{{ __('Seleccionar') }}</span>
+                          <span style="color: white;" class="fileinput-exists">{{ __('Change') }}</span>
                           <input type="file" name="photo" id = "input-picture" />
                         </span>
-                          <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> {{ __('Remove') }}</a>
+                          <a style="width: 150px;" href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"> {{ __('Remove') }}</a>
                       </div>
                       @include('alerts.feedback', ['field' => 'photo'])
                     </div>

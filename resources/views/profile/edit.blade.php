@@ -10,7 +10,7 @@
 
         <div class="card">
         <div class="card-header card-header-icon card-header-rose">
-            <div class="card-icon" style="background-image: url({{asset("img/icons").'/Editar_Perfil.png'}});">
+            <div class="card-icon" style="    background-size: contain;background-repeat:no-repeat;background-image: url({{asset("img/icons").'/Editar_Perfil.png'}});">
               <i class="material-icons">f</i>
             </div>
             <h4 class="card-title">{{ __('Edit Profile') }}
@@ -73,9 +73,9 @@
 
         <div class="card">
           <div class="card-header card-header-icon card-header-rose">
-            <div class="card-icon" style="background-image: url({{asset("img/icons").'/Cambiar_Password.png'}});">
-              <i class="material-icons">f</i>
-            </div>
+            <div class="card-icon" style="">
+                <i class="material-icons">lock</i>
+              </div>
             <h4 class="card-title">{{ __('Change password') }}</h4>
           </div>
           <div class="card-body text-center">
@@ -129,7 +129,7 @@
       </div>
       @endif
 
-      @if (auth()->user()->change_password == 1)
+      {{-- @if (auth()->user()->change_password == 1)
       <div class="col-md-4">
         <div class="card card-profile">
           <div class="card-body">
@@ -144,7 +144,7 @@
 
 
       </div>
-      @endif
+      @endif --}}
 
     </div>
   </div>

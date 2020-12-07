@@ -51,4 +51,23 @@ class Format extends Model
     {
         return $this->belongsTo('App\User', 'created_by');
     }
+    public function admin()
+    {
+        return $this->belongsTo('App\User', 'admin_assigned');
+    }
+    public function vendor()
+    {
+        return $this->belongsTo('App\User', 'vendor_assigned');
+    }
+    public function tech()
+    {
+        return $this->belongsTo('App\User', 'tech_assigned');
+    }
+
+    public function country()
+    {
+        return $this->belongsTo('App\Country', 'country_id');
+    }
+
+    // protected $dates = ['date', 'created_at'];
 }

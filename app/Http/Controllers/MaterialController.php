@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Material;
 use App\MaterialProvider;
+use App\MaterialProviderFormat;
 use App\Provider;
 use Illuminate\Http\Request;
 
@@ -76,8 +77,15 @@ class MaterialController extends Controller
      */
     public function edit(Material $material)
     {
-        $providers = Provider::all();
-        return view('materials.edit', compact('material', 'providers'));
+        $allProviders = Provider::all();
+        $providers = MaterialProvider::with(['material','provider'])->where('material_id', $material->id)->get();
+        $alreadyProvided = [];
+        foreach($providers as $p){
+            array_push($alreadyProvided, $p->provider_id);
+
+        }
+        // dd($alreadyProvided);
+        return view('materials.edit', compact('material', 'providers', 'allProviders', 'alreadyProvided'));
     }
 
     /**
@@ -89,12 +97,29 @@ class MaterialController extends Controller
      */
     public function update(Request $request, Material $material)
     {
+
+        // eliminar todos los materials_providers que tengan material_id que le mando
+        $m = MaterialProvider::where('material_id', $material->id)->get();
+        dd($m);
+        MaterialProvider::where('material_id', $material->id)->delete();
+        // de los eliminados, eliminar todos los que tengan el id del eliminado en materialprovider_project
+
+        //eliminar todos, recrear todos
+        // $mp = MaterialProvider::with('materialProvider')->where('provider_id', )->get();
+
+        //Obtener todos
+        foreach($request->provider_id as $k => $provider_id) {
+            $mp = MaterialProvider::with('materialProvider')->where('provider_id', $provider_id)->get();
+            dump($mp);
+        }
+        dd("done");
+        MaterialProvider::where('provider_id', );
         $request->validate([
             'name' => ['required'],
-            'qty' => ['required'],
+            'unit' => ['required'],
             'type' => ['required'],
-            'cost' => ['required'],
-            'provider_id' => ['required'],
+            // 'cost' => ['required'],
+            // 'provider_id' => ['required'],
         ]);
         $material->update($request->all());
         return redirect()->route('materials.index');

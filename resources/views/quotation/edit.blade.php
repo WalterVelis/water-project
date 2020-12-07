@@ -86,8 +86,8 @@
                                     <li class="nav-item {{ $format->internal_status >= 3 ? "c-enabled" : "" }}">
                                         <a class="nav-link" href="{{ $format->internal_status >= 3 ? "/order/$format->id" : "#" }}">{{ __('Purchase Order') }}</a>
                                     </li>
-                                    <li class="nav-item {{ $format->internal_status >= 4 ? "c-enabled" : "" }}">
-                                        <a class="nav-link" href="{{ $format->internal_status >= 4 ? "/assignment/$format->id" : "#" }}">{{ __('Assignment') }}</a>
+                                    <li class="nav-item {{ $format->internal_status >= 0 ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status >= 0 ? "/assignment/$format->id/edit" : "#" }}">{{ __('Assignment') }}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -209,8 +209,9 @@
                         </div>
                     </form>
                     <div class="float-right mb-2 mt-2 mr-4">
-                        <span onclick="$('#sendQuotation').hide();$('#applyUtility').show();" style="width:30px; height: 30px; border-radius:40px; font-weight:bold; background: #0b6696; color: white; display:inline-block;padding-left:8px;font-size:1.2em;padding-top:5px;">%</span>
-                        <span onclick="$('#sendQuotation').show();$('#applyUtility').hide();" style="width:30px; height: 30px; border-radius:40px; font-weight:bold; background: #0b6696; color: white; display:inline-block;padding-left:10px;font-size:1.2em;padding-top:5px;">+</span>
+                        <span onclick="$('.q-details').toggle();" style="cursor: pointer;width:30px; height: 30px; border-radius:40px; font-weight:bold; background: #0b6696; color: white; display:inline-block;padding-left:5px;font-size:1.2em;padding-top:4px;">👁</span>
+                        <span onclick="$('#sendQuotation').hide();$('#applyUtility').show();" style="cursor: pointer;width:30px; height: 30px; border-radius:40px; font-weight:bold; background: #0b6696; color: white; display:inline-block;padding-left:8px;font-size:1.2em;padding-top:5px;">%</span>
+                        <span onclick="$('#sendQuotation').show();$('#applyUtility').hide();" style="cursor: pointer;width:30px; height: 30px; border-radius:40px; font-weight:bold; background: #0b6696; color: white; display:inline-block;padding-left:10px;font-size:1.2em;padding-top:5px;">+</span>
                     </div>
                     <div class="container mt-4" id="q-table">
 
@@ -284,7 +285,12 @@ $(function () {
     });
 });
 
-$('#q-table').load('/quotationformat/{{ $quotation->format_id }}/table');
+function loadTable() {
+
+    $('#q-table').load('/quotationformat/{{ $quotation->format_id }}/table');
+}
+
+loadTable();
 </script>
 
 @endpush

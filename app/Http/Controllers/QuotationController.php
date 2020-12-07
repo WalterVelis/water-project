@@ -72,14 +72,16 @@ class QuotationController extends Controller
 
     public function getTable($id)
     {
-        $manoDeObra = CostFormat::where(['format_id' => $id])->get();
+        $manoDeObra = CostFormat::with('costs')->where(['format_id' => $id])->get();
         $material = MaterialProviderFormat::whereHas('providers', function($query) use ($id) { $query->where('format_id', $id);})->where(['format_id' => $id])->get();
         $totalMaterial = 0;
+        $totalIU = 0;
+        $totalManoDeObra = 0;
         foreach($material as $m) {
             $totalMaterial += $m->qty * $m->cost;
         }
-        $totalManoDeObra = 0;
 
+        // dd($manoDeObra);
         foreach($manoDeObra as $mo) {
             $totalManoDeObra += $mo->day * $mo->cost;
         }
@@ -88,14 +90,19 @@ class QuotationController extends Controller
         $schoolCost = SchoolCost::where('format_id', $id)->first();
         $escuela = Format::select(['has_educational_programs', 'children'])->where('id', $id)->first();
         $costs = CostFormat::where('format_id', $id)->sum('cost');
-        $accesoriesTotal = AccesoryFormat::where('format_id', $id)->sum('cost'); //Falta multiplicarlo por los días
+        $accesoriesTotal = AccesoryFormat::where('format_id', $id)->get();
+        foreach($accesoriesTotal as $at) {
+            $totalIU += (($at->cost - ($at->cost * ($at->discount * 0.01))) * $at->qty);
+        }
+        // dd($totalIU);
+        // $accesoryQty = AccesoryFormat::with('')
         // $materialsTotal = MaterialFormat::with('materials.providers')->where('format_id', $id)->get();
         // dd($materialsTotal);
         $quotation = QuotationFormat::where('format_id', $id)->get();
         $utility = Quotation::select('utility', 'indirect')->where('format_id', $id)->first();
-        $allMaterials = /*$materialsTotal +*/ $accesoriesTotal;
+        $allMaterials = $totalMaterial + $totalIU;
         // dd($quotation);
-        return view('quotation._table', compact('quotation', 'escuela', 'costs', 'allMaterials', 'schoolCost', 'utility', 'materialUtility', 'costsUtility', 'totalManoDeObra', 'totalMaterial'));
+        return view('quotation._table', compact('quotation', 'escuela', 'costs', 'allMaterials', 'schoolCost', 'utility', 'materialUtility', 'costsUtility', 'totalManoDeObra', 'totalIU', 'totalMaterial', 'manoDeObra'));
     }
 
     public function applyUtility(Request $request, $id) {
@@ -220,6 +227,7 @@ class QuotationController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $quote = QuotationFormat::find($id)->delete();
+        // dd($quote);
     }
 }

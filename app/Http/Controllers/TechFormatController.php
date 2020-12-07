@@ -6,8 +6,13 @@ use App\TechFormat;
 use App\Material;
 use App\AccesoryUrban;
 use App\CostsCenter;
+use App\Entity;
 use App\Format;
+use App\Mail\TechFormatNotification;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use PDF;
 
 class TechFormatController extends Controller
 {
@@ -53,6 +58,18 @@ class TechFormatController extends Controller
         //
     }
 
+
+    public function genPdf($id)
+    {
+        $entities[0] = Entity::where(['project_id' => $id, 'entity_type' => 0])->get();
+        $entities[1] = Entity::where(['project_id' => $id, 'entity_type' => 1])->get();
+        $format = Format::with(['user', 'country'])->find($id);
+        $tech = TechFormat::with('format.user')->where('format_id', $id)->first();
+        // return view('layouts.pdf.tech', compact('format', 'entities', 'tech'));
+        $pdf =  PDF::loadView('layouts.pdf.tech', compact('format', 'entities', 'tech'));
+        $name = Carbon::now()->toDateTimeString().'.pdf';
+        return $pdf->setPaper('letter')->download($name);
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -115,8 +132,12 @@ class TechFormatController extends Controller
         $techFormat->save();
 
         $internalStatus = 0;
-        if($request->status)
+        if($request->status) {
             $internalStatus = 2;
+            $data = Format::with(['user', 'vendor', 'tech', 'admin'])->find($id);
+            // dd($data->vendor->email);
+            Mail::to([$data->vendor->email, $data->admin->email])->send(new TechFormatNotification($data));
+        }
 
         $format = Format::find($id);
         if($format->internal_status >= 2)

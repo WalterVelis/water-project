@@ -8,7 +8,11 @@
 {{-- Change logo-bf.webp to log-black.png --}}
 
 <style>.wrapper.wrapper-full-page {background: #eee}</style>
-
+<style>
+    .login-page .footer .copyright, .login-page .footer a {
+        color: #607D8B!important;
+    }
+</style>
 @section('content')
 <div class="container" style="padding: -120px">
   <div class="row justify-content-center">
@@ -33,7 +37,7 @@
             </div> --}}
             <div class="card-body ">
               <br>
-              <div class="d-flex justify-content-center">
+              <div class="d-flex justify-content-center" style="margin-left:15px;">
                 <h3 class="card-title" style="color: #0b6696">{{ __('Login') }}</h3>
               </div>
               <div id='loadingTime' class="loaderSpinnerLogin d-none"></div>
@@ -126,7 +130,7 @@
     setTimeout(function() {
       // after 1000 ms we add the class animated to the login/register card
       $('.card').removeClass('card-hidden');
-    }, 700);
+    }, 100);
   });
 </script>
 

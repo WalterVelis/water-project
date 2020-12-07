@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Format;
 use App\User;
 use Illuminate\Http\Request;
+use App\Mail\TechNotification;
+use App\Mail\VendorNotification;
+use Illuminate\Support\Facades\Mail;
 
 class AssignmentController extends Controller
 {
@@ -23,7 +26,12 @@ class AssignmentController extends Controller
         $format->admin_assigned = $request->admin_assigned;
         $format->status = $request->status;
         $format->save();
-        // $assignmentData = Format::find($id);
+
+        $data = Format::with(['user', 'admin'])->find($id);
+        Mail::to($data->user->email)->send(new VendorNotification($data));
+
+        $data = Format::with(['user', 'admin'])->find($format->tech_assigned);
+        Mail::to($data->user->email)->send(new TechNotification($data));
         return back();
     }
 }

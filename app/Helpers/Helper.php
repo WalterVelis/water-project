@@ -8,4 +8,10 @@ class Helper
         $formatter = new \NumberFormatter('en_US', \NumberFormatter::CURRENCY);
         return $formatter->formatCurrency($money, 'USD');
     }
+
+    public static function boolString($bool) {
+        if($bool)
+            return 'Sí';
+        return 'No';
+    }
 }

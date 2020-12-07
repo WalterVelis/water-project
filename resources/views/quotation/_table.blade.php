@@ -1,3 +1,16 @@
+<style>
+    .f-icon {
+        opacity: 0;
+    }
+    .has-icon:hover .f-icon{
+        color: #9e9e9e;
+        opacity: 1;
+    }
+
+    .q-details {
+        background:#eeeeee;
+    }
+</style>
 @php($id = 0)
 @php($subTotal = 0.00)
 <table class="table c-table">
@@ -10,6 +23,7 @@
             <th>Utilidad</th>
             <th>Indirectos</th>
             <th>Total</th>
+            <th class="d-none"></th>
         </tr>
     </thead>
     <tbody id="q-response">
@@ -23,6 +37,22 @@
             <td>{{ Helper::formatMoney(( ($totalManoDeObra / (((100 - $costsUtility->utility) / 100))) + (($totalManoDeObra / (((100 - $costsUtility->utility) / 100))) * ((($costsUtility->indirect) / 100))))) }}</td>
             @php($subTotal += ( ($totalManoDeObra / (((100 - $costsUtility->utility) / 100))) + (($totalManoDeObra / (((100 - $costsUtility->utility) / 100))) * ((($costsUtility->indirect) / 100)))))
             {{-- <td>{{ Helper::formatMoney($totalManoDeObra) }}</td> --}}
+        </tr>
+        <tr class="q-details" style="display: none;">
+            <td></td>
+            <td>
+                @foreach($manoDeObra as $mo)
+                <div class="row">
+                    <div style="text-align: right;" class="col-6">{{ $mo->costs->name }}</div>
+                    <div style="text-align: left;" class="col-6">{{ Helper::formatMoney($mo->day * $mo->cost) }}</div>
+                </div>
+                @endforeach
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         @if($escuela->has_educational_programs)
         <tr>
@@ -40,15 +70,31 @@
             <td>{{ $id + 1 }} @php($id += 1)</td>
             <td>Materiales y Equipo de instalación </td>
             <td>1</td>
-            <td>{{ Helper::formatMoney($totalMaterial) }}</td>
+            <td>{{ Helper::formatMoney($allMaterials) }}</td>
             <td class="utilidad"><input style="width:80%; height: 20px;" type="number" class="material-utilidad form-control d-inline-flex" value="{{ $materialUtility->utility }}"><span style=" padding-top: 10px; " class="d-inline-flex">%</span></td>
             <td class="indirect"><input style="width:80%; height: 20px;" type="number" class="material-indirecto form-control d-inline-flex" value="{{ $materialUtility->indirect }}"><span style=" padding-top: 10px; " class="d-inline-flex">%</span></td>
-            <td>{{ Helper::formatMoney(( ($totalMaterial / (((100 - $materialUtility->utility) / 100))) + (($totalMaterial / (((100 - $materialUtility->utility) / 100))) * ((($materialUtility->indirect) / 100))))) }}</td>
-            @php($subTotal += ( ($totalMaterial / (((100 - $materialUtility->utility) / 100))) + (($totalMaterial / (((100 - $materialUtility->utility) / 100))) * ((($materialUtility->indirect) / 100)))))
+            <td>{{ Helper::formatMoney(( ($allMaterials / (((100 - $materialUtility->utility) / 100))) + (($allMaterials / (((100 - $materialUtility->utility) / 100))) * ((($materialUtility->indirect) / 100))))) }}</td>
+            @php($subTotal += ( ($allMaterials / (((100 - $materialUtility->utility) / 100))) + (($allMaterials / (((100 - $materialUtility->utility) / 100))) * ((($materialUtility->indirect) / 100)))))
+        </tr>
+        <tr class="q-details" style="display: none;">
+            <td></td>
+            <td>
+                <div class="row">
+                    <div style="text-align: right;" class="col-6">Materiales Extra</div>
+                    <div style="text-align: left;" class="col-6">{{ Helper::formatMoney($totalMaterial) }}</div>
+                    <div style="text-align: right;" class="col-6">Accesorios IU</div>
+                    <div style="text-align: left;" class="col-6">{{ Helper::formatMoney($totalIU) }}</div>
+                </div>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         {{-- @dd($quotation) --}}
         @foreach ($quotation as $q)
-        <tr>
+        <tr class="has-icon">
             <td>{{ $id + 1 }} @php($id += 1)</td>
             <td>{{ $q->description }}</td>
             <td>{{ $q->qty }}</td>
@@ -57,6 +103,11 @@
             <td class="indirectos"><input data-id="{{ $q->id }}" style="width:80%; height: 20px;" type="number" class="quotation-indirecto form-control d-inline-flex" value="{{ $q->indirect }}"><span style=" padding-top: 10px; " class="d-inline-flex">%</span></td>
             <td>{{ Helper::formatMoney($q->qty * ( ($q->cost / (((100 - $q->utility) / 100))) + (($q->cost / (((100 - $q->utility) / 100))) * ((($q->indirect) / 100))))) }}</td>
             @php($subTotal += $q->qty * ( ($q->cost / (((100 - $q->utility) / 100))) + (($q->cost / (((100 - $q->utility) / 100))) * ((($q->indirect) / 100)))))
+            <td>
+                <a href="#" onclick="removeQuote({{ $q->id }});">
+                    <i class="f-icon fa fa-times"></i>
+                </a>
+            </td>
         </tr>
         @endforeach
         <tr>
@@ -96,7 +147,11 @@ $('.obra-utilidad').on('change keyup', function() {
             })
             .always(function(data) {
                 loading = false;
+            })
+            .done(function() {
+                loadTable();
             });
+
         }, 1000);
 });
 $('.obra-indirecto').on('change keyup', function() {
@@ -119,7 +174,11 @@ $('.obra-indirecto').on('change keyup', function() {
             })
             .always(function(data) {
                 loading = false;
+            })
+            .done(function() {
+                loadTable();
             });
+
         }, 1000);
 });
 $('.school-utilidad').on('change keyup', function() {
@@ -143,6 +202,9 @@ $('.school-utilidad').on('change keyup', function() {
             })
             .always(function(data) {
                 loading = false;
+            })
+            .done(function() {
+                loadTable();
             });
         }, 1000);
 });
@@ -163,6 +225,9 @@ $('.school-indirecto').on('change keyup', function() {
                     "u_id": id,
                     "format_id": $('#format_id').val(),
                 }
+            })
+            .done(function() {
+                loadTable();
             })
             .always(function(data) {
                 loading = false;
@@ -188,6 +253,9 @@ $('.material-utilidad').on('change keyup', function() {
                     "format_id": $('#format_id').val(),
                 }
             })
+            .done(function() {
+                loadTable();
+            })
             .always(function(data) {
                 loading = false;
             });
@@ -210,6 +278,9 @@ $('.quotation-indirecto').on('change keyup', function() {
                     "u_id": id,
                     "format_id": $('#format_id').val(),
                 }
+            })
+            .done(function() {
+                loadTable();
             })
             .always(function(data) {
                 loading = false;
@@ -235,6 +306,9 @@ $('.quotation-utilidad').on('change keyup', function() {
                     "format_id": $('#format_id').val(),
                 }
             })
+            .done(function() {
+                loadTable();
+            })
             .always(function(data) {
                 loading = false;
             });
@@ -257,6 +331,9 @@ $('.material-indirecto').on('change keyup', function() {
                     "u_id": id,
                     "format_id": $('#format_id').val(),
                 }
+            })
+            .done(function() {
+                loadTable();
             })
             .always(function(data) {
                 loading = false;
@@ -297,9 +374,25 @@ function applyIndividualUtility(id) {
                     "format_id": $('#format_id').val(),
                 }
             })
+            .done(function() {
+                loadTable();
+            })
             .always(function(data) {
                 loading = false;
             });
         }, 1000);
     });
+
+    function removeQuote(id) {
+        $.ajax({
+                type: 'DELETE',
+                url: '/quotation/'+id,
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                }
+            })
+            .done(function() {
+                loadTable();
+            });
+        }
 </script>
