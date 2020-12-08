@@ -300,13 +300,11 @@ class ProjectController extends Controller
 
         $format->update();
 
-        if($request->sendMail) {
-            // dd($request->all());
-            $data = Format::with('user')->find($id);
-            // dump($data);
-            Mail::to($request->mail)->send(new AdminNotification($data));
-            // dd("sened");
-        }
+        // if($request->sendMail) {
+        //     $data = Format::with('user')->find($id);
+        //     Mail::to($request->mail)->send(new AdminNotification($data));
+        // }
+
         // dd(Project::find($project)->update($request->all()));
         // $project->update($request->all());
         // Project::find($project)->update($request->all());
