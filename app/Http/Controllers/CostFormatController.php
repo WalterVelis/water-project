@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\CostFormat;
 use App\CostsCenter;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use PDF;
 
 class CostFormatController extends Controller
 {
@@ -63,6 +65,16 @@ class CostFormatController extends Controller
         $project_costs = CostFormat::with('costs')->where('format_id', $projectId)->get();
         // dd($project_costs);
         return view('techformat._costs', compact('project_costs'));
+    }
+
+    public function getCostsPdf($projectId)
+    {
+        $project_costs = CostFormat::with('costs')->where('format_id', $projectId)->get();
+        // dd($project_costs);
+        // return view('layouts.pdf.mo', compact('project_costs'));
+        $pdf =  PDF::loadView('layouts.pdf.mo', compact('project_costs'));
+        $name = Carbon::now()->toDateTimeString().'.pdf';
+        return $pdf->setPaper('letter')->download($name);
     }
 
     /**

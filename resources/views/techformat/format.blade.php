@@ -13,7 +13,7 @@
 .c_label {
     /* font-size: 1.1em !important; */
     padding: 0 !important;
-    margin-left: 0px !important;
+    margin-left: 15px !important;
     width: auto !important;
     margin-top: 30px;
 }

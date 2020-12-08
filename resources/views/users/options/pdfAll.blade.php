@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{{$name}}</title>
+    <title>Usuarios del sistema</title>
     <style type="text/css">
         body {
             margin: 0px;
@@ -28,7 +28,7 @@
             margin-left: 15px;
         }
         .information {
-            background-color: #ec407a;
+            background-color: #bacfda;
             color: #FFF;
         }
         .information .logo {
@@ -37,11 +37,18 @@
         .information table {
             padding: 10px;
         }
+        .table td{
+            border: solid 1px #eee;
+        }
+
+        .table {
+            border-collapse: collapse;
+        }
     </style>
      <style>
        @page { margin: 180px 0px; }
-       #header { position: fixed; left: 0px; top: -180px; right: 0px; height: 100px; background-color: #ec407a; text-align: center; }
-       #footer { position: fixed; left: 0px; bottom: -180px; right: 0px; height: 50px; background-color: #ec407a; }
+       #header { position: fixed; left: 0px; top: -180px; right: 0px; height: 100px; background-color: #0b6696; text-align: center; }
+       #footer { position: fixed; left: 0px; bottom: -180px; right: 0px; height: 50px; background-color: #0b6696; }
      </style>
 <body>
      <div id="header">
@@ -53,7 +60,7 @@
 
                     </td>
                     <td align="center">
-                        <h1>{{$name}}</h1>
+                        <h1 style="color:#0b6696">Usuarios del sistema</h1>
                     </td>
                     <td align="right" style="width: 20%;">
                     </td>
@@ -77,8 +84,8 @@
         </div>
      </div>
      <div class="invoice" style="margin-left: 30px">
-        <table width="100%">
-            <thead>
+        <table class="table" width="100%">
+            <thead style="background: #bacfda;">
               <tr>
                 <th align="left">
                   {{ __('Name') }}

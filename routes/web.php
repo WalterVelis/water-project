@@ -81,6 +81,7 @@ Route::group(['middleware' => ['auth','change']], function () {
     Route::get('getorder/{id}/{formatId}/{oderId}', 'OrderController@genPdf');
     Route::get('getFormat/{id}', 'ProjectController@genPdf');
     Route::get('getTech/{id}', 'TechFormatController@genPdf');
+    Route::get('getMO/{projectId}', 'CostFormatController@getCostsPdf');
     Route::put('quotationschool', 'QuotationController@updateSchool');
     Route::patch('applyutility/{id}', 'QuotationController@applyUtility');
     Route::patch('applyindividualutility', 'QuotationController@applyIndividualUtility');

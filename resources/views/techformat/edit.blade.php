@@ -7,11 +7,13 @@
     padding-right: 0px!important;
 }
 
-
+.card .card-body .col-form-label, .card .card-body .label-on-right {
+    text-align: left!important;
+}
 .c_label {
     /* font-size: 1.1em !important; */
     padding: 0 !important;
-    margin-left: 0px !important;
+    margin-left: 15px !important;
     width: auto !important;
     margin-top: 30px;
 }
@@ -125,7 +127,7 @@ form .col-12 {
                                         <div class="col-12 col-md-12">
                                             <h4 class="mb-0 mt-2" style="font-weight: bold!important">Características</h4>
                                             <label class="c_label col-12 col-form-label">{{ __('Water Quality') }}</label>
-                                                <div class="row">
+                                                <div class="row col-12">
                                                     @php
                                                         $water_quality = explode(",",$techFormat->water_quality);
                                                     @endphp
@@ -294,19 +296,19 @@ form .col-12 {
                                         </div>
                                         <div class="row">
                                             <div class="col-12 col-md-4">
-                                                <label class="c_label col-12 col-form-label">{{ __('Promedio anual de precipitación pluvial de la zona (mm)') }}</label>
+                                                <label style="" class="c_label col-12 col-form-label">{{ __('Promedio anual de precipitación pluvial de la zona (mm)') }}</label>
                                                 <div class="col-sm-12">
                                                     <input required class="form-control" id="anual_precipitation" name="anual_precipitation" type="text" value="{{ $techFormat->anual_precipitation }}" />
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-4">
-                                                <label class="c_label col-12 col-form-label">{{ __('Promedio anual de captación de lluvia estimada') }}</label>
+                                                <label style="" class="c_label col-12 col-form-label">{{ __('Promedio anual de captación de lluvia estimada') }}</label>
                                                 <div class="col-sm-12">
                                                     <input required class="form-control" disabled id="pa" name="" type="text" value="" />
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-4">
-                                                <label class="c_label col-12 col-form-label">{{ __('Volumen de almacenamiento cisterna (lts)') }}</label>
+                                                <label style="" class="c_label col-12 col-form-label">{{ __('Volumen de almacenamiento cisterna (lts)') }}</label>
                                                 <div class="col-sm-12">
                                                     <input required class="form-control" disabled id="va" name="" type="text" value="" />
                                                 </div>
@@ -320,7 +322,7 @@ form .col-12 {
                                             </div>
 
                                             <div class="col-12 col-md-4">
-                                                <label class="c_label col-12 col-form-label">{{ __('Distancia desde el área de captación a la cisterma (M)') }}</label>
+                                                <label class="c_label col-12 col-form-label">{{ __('Distancia de área de captación a cisterna (M)') }}</label>
                                                 <div class="col-sm-12">
                                                     <input required class="form-control" id="" name="distance" type="text" value="{{ $techFormat->distance }}" />
                                                 </div>

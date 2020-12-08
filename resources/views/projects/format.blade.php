@@ -9,7 +9,7 @@
 .c_label {
     /* font-size: 1.1em !important; */
     padding: 0 !important;
-    margin-left: 0px !important;
+    margin-left: 15px !important;
     width: auto !important;
     margin-top: 30px;
 }
@@ -70,7 +70,7 @@ form .col-12 {
                                     <li class="nav-item {{ $format->internal_status >= 3 ? "c-enabled" : "" }}">
                                         <a class="nav-link" href="{{ $format->internal_status >= 3 ? "/order/$format->id" : "#" }}">{{ __('Purchase Order') }}</a>
                                     </li>
-                                    <li class="nav-item {{ $format->internal_status >= 4 ? "c-enabled" : "" }}">
+                                    <li class="nav-item {{ $format->internal_status >= 0 ? "c-enabled" : "" }}">
                                         <a class="nav-link" href="{{ $format->internal_status >= 4 ? "/assignment/$format->id" : "#" }}">{{ __('Assignment') }}</a>
                                     </li>
                                 </ul>
@@ -107,7 +107,7 @@ form .col-12 {
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-4">
-                                                <label class="c_label col-12 col-form-label">{{ __('First Meet') }}</label>
+                                                <label class="c_label col-12 col-form-label">{{ __('Fecha Primer Contacto') }}</label>
                                                 <div class="col-sm-12">
                                                     <input class="form-control" name="date" type="date"
                                                         value="{{ $format->date }}" />
@@ -130,7 +130,7 @@ form .col-12 {
                                                         value="{{ $format->main_contact }}" />
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-md-6">
+                                            <div class="col-12 col-md-4">
                                                 <label
                                                     class="c_label col-12 col-form-label">{{ __('Job Position') }}</label>
                                                 <div class="col-sm-12">
@@ -139,14 +139,14 @@ form .col-12 {
                                                 </div>
                                             </div>
 
-                                            <div class="col-12 col-md-6">
+                                            <div class="col-12 col-md-4">
                                                 <label class="c_label col-12 col-form-label">{{ __('Phone') }}</label>
                                                 <div class="col-sm-12">
                                                     <input class="form-control" name="phone" type="text"
                                                         value="{{ $format->phone }}" />
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-md-6">
+                                            <div class="col-12 col-md-4">
                                                 <label class="c_label col-12 col-form-label">{{ __('EEmail') }}</label>
                                                 <div class="col-sm-12">
                                                     <input class="form-control" name="email" type="email"
@@ -164,7 +164,7 @@ form .col-12 {
                                     <h4 class="card-title">{{ __('FEATURES & NEEDS') }}</h4>
                                 </div>
 
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-4">
                                     <label class="c_label col-12 col-form-label">{{ __('Structure') }}</label>
                                     <div class="col-sm-12">
                                         <select class="structure form-control" name="structure">
@@ -177,14 +177,14 @@ form .col-12 {
                                         </select>
                                     </div>
                                     <div class="col-12">
-                                        <input id="input-structure-other" style="{{ $set == 1 ? 'display:none;' : '' }}" class="form-control mt-2" type="text" placeholder="{{ __('specify...') }}" name="structure_other" value="{{ $format->structure }}">
+                                        <input id="input-structure-other" style="{{ $set == 1 ? 'display:none;' : '' }}" class="form-control mt-2" type="text" placeholder="{{ __('Especificar...') }}" name="structure_other" value="{{ $format->structure }}">
                                     </div>
                                     <script>
 
 
                                     </script>
                                 </div>
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-4">
                                     <label class="c_label col-12 col-form-label">{{ __('Environment') }}</label>
                                     <div class="col-sm-12">
                                         <select class="environment form-control" name="environment">
@@ -213,7 +213,7 @@ form .col-12 {
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-md-4 input-education-childs" style="{{ $set == 0 ? 'display:none;' : '' }}>
+                                <div class="col-12 col-md-4 input-education-childs" style="{{ $set == 0 ? 'display:none;' : '' }}">
                                     <label class="c_label col-12 col-form-label">{{ __('# of Classrooms') }}</label>
                                     <div class="col-sm-12">
                                         <input class="form-control" name="classrooms" type="text"
@@ -263,21 +263,21 @@ form .col-12 {
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-md-3">
+                                <div class="col-12 col-md-4">
                                     <label class="c_label col-12 col-form-label">{{ __('# Exterior') }}</label>
                                     <div class="col-sm-12">
                                         <input class="form-control" name="n_ext" type="text"
                                             value="{{ $format->n_ext }}" />
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3">
+                                <div class="col-12 col-md-4">
                                     <label class="c_label col-12 col-form-label">{{ __('# Interior') }}</label>
                                     <div class="col-sm-12">
                                         <input class="form-control" name="n_int" type="text"
                                             value="{{ $format->n_int }}" />
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-3">
+                                <div class="col-12 col-md-4">
                                     <label class="c_label col-12 col-form-label">{{ __('Postal Code') }}</label>
                                     <div class="col-sm-12">
                                         <input class="form-control" name="zip_code" type="text"
@@ -293,7 +293,7 @@ form .col-12 {
                                     </div>
                                 </div> -->
 
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-4">
                                     <label class="c_label col-12 col-form-label">{{ __('Has Water Lack?') }}</label>
                                     <div class="col-sm-12">
                                         <select class="has_water_lack form-control" name="has_water_lack">
@@ -308,21 +308,21 @@ form .col-12 {
                                 </div>
 
 
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-4">
                                     <label class="c_label col-12 col-form-label">{{ __('Water Obtaining Method') }}</label>
                                     <div class="col-sm-12">
                                         <select class="obtaining form-control" name="obtaining_water">
                                             @php ($set = 0) @endphp
-                                            <option @if ($format->obtaining_water == __('Own water system')) selected @php ($set = 1) @endphp @endif value="{{ __('Own water system') }}"> {{ __('Own water system') }} </option>
-                                            <option @if ($format->obtaining_water == __('Pipes')) selected @php ($set = 1) @endphp @endif value="{{ __('Pipes') }}"> {{ __('Pipes') }} </option>
+                                            <option @if ($format->obtaining_water == __('Sistema Propio')) selected @php ($set = 1) @endphp @endif value="{{ __('Sistema Propio') }}"> {{ __('Sistema Propio') }} </option>
+                                            <option @if ($format->obtaining_water == __('Tuberías')) selected @php ($set = 1) @endphp @endif value="{{ __('Tuberías') }}"> {{ __('Tuberías') }} </option>
                                             <option {{ $set == 1 ? '' : 'selected' }} id="obtaining-other" value="0"> {{ __('Other') }} </option>
                                         </select>
                                     </div>
                                     <div class="col-12">
-                                        <input id="input-obtaining-other" name="obtaining_water_other" style="{{ $set == 1 ? 'display:none;' : '' }}" value="{{ $format->obtaining_water }}" class="form-control mt-2" type="text" placeholder="{{ __('specify...') }}">
+                                        <input id="input-obtaining-other" name="obtaining_water_other" style="{{ $set == 1 ? 'display:none;' : '' }}" value="{{ $format->obtaining_water }}" class="form-control mt-2" type="text" placeholder="{{ __('Especificar...') }}">
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-4">
                                     <label class="c_label col-12 col-form-label">{{ __('Water Consumption [lt]') }}</label>
                                     <div class="col-sm-12">
                                         <input id="water_consumption_lt" class="form-control" name="water_consumption"
@@ -332,7 +332,7 @@ form .col-12 {
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-4">
                                     <label
                                         class="c_label col-12 col-form-label">{{ __('Average Cost Water/Year [pesos]') }}</label>
                                     <div class="col-sm-12">
@@ -342,7 +342,7 @@ form .col-12 {
                                 </div>
                                 <div class="col-12 col-md-12">
                                     <label class="c_label col-12 col-form-label">{{ __('Water Quality') }}</label>
-                                        <div class="row">
+                                        <div class="row col-sm-12 mt-2">
                                             @php
                                                 $water_quality = explode(",",$format->water_quality);
                                             @endphp
@@ -393,7 +393,7 @@ form .col-12 {
                                             </div>
                                         <div class="col-12 col-md-4">
                                             <input id="input-quality-other" value="{{ end($water_quality) }}" name="water_quality[]" style="{{ in_array(__('Other'), $water_quality) ? '' : 'display:none;' }}" class="form-control mt-2"
-                                                type="text" placeholder="{{ __('specify...') }}">
+                                                type="text" placeholder="{{ __('Especificar...') }}">
                                         </div>
                                     </div>
                                 </div>
@@ -451,13 +451,14 @@ form .col-12 {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6">
-                                    <label class="c_label col-12 col-form-label">{{ __('Rainwater Area') }}</label>
-                                    <div class="col-sm-12">
-                                        <input class="@if (App\User::hasPermissions("Tecnico")) i-enabled @endif form-control" id="rainwater_area" name="rainwater_area" type="number"
-                                            value="{{ $format->rainwater_area }}" />
-                                        <input readonly disabled class="form-control" id="storage" type="text"
-                                            placeholder="[m3]" value="" />
+                                <div style="    padding: 30px;" class="row col-12 col-md-12">
+                                    <div class="col-md-6">
+                                        <label style="    margin-left: 0px!important;" class="c_label col-12 col-form-label">{{ __('Rainwater Area') }}</label>
+                                        <input class="@if (App\User::hasPermissions("Tecnico")) i-enabled @endif form-control" id="rainwater_area" name="rainwater_area" type="number" value="{{ $format->rainwater_area }}" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label style="    margin-left: 0px!important;" class="c_label col-12 col-form-label">{{ __('Volumen requerido') }}</label>
+                                        <input readonly disabled class="form-control" id="storage" type="text" placeholder="[m3]" value="" />
                                     </div>
                                 </div>
                                 <div class="col-12 card-header card-header-rose card-header-icon">
@@ -503,7 +504,7 @@ form .col-12 {
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-12">
                                     <label class="c_label col-12 col-form-label">{{ __('Notes and Observations') }}</label>
                                     <div class="col-sm-12">
                                         <input class="form-control" name="notes" type="text"
@@ -552,6 +553,7 @@ form .col-12 {
                             </form>
                         </div>
                         <div class="col-12 mt-4" id="planning"></div>
+                        <br>
                         <br>
                         <div class="row">
                             <form class="col-12 row" method="post" id="form-auth">

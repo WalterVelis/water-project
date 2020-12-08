@@ -9,7 +9,7 @@
     .c_label {
         /* font-size: 1.1em !important; */
         padding: 0 !important;
-        margin-left: 0px !important;
+        margin-left: 15px !important;
         width: auto !important;
         margin-top: 30px;
     }
@@ -64,7 +64,7 @@
                                     <li class="nav-item active {{ $format->internal_status >= 3 ? "c-enabled" : "" }}">
                                         <a class="nav-link" href="{{ $format->internal_status >= 3 ? "/order/$format->id" : "#" }}">{{ __('Purchase Order') }}</a>
                                     </li>
-                                    <li class="nav-item {{ $format->internal_status >= 4 ? "c-enabled" : "" }}">
+                                    <li class="nav-item {{ $format->internal_status >= 0 ? "c-enabled" : "" }}">
                                         <a class="nav-link" href="{{ $format->internal_status >= 4 ? "/assignment/$format->id" : "#" }}">{{ __('Assignment') }}</a>
                                     </li>
                                 </ul>
@@ -75,14 +75,14 @@
 
                         <div class="row d-none">
                             <div class="col-12 text-left">
-                                <a id="exportXlsx" href="{{ route('user_xlsx') }}"
+                                {{-- <a id="exportXlsx" href="{{ route('user_xlsx') }}"
                                     class="btn btn-sm btn-rose">{{ __('Export xlsx') }}</a>
                                 <a id="exportCsv" href="{{ route('user_csv') }}"
-                                    class="btn btn-sm btn-rose">{{ __('Export csv') }}</a>
-                                <a id="exportPdf"
-                                    href="{{ route('userPdf',['all']) }}"
+                                    class="btn btn-sm btn-rose">{{ __('Export csv') }}</a> --}}
+                                {{-- <a id="exportPdf"
+                                    href="{{ route('getFormat', $format->id) }}"
                                     target='_blank'
-                                    class="btn btn-sm btn-rose">{{ __('Export pdf') }}</a>
+                                    class="btn btn-sm btn-rose">{{ __('Export pdf') }}</a> --}}
                             </div>
                         </div>
 
