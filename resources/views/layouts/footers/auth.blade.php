@@ -4,7 +4,7 @@
       &copy;
       <script>
         document.write(new Date().getFullYear())
-      </script> IIASA, {{__('All rights reserved. Developed by')}} ISINET
+      </script> Cotizador de AguaH2O, Todos los derechos reservados. Desarrollado por ISINET.
       </div>
   </div>
 </footer>

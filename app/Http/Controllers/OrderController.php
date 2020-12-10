@@ -27,7 +27,7 @@ class OrderController extends Controller
             ON materialprovider_project.materialprovider_id = materials_providers.id
             WHERE format_id = $id
         )");
-
+        $totals = [];
         foreach($providers as $p) {
             $pId = $p->id;
             $tmp = MaterialProviderFormat::whereHas('providers', function($query) use ($pId) { $query->where('provider_id', $pId);})->with('providers.material')->with('providers.provider')->where('format_id', $id)->get();

@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'costs-me', 'menuParent' => 'costs-parent', 'titlePage' => 'Materiales extra'])
+@extends('layouts.app', ['activePage' => 'costs-me', 'menuParent' => 'costs-parent', 'titlePage' => 'Centro de Costos'])
 @section('content')
 <style>
     .bg-w {
@@ -39,7 +39,7 @@
                                         <div class="col-sm-12">
                                             <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                                 <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" value="{{ $material->name }}"  />
-                                                <span id="errorNameUser" class="d-none">@lang('The name field cannot be empty')</span>
+                                                <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>
                                                 @include('alerts.feedback', ['field' => 'name'])
                                             </div>
                                         </div>
@@ -69,7 +69,7 @@
                                                     <option {{ $material->type == 16 ? "selected" : "" }} value="16">50% ESTAÑO y 50% PLOMO</option>
                                                     <option {{ $material->type == 17 ? "selected" : "" }} value="17">OTRO</option>
                                                 </select>
-                                                <span id="errorNameUser" class="d-none">@lang('The name field cannot be empty')</span>
+                                                <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>
                                                 @include('alerts.feedback', ['field' => 'type'])
                                             </div>
                                         </div>
@@ -88,7 +88,7 @@
                                                     <option {{ $material->unit == 5 ? "selected" : "" }} value="5">LOTE</option>
                                                     <option {{ $material->unit == 6 ? "selected" : "" }} value="6">GMS</option>
                                                 </select>
-                                                <span id="errorNameUser" class="d-none">@lang('The name field cannot be empty')</span>
+                                                <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>
                                                 @include('alerts.feedback', ['field' => 'unit'])
                                             </div>
                                         </div>
@@ -142,7 +142,7 @@
                                                         <option {{ $provider->id == $material->provider_id ? 'selected' : '' }} value="{{ $provider->id }}">{{ $provider->contact_name }}</option>
                                                     @endforeach
                                                 </select>
-                                                <span id="errorNameUser" class="d-none">@lang('The name field cannot be empty')</span>
+                                                <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>
                                                 @include('alerts.feedback', ['field' => 'provider_id'])
                                             </div>
                                         </div>

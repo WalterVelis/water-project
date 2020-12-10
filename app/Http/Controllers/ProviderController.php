@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Provider;
 use Illuminate\Http\Request;
+use Throwable;
 
 class ProviderController extends Controller
 {
@@ -49,6 +50,8 @@ class ProviderController extends Controller
             'job_title' => ['required'],
             'email' => ['required'],
             'phone' => ['required'],
+            'rfc' => ['required'],
+            'direccion' => ['required'],
             'product_type' => ['required'],
         ]);
         Provider::create($request->all());
@@ -92,6 +95,8 @@ class ProviderController extends Controller
             'job_title' => ['required'],
             'email' => ['required'],
             'phone' => ['required'],
+            'rfc' => ['required'],
+            'direccion' => ['required'],
             'product_type' => ['required'],
         ]);
         $provider->update($request->all());
@@ -106,7 +111,13 @@ class ProviderController extends Controller
      */
     public function destroy(Provider $provider)
     {
+        try {
         $provider->delete();
+        } catch (Throwable $e) {
+            report($e);
+            if($e->getCode() == "23000")
+            return back()->with( ['error' => 'Aún existen materiales relacionados a este proveedor']);
+        }
         return redirect()->route('providers.index')->with('success', 'Proveedor eliminado');
     }
 }

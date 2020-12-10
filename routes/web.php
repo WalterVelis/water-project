@@ -78,6 +78,7 @@ Route::group(['middleware' => ['auth','change']], function () {
         'assignment' => 'AssignmentController',
     ]);
     Route::get('order/{id}', 'OrderController@index');
+    Route::get('order/{id}/edit', 'OrderController@index');
     Route::get('getorder/{id}/{formatId}/{oderId}', 'OrderController@genPdf');
     Route::get('getFormat/{id}', 'ProjectController@genPdf');
     Route::get('getTech/{id}', 'TechFormatController@genPdf');
@@ -92,7 +93,7 @@ Route::group(['middleware' => ['auth','change']], function () {
     Route::put('accesoryformat/cost/{id}/{projectId}', 'AccesoryFormatController@updateCost');
     Route::put('accesoryformat/discount/{id}/{projectId}', 'AccesoryFormatController@updateDiscount');
     Route::put('accesoryformat/details/{id}/{projectId}', 'AccesoryFormatController@updateDetails');
-    Route::put('materialformat/{id}/{projectId}', 'MaterialFormatController@setMaterialProviderFormatQty');
+    Route::put('materialformat/{mpId}/{projectId}', 'MaterialFormatController@setMaterialProviderFormatQty');
     Route::get('quotationformat/{id}/table', 'QuotationController@getTable');
 
     Route::get('getCosts/{projectId}', 'CostFormatController@getCosts');

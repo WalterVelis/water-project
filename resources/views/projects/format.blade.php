@@ -68,10 +68,10 @@ form .col-12 {
                                         <a class="nav-link" href="{{ $format->internal_status >= 2 ? "/quotation/$format->id/edit" : "#" }}">{{ __('Quotation') }}</a>
                                     </li>
                                     <li class="nav-item {{ $format->internal_status >= 3 ? "c-enabled" : "" }}">
-                                        <a class="nav-link" href="{{ $format->internal_status >= 3 ? "/order/$format->id" : "#" }}">{{ __('Purchase Order') }}</a>
+                                        <a class="nav-link" href="{{ $format->internal_status >= 3 ? "/order/$format->id/edit" : "#" }}">{{ __('Purchase Order') }}</a>
                                     </li>
                                     <li class="nav-item {{ $format->internal_status >= 0 ? "c-enabled" : "" }}">
-                                        <a class="nav-link" href="{{ $format->internal_status >= 4 ? "/assignment/$format->id" : "#" }}">{{ __('Assignment') }}</a>
+                                        <a class="nav-link" href="{{ $format->internal_status >= 1 ? "/assignment/$format->id/edit" : "#" }}">{{ __('Assignment') }}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -147,7 +147,7 @@ form .col-12 {
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-4">
-                                                <label class="c_label col-12 col-form-label">{{ __('EEmail') }}</label>
+                                                <label class="c_label col-12 col-form-label">{{ __('Email') }}</label>
                                                 <div class="col-sm-12">
                                                     <input class="form-control" name="email" type="email"
                                                         value="{{ $format->email }}" />
@@ -177,7 +177,7 @@ form .col-12 {
                                         </select>
                                     </div>
                                     <div class="col-12">
-                                        <input id="input-structure-other" style="{{ $set == 1 ? 'display:none;' : '' }}" class="form-control mt-2" type="text" placeholder="{{ __('Especificar...') }}" name="structure_other" value="{{ $format->structure }}">
+                                        <input id="input-structure-other" style="{{ $set == 1 ? 'display:none;' : '' }}" class="form-control mt-2" type="text" placeholder="{{ __('Especificar...') }}" name="structure_other" value="{{ $format->structure ? $format->structure : "" }}">
                                     </div>
                                     <script>
 
@@ -208,7 +208,7 @@ form .col-12 {
                                     <div class="col-12 col-md-4 input-education-childs" style="{{ $set == 0 ? 'display:none;' : '' }}">
                                     <label class="c_label col-12 col-form-label">{{ __('# of Children') }}</label>
                                     <div class="col-sm-12">
-                                        <input class="form-control" name="children" type="text"
+                                        <input class="form-control" name="children" type="number"
                                             value="{{ $format->children }}" />
                                     </div>
                                 </div>
@@ -216,7 +216,7 @@ form .col-12 {
                                 <div class="col-12 col-md-4 input-education-childs" style="{{ $set == 0 ? 'display:none;' : '' }}">
                                     <label class="c_label col-12 col-form-label">{{ __('# of Classrooms') }}</label>
                                     <div class="col-sm-12">
-                                        <input class="form-control" name="classrooms" type="text"
+                                        <input class="form-control" name="classrooms" type="number"
                                             value="{{ $format->classrooms }}" />
                                     </div>
                                 </div>
@@ -224,7 +224,7 @@ form .col-12 {
                                     <label class="c_label col-12 col-form-label">{{ __('Country') }}</label>
                                     <div class="col-sm-12">
                                         <select class="country form-control" name="country">
-                                            <option selected value="142"> México </option>
+                                            {{-- <option selected value="142"> México </option> --}}
                                             @foreach($countries as $item)
                                             <option value="{{ $item->id }}"> {{ $item->name }} </option>
                                             @endforeach
@@ -302,7 +302,7 @@ form .col-12 {
                                         </select>
                                     </div>
                                     <div class="col-12">
-                                        <input id="input-has_water_lack-other" name="frequency" style="{{ $format->has_water_lack == 0 ? 'display:none;' : '' }}" value="{{ $format->frequency }}" class="form-control mt-2" type="text" placeholder="{{ __('Frequency') }}">
+                                        <input id="input-has_water_lack-other" name="frequency" style="{{ $format->has_water_lack == 0 ? 'display:none;' : '' }}" value="{{ $format->frequency }}" class="form-control mt-2" type="text" placeholder="{{ __('Frecuencia') }}">
                                     </div>
 
                                 </div>
@@ -327,14 +327,17 @@ form .col-12 {
                                     <div class="col-sm-12">
                                         <input id="water_consumption_lt" class="form-control" name="water_consumption"
                                             type="number" value="{{ $format->water_consumption }}" />
-                                        <input readonly disabled id="water_consuption" class="form-control" type="text"
-                                            value="" placeholder="[m3]" />
+
                                     </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <label style="    margin-left: 0px!important;" class="c_label col-12 col-form-label">{{ __('Consumo de agua en m3') }}</label>
+                                    <input readonly disabled id="water_consuption" class="form-control" type="text" value="" placeholder="[m3]" />
                                 </div>
 
                                 <div class="col-12 col-md-4">
                                     <label
-                                        class="c_label col-12 col-form-label">{{ __('Average Cost Water/Year [pesos]') }}</label>
+                                        class="c_label col-12 col-form-label">{{ __('Costo promedio actual agua/anual (pesos)') }}</label>
                                     <div class="col-sm-12">
                                         <input class="form-control" name="cost_average" type="number"
                                             value="{{ $format->cost_average }}" />
@@ -472,8 +475,8 @@ form .col-12 {
                                     <label class="c_label col-12 col-form-label">{{ __('Property Type') }}</label>
                                     <div class="col-sm-12">
                                         <select class="form-control" name="property_type">
-                                            <option {{ $format->property_type == 0 ? 'selected' : '' }} value="0">{{ __('Own') }}</option>
-                                            <option {{ $format->property_type == 1 ? 'selected' : '' }} value="1"> {{ __('Rent') }} </option>
+                                            <option {{ $format->property_type == 0 ? 'selected' : '' }} value="0">{{ __('Propio') }}</option>
+                                            <option {{ $format->property_type == 1 ? 'selected' : '' }} value="1"> {{ __('Rentado') }} </option>
                                         </select>
                                     </div>
                                 </div>
@@ -491,8 +494,8 @@ form .col-12 {
                                     <label class="c_label col-12 col-form-label">{{ __('Resources Type') }}</label>
                                     <div class="col-sm-12">
                                         <select class="form-control" name="resources_type">
-                                            <option {{ $format->resources_type == 0 ? 'selected' : '' }} value="0" selected>{{ __('Own') }}</option>
-                                            <option {{ $format->resources_type == 1 ? 'selected' : '' }} value="1"> {{ __('Third Party') }} </option>
+                                            <option {{ $format->resources_type == 0 ? 'selected' : '' }} value="0" selected>{{ __('Propio') }}</option>
+                                            <option {{ $format->resources_type == 1 ? 'selected' : '' }} value="1"> {{ __('Terceros') }} </option>
                                         </select>
                                     </div>
                                 </div>
@@ -531,19 +534,19 @@ form .col-12 {
                                     <span>{{ __('People involved in planning and validation') }}</span>
                                 </div>
                                 <div class="col-12 col-md-4">
-                                    <input class="form-control mt-2" type="text" placeholder="{{ __('Name') }}"
+                                    <input required class="form-control mt-2" type="text" placeholder="{{ __('Name') }}"
                                         name="name">
                                 </div>
                                 <div class="col-12 col-md-4">
-                                    <input class="form-control mt-2" type="text" placeholder="{{ __('Email') }}"
+                                    <input required class="form-control mt-2" type="email" placeholder="{{ __('Email') }}"
                                         name="email">
                                 </div>
                                 <div class="col-12 col-md-4">
-                                    <input class="form-control mt-2" type="text" placeholder="{{ __('Telephone') }}"
+                                    <input required class="form-control mt-2" type="text" placeholder="{{ __('Telephone') }}"
                                         name="telephone">
                                 </div>
                                 <div class="col-12 col-md-4">
-                                    <input class="form-control mt-2" type="text" placeholder="{{ __('Position') }}"
+                                    <input required class="form-control mt-2" type="text" placeholder="{{ __('Cargo') }}"
                                         name="position">
                                 </div>
                                 <div class="col-12">
@@ -564,19 +567,19 @@ form .col-12 {
                                     <span>{{ __('Persons involved in project authorization') }}</span>
                                 </div>
                                 <div class="col-12 col-md-4">
-                                    <input class="form-control mt-2" type="text" placeholder="{{ __('Name') }}"
+                                    <input required class="form-control mt-2" type="text" placeholder="{{ __('Name') }}"
                                         name="name">
                                 </div>
                                 <div class="col-12 col-md-4">
-                                    <input class="form-control mt-2" type="text" placeholder="{{ __('Email') }}"
+                                    <input required class="form-control mt-2" type="email" placeholder="{{ __('Email') }}"
                                         name="email">
                                 </div>
                                 <div class="col-12 col-md-4">
-                                    <input class="form-control mt-2" type="text" placeholder="{{ __('Telephone') }}"
+                                    <input required class="form-control mt-2" type="text" placeholder="{{ __('Telephone') }}"
                                         name="telephone">
                                 </div>
                                 <div class="col-12 col-md-4">
-                                    <input class="form-control mt-2" type="text" placeholder="{{ __('Position') }}"
+                                    <input required class="form-control mt-2" type="text" placeholder="{{ __('Cargo') }}"
                                         name="position">
                                 </div>
                                 <div class="col-12">
@@ -744,6 +747,7 @@ var projectId = {{ $format->id }};
 
 
 function addPlanning() {
+    $('#form-planning').validate()
     $.ajax({
         type: 'POST',
         url: '/entities',

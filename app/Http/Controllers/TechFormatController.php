@@ -80,7 +80,7 @@ class TechFormatController extends Controller
     {
         $format = Format::find($id);
         $costs = CostsCenter::all();
-        $materials = Material::all();
+        $materials = Material::with('providers.materialProvider')->get();
         $accesories = AccesoryUrban::all();
         $techFormat = TechFormat::where('format_id', $id)->first();
         return view('techformat.edit', compact('format', 'techFormat', 'costs', 'materials', 'accesories'));
@@ -132,13 +132,15 @@ class TechFormatController extends Controller
         $techFormat->save();
 
         $internalStatus = 0;
-        // if($request->status) {
-        //     $internalStatus = 2;
-        //     $data = Format::with(['user', 'vendor', 'tech', 'admin'])->find($id);
-        //     Mail::to([$data->vendor->email, $data->admin->email])->send(new TechFormatNotification($data));
-        // }
+        if($request->status) {
+            $internalStatus = 2;
+            $data = Format::with(['user', 'vendor', 'tech', 'admin'])->find($id);
+            // dd($data);
+            Mail::to([$data->vendor->email, $data->admin->email])->send(new TechFormatNotification($data));
+        }
 
         $format = Format::find($id);
+        // dd($format);
         if($format->internal_status >= 2)
             $internalStatus = $format->internal_status;
         $format->internal_status = $internalStatus;

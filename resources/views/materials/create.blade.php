@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'costs-me', 'menuParent' => 'costs-parent', 'titlePage' => 'Materiales extra'])
+@extends('layouts.app', ['activePage' => 'costs-me', 'menuParent' => 'costs-parent', 'titlePage' => 'Centro de Costos'])
 <style>
     .bg-w {
         background: white;
@@ -18,7 +18,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <form method="post" enctype="multipart/form-data" action="{{ route('materials.store') }}" autocomplete="off"
+                <form id="form-create" method="post" enctype="multipart/form-data" action="{{ route('materials.store') }}" autocomplete="off"
                     class="form-horizontal">
                     @csrf
                     @method('post')
@@ -40,7 +40,7 @@
                                         <div class="col-sm-12">
                                             <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                                 <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" value="{{ old('name') }}"  />
-                                                <span id="errorNameUser" class="d-none">@lang('The name field cannot be empty')</span>
+                                                <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>
                                                 @include('alerts.feedback', ['field' => 'name'])
                                             </div>
                                         </div>
@@ -59,7 +59,7 @@
                                                     <option value="5">LOTE</option>
                                                     <option value="6">GMS</option>
                                                 </select>
-                                                <span id="errorNameUser" class="d-none">@lang('The name field cannot be empty')</span>
+                                                <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>
                                                 @include('alerts.feedback', ['field' => 'unit'])
                                             </div>
                                         </div>
@@ -89,7 +89,7 @@
                                                     <option value="16">50% ESTAÑO y 50% PLOMO</option>
                                                     <option value="17">OTRO</option>
                                                 </select>
-                                                <span id="errorNameUser" class="d-none">@lang('The name field cannot be empty')</span>
+                                                <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>
                                                 @include('alerts.feedback', ['field' => 'type'])
                                             </div>
                                         </div>
@@ -115,7 +115,7 @@
                                         <div class="bg-w">
                                             @foreach($providers as $provider)
                                                 <div class="row">
-                                                    <div class="col-8""><span id="provider-{{ $provider->id }}">{{ $provider->contact_name }}</span></div>
+                                                    <div class="col-8"><span id="provider-{{ $provider->id }}">{{ $provider->contact_name }}</span></div>
                                                     <div class="col-4"><button type="button" style="padding: 8px 8px 8px 7px; width: 24px; height: 24px; line-height: 6px; font-weight: bold;" class="btn btn-primary btn-c btn-sm btn-round" onclick="addProvider({{ $provider->id }})">+</button></div>
                                                 </div>
                                             @endforeach
@@ -141,6 +141,7 @@
 @push('js')
 
 <script>
+    counter = 0;
     document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('input').forEach( node => node.addEventListener('keypress', e => {
             if(e.keyCode == 13) {
@@ -155,20 +156,30 @@
         content = `
         <div id="p-${id}" class="row">
             <div class="col-12 col-md-4"><span>${name}</span></div>
-            <div class="col-12 col-md-3"><input required name="qty[]" type="number" class="form-control"><input name="provider_id[]" type="hidden" value="${id}"></div>
-            <div class="col-12 col-md-3"><input required name="unit_cost[]" type="number" class="form-control"></div>
+            <div class="col-12 col-md-3"><input required name="qty[]" type="text" class="form-control"><input name="provider_id[]" type="hidden" value="${id}"></div>
+            <div class="col-12 col-md-3"><input required name="unit_cost[]" type="text" class="form-control"></div>
             <div class="col-12 col-md-2">
                 <button type="button" style="padding: 8px 8px 8px 7px; width: 24px; height: 24px; line-height: 6px; font-weight: bold;" class="btn btn-primary btn-sm btn-c btn-round" onclick="removeProvider(${id})">-</button>
             </div>
         </div>
         `;
+        counter++;
         $('#providers').append(content);
     }
 
     function removeProvider(id) {
+        counter--;
         $('#p-'+id).remove();
         $('#provider-'+id).parent().parent('.row').show();
     }
+
+    $('#form-create').on('submit', (e) => {
+        if(counter <= 0)
+        {
+            alert('Debe asignar al menos un proveedor')
+            e.preventDefault();
+        }
+    });
 </script>
 
 @endpush

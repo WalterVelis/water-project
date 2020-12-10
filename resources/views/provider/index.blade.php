@@ -1,6 +1,8 @@
-@extends('layouts.app', ['activePage' => 'provider', 'menuParent' => 'providers', 'titlePage' => __('Proveedores')])
+@extends('layouts.app', ['activePage' => 'provider', 'menuParent' => 'providers', 'titlePage' => __('Gestión de proveedores')])
 
 @section('content')
+@error('error')
+@enderror
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -10,7 +12,7 @@
                         <div class="card-icon">
                             <span style="color:white;">GP</span>
                         </div>
-                        <h4 class="card-title">Gestor de Proveedor</h4>
+                        <h4 class="card-title">Proveedores</h4>
                         <div class="card-body">
 
                             {{-- @can('create', App\User::class) --}}

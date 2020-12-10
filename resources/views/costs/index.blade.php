@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="card-header card-header-rose card-header-icon">
                         <div class="card-icon">
-                            <span style="color:white;"><i class="material-icons">build</i></span>
+                            <span style="color:white;"><i class="material-icons">supervisor_account</i></span>
                         </div>
                         <h4 class="card-title">Mano de Obra</h4>
                         <div class="card-body">
@@ -91,7 +91,7 @@
                                                 {{ $cost->name }}
                                             </td>
                                             <td>
-                                                {{ $cost->unit_cost }}
+                                                {{ Helper::formatMoney($cost->unit_cost) }}
                                             </td>
                                             <td>
                                                 {{ $cost->updated_at }}

@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'costs-iu', 'menuParent' => 'costs-parent', 'titlePage' => __('Accesorios IU')])
+@extends('layouts.app', ['activePage' => 'costs-iu', 'menuParent' => 'costs-parent', 'titlePage' => __('Centro de Costos')])
 
 @section('content')
 <div class="content">
@@ -90,7 +90,7 @@
                                                 {{ $accesory->name }}
                                             </td>
                                             <td>
-                                                {{ $accesory->unit_cost }}
+                                                {{ Helper::formatMoney($accesory->unit_cost) }}
                                             </td>
                                             <td>
                                                 {{ $accesory->updated_at }}

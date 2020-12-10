@@ -27,8 +27,8 @@
                                             name="name" id="input-name" type="text" placeholder="{{ __('Name') }}"
                                             value="{{ $role->name }}" aria-required="true" />
                                         @include('alerts.feedback', ['field' => 'name'])
-                                        <span id="errorNameP" class="d-none">@lang('Role name cannot be empty')</span>
-                                        <span id="errorNameU" class="d-none">@lang('This name already exists')</span>
+                                        <span id="errorNameP" class="d-none">@lang('Campo obligatorio')</span>
+                                        <span id="errorNameU" class="d-none">@lang('Ya existe un registro')</span>
                                     </div>
                                 </div>
                             </div>

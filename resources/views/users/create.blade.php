@@ -39,43 +39,45 @@
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Name') }}</label>
-                  <div class="col-sm-7">
-                    <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" placeholder="{{ __('Name') }}" value="{{ old('name') }}" required />
-                      <span id="errorNameUser" class="d-none">@lang('The name field cannot be empty')</span>
-                      @include('alerts.feedback', ['field' => 'name'])
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12" style="    text-align: left;">
+                        <b><label style="    font-weight: 600;" class="">{{ __('Name') }}</label></b>
+                        <div style="text-align:left;" class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                          <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" placeholder="{{ __('Name') }}" value="{{ old('name') }}" required />
+                          <span id="errorNameUser" class="d-none" style="text-align:left;">@lang('Campo obligatorio')</span>
+                          @include('alerts.feedback', ['field' => 'name'])
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Email') }}</label>
-                  <div class="col-sm-7">
-                    <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                      <input onkeyup="emailUnique();" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" placeholder="{{ __('Email') }}" value="{{ old('email') }}" required />
-                      <span id="errorEmailU" class="d-none">@lang('This email already exists')</span>
-                      <span id="errorEmailUserXX" class="d-none">@lang('The email field cannot be empty')</span>
-                      @include('alerts.feedback', ['field' => 'email'])
+                    <div class="row">
+                        <div class="col-sm-12" style="    text-align: left;">
+                            <b><label style="    font-weight: 600;" class=" col-form-label">{{ __('Email') }}</label></b>
+                        <div style="text-align:left;" class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
+                          <input onkeyup="emailUnique();" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" placeholder="{{ __('Email') }}" value="{{ old('email') }}" required />
+                          <span id="errorEmailU" class="d-none">@lang('This email already exists')</span>
+                          <span id="errorEmailUserXX" class="d-none" style="text-align:left;">@lang('Campo obligatorio')</span>
+                          @include('alerts.feedback', ['field' => 'email'])
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <label class="col-sm-2 col-form-label">{{ __('Role') }}</label>
-                  <div class="col-sm-7">
-                    <div class="form-group{{ $errors->has('role_id') ? ' has-danger' : '' }}">
-                      <select onchange="roleDetection();" class="js-example-basic-single js-states form-control" style="width: 100%" id="role_input" name="role_id" data-style="select-with-transition" title="" data-size="100" required>
-                        <option value="">{{ __('Choose a role') }}</option>
-                        @foreach ($roles as $role)
-                            <option value="{{$role->id}}">{{ $role->name }}</option>
-                        @endforeach
-                      </select>
-                      <span id="errorRoleUser" class="d-none">@lang('The email field cannot be empty')</span>
-                      @include('alerts.feedback', ['field' => 'role_id'])
+                    <div class="row">
+                        <div style="text-align:left;" class="col-sm-12" style="    text-align: left;">
+                            <b><label style="    font-weight: 600;" class=" col-form-label">{{ __('Role') }}</label></b>
+                        <div class="form-group{{ $errors->has('role_id') ? ' has-danger' : '' }}">
+                          <select onchange="roleDetection();" class="js-example-basic-single js-states form-control" style="width: 100%" id="" name="role_id" data-style="select-with-transition" title="" data-size="100" required>
+                            <option value="">{{ __('Choose a role') }}</option>
+                            @foreach ($roles as $role)
+                                <option value="{{$role->id}}">{{ $role->name }}</option>
+                            @endforeach
+                          </select>
+                          <span id="errorRoleUser" class="d-none" style="text-align:left;">@lang('Campo obligatorio')</span>
+                          @include('alerts.feedback', ['field' => 'role_id'])
+                        </div>
+                      </div>
                     </div>
-                  </div>
                 </div>
-
+                <br></br>
 
                 <div id="vendorDiv" class="row d-none">
                   <label class="col-sm-2 col-form-label">{{ __('Vendor Type') }}</label>

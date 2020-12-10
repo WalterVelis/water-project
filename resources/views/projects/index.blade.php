@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'projects-management', 'menuParent' => 'projects', 'sublevel' => 'necesidades', 'titlePage' => __('Gestión de Proyectos')])
+@extends('layouts.app', ['activePage' => 'projects-management', 'menuParent' => 'projects-management', 'sublevel' => 'necesidades', 'titlePage' => __('Gestión de Proyectos')])
 
 
 @section('content')
@@ -12,7 +12,7 @@
                             <i class="material-icons">assignment</i>
                         </div>
                         <h4 class="card-title">
-                            {{ __('Lista de Proyectos') }}</h4>
+                            {{ __('Proyectos') }}</h4>
                     </div>
                     <div class="card-body">
 
@@ -39,7 +39,7 @@
                             </div>
                             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12 text-right">
                                 <div class="dropdown">
-                                    <button title="Download Data" class="dropdown-toggle" style="background: none; border: none; font-size: 1.5em; margin-top: 6px;"
+                                    <button title="Download Data" class="dropdown-toggle" style="background: none; border: none; font-size: 1.5em; margin-top: 6px;    width: 70px;"
                                         type="button" id="dropdownMenuButton" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">
                                         <i class="fa fa-download" aria-hidden="true"></i>
@@ -145,7 +145,6 @@
             </div>
         </div>
     </div>
-</div>
 @endsection
 
 @push('js')
@@ -159,10 +158,6 @@
                     [10, 25, 50, "All"]
                 ],
                 responsive: true,
-                dom: 'Bfrtip',
-                buttons: [
-                    'copy', 'excel', 'pdf'
-                ],
                 language: {
                     search: "_INPUT_",
                     searchPlaceholder: $('#SearchTable').val(),

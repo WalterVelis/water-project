@@ -83,7 +83,12 @@ $sublevel="";
     </div>
 </li>
 @endif
-
+<li class="nav-item{{ $activePage == 'provider' ? ' active' : '' }}">
+    <a class="nav-link" href="{{ route('providers.index') }}">
+        <span class="sidebar-mini photo2"><i class="material-icons">assignment_ind</i></span>
+        <span class="sidebar-normal"> {{ __('Gestión de Proveedores') }} </span>
+    </a>
+</li>
 <li class="nav-item {{ ($menuParent == 'costs-parent') ? ' active' : '' }}">
     <a class="nav-link" data-toggle="collapse" href="#bfCosts"
         {{ ($menuParent == 'laravel' || $activePage == 'costs') ? ' aria-expanded="true"' : '' }}>
@@ -124,18 +129,13 @@ $sublevel="";
     </div>
 </li>
 
-<li class="nav-item{{ $activePage == 'projects-management' ? ' actives' : '' }}">
+<li class="nav-item{{ $activePage == 'projects-management' ? ' active' : '' }}">
     <a class="nav-link" href="{{ route('projects.index') }}">
         <span class="sidebar-mini photo2"><i class="material-icons">work</i></span>
-        <span class="sidebar-normal"> {{ __('Projects') }} </span>
+        <span class="sidebar-normal"> {{ __('Gestión de Proyectos') }} </span>
     </a>
 </li>
-<li class="nav-item{{ $activePage == 'provider' ? ' active' : '' }}">
-    <a class="nav-link" href="{{ route('providers.index') }}">
-        <span class="sidebar-mini photo2"><i class="material-icons">assignment_ind</i></span>
-        <span class="sidebar-normal"> {{ __('Proveedores') }} </span>
-    </a>
-</li>
+
 @if(App\User::hasPermissions("Vendor Index"))
 <li class="nav-item {{ ($menuParent == 'vendor') ? ' active' : '' }}">
     <a class="nav-link" data-toggle="collapse" href="#bfVendor"

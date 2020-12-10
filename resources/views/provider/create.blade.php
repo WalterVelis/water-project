@@ -1,5 +1,11 @@
-@extends('layouts.app', ['activePage' => 'provider', 'menuParent' => 'providers', 'titlePage' => 'Proveedores'])
+@extends('layouts.app', ['activePage' => 'provider', 'menuParent' => 'providers', 'titlePage' => 'Gestión de proveedores'])
 @section('content')
+<style>
+    #email-error {
+        height: initial;
+        margin-left: 0px;
+    }
+</style>
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -25,7 +31,7 @@
                                     <div class="col-sm-12">
                                         <div class="form-group{{ $errors->has('denomination') ? ' has-danger' : '' }}">
                                             <input class="form-control{{ $errors->has('denomination') ? ' is-invalid' : '' }}" name="denomination" id="input-denomination" type="text" value="{{ old('denomination') }}"  />
-                                            <span id="errorNameUser" class="d-none">@lang('The name field cannot be empty')</span>
+                                            <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>
                                             @include('alerts.feedback', ['field' => 'denomination'])
                                         </div>
                                     </div>
@@ -35,7 +41,7 @@
                                     <div class="col-sm-12">
                                         <div class="form-group{{ $errors->has('contact_name') ? ' has-danger' : '' }}">
                                             <input class="form-control{{ $errors->has('contact_name') ? ' is-invalid' : '' }}" name="contact_name" id="input-contact_name" type="text" value="{{ old('contact_name') }}"  />
-                                            <span id="errorNameUser" class="d-none">@lang('The name field cannot be empty')</span>
+                                            <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>
                                             @include('alerts.feedback', ['field' => 'contact_name'])
                                         </div>
                                     </div>
@@ -45,7 +51,7 @@
                                     <div class="col-sm-12">
                                         <div class="form-group{{ $errors->has('job_title') ? ' has-danger' : '' }}">
                                             <input class="form-control{{ $errors->has('job_title') ? ' is-invalid' : '' }}" name="job_title" id="input-job_title" type="text" value="{{ old('job_title') }}"  />
-                                            <span id="errorNameUser" class="d-none">@lang('The name field cannot be empty')</span>
+                                            <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>
                                             @include('alerts.feedback', ['field' => 'job_title'])
                                         </div>
                                     </div>
@@ -55,7 +61,7 @@
                                     <div class="col-sm-12">
                                         <div class="form-group{{ $errors->has('phone') ? ' has-danger' : '' }}">
                                             <input class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" id="input-phone" type="text" value="{{ old('phone') }}"  />
-                                            <span id="errorNameUser" class="d-none">@lang('The name field cannot be empty')</span>
+                                            <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>
                                             @include('alerts.feedback', ['field' => 'phone'])
                                         </div>
                                     </div>
@@ -65,7 +71,7 @@
                                     <div class="col-sm-12">
                                         <div class="form-group{{ $errors->has('rfc') ? ' has-danger' : '' }}">
                                             <input class="form-control{{ $errors->has('rfc') ? ' is-invalid' : '' }}" name="rfc" id="input-rfc" type="text" value="{{ old('rfc') }}"  />
-                                            <span id="errorNameUser" class="d-none">@lang('The name field cannot be empty')</span>
+                                            <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>
                                             @include('alerts.feedback', ['field' => 'rfc'])
                                         </div>
                                     </div>
@@ -75,7 +81,7 @@
                                     <div class="col-sm-12">
                                         <div class="form-group{{ $errors->has('direccion') ? ' has-danger' : '' }}">
                                             <input class="form-control{{ $errors->has('direccion') ? ' is-invalid' : '' }}" name="direccion" id="input-direccion" type="text" value="{{ old('direccion') }}"  />
-                                            <span id="errorNameUser" class="d-none">@lang('The name field cannot be empty')</span>
+                                            <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>
                                             @include('alerts.feedback', ['field' => 'direccion'])
                                         </div>
                                     </div>
@@ -85,7 +91,7 @@
                                     <div class="col-sm-12">
                                         <div class="form-group{{ $errors->has('phone') ? ' has-danger' : '' }}">
                                             <input class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" id="input-phone" type="text" value="{{ old('phone') }}"  />
-                                            <span id="errorNameUser" class="d-none">@lang('The name field cannot be empty')</span>
+                                            <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>
                                             @include('alerts.feedback', ['field' => 'phone'])
                                         </div>
                                     </div>
@@ -95,7 +101,7 @@
                                     <div class="col-sm-12">
                                         <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
                                             <input class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="" type="email" value="{{ old('email') }}"  />
-                                            <span id="errorNameUser" class="d-none">@lang('The name field cannot be empty')</span>
+                                            <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>
                                             @include('alerts.feedback', ['field' => 'email'])
                                         </div>
                                     </div>
@@ -108,7 +114,7 @@
                                                 <option value="0">Materiales extra</option>
                                                 <option value="1">Accesorios Isla Urbana</option>
                                             </select>
-                                            <span id="errorNameUser" class="d-none">@lang('The name field cannot be empty')</span>
+                                            <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>
                                             @include('alerts.feedback', ['field' => 'product_type'])
                                         </div>
                                     </div>

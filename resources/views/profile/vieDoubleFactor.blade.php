@@ -110,7 +110,7 @@
                             <div class="form-group">
                               <input class="form-control" name="code_verification" id="code_verification" type="text" placeholder="{{ __('Verification Code') }}" value='' required/>
                             </div>
-                            <span id="errorCode" class="d-none">@lang('Verification Code cannot be empty')</span>
+                            <span id="errorCode" class="d-none">@lang('Campo obligatorio')</span>
                           </div>
                         </div>
                         <input type="hidden" name='activate_2fa_google' value='1'>

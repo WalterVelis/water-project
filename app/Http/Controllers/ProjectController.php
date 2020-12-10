@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 
 use App\User;
+use App\MaterialUtility;
+use App\CostsUtility;
+use App\SchoolCost;
 use App\Project;
 use App\State;
 use App\Country;
@@ -61,7 +64,7 @@ class ProjectController extends Controller
         // Select last id
         $lastInsertedId = Format::select('id')->orderBy('id', 'DESC')->pluck('id')->first();
         if($lastInsertedId == null){
-            $lastInsertedId = 1;
+            $lastInsertedId = 0;
         }
         $newId = $lastInsertedId + 1;
         $pageId = str_pad($newId, 4, '0', STR_PAD_LEFT);
@@ -102,19 +105,20 @@ class ProjectController extends Controller
         $format->property_type = "";
         $format->current_year_resources = "";
         $format->resources_type = "";
-        $format->planning_entity_id = "";
-        $format->auth_entity_id = "";
+        $format->planning_entity_id = 1;
+        $format->auth_entity_id = 1;
         $format->implementation_date = "";
         $format->notes = "";
         $format->created_by = Auth::id();
         $format->updated_by = Auth::id();
         $format->status = 0;
-        $format->tech_assigned = 0;
+        $format->tech_assigned = 1;
         $format->vendor_assigned = Auth::id();
-        $format->admin_assigned = 0;
+        $format->admin_assigned = 1;
         $format->save();
 
         $techFormat = new TechFormat;
+        $techFormat->id = $newId;
         $techFormat->water_quality = "";
         $techFormat->obtaining_water = "";
         $techFormat->rooftop = "";
@@ -145,6 +149,7 @@ class ProjectController extends Controller
         $techFormat->save();
 
         $quotation = new Quotation;
+        $quotation->id = $newId;
         $quotation->version = "";
         $quotation->validity = "";
         $quotation->currency = "";
@@ -154,6 +159,20 @@ class ProjectController extends Controller
         $quotation->notes = "";
         $quotation->format_id = $newId;
         $quotation->save();
+
+        $schoolUtility = new SchoolCost();
+        $schoolUtility->cost = 0.00;
+        $schoolUtility->format_id = $newId;
+        $schoolUtility->save();
+
+        $materialUtility = new MaterialUtility();
+        $materialUtility->format_id = $newId;
+        $materialUtility->save();
+
+        $costUtility = new CostsUtility();
+        $costUtility->format_id = $newId;
+        $costUtility->save();
+
 
         return redirect()->to('projects/'.$newId.'/edit');
         $countries = Country::all();
@@ -298,12 +317,18 @@ class ProjectController extends Controller
         $format->status = $status;
         $format->internal_status = $internalStatus;
 
-        $format->update();
 
-        // if($request->sendMail) {
-        //     $data = Format::with('user')->find($id);
-        //     Mail::to($request->mail)->send(new AdminNotification($data));
-        // }
+
+        if($request->sendMail) {
+
+            //admin
+            $format->admin_assigned = Auth::id();
+
+            $data = Format::with('user')->find($id);
+            Mail::to($request->mail)->send(new AdminNotification($data));
+        }
+
+        $format->update();
 
         // dd(Project::find($project)->update($request->all()));
         // $project->update($request->all());

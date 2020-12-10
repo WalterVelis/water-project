@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'cost-iu', 'menuParent' => 'costs-parent', 'titlePage' => 'Accesorios IU'])
+@extends('layouts.app', ['activePage' => 'cost-iu', 'menuParent' => 'costs-parent', 'titlePage' => 'Centro de Costos'])
 @section('content')
 <div class="content">
     <div class="container-fluid">
@@ -26,7 +26,7 @@
                                         <div class="col-sm-12">
                                             <div class="form-group{{ $errors->has('qty') ? ' has-danger' : '' }}">
                                                 <input class="form-control{{ $errors->has('qty') ? ' is-invalid' : '' }}" name="qty" id="input-qty" type="text" value="{{ $accesoryUrban->qty }}"  />
-                                                <span id="errorqtyUser" class="d-none">@lang('El campo es obligatorio')</span>
+                                                <span id="errorqtyUser" class="d-none">@lang('Campo obligatorio')</span>
                                                 @include('alerts.feedback', ['field' => 'qty'])
                                             </div>
                                         </div>
@@ -36,7 +36,7 @@
                                         <div class="col-sm-12">
                                             <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                                 <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" value="{{ $accesoryUrban->name }}"  />
-                                                <span id="errorNameUser" class="d-none">@lang('El campo es obligatorio')</span>
+                                                <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>
                                                 @include('alerts.feedback', ['field' => 'name'])
                                             </div>
                                         </div>
@@ -46,7 +46,7 @@
                                         <div class="col-sm-12">
                                             <div class="form-group{{ $errors->has('unit_cost') ? ' has-danger' : '' }}">
                                                 <input class="form-control{{ $errors->has('unit_cost') ? ' is-invalid' : '' }}" name="unit_cost" id="input-unit_cost" type="text" value="{{ $accesoryUrban->unit_cost }}"  />
-                                                <span id="errorNameUser" class="d-none">@lang('El campo es obligatorio')</span>
+                                                <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>
                                                 @include('alerts.feedback', ['field' => 'unit_cost'])
                                             </div>
                                         </div>

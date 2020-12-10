@@ -111,7 +111,7 @@
                                 <td>{{ Helper::formatMoney($mp->unit_cost) }}</td>
                                 <td>
                                     @if($mp->materialProvider)
-                                        <input max="{{ $mp->qty }}" class="total-item-{{ $currentId }} form-control data-material" data-id="{{ $mp->materialProvider->id }}" type="number" value="{{ $mp->materialProvider->qty }}">
+                                        <input max="{{ $mp->qty }}" class="total-item-{{ $currentId }} form-control data-material" data-id="{{ $mp->id }}" type="number" value="{{ $mp->materialProvider->qty }}">
                                     @else
                                         <input max="{{ $mp->qty }}" class="total-item-{{ $currentId }} form-control data-material" data-id="{{ $mp->id }}" type="number" value="0">
                                     @endif
@@ -125,7 +125,7 @@
                                 $('.total-item-{{ $currentId }}').each(function() {
                                     total += parseFloat($(this).val());
                                     if(total > {{ $item->qty }}) {
-                                        console.log('Error');
+                                        // console.log('Error');
                                         $('.total-item-{{ $currentId }}').addClass('max-error')
                                     } else {
                                         $('.total-item-{{ $currentId }}').removeClass('max-error')
@@ -177,14 +177,13 @@
 
     var delayer;
     $('.data-material').on('change keyup', function() {
-        id = $(this).attr('data-id');
+        mpId = $(this).attr('data-id');
         data = $(this).val();
-        console.log(id);
         clearTimeout(delayer);
         delayer = setTimeout(function() {
             $.ajax({
                 type: 'PUT',
-                url: '/materialformat/'+id+'/'+projectId,
+                url: '/materialformat/'+mpId+'/'+projectId,
                 data: {
                     "_token": "{{ csrf_token() }}",
                     "qty": data

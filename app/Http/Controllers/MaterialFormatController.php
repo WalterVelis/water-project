@@ -9,14 +9,24 @@ use Illuminate\Http\Request;
 
 class MaterialFormatController extends Controller
 {
-    public function getMaterials($projectId)
+    public function getMaterials($projectId, $materialId = 16)
     {
+
+        // $mp = MaterialProvider::where('material_id', $materialId)->get();
+
+        // $mpf = \DB::select("
+        // SELECT * FROM materialprovider_project WHERE format_id = $projectId AND materialprovider_project.materialprovider_id IN (
+        //     SELECT id FROM materials_providers WHERE material_id = $materialId
+        // )
+        // ");
+
+
         // Proveedores que tengan X material
         // En la vista, un ajax que recorra cada foreach
-        $materialId = 9;
         $project_materials = MaterialFormat::with('materials.providers.provider')->with('materials.providers.materialProvider')->where('format_id', $projectId)->get();
         // dd($project_materials);
         foreach($project_materials as $pm) {
+            // dump($pm->material_id );
             $materialProvider[$pm->material_id] = MaterialProvider::with('provider')->with('materialProvider')->where('material_id', $pm->material_id)->get();
         }
         // dd($materialProvider);
@@ -44,12 +54,38 @@ class MaterialFormatController extends Controller
         //
     }
 
-    public function setMaterialProviderFormatQty(Request $request, $id, $formatId)
+    public function setMaterialProviderFormatQty(Request $request, $mpId, $formatId)
     {
-        $materialProviderFormat = MaterialProviderFormat::find($id);
+
+
+        if($request->qty <= 0) {
+            $materialProviderFormat = MaterialProviderFormat::where(['materialprovider_id' => $mpId, 'format_id' => $formatId])->delete();
+            return;
+        }
+
+        $exist = MaterialProviderFormat::where(['materialprovider_id' => $mpId, 'format_id' => $formatId])->get();
+
+        if($exist->isEmpty()) {
+            // $cost = MaterialProviderFormat::with('providers')->where('materialprovider_id', $mpId)->get();
+            $cost = MaterialProvider::where('id', $mpId)->first();
+            // dd($cost->unit_cost);
+            // si no hay registro, lo creamos
+            $materialProviderFormat = new MaterialProviderFormat();
+            $materialProviderFormat->qty = $request->qty;
+            $materialProviderFormat->cost = $cost->unit_cost;
+            $materialProviderFormat->materialprovider_id = $mpId;
+            $materialProviderFormat->format_id = $formatId;
+            $materialProviderFormat->save();
+
+
+        }
+        else {
+            $materialProviderFormat = MaterialProviderFormat::where(['materialprovider_id' => $mpId, 'format_id' => $formatId])->update(['qty' => $request->qty]);
+        }
         // dd($materialProviderFormat);
-        $materialProviderFormat->qty = $request->qty;
-        $materialProviderFormat->save();
+        // dd($materialProviderFormat);
+        // $materialProviderFormat->qty = $request->qty;
+        // $materialProviderFormat->save();
     }
 
     /**

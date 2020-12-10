@@ -103,10 +103,10 @@ form .col-12 {
                                         <a class="nav-link" href="{{ $format->internal_status >= 2 ? "/quotation/$format->id/edit" : "#" }}">{{ __('Quotation') }}</a>
                                     </li>
                                     <li class="nav-item {{ $format->internal_status >= 3 ? "c-enabled" : "" }}">
-                                        <a class="nav-link" href="{{ $format->internal_status >= 3 ? "/order/$format->id" : "#" }}">{{ __('Purchase Order') }}</a>
+                                        <a class="nav-link" href="{{ $format->internal_status >= 3 ? "/order/$format->id/edit" : "#" }}">{{ __('Purchase Order') }}</a>
                                     </li>
-                                    <li class="nav-item {{ $format->internal_status >= 4 ? "c-enabled" : "" }}">
-                                        <a class="nav-link" href="{{ $format->internal_status >= 4 ? "/assignment/$format->id" : "#" }}">{{ __('Assignment') }}</a>
+                                    <li class="nav-item {{ $format->internal_status >= 1 ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status >= 1 ? "/assignment/$format->id/edit" : "#" }}">{{ __('Assignment') }}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -125,7 +125,14 @@ form .col-12 {
                                     <input type="hidden" name="status" class="set-status" value="0">
                                     <div class="card-body bg-white" style="max-height: 540px;overflow: scroll">
                                         <div class="col-12 col-md-12">
-                                            <h4 class="mb-0 mt-2" style="font-weight: bold!important">Características</h4>
+                                            <div class="col-12">
+                                                <h4 class="mb-0 mt-2 d-inline" style="font-weight: bold!important">Características</h4>
+                                                <a href="/getTech/{{ $format->id }}">
+                                                    <button class=" d-inline" style="    position: absolute; right: 0px;background: none; border: none; font-size: 1.5em;    width: 90px;" type="button">
+                                                        <i class="fa fa-download" aria-hidden="true"></i>
+                                                    </button>
+                                                </a>
+                                            </div>
                                             <label class="c_label col-12 col-form-label">{{ __('Water Quality') }}</label>
                                                 <div class="row col-12">
                                                     @php
@@ -590,14 +597,12 @@ form .col-12 {
 
                     <br>
                     <div class="row w-100">
-                        <div class="col-12 col-md-8">
+                        <div class="col-12 col-md-12" style="    text-align: right;">
+                            <button onclick="$('.set-status').val(1);$('#form-techformat').submit();" class="btn btn-primary">{{ __('FINALIZAR') }}</button>
                         </div>
                         {{-- <div class="col-12 col-md-2">
                             <a href="{{ route('projects.index') }}" class="btn btn-rose float-right">{{ __('CANCEL') }}</a>
                         </div> --}}
-                        <div class="col-12 col-md-2">
-                            <button onclick="$('.set-status').val(1);$('#form-techformat').submit();" class="btn btn-primary">{{ __('FINALIZAR') }}</button>
-                        </div>
                     </div>
                     <!-- Fin -->
 

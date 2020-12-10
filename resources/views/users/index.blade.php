@@ -10,6 +10,7 @@
                         <div class="card-icon">
                             <span style="color:white;">GU</span>
                         </div>
+                        <h4 class="card-title">Gestión de Usuarios</h4>
                         <div class="card-body">
 
                             {{-- @can('create', App\User::class) --}}

@@ -1,5 +1,5 @@
 <select class="state form-control" name="state">
-    <option readonly selected>{{ __('Choose...') }}</option>
+    <option readonly selected>{{ __('Seleccione...') }}</option>
     @foreach($state as $item)
     <option value="{{ $item->id }}"> {{ $item->estado }} </option>
     @endforeach

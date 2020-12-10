@@ -54,8 +54,9 @@ class MaterialController extends Controller
             $materialProvider->material_id = $material->id;
             $materialProvider->save();
         }
-        dd($request->all());
-
+        // dd($request->all());
+        $materials = MaterialProvider::with(['material', 'provider'])->get();
+        return view('materials.index',compact('materials'));
     }
 
     /**

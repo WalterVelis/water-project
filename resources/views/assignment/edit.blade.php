@@ -80,10 +80,10 @@
                                             <a class="nav-link" href="{{ $assignmentData->internal_status >= 2 ? "/quotation/$assignmentData->id/edit" : "#" }}">{{ __('Quotation') }}</a>
                                         </li>
                                         <li class="nav-item {{ $assignmentData->internal_status >= 3 ? "c-enabled" : "" }}">
-                                            <a class="nav-link" href="{{ $assignmentData->internal_status >= 3 ? "/order/$assignmentData->id" : "#" }}">{{ __('Purchase Order') }}</a>
+                                            <a class="nav-link" href="{{ $assignmentData->internal_status >= 3 ? "/order/$assignmentData->id/edit" : "#" }}">{{ __('Purchase Order') }}</a>
                                         </li>
-                                        <li class="nav-item active {{ $assignmentData->internal_status >= 4 ? "c-enabled" : "" }}">
-                                            <a class="nav-link" href="{{ $assignmentData->internal_status >= 4 ? "/assignment/$assignmentData->id" : "#" }}">{{ __('Assignment') }}</a>
+                                        <li class="nav-item active {{ $assignmentData->internal_status >= 1 ? "c-enabled" : "" }}">
+                                            <a class="nav-link" href="{{ $assignmentData->internal_status >= 1 ? "/assignment/$assignmentData->id/edit" : "#" }}">{{ __('Assignment') }}</a>
                                         </li>
                                     </ul>
                                 </div>

@@ -26,7 +26,7 @@
                                         <div class="col-sm-12">
                                             <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                                 <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" value="{{ $costsCenter->name }}"  />
-                                                <span id="errorNameUser" class="d-none">@lang('The name field cannot be empty')</span>
+                                                <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>
                                                 @include('alerts.feedback', ['field' => 'name'])
                                             </div>
                                         </div>
@@ -36,7 +36,7 @@
                                         <div class="col-sm-12">
                                             <div class="form-group{{ $errors->has('unit_cost') ? ' has-danger' : '' }}">
                                                 <input class="form-control{{ $errors->has('unit_cost') ? ' is-invalid' : '' }}" name="unit_cost" id="input-unit_cost" type="text" value="{{ $costsCenter->unit_cost }}"  />
-                                                <span id="errorNameUser" class="d-none">@lang('The name field cannot be empty')</span>
+                                                <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>
                                                 @include('alerts.feedback', ['field' => 'unit_cost'])
                                             </div>
                                         </div>
