@@ -20,10 +20,10 @@
                             <div class="col-12 text-left">
                                 <a id="exportXlsx" href="{{ route('user_xlsx') }}"
                                     class="btn btn-sm btn-rose">{{ __('Export xlsx') }}</a>
-                                <a id="exportCsv" href="{{ route('user_csv') }}"
-                                    class="btn btn-sm btn-rose">{{ __('Export csv') }}</a>
+                                {{-- <a id="exportCsv" href="{{ route('user_csv') }}"
+                                    class="btn btn-sm btn-rose">{{ __('Export csv') }}</a> --}}
                                 <a id="exportPdf"
-                                    href="{{ route('userPdf',['all']) }}"
+                                    href="/formatPdf"
                                     target='_blank'
                                     class="btn btn-sm btn-rose">{{ __('Export pdf') }}</a>
                             </div>
@@ -45,8 +45,8 @@
                                         <i class="fa fa-download" aria-hidden="true"></i>
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                        <p class="dropdown-item" onclick="exportDataCsv();"><i class="fa fa-file-code-o"
-                                                aria-hidden="true"></i>&nbsp; CSV</p>
+                                        {{-- <p class="dropdown-item" onclick="exportDataCsv();"><i class="fa fa-file-code-o"
+                                                aria-hidden="true"></i>&nbsp; CSV</p> --}}
                                         <p class="dropdown-item" onclick="exportDataXlsx();"><i
                                                 class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp; XLSX</p>
                                         <p class="dropdown-item" onclick="exportDataPdf();"><i class="fa fa-file-pdf-o"
@@ -121,7 +121,7 @@
                                             </td>
 
                                             <td>
-                                                {{ $item->created_at }}
+                                                {{ $item->created_at->format('Y-m-d') }}
                                             </td>
                                             <td>
                                                 {{ $item->statusLabel() }}

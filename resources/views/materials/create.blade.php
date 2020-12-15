@@ -69,31 +69,38 @@
                                         <div class="col-sm-12">
                                             <div class="form-group{{ $errors->has('type') ? ' has-danger' : '' }}">
                                                 {{-- <input class="form-control{{ $errors->has('type') ? ' is-invalid' : '' }}" name="type" id="input-type" type="text" value="{{ old('type') }}"  /> --}}
-                                                <select class="form-control" name="type" id="">
-                                                    <option value="0">COBRE</option>
-                                                    <option value="1">PVC SANITARIO</option>
-                                                    <option value="2">PVC HIDR RD26</option>
-                                                    <option value="3">CONDUIT</option>
-                                                    <option value="4">TUBOPLUS</option>
-                                                    <option value="5">PVC HIDR CED40</option>
-                                                    <option value="6">BUSHING GALVANIZADO</option>
-                                                    <option value="7">GALVANIZADA</option>
-                                                    <option value="8">ACERO</option>
-                                                    <option value="9">PLÁSTICO</option>
-                                                    <option value="10">PVC</option>
-                                                    <option value="11">SILICON</option>
-                                                    <option value="12">GARLOCK</option>
-                                                    <option value="13">BRONCE</option>
-                                                    <option value="14">HULE</option>
-                                                    <option value="15">SILER</option>
-                                                    <option value="16">50% ESTAÑO y 50% PLOMO</option>
-                                                    <option value="17">OTRO</option>
+                                                <select class="form-control" name="" id="ti">
+                                                    <option value="COBRE">COBRE</option>
+                                                    <option value="PVC SANITARIO">PVC SANITARIO</option>
+                                                    <option value="PVC HIDR RD26">PVC HIDR RD26</option>
+                                                    <option value="CONDUIT">CONDUIT</option>
+                                                    <option value="TUBOPLUS">TUBOPLUS</option>
+                                                    <option value="PVC HIDR CED40">PVC HIDR CED40</option>
+                                                    <option value="BUSHING GALVANIZADO">BUSHING GALVANIZADO</option>
+                                                    <option value="GALVANIZADA">GALVANIZADA</option>
+                                                    <option value="ACERO">ACERO</option>
+                                                    <option value="PLÁSTICO">PLÁSTICO</option>
+                                                    <option value="PVC">PVC</option>
+                                                    <option value="SILICON">SILICON</option>
+                                                    <option value="GARLOCK">GARLOCK</option>
+                                                    <option value="BRONCE">BRONCE</option>
+                                                    <option value="HULE">HULE</option>
+                                                    <option value="SILER">SILER</option>
+                                                    <option value="50% ESTAÑO y 50% PLOMO">50% ESTAÑO y 50% PLOMO</option>
+                                                    <option value="0">OTRO</option>
                                                 </select>
                                                 <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>
                                                 @include('alerts.feedback', ['field' => 'type'])
                                             </div>
                                         </div>
+                                        <div class="col-sm-12">
+                                            <input id="otro" type="text" name="type" class="form-control mt-4" style="display:none;" placeholder="Especifique...">
+                                        </div>
                                     </div>
+                                    <script>
+
+
+                                    </script>
                                     <div class="col-7 mt-5">
                                         <span style="color:black; font-size:1.1em;">Proveedores asignados</span>
                                         <div class="row mt-4">
@@ -178,6 +185,16 @@
         {
             alert('Debe asignar al menos un proveedor')
             e.preventDefault();
+        }
+    });
+
+    $('#ti').on('change', () => {
+        console.log($('#ti'));
+        if($('#ti').val() == 0){
+            $('#otro').fadeIn();
+        } else {
+            $('#otro').fadeOut();
+            $('#otro').val($('#ti').val());
         }
     });
 </script>

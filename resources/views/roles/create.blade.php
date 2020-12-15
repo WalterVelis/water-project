@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
-                <div class="card ">
+                <div class="card " style="    height: 540px;">
                     <div class="card-header card-header-rose card-header-icon">
                         <div class="card-icon">
                             <i class="material-icons">supervisor_account</i>
@@ -90,7 +90,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="card">
+                <div class="card" style="    height: 540px;">
                     <div class="card-header card-header-rose card-header-icon">
                         <div class="card-icon">
                             <i class="material-icons">lock</i>

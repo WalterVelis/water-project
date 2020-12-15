@@ -23,6 +23,36 @@ use Illuminate\Support\Facades\Mail;
 
 class ProjectController extends Controller
 {
+
+    public function queryPdf()
+    {
+        if(User::hasPermissions("Vendor")){
+            // $projects = Format::all();
+            $projects = Format::where('created_by', Auth::id())->get();
+            // return view('projects.index', compact('projects'));
+        }
+
+        if(User::hasPermissions("Tecnico")){
+            // $format = Format::where('tech_assigned');
+            // $countries = Country::all();
+            // return view('projects.format', compact('countries', 'format'));
+
+            $projects = Format::where('tech_assigned', Auth::id())->orWhere('created_by', Auth::id())->get();
+            // return view('projects.index', compact('projects'));
+        }
+
+        if(User::hasPermissions("Admin")){
+            $projects = Format::all();
+            // return view('projects.index', compact('projects'));
+        }
+
+        // $projects = Format::orderBy('name', 'asc')->get();
+        $name = __("Proyectos");
+        $pdf = PDF::loadView('projects.options.pdfAll', compact('projects'));
+        $pdf->setPaper("letter", "Portrait");
+        return $pdf->stream($name.'.pdf');
+    }
+
     /**
      * Display a listing of the resource.
      *

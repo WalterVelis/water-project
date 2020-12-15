@@ -25,6 +25,14 @@ class Material extends Model
     const PLOMO = 16;
     const OTRO = 17;
 
+    const TRAMO = 0;
+    const PZA = 1;
+    const ML = 2;
+    const M2 = 3;
+    const LTS = 4;
+    const LOTE = 5;
+    const GMS = 6;
+
     public static function listType()
     {
         return [
@@ -49,6 +57,19 @@ class Material extends Model
         ];
     }
 
+    public static function listUnit()
+    {
+        return [
+            self::TRAMO => "TRAMO",
+            self::PZA => "PZA",
+            self::ML => "ML",
+            self::M2 => "M2",
+            self::LTS => "LTS",
+            self::LOTE => "LOTE",
+            self::GMS => "GMS",
+        ];
+    }
+
     public function typeLabel()
     {
         $list = self::listType();
@@ -58,6 +79,17 @@ class Material extends Model
         return isset($list[$this->type])
             ? $list[$this->type]
             : $this->type;
+    }
+
+    public function unitLabel()
+    {
+        $listUnit = self::listUnit();
+
+        // little validation here just in case someone mess things
+        // up and there's a ghost status saved in DB
+        return isset($listUnit[$this->unit])
+            ? $listUnit[$this->unit]
+            : $this->unit;
     }
 
     protected $fillable = [

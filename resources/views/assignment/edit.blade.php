@@ -1,4 +1,4 @@
-@extends('layouts.app', ['activePage' => 'project-managment', 'menuParent' => 'project-managment', 'titlePage' => 'Gestión de Proyectos'])
+@extends('layouts.app', ['activePage' => 'projects-management', 'menuParent' => 'projects', 'titlePage' => 'Gestión de Proyectos'])
 @section('content')
 <style>
     .form-check .form-check-label {
@@ -29,7 +29,7 @@
         overflow-x: hidden;
     }
 
-    .nav-item.active {
+    nav .nav-item.active {
         color: white;
         background: #32526f;
     }
@@ -97,7 +97,7 @@
                                         <h3>Personas Asignadas</h3>
                                     </div>
                                     <div class="mt-5 col-sm-hidden col-12 col-md-6">
-                                        <h3>Personas Asignadas</h3>
+                                        <h3>Estatus Asignado</h3>
                                     </div>
                                     <div class="mt-5 col-12 col-md-6">
                                         <span>Proyecto creado por: </span> <input class="w-100" readonly disabled type="text" value="{{ $assignmentData->user->name }}">
@@ -129,6 +129,8 @@
                                     </div>
 
                                     <div class="mt-5 col-12 col-md-6">
+                                    </div>
+                                    <div class="mt-5 col-12 col-md-6">
                                         <span style="margin-bottom:-10px;font-weight:bold;">{{ __('Técnico asignado') }}</span>
                                         <div class="form-group{{ $errors->has('tech_assigned') ? ' has-danger' : '' }}">
                                             <select class="form-control" name="tech_assigned" id="" required>
@@ -139,6 +141,8 @@
                                             </select>
                                             @include('alerts.feedback', ['field' => 'tech_assigned'])
                                         </div>
+                                    </div>
+                                    <div class="mt-5 col-12 col-md-6">
                                     </div>
                                     <div class="mt-5 col-12 col-md-6">
                                         <span style="margin-bottom:-10px;font-weight:bold;">{{ __('Administrador') }}</span>

@@ -5,8 +5,19 @@ namespace App\Http\Controllers;
 use App\AccesoryUrban;
 use Illuminate\Http\Request;
 
+use PDF;
+
 class AccesoryUrbanController extends Controller
 {
+    public function queryPdf()
+    {
+        $accesories = AccesoryUrban::orderBy('name', 'asc')->get();
+        $name = __("Accesorios IU");
+        $pdf = PDF::loadView('accesory.options.pdfAll', compact('accesories'));
+        $pdf->setPaper("letter", "Portrait");
+        return $pdf->stream($name.'.pdf');
+    }
+
     /**
      * Display a listing of the resource.
      *

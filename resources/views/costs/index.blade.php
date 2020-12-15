@@ -10,7 +10,10 @@
                         <div class="card-icon">
                             <span style="color:white;"><i class="material-icons">supervisor_account</i></span>
                         </div>
-                        <h4 class="card-title">Mano de Obra</h4>
+                        <br>
+
+                        <h4 class="card-title d-inline">Mano de Obra</h4>
+
                         <div class="card-body">
 
                             {{-- @can('create', App\User::class) --}}
@@ -31,8 +34,8 @@
                                             <i class="fa fa-download" aria-hidden="true"></i>
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <p class="dropdown-item" onclick="exportDataCsv();"><i
-                                                    class="fa fa-file-code-o" aria-hidden="true"></i>&nbsp; CSV</p>
+                                            {{-- <p class="dropdown-item" onclick="exportDataCsv();"><i
+                                                    class="fa fa-file-code-o" aria-hidden="true"></i>&nbsp; CSV</p> --}}
                                             <p class="dropdown-item" onclick="exportDataXlsx();"><i
                                                     class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp; XLSX</p>
                                             <p class="dropdown-item" onclick="exportDataPdf();"><i
@@ -45,11 +48,11 @@
 
                             <div class="row d-none">
                                 <div class="col-12 text-left">
-                                    <a id="exportXlsx" href="{{ route('user_xlsx') }}"
-                                        class="btn btn-sm btn-rose">{{ __('Export xlsx') }}</a>
+                                    {{-- <a id="exportXlsx" href="{{ route('user_xlsx') }}"
+                                        class="btn btn-sm btn-rose">{{ __('Export xlsx') }}</a> --}}
                                     <a id="exportCsv" href="{{ route('user_csv') }}"
                                         class="btn btn-sm btn-rose">{{ __('Export csv') }}</a>
-                                    <a id="exportPdf" href="{{ route('userPdf',['all'])}}" target='_blank'
+                                    <a id="exportPdf" href="/costPdf" target='_blank'
                                         class="btn btn-sm btn-rose">{{ __('Export pdf') }}</a>
                                 </div>
                             </div>

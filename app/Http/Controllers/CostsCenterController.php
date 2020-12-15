@@ -5,8 +5,19 @@ namespace App\Http\Controllers;
 use App\CostsCenter;
 use Illuminate\Http\Request;
 
+use PDF;
+
 class CostsCenterController extends Controller
 {
+    public function queryPdf()
+    {
+        $manoDeObra = CostsCenter::orderBy('name', 'asc')->get();
+        $name = __("Mano de obra");
+        $pdf = PDF::loadView('costs.options.pdfAll', compact('manoDeObra'));
+        $pdf->setPaper("letter", "Portrait");
+        return $pdf->stream($name.'.pdf');
+    }
+
     /**
      * Display a listing of the resource.
      *

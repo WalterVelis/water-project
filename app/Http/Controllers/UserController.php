@@ -459,11 +459,8 @@ class UserController extends Controller
     public function query1PdfUser($all)
     {
         $query1 = User::where('status', '1')->orderBy('name', 'asc')->get();
-
         $date = Carbon::now();
-
         $lang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-        //Spanish=es    English=en
         if($lang == 'es'){
             $fecha=$date->locale('es')->isoFormat('dddd, DD MMMM YYYY');
             $idioma = "1";
@@ -473,19 +470,10 @@ class UserController extends Controller
         }
         $hora=$date->locale('es')->isoFormat('H:mm:ss');
         $fechaC = $date->format('Y');
-        //log logica
         $name= __("Users");
-
-
         $pdf = PDF::loadView('users.options.pdfAll', compact('name', 'query1', 'fecha', 'hora', 'idioma'));
-
         $pdf->setPaper("letter", "Portrait");
-
         return $pdf->stream($name.'.pdf');
-        //return $pdf->download($name.'.pdf');
-
-        //
-
     }
 
 

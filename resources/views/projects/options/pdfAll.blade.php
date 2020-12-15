@@ -2,47 +2,92 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>{{$name}}</title>
+    <title>Proyectos registrados</title>
     <style type="text/css">
         body {
             margin: 0px;
         }
+
         * {
             font-family: Verdana, Arial, sans-serif;
         }
+
         a {
             color: #fff;
             text-decoration: none;
         }
+
         table {
             font-size: x-small;
         }
+
         tfoot tr td {
             font-weight: bold;
             font-size: x-small;
         }
+
         .invoice table {
             margin: 15px;
         }
+
         .invoice h3 {
             margin-left: 15px;
         }
+
         .information {
-            background-color: #ec407a;
-            color: #FFF;
+            background-color: #bacfda;
+            color: #0b6696;
         }
+
         .information .logo {
             margin: 5px;
         }
+
         .information table {
             padding: 10px;
         }
+
+        .table td {
+            border: solid 1px #eee;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        th,
+        td {
+            padding: 4px 6px;
+        }
+
     </style>
-     <style>
-       @page { margin: 180px 0px; }
-       #header { position: fixed; left: 0px; top: -180px; right: 0px; height: 100px; background-color: #ec407a; text-align: center; }
-       #footer { position: fixed; left: 0px; bottom: -180px; right: 0px; height: 50px; background-color: #ec407a; }
-     </style>
+    <style>
+        @page {
+            margin: 180px 0px;
+        }
+
+        #header {
+            position: fixed;
+            left: 0px;
+            top: -180px;
+            right: 0px;
+            height: 100px;
+            background-color: #0b6696;
+            text-align: center;
+        }
+
+        #footer {
+            position: fixed;
+            left: 0px;
+            bottom: -180px;
+            right: 0px;
+            height: 50px;
+            background-color: #0b6696;
+        }
+
+    </style>
 <body>
      <div id="header">
         <div class="information">
@@ -53,7 +98,7 @@
 
                     </td>
                     <td align="center">
-                        <h1>{{$name}}</h1>
+                        <h1>Proyectos registrados</h1>
                     </td>
                     <td align="right" style="width: 20%;">
                     </td>
@@ -64,10 +109,10 @@
      </div>
      <div id="footer">
         <div class="information" style="position: absolute; bottom: 0;">
-            <table width="100%">
+            <table class="table" width="100%">
                 <tr>
                     <td align="left" style="width: 50%;">
-                        &copy; IIASA, {{__('All rights reserved. Developed by')}} ISINET
+                        &copy;  2020 Cotizador de AguaH2O, Todos los derechos reservados. Desarrollado por ISINET.
                     </td>
                     <td align="right" style="width: 50%;">
                     </td>
@@ -76,39 +121,71 @@
             </table>
         </div>
      </div>
-     <div class="invoice" style="margin-left: 30px">
-        <table width="100%">
-            <thead>
+     <div class="invoice" style="margin-left: 10px; margin-right:10px">
+        <table width="100%" class="table">
+            <thead style="background: #bacfda;">
               <tr>
-                <th align="left">
-                    {{ __('Code') }}
+                <th>
+                    {{ __('Page') }}
                 </th>
-                <th align="left">
-                    {{ __('Name') }}
+                <th>
+                    {{ __('Client') }}
                 </th>
-                <th align="left">
-                  {{ __('Block') }}
+                <th>
+                    {{ __('Main Contact') }}
                 </th>
-                <th align="left">
-                    {{ __('Creation date') }}
+                <th>
+                    {{ __('Place') }}
+                </th>
+                <th>
+                    {{ __('First Contact') }}
+                </th>
+                <th>
+                    {{ __('Email') }}
+                </th>
+                <th>
+                    {{ __('Phone') }}
+                </th>
+                <th>
+                    {{ __('Quotation Date') }}
+                </th>
+                <th>
+                    {{ __('Estado') }}
                 </th>
               </tr>
             </thead>
             <tbody>
-                @foreach($query1 as $account)
+                @foreach($projects as $item)
                         <tr>
-                          <td align="left">
-                              {{$account->budgetBlock->code}}{{ $account->code }}
-                          </td>
-                          <td align="left">
-                            {{ $account->name }}
-                          </td>
-                          <td align="left">
-                            {{ $account->budgetBlock->name}}
-                          </td>
-                          <td>
-                            {{ $account->created_at->format('Y-m-d') }}
-                          </td>
+                            <td style="white-space: nowrap">
+                                {{ $item->page }}
+                            </td>
+                            <td>
+                                {{ $item->client }}
+                            </td>
+                            <td>
+                                {{ $item->main_contact }}
+                            </td>
+
+                            <td>
+                                {{ $item->state }}, {{ $item->municipality }}
+                            </td>
+                            <td style="white-space: nowrap">
+                                {{ $item->date }}
+                            </td>
+                            <td>
+                                {{ $item->email }}
+                            </td>
+                            <td>
+                                {{ $item->phone }}
+                            </td>
+
+                            <td>
+                                {{ $item->created_at->format('Y-m-d') }}
+                            </td>
+                            <td>
+                                {{ $item->statusLabel() }}
+                            </td>
                         </tr>
                       @endforeach
             </tbody>
@@ -118,21 +195,12 @@
 
 
 
-    @if ($idioma == "1")
     <script type="text/php">
       if ( isset($pdf) ) {
           $font = $fontMetrics->getFont("Lato", "regular");
           $pdf->page_text(530, 770, "Página: {PAGE_NUM} de {PAGE_COUNT}", $font, 10, array(255,255,255));
       }
     </script>
-    @else
-    <script type="text/php">
-      if ( isset($pdf) ) {
-          $font = $fontMetrics->getFont("Lato", "regular");
-          $pdf->page_text(530, 770, "Page: {PAGE_NUM} of {PAGE_COUNT}", $font, 10, array(255,255,255));
-      }
-    </script>
-    @endif
 
 
 

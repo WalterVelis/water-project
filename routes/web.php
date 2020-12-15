@@ -46,6 +46,11 @@ Route::group(['middleware' => ['auth','change']], function () {
 
     Route::resource('user', 'UserController', ['except' => ['show']]);
     Route::get('userAllPdf/{all}', 'UserController@query1PdfUser')->name('userPdf');
+    Route::get('providerPdf', 'ProviderController@queryPdf');
+    Route::get('costPdf', 'CostsCenterController@queryPdf');
+    Route::get('formatPdf', 'ProjectController@queryPdf');
+    Route::get('quotationPdf/{id}', 'QuotationController@genPdf');
+    Route::get('accesoryPdf', 'AccesoryUrbanController@queryPdf');
     Route::get('userInactiveAllPdf/{all}', 'UserController@query2PdfUser')->name('user2Pdf');
     Route::post('changeUser/{id}','UserController@change');
     Route::post('email2reset/{id}','UserController@email2Reset');

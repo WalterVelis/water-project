@@ -29,7 +29,7 @@
         overflow-x: hidden;
     }
 
-    .nav-item.active {
+    nav .nav-item.active {
         color: white;
         background: #32526f;
     }
@@ -100,6 +100,7 @@
                             @foreach($providers as $item)
                             {{-- @dump($item) --}}
                             @endforeach
+                            {{-- @dd($providers) --}}
                             {{-- @dd("end") --}}
                             {{-- @if( ! $providers->isEmpty() ) --}}
 
@@ -131,7 +132,7 @@
                                                 {{ $loop->iteration }}
                                             </td>
                                             <td>
-                                                {{ $item->contact_name }}
+                                                {{ $item->denomination }}
                                             </td>
                                             <td>
                                                 {{ Helper::formatMoney($totals[$item->id] * 1.13)  }}

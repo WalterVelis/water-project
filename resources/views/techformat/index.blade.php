@@ -104,7 +104,7 @@
                                                 {{ $item->date }}
                                             </td>
                                             <td>
-                                                {{ $item->created_at }}
+                                                {{ $item->created_at->format('Y-m-d') }}
                                             </td>
                                             <td class="td-actions text-right">
                                                 <!-- <a href="{{ route('projects.show', $item->id) }}"><i class="material-icons">remove_red_eye</i></a> -->

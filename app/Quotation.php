@@ -24,4 +24,5 @@ class Quotation extends Model
         return $this->belongsTo('App\Format');
         // return $this->hasOne('App\Format', 'id', 'format_id');
     }
+
 }

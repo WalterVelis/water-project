@@ -57,7 +57,7 @@
         @if($escuela->has_educational_programs)
         <tr>
             <td>{{ $id + 1 }} @php($id += 1)</td>
-            <td>Programa completo de escuelas de lluvia - Capacitación, supervición y seguimiento técnica y propuesta participativa y educativa completa</td>
+            <td>Programa completo de escuelas de lluvia - Capacitación, supervisión y seguimiento técnica y propuesta participativa y educativa completa</td>
             <td>{{ $escuela->children }}</td>
             <td><span style=" padding-top: 10px; " class="d-inline-flex">$</span><input id="n-cost" style="width:80%; height: 20px;" type="number" class="form-control d-inline-flex" value="{{ $schoolCost->cost }}"></td>
             <td class="utilidad"><input style="width:80%; height: 20px;" type="number" class="school-utilidad form-control d-inline-flex" value="{{ $schoolCost->utility }}"><span style=" padding-top: 10px; " class="d-inline-flex">%</span></td>

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use App\User;
 use App\Provider;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Throwable;
 
@@ -67,6 +69,15 @@ class ProviderController extends Controller
     public function show(Provider $provider)
     {
         //
+    }
+
+    public function queryPdf(Provider $provider)
+    {
+        $providers = Provider::orderBy('denomination', 'asc')->get();
+        $name = __("Proveedores");
+        $pdf = PDF::loadView('provider.options.pdfAll', compact('providers'));
+        $pdf->setPaper("letter", "Portrait");
+        return $pdf->stream($name.'.pdf');
     }
 
     /**

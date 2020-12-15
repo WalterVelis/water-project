@@ -30,7 +30,7 @@
         overflow-x: hidden;
     }
 
-    .nav-item.active {
+    nav .nav-item.active {
         color: white;
         background: #32526f;
     }
@@ -93,6 +93,11 @@
                             </div>
                         </div>
                     </nav>
+                    <a class="float-right" href="/getTech/">
+                        <button class=" d-inline" style="    position: absolute; right: 0px;background: none; border: none; font-size: 1.5em;    width: 90px;" type="button">
+                            <i class="fa fa-download" aria-hidden="true"></i>
+                        </button>
+                    </a>
                     <form action="{{ route('quotation.update', $quotation->format_id) }}" method="post" id="form-quotation">
                         @csrf
                         @method('put')
@@ -102,7 +107,7 @@
                                 <div class="col-12 col-md-4">
                                     <label class="c_label col-12 col-form-label">{{ __('Fecha de creación') }}</label>
                                     <div class="col-sm-12">
-                                        <input required class="form-control" id="" name="version" type="text" value="{{ $quotation->version }}" />
+                                        <input required class="form-control" id="" name="version" type="date" value="{{ $quotation->version }}" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">

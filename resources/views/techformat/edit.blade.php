@@ -287,15 +287,16 @@ form .col-12 {
                                         </div>
 
                                         <div class="row">
+                                            <label class="c_label col-12 col-form-label ml-4 mt-5">{{ __('Área de captación de agua de lluvia') }}</label>
                                             <div class="col-12 col-md-6">
-                                                <label class="c_label col-12 col-form-label">{{ __('Techo') }}</label>
+                                                <label class="c_label col-12 col-form-label">{{ __('Techo (m2)') }}</label>
                                                 <div class="col-sm-12">
                                                     <input required class="form-control" id="rainwater_area" name="rainwater_area" type="number" value="{{ $techFormat->rainwater_area }}" />
                                                 </div>
                                             </div>
 
                                             <div class="col-12 col-md-6">
-                                                <label class="c_label col-12 col-form-label">{{ __('Canaletas') }}</label>
+                                                <label class="c_label col-12 col-form-label">{{ __('Canaletas (pulgadas/metros)') }}</label>
                                                 <div class="col-sm-12">
                                                     <input required class="form-control" id="gutter" name="gutter" type="text" value="{{ $techFormat->gutter }}" />
                                                 </div>
@@ -706,7 +707,7 @@ $('.environment').on('change', function() {
         multiplier = 20;
     else
         multiplier = 30;
-    $('#va').val(total * multiplier * 0.85 + "m3");
+    $('#va').val(total * multiplier * 0.85);
 });
 
 $('#water_quality-other').on('click', function() {

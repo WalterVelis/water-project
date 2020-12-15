@@ -87,7 +87,12 @@ form .col-12 {
                                         <div class="card-icon">
                                             <i class="material-icons">supervisor_account</i>
                                         </div>
-                                        <h4 class="card-title">{{ __('GENERAL DATA') }}</h4>
+                                        <h4 class="mb-0 mt-2 d-inline" style="font-weight: bold!important">Datos Generales</h4>
+                                                <a href="/getTech/">
+                                                    <button class=" d-inline" style="    position: absolute; right: 0px;background: none; border: none; font-size: 1.5em;    width: 90px;" type="button">
+                                                        <i class="fa fa-download" aria-hidden="true"></i>
+                                                    </button>
+                                                </a>
                                     </div>
 
                                     <div class="card-body ">
@@ -845,4 +850,3 @@ function sendAdmin() {
 </script>
 
 @endpush
-

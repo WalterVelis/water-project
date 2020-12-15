@@ -46,10 +46,11 @@
             </thead>
             <tbody>
                 @foreach($project_materials as $item)
+                {{-- @dump($item) --}}
                     <tr>
                         <td scope="row">{{ $item->id }}</td>
                         <td>{{ $item->materials->name }}</td>
-                        <td>{{ $item->materials->unit }}</td>
+                        <td>{{ $item->materials->unitLabel() }}</td>
                         <td>{{ $item->qty }}</td>
                         <td>{{ $item->materials->type }}</td>
                         <td><i data-toggle="tooltip" data-placement="top" title="Eliminar" class="fa fa-trash" aria-hidden="true" onclick="removeMaterial({{ $item->id }})"></i></td>
@@ -81,7 +82,7 @@
             <div class="row mt-3 d-flex justify-content-around" style="    background: #fafafa; padding-top: 10px; padding-bottom: 10px;">
                 <div style="cursor: pointer;    margin-top: -8px;" onclick="showTable({{ $item->id }})">{{ $item->id }} <div class="d-inline-block" style="transform: translateY(8px);"><i class="material-icons">arrow_drop_down</i></div></div>
                 <div>{{ $item->materials->name }}</div>
-                <div>{{ $item->materials->unit }}</div>
+                <div>{{ $item->materials->unitLabel() }}</div>
                 <div>{{ $item->qty }}</div>
                 <div>{{ $item->materials->type }}</div>
             </div>

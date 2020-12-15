@@ -68,7 +68,7 @@ class TechFormatController extends Controller
         // return view('layouts.pdf.tech', compact('format', 'entities', 'tech'));
         $pdf =  PDF::loadView('layouts.pdf.tech', compact('format', 'entities', 'tech'));
         $name = Carbon::now()->toDateTimeString().'.pdf';
-        return $pdf->setPaper('letter')->download($name);
+        return $pdf->setPaper('letter', 'landscape')->download($name);
     }
     /**
      * Show the form for editing the specified resource.

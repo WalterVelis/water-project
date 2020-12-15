@@ -106,7 +106,7 @@
                                                 {{ $material->updated_at }}
                                             </td>
                                             <td>
-                                                {{ $material->provider->contact_name }}
+                                                {{ $material->provider->denomination }}
                                             </td>
                                             <td class="td-actions text-right">
                                                 <a data-toggle="tooltip" data-placement="top" title="Editar" href="{{ route('materials.edit', $material->material->id) }}"><i class="material-icons">edit</i></a>

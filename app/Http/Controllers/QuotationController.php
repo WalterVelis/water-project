@@ -13,6 +13,8 @@ use App\SchoolCost;
 use App\CostFormat;
 use App\MaterialProviderFormat;
 use App\QuotationFormat;
+use Carbon\Carbon;
+use PDF;
 
 class QuotationController extends Controller
 {
@@ -68,6 +70,16 @@ class QuotationController extends Controller
     public function show($id)
     {
         //
+    }
+
+    public function genPdf($id)
+    {
+        $format = Format::with('vendor')->find($id);
+        $quotation = Quotation::where('format_id', $id)->first();
+        $subQuotation = QuotationFormat::where('format_id', $id)->get();
+        $pdf =  PDF::loadView('layouts.pdf.quotation', compact('format', 'quotation', 'subQuotation'));
+        $name = Carbon::now()->toDateTimeString().'.pdf';
+        return $pdf->setPaper('letter', 'landscape')->stream($name);
     }
 
     public function getTable($id)
