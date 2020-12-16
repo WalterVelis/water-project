@@ -13,6 +13,8 @@ class Format extends Model
     const STATUS_QUOTED = 4;
     const STATUS_NEGOTIATION = 5;
     const STATUS_ADVANCE = 6;
+    const STATUS_ACEPTED = 7;
+    const STATUS_DECLINED = 8;
 
     /**
      * Return list of status codes and labels
@@ -29,6 +31,8 @@ class Format extends Model
             self::STATUS_QUOTED => 'Cotizado',
             self::STATUS_NEGOTIATION => 'Negociación',
             self::STATUS_ADVANCE => 'Anticipo',
+            self::STATUS_ACEPTED => 'Aceptado',
+            self::STATUS_DECLINED => 'Rechazado',
         ];
     }
 /**

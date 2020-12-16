@@ -65,17 +65,17 @@ form .col-12 {
                                     <li class="nav-item active">
                                         <a class="nav-link" href="{{ route('projects.edit', $format) }}">{{ __('Needs Diagnosis') }} <span class="sr-only">(current)</span></a>
                                     </li>
-                                    <li class="nav-item {{ $format->internal_status >= 0 && $format->internal_status != 2 ? "c-enabled" : "" }}">
+                                    <li class="nav-item {{ $format->internal_status >= 0 ? "c-enabled" : "" }}">
                                         <a class="nav-link" href="{{ $format->internal_status >= 0 ? route('techformat.edit', $format) : "#" }}">{{ __('Technical Lift') }}</a>
                                     </li>
                                     <li class="nav-item {{ $format->internal_status >= 1 && $format->internal_status != 2 ? "c-enabled" : "" }}">
                                         <a class="nav-link" href="{{ $format->internal_status >= 1 ? "/quotation/$format->id/edit" : "#" }}">{{ __('Quotation') }}</a>
                                     </li>
-                                    <li class="nav-item {{ $format->internal_status >= 5 && $format->internal_status != 2 ? "c-enabled" : "" }}">
-                                        <a class="nav-link" href="{{ $format->internal_status >= 5 ? "/order/$format->id/edit" : "#" }}">{{ __('Purchase Order') }}</a>
+                                    <li class="nav-item {{ $format->internal_status == 6 ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status == 6 ? "/order/$format->id/edit" : "#" }}">{{ __('Purchase Order') }}</a>
                                     </li>
                                     <li class="nav-item {{ $format->internal_status >= 0 ? "c-enabled" : "" }}">
-                                        <a class="nav-link" href="{{ $format->internal_status >= 1 ? "/assignment/$format->id/edit" : "#" }}">{{ __('Assignment') }}</a>
+                                        <a class="nav-link" href="{{ $format->internal_status >= 0 ? "/assignment/$format->id/edit" : "#" }}">{{ __('Assignment') }}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -469,7 +469,7 @@ form .col-12 {
                                         <input class="@if (App\User::hasPermissions("Tecnico")) i-enabled @endif form-control" id="rainwater_area" name="rainwater_area" type="number" value="{{ $format->rainwater_area }}" />
                                     </div>
                                     <div class="col-md-6">
-                                        <label style="    margin-left: 0px!important;" class="c_label col-12 col-form-label">{{ __('Volumen requerido') }}</label>
+                                        <label style="    margin-left: 0px!important;" class="c_label col-12 col-form-label">{{ __('Volumen de almacenamiento (CISTERNA)') }}</label>
                                         <input readonly disabled class="form-control" id="storage" type="text" placeholder="[m3]" value="" />
                                     </div>
                                 </div>
@@ -528,6 +528,9 @@ form .col-12 {
                                     <div class="col-sm-12">
                                         <input {{ $format->status == 3 ? 'checked' : '' }} class="d-inline mt-3" name="factible" type="radio" value="0" id="is_factible" /> <label class="mr-3" for="is_factible">Es factible</label>
                                         <input {{ $format->status == 2 ? 'checked' : '' }} class="d-inline" name="factible" type="radio" value="1" id="is_not_factible" /> <label for="is_not_factible">No es factible</label>
+                                    </div>
+                                    <div id="feasible" class="col-12 col-md-12 mt-0" style="{{ $format->status == 2 ? "" : "display:none;" }}">
+                                        <input name="why_not_feasible" type="text" class="form-control" placeholder="¿Por qué?" value="{{ $format->why_not_feasible }}">
                                     </div>
                                 </div>
                             </div>
@@ -850,6 +853,16 @@ function sendAdmin() {
     $('#form-update').submit();
 
 }
+
+$('input:radio[name="factible"]').change(
+    function(){
+        if ($(this).val() == 1) {
+            // no factible
+            $('#feasible').fadeIn();
+        } else {
+            $('#feasible').fadeOut();
+        }
+});
 
 </script>
 

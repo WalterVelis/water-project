@@ -358,6 +358,7 @@ class ProjectController extends Controller
         $format->auth_entity_id = $request->auth_entity_id;
         $format->implementation_date = $request->implementation_date;
         $format->notes = $request->notes;
+        $format->why_not_feasible = $request->why_not_feasible;
         $format->updated_by = Auth::id();
         $format->status = $status;
         $format->internal_status = $internalStatus;

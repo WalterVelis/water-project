@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\AccesoryFormat;
 use App\TechFormat;
 use App\Material;
 use App\AccesoryUrban;
+use App\CostFormat;
 use App\CostsCenter;
 use App\Entity;
 use App\Format;
@@ -59,6 +61,14 @@ class TechFormatController extends Controller
     }
 
 
+    public function getKitPdf($id) {
+
+        $kit = AccesoryFormat::with('accesory')->where('format_id', $id)->get();
+        $pdf =  PDF::loadView('layouts.pdf.techKit', compact('kit'));
+        $name = Carbon::now()->toDateTimeString().'.pdf';
+        return $pdf->setPaper('letter', 'portrait')->download($name);
+    }
+
     public function genPdf($id)
     {
         $entities[0] = Entity::where(['project_id' => $id, 'entity_type' => 0])->get();
@@ -96,11 +106,19 @@ class TechFormatController extends Controller
     public function update(Request $request, $id)
     {
 
-        // dd($request->status);
+        $water_quality = "";
+        $roof_type = "";
+        $rooftop = "";
 
-        $water_quality = implode(",",$request->water_quality);
-        $roof_type = implode(",",$request->roof_type);
-        $rooftop = implode(",",$request->rooftop);
+        if($request->water_quality != null)
+            $water_quality = implode(",",$request->water_quality);
+
+        if($request->roof_type != null)
+            $roof_type = implode(",",$request->roof_type);
+
+        if($request->rooftop != null)
+            $rooftop = implode(",",$request->rooftop);
+
         $techFormat = TechFormat::find($id);
         $techFormat->water_quality = $water_quality;
         $techFormat->roof_type = $roof_type;
@@ -139,7 +157,17 @@ class TechFormatController extends Controller
             // Mail::to([$data->vendor->email, $data->admin->email])->send(new TechFormatNotification($data));
         }
 
+
+        $status = 1;
+        if($request->factible) {
+            $status = 2;
+        } else if($request->factible === "0") {
+            $status = 3;
+        }
+
         $format = Format::find($id);
+        $format->status = $status;
+        $format->why_not_feasible = $request->why_not_feasible;
         // dd($format);
         if($format->internal_status >= 2)
             $internalStatus = $format->internal_status;

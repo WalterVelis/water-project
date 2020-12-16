@@ -111,6 +111,10 @@ class QuotationController extends Controller
         $utility = Quotation::select('utility', 'indirect')->where('format_id', $id)->first();
         $allMaterials = $totalMaterial + $totalIU;
         // dd($quotation);
+
+        $pdf =  PDF::loadView('layouts.pdf.quotation', compact('quotation', 'escuela', 'costs', 'allMaterials', 'schoolCost', 'utility', 'materialUtility', 'costsUtility', 'totalManoDeObra', 'totalIU', 'totalMaterial', 'manoDeObra'));
+        $name = Carbon::now()->toDateTimeString().'.pdf';
+        return $pdf->setPaper('letter', 'landscape')->stream($name);
         return view('quotation._table', compact('quotation', 'escuela', 'costs', 'allMaterials', 'schoolCost', 'utility', 'materialUtility', 'costsUtility', 'totalManoDeObra', 'totalIU', 'totalMaterial', 'manoDeObra'));
     }
 
@@ -147,9 +151,6 @@ class QuotationController extends Controller
         $allMaterials = $totalMaterial + $totalIU;
         // dd($quotation);
 
-        $pdf =  PDF::loadView('layouts.pdf.quotation', compact('quotation', 'escuela', 'costs', 'allMaterials', 'schoolCost', 'utility', 'materialUtility', 'costsUtility', 'totalManoDeObra', 'totalIU', 'totalMaterial', 'manoDeObra'));
-        $name = Carbon::now()->toDateTimeString().'.pdf';
-        return $pdf->setPaper('letter', 'landscape')->stream($name);
         return view('quotation._table', compact('quotation', 'escuela', 'costs', 'allMaterials', 'schoolCost', 'utility', 'materialUtility', 'costsUtility', 'totalManoDeObra', 'totalIU', 'totalMaterial', 'manoDeObra'));
     }
 

@@ -81,17 +81,17 @@
                                     <li class="nav-item {{ $format->internal_status >= 0 ? "c-enabled" : "" }}">
                                         <a class="nav-link" href="{{ $format->internal_status >= 0 ? route('projects.edit', $format) : "#" }}">{{ __('Needs Diagnosis') }}</a>
                                     </li>
-                                    <li class="nav-item  {{ $format->internal_status >= 0 ? "c-enabled" : "" }}">
-                                        <a class="nav-link" href="{{ $format->internal_status >= 0 ? route('techformat.edit', $format) : "#" }}">{{ __('Technical Lift') }}</a>
+                                    <li class="nav-item  {{ $format->internal_status >= 1 ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status >= 1 ? route('techformat.edit', $format) : "#" }}">{{ __('Technical Lift') }}</a>
                                     </li>
-                                    <li class="nav-item active {{ $format->internal_status >= 1 ? "c-enabled" : "" }}">
-                                        <a class="nav-link" href="{{ $format->internal_status >= 1 ? "/quotation/$format->id/edit" : "#" }}">{{ __('Quotation') }}</a>
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="{{ $format->internal_status >= 1 && $format->internal_status != 2 ? "/quotation/$format->id/edit" : "#" }}">{{ __('Quotation') }}</a>
                                     </li>
-                                    <li class="nav-item {{ $format->internal_status >= 5 ? "c-enabled" : "" }}">
-                                        <a class="nav-link" href="{{ $format->internal_status >= 5 ? "/order/$format->id/edit" : "#" }}">{{ __('Purchase Order') }}</a>
+                                    <li class="nav-item {{ $format->internal_status == 6 ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status == 6 ? "/order/$format->id/edit" : "#" }}">{{ __('Purchase Order') }}</a>
                                     </li>
-                                    <li class="nav-item {{ $format->internal_status >= 1 ? "c-enabled" : "" }}">
-                                        <a class="nav-link" href="{{ $format->internal_status >= 1 ? "/assignment/$format->id/edit" : "#" }}">{{ __('Assignment') }}</a>
+                                    <li class="nav-item {{ $format->internal_status >= 0 ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status >= 0 ? "/assignment/$format->id/edit" : "#" }}">{{ __('Assignment') }}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -300,6 +300,12 @@ function loadTable() {
 }
 
 loadTable();
-</script>
 
+@if($format->status == 4)
+    $('input, select').attr('readonly', 'true');
+    $('input, select').attr('disabled', 'true');
+@endif
+
+</script>
+@dump($format->internal_status)
 @endpush

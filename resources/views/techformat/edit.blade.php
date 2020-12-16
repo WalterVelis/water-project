@@ -98,20 +98,20 @@ form .col-12 {
                             </button>
                             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                                 <ul class="navbar-nav" style="">
-                                    <li class="nav-item {{ $format->internal_status >= 0 ? "c-enabled" : "" }}">
-                                        <a class="nav-link" href="{{ $format->internal_status >= 0 ? route('projects.edit', $format) : "#" }}">{{ __('Needs Diagnosis') }}</a>
+                                    <li class="nav-item c-enabled">
+                                        <a class="nav-link" href="{{ route('projects.edit', $format) }}">{{ __('Needs Diagnosis') }} <span class="sr-only">(current)</span></a>
                                     </li>
                                     <li class="nav-item active {{ $format->internal_status >= 0 ? "c-enabled" : "" }}">
                                         <a class="nav-link" href="{{ $format->internal_status >= 0 ? route('techformat.edit', $format) : "#" }}">{{ __('Technical Lift') }}</a>
                                     </li>
-                                    <li class="nav-item {{ $format->internal_status >= 1 ? "c-enabled" : "" }}">
-                                        <a class="nav-link" href="{{ $format->internal_status >= 1 ? "/quotation/$format->id/edit" : "#" }}">{{ __('Quotation') }}</a>
+                                    <li class="nav-item {{ $format->internal_status >= 1 && $format->internal_status != 2 ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status >= 1 && $format->internal_status != 2  ? "/quotation/$format->id/edit" : "#" }}">{{ __('Quotation') }}</a>
                                     </li>
-                                    <li class="nav-item {{ $format->internal_status >= 5 ? "c-enabled" : "" }}">
-                                        <a class="nav-link" href="{{ $format->internal_status >= 5 ? "/order/$format->id/edit" : "#" }}">{{ __('Purchase Order') }}</a>
+                                    <li class="nav-item {{ $format->internal_status == 6 ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status == 6 ? "/order/$format->id/edit" : "#" }}">{{ __('Purchase Order') }}</a>
                                     </li>
-                                    <li class="nav-item {{ $format->internal_status >= 1 ? "c-enabled" : "" }}">
-                                        <a class="nav-link" href="{{ $format->internal_status >= 1 ? "/assignment/$format->id/edit" : "#" }}">{{ __('Assignment') }}</a>
+                                    <li class="nav-item {{ $format->internal_status >= 0 ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status >= 0 ? "/assignment/$format->id/edit" : "#" }}">{{ __('Assignment') }}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -492,6 +492,16 @@ form .col-12 {
                                                     <input required class="form-control" id="" name="description" type="text" value="{{ $techFormat->description }}" />
                                                 </div>
                                             </div>
+                                            <div class="col-12 col-md-6 mt-3">
+                                                <label class="c_label col-12 col-form-label">{{ __('¿Es factible?') }}</label>
+                                                <div class="col-sm-12">
+                                                    <input {{ $format->status == 3 ? 'checked' : '' }} class="d-inline mt-3" name="factible" type="radio" value="0" id="is_factible" /> <label class="mr-3" for="is_factible">Es factible</label>
+                                                    <input {{ $format->status == 2 ? 'checked' : '' }} class="d-inline" name="factible" type="radio" value="1" id="is_not_factible" /> <label for="is_not_factible">No es factible</label>
+                                                </div>
+                                                <div id="feasible" class="col-12 col-md-12 mt-0" style="{{ $format->status == 2 ? "" : "display:none;" }}">
+                                                    <input name="why_not_feasible" type="text" class="form-control" placeholder="¿Por qué?" value="{{ $format->why_not_feasible }}">
+                                                </div>
+                                            </div>
                                             <div class="row w-100">
                                                 <div class="col-12 col-md-8">
                                                 </div>
@@ -513,6 +523,11 @@ form .col-12 {
                             </div>
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                 <div class="card-body bg-white">
+                                    <a href="/getMO/{{ $format->id }}">
+                                        <button class=" d-inline" style="    position: absolute; right: 0px;background: none; border: none; font-size: 1.5em;    width: 90px;" type="button">
+                                            <i class="fa fa-download" aria-hidden="true"></i>
+                                        </button>
+                                    </a>
                                     <form action="" id="form-costformat">
                                         @csrf
                                         <div class="row">
@@ -527,7 +542,7 @@ form .col-12 {
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-2">
                                                 <button type="button" onclick="addCost()" class="btn btn-primary">Agregar</button>
                                             </div>
                                         </div>
@@ -571,6 +586,11 @@ form .col-12 {
                             </div>
                             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                                 <div class="card-body bg-white">
+                                    <a href="/getKit/{{ $format->id }}">
+                                        <button class=" d-inline" style="    position: absolute; right: 0px;background: none; border: none; font-size: 1.5em;    width: 90px;" type="button">
+                                            <i class="fa fa-download" aria-hidden="true"></i>
+                                        </button>
+                                    </a>
                                     <form action="" id="form-accesoryformat">
                                         @csrf
                                         <div class="row">
@@ -585,7 +605,7 @@ form .col-12 {
                                                 <input required type="text" name="qty" class="form-control" placeholder="Piezas" required>
                                                 <input required type="hidden" name="format_id" class="form-control" value="{{ $techFormat->id }}" required>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-2">
                                                 <button type="button" onclick="addAccesory()" class="btn btn-primary">Agregar</button>
                                             </div>
                                         </div>
@@ -852,7 +872,21 @@ $(function() {
     $('#water_consuption').val(rtotal + " m3");
 });
 
+@if($format->status == 4)
+    $('input, select').attr('readonly', 'true');
+    $('input, select').attr('disabled', 'true');
+@endif
 
+
+$('input:radio[name="factible"]').change(
+    function(){
+        if ($(this).val() == 1) {
+            // no factible
+            $('#feasible').fadeIn();
+        } else {
+            $('#feasible').fadeOut();
+        }
+});
 
 
 </script>

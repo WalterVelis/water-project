@@ -51,7 +51,7 @@
                     <th>Piezas</th>
                     <th style="width:5%;">Costo Unitario</th>
                     <th>Costo (sin IVA)</th>
-                    <th  style="width:5%;">Descuento</th>
+                    <th  style="width:5%;">Descuento (%)</th>
                     <th>Costo con descuento</th>
                     <th>Total</th>
                     <th>Observaciones</th>
