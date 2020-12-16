@@ -157,6 +157,15 @@
 </style>
 
 <style>
+
+    /* footer {
+    position: absolute;
+    bottom: -15px;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    } */
+
   .loaderSpinnerLogin {
     border: 16px solid #f3f3f3;
     border-radius: 50%;
@@ -192,6 +201,9 @@
         @else
             @include('layouts.page_templates.guest')
         @endif
+{{-- @include('layouts.footers.auth') --}}
+
+
         <!--   Core JS Files   -->
         <script src="{{ asset('material') }}/js/core/jquery.min.js"></script>
         <script src="{{ asset('material') }}/js/core/popper.min.js"></script>

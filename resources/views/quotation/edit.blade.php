@@ -2,6 +2,10 @@
 <style>
     /* PDF, CSV, XLS */
     /* 11:00 */
+
+    form label, .col-form-label {
+    font-size: 15px!important;
+}
     .form-check .form-check-label {
         padding-right: 0px!important;
     }
@@ -77,14 +81,14 @@
                                     <li class="nav-item {{ $format->internal_status >= 0 ? "c-enabled" : "" }}">
                                         <a class="nav-link" href="{{ $format->internal_status >= 0 ? route('projects.edit', $format) : "#" }}">{{ __('Needs Diagnosis') }}</a>
                                     </li>
-                                    <li class="nav-item  {{ $format->internal_status >= 1 ? "c-enabled" : "" }}">
-                                        <a class="nav-link" href="{{ $format->internal_status >= 1 ? route('techformat.edit', $format) : "#" }}">{{ __('Technical Lift') }}</a>
+                                    <li class="nav-item  {{ $format->internal_status >= 0 ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status >= 0 ? route('techformat.edit', $format) : "#" }}">{{ __('Technical Lift') }}</a>
                                     </li>
-                                    <li class="nav-item active {{ $format->internal_status >= 2 ? "c-enabled" : "" }}">
-                                        <a class="nav-link" href="{{ $format->internal_status >= 2 ? "/quotation/$format->id/edit" : "#" }}">{{ __('Quotation') }}</a>
+                                    <li class="nav-item active {{ $format->internal_status >= 1 ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status >= 1 ? "/quotation/$format->id/edit" : "#" }}">{{ __('Quotation') }}</a>
                                     </li>
-                                    <li class="nav-item {{ $format->internal_status >= 3 ? "c-enabled" : "" }}">
-                                        <a class="nav-link" href="{{ $format->internal_status >= 3 ? "/order/$format->id/edit" : "#" }}">{{ __('Purchase Order') }}</a>
+                                    <li class="nav-item {{ $format->internal_status >= 5 ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status >= 5 ? "/order/$format->id/edit" : "#" }}">{{ __('Purchase Order') }}</a>
                                     </li>
                                     <li class="nav-item {{ $format->internal_status >= 1 ? "c-enabled" : "" }}">
                                         <a class="nav-link" href="{{ $format->internal_status >= 1 ? "/assignment/$format->id/edit" : "#" }}">{{ __('Assignment') }}</a>

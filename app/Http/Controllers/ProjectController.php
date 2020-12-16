@@ -142,6 +142,7 @@ class ProjectController extends Controller
         $format->created_by = Auth::id();
         $format->updated_by = Auth::id();
         $format->status = 0;
+        $format->internal_status = 0;
         $format->tech_assigned = 1;
         $format->vendor_assigned = Auth::id();
         $format->admin_assigned = 1;
@@ -284,8 +285,15 @@ class ProjectController extends Controller
         }
         // dump($status);
         //validar que implode tenga valor
-        $water_quality = implode(",",$request->water_quality);
-        $roof_type = implode(",",$request->roof_type);
+        // dd($request->water_quality);
+        $water_quality = "";
+        $roof_type = "";
+        if($request->water_quality != null) {
+            $water_quality = implode(",",$request->water_quality);
+        }
+        if($request->roof_type != null) {
+            $roof_type = implode(",",$request->roof_type);
+        }
 
         // If is an Mexico's State's ID, find the name
         if (is_numeric($request->state)) {
@@ -308,6 +316,13 @@ class ProjectController extends Controller
         $format = Format::find($id);
         if($format->internal_status >= 1)
             $internalStatus = $format->internal_status;
+            // si no es factible en status, tampoco es factible en internal
+        // dump($status);
+        if($status == 2)
+            $internalStatus = 2;
+        if($status == 3)
+            $internalStatus = 1;
+
         $format->date = $request->date;
         $format->client = $request->client;
         $format->main_contact = $request->main_contact;
@@ -349,7 +364,7 @@ class ProjectController extends Controller
 
 
 
-        if($request->sendMail) {
+        if($request->sendMail && $internalStatus != 2) {
 
             //admin
             $format->admin_assigned = Auth::id();

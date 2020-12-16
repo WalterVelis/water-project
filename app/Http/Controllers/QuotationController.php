@@ -74,12 +74,44 @@ class QuotationController extends Controller
 
     public function genPdf($id)
     {
-        $format = Format::with('vendor')->find($id);
-        $quotation = Quotation::where('format_id', $id)->first();
-        $subQuotation = QuotationFormat::where('format_id', $id)->get();
+        // $format = Format::with('vendor')->find($id);
+        // $quotation = Quotation::where('format_id', $id)->first();
+        // $subQuotation = QuotationFormat::where('format_id', $id)->get();
         $pdf =  PDF::loadView('layouts.pdf.quotation', compact('format', 'quotation', 'subQuotation'));
         $name = Carbon::now()->toDateTimeString().'.pdf';
         return $pdf->setPaper('letter', 'landscape')->stream($name);
+
+        $manoDeObra = CostFormat::with('costs')->where(['format_id' => $id])->get();
+        $material = MaterialProviderFormat::whereHas('providers', function($query) use ($id) { $query->where('format_id', $id);})->where(['format_id' => $id])->get();
+        $totalMaterial = 0;
+        $totalIU = 0;
+        $totalManoDeObra = 0;
+        foreach($material as $m) {
+            $totalMaterial += $m->qty * $m->cost;
+        }
+
+        // dd($manoDeObra);
+        foreach($manoDeObra as $mo) {
+            $totalManoDeObra += $mo->day * $mo->cost;
+        }
+        $materialUtility = MaterialUtility::whereFormat_id($id)->first();
+        $costsUtility = CostsUtility::whereFormat_id($id)->first();
+        $schoolCost = SchoolCost::where('format_id', $id)->first();
+        $escuela = Format::select(['has_educational_programs', 'children'])->where('id', $id)->first();
+        $costs = CostFormat::where('format_id', $id)->sum('cost');
+        $accesoriesTotal = AccesoryFormat::where('format_id', $id)->get();
+        foreach($accesoriesTotal as $at) {
+            $totalIU += (($at->cost - ($at->cost * ($at->discount * 0.01))) * $at->qty);
+        }
+        // dd($totalIU);
+        // $accesoryQty = AccesoryFormat::with('')
+        // $materialsTotal = MaterialFormat::with('materials.providers')->where('format_id', $id)->get();
+        // dd($materialsTotal);
+        $quotation = QuotationFormat::where('format_id', $id)->get();
+        $utility = Quotation::select('utility', 'indirect')->where('format_id', $id)->first();
+        $allMaterials = $totalMaterial + $totalIU;
+        // dd($quotation);
+        return view('quotation._table', compact('quotation', 'escuela', 'costs', 'allMaterials', 'schoolCost', 'utility', 'materialUtility', 'costsUtility', 'totalManoDeObra', 'totalIU', 'totalMaterial', 'manoDeObra'));
     }
 
     public function getTable($id)
@@ -114,6 +146,10 @@ class QuotationController extends Controller
         $utility = Quotation::select('utility', 'indirect')->where('format_id', $id)->first();
         $allMaterials = $totalMaterial + $totalIU;
         // dd($quotation);
+
+        $pdf =  PDF::loadView('layouts.pdf.quotation', compact('quotation', 'escuela', 'costs', 'allMaterials', 'schoolCost', 'utility', 'materialUtility', 'costsUtility', 'totalManoDeObra', 'totalIU', 'totalMaterial', 'manoDeObra'));
+        $name = Carbon::now()->toDateTimeString().'.pdf';
+        return $pdf->setPaper('letter', 'landscape')->stream($name);
         return view('quotation._table', compact('quotation', 'escuela', 'costs', 'allMaterials', 'schoolCost', 'utility', 'materialUtility', 'costsUtility', 'totalManoDeObra', 'totalIU', 'totalMaterial', 'manoDeObra'));
     }
 

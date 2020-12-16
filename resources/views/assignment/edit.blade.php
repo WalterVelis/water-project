@@ -73,13 +73,13 @@
                                         <li class="nav-item {{ $assignmentData->internal_status >= 0 ? "c-enabled" : "" }}">
                                             <a class="nav-link" href="{{ $assignmentData->internal_status >= 0 ? route('projects.edit', $assignmentData) : "#" }}">{{ __('Needs Diagnosis') }}</a>
                                         </li>
-                                        <li class="nav-item  {{ $assignmentData->internal_status >= 1 ? "c-enabled" : "" }}">
-                                            <a class="nav-link" href="{{ $assignmentData->internal_status >= 1 ? route('techformat.edit', $assignmentData) : "#" }}">{{ __('Technical Lift') }}</a>
+                                        <li class="nav-item  {{ $assignmentData->internal_status >= 0 && $assignmentData->internal_status != 2 ? "c-enabled" : "" }}">
+                                            <a class="nav-link" href="{{ $assignmentData->internal_status >= 0 ? route('techformat.edit', $assignmentData) : "#" }}">{{ __('Technical Lift') }}</a>
                                         </li>
-                                        <li class="nav-item  {{ $assignmentData->internal_status >= 2 ? "c-enabled" : "" }}">
-                                            <a class="nav-link" href="{{ $assignmentData->internal_status >= 2 ? "/quotation/$assignmentData->id/edit" : "#" }}">{{ __('Quotation') }}</a>
+                                        <li class="nav-item  {{ $assignmentData->internal_status >= 1 && $assignmentData->internal_status != 2 ? "c-enabled" : "" }}">
+                                            <a class="nav-link" href="{{ $assignmentData->internal_status >= 1 ? "/quotation/$assignmentData->id/edit" : "#" }}">{{ __('Quotation') }}</a>
                                         </li>
-                                        <li class="nav-item {{ $assignmentData->internal_status >= 3 ? "c-enabled" : "" }}">
+                                        <li class="nav-item {{ $assignmentData->internal_status >= 3 && $assignmentData->internal_status != 2 ? "c-enabled" : "" }}">
                                             <a class="nav-link" href="{{ $assignmentData->internal_status >= 3 ? "/order/$assignmentData->id/edit" : "#" }}">{{ __('Purchase Order') }}</a>
                                         </li>
                                         <li class="nav-item active {{ $assignmentData->internal_status >= 1 ? "c-enabled" : "" }}">
