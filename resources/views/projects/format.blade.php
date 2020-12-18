@@ -233,7 +233,7 @@ form .col-12 {
                                     <label class="c_label col-12 col-form-label">{{ __('Country') }}</label>
                                     <div class="col-sm-12">
                                         <select class="country form-control" name="country">
-                                            {{-- <option selected value="142"> México </option> --}}
+                                            <option selected value="142"> México </option>
                                             @foreach($countries as $item)
                                             <option value="{{ $item->id }}"> {{ $item->name }} </option>
                                             @endforeach
@@ -688,6 +688,8 @@ $('.country').on('change', function() {
         );
     }
 });
+
+$('#state').load('/states');
 
 $('.structure').on('change', function() {
     if ($(this).val() == 0)

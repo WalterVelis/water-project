@@ -2,7 +2,7 @@
 <style>
     .table thead tr.c-2 th {
         font-size: 0.9rem;
-        background: #efefef!important;
+        background: #fafafa!important;
         color: black;
         padding: 2px 4px!important;
         font-weight: bold;
@@ -61,30 +61,40 @@
     </div>
 </div>
 
-
 <div class="row">
     <div class="col-12">
         <div class="row t-head d-flex justify-content-around" style="background: #bacfda;">
-            <span>ID</span>
-            <span>Material</span>
-            <span>Unidad</span>
-            <span>Cantidad</span>
-            <span>Tipo de material</span>
+            <div style="padding: 4px 8px;width: 16.6%">ID</div>
+            <div style="padding: 4px 8px;width: 16.6%">Material</div>
+            <div style="padding: 4px 8px;width: 16.6%">Unidad</div>
+            <div style="padding: 4px 8px;width: 16.6%">Cantidad</div>
+            <div style="padding: 4px 8px;width: 16.6%">Tipo de material</div>
+            <div style="padding: 4px 8px;width: 16.6%">Total</div>
         </div>
+        @php($total = 0)
         @foreach($project_materials as $item)
         {{-- @foreach($materialProvider[$item->id] as $mp) --}}
         {{-- @dd($project_materials) --}}
         {{-- @endforeach --}}
+
         @php($currentId = $item->id)
+
         @foreach($item->materials->providers as $mProvider)
-        {{-- @dump($mProvider->materialProvider) --}}
         @endforeach
+
+
+
+
+
+
+
             <div class="row mt-3 d-flex justify-content-around" style="    background: #fafafa; padding-top: 10px; padding-bottom: 10px;">
-                <div style="cursor: pointer;    margin-top: -8px;" onclick="showTable({{ $item->id }})">{{ $item->id }} <div class="d-inline-block" style="transform: translateY(8px);"><i class="material-icons">arrow_drop_down</i></div></div>
-                <div>{{ $item->materials->name }}</div>
-                <div>{{ $item->materials->unitLabel() }}</div>
-                <div>{{ $item->qty }}</div>
-                <div>{{ $item->materials->type }}</div>
+                <div style="cursor: pointer;padding-left: 12px;width: 16.6%;margin-top: -8px;" onclick="showTable({{ $item->id }})">{{ $item->id }} <div class="d-inline-block" style="transform: translateY(8px);"><i class="material-icons">arrow_drop_down</i></div></div>
+                <div style="padding: 4px 8px;width: 16.6%">{{ $item->materials->name }}</div>
+                <div  style="padding: 4px 8px;width: 16.6%">{{ $item->materials->unitLabel() }}</div>
+                <div  style="padding: 4px 8px;width: 16.6%">{{ $item->qty }}</div>
+                <div  style="padding: 4px 8px;width: 16.6%">{{ $item->materials->type }}</div>
+                <div  style="padding: 4px 8px;width: 16.6%" id="total-{{ $item->id }}">$0.00</div>
             </div>
             <div id="t-{{ $item->id }}" style="display: none" class="mt-2 mb-4">
 
@@ -99,28 +109,46 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @php($total = 0)
-
+                        @php($subtotal = 0)
                         @foreach($materialProvider[$item->material_id] as $mp)
                         @if($mp->qty <= 0)
                             @continue
                         @endif
-                            @php($total += $mp->qty * $mp->unit_cost)
+
+                        @if($mp->materialProvider)
+                            @php($nq = $mp->materialProvider->qty)
+                        @endif
+
                             <tr>
                                 <td scope="row">{{ $mp->provider->contact_name }}</td>
                                 <td>{{ $mp->qty }}</td>
-                                <td>{{ Helper::formatMoney($mp->unit_cost) }}</td>
+                                {{-- @if($mp->materialProvider) --}}
+                                {{-- @php($uc = $mp->materialProvider->unit_cost) --}}
+                                {{-- @else --}}
+                                @php($uc = $mp->unit_cost)
+                                {{-- @endif --}}
+                                <td style="text-align:right;">{{ Helper::formatMoney($uc) }}</td>
                                 <td>
                                     @if($mp->materialProvider)
                                         <input max="{{ $mp->qty }}" class="total-item-{{ $currentId }} form-control data-material" data-id="{{ $mp->id }}" type="number" value="{{ $mp->materialProvider->qty }}">
+                                        @php($tqty = $mp->materialProvider->qty)
                                     @else
                                         <input max="{{ $mp->qty }}" class="total-item-{{ $currentId }} form-control data-material" data-id="{{ $mp->id }}" type="number" value="0">
+                                        @php($tqty = 0)
                                     @endif
                                 </td>
-                                <td>{{ Helper::formatMoney($mp->qty * $mp->unit_cost) }}</td>
+                                @php($subtotal += $tqty  * $mp->unit_cost)
+
+                                @php($total += $subtotal)
+                                <td style="text-align:right;">{{ Helper::formatMoney($tqty * $mp->unit_cost) }}</td>
                             </tr>
+
                         @endforeach
+                            {{-- @dump($subtotal) --}}
                         <script>
+
+                            $('#total-{{ $item->id }}').html("{{ Helper::formatMoney($subtotal) }}");
+
                             $('.total-item-{{ $currentId }}').on('change keyup', () => {
                                 total = parseFloat(0.00);
                                 $('.total-item-{{ $currentId }}').each(function() {

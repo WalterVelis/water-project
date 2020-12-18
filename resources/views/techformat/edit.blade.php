@@ -563,12 +563,12 @@ form .col-12 {
                                             <div class="col-4">
                                                 <select name="material_id" id="" class="form-control">
                                                     @foreach($materials as $material)
-                                                        <option value="{{ $material->id }}">{{ $material->name }}, {{ $material->unit }}, {{ $material->type }}</option>
+                                                        <option value="{{ $material->id }}">{{ $material->name }}, {{ $material->unitLabel() }}, {{ $material->type }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="col-4">
-                                                <input required type="text" name="qty" class="form-control" placeholder="Cantidad" required>
+                                                <input required type="number" name="qty" class="form-control" placeholder="Cantidad" required>
                                                 <input required type="hidden" name="format_id" class="form-control" value="{{ $techFormat->id }}" required>
                                             </div>
                                             <div class="col-4">

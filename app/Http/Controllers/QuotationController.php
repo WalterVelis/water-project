@@ -74,9 +74,10 @@ class QuotationController extends Controller
 
     public function genPdf($id)
     {
-        // $format = Format::with('vendor')->find($id);
-        // $quotation = Quotation::where('format_id', $id)->first();
-        // $subQuotation = QuotationFormat::where('format_id', $id)->get();
+        $format = Format::with('vendor')->find($id);
+        $quotation = Quotation::where('format_id', $id)->first();
+        $subQuotation = QuotationFormat::where('format_id', $id)->get();
+        // return view('layouts.pdf.quotation', compact('format', 'quotation', 'subQuotation'));
         $pdf =  PDF::loadView('layouts.pdf.quotation', compact('format', 'quotation', 'subQuotation'));
         $name = Carbon::now()->toDateTimeString().'.pdf';
         return $pdf->setPaper('letter', 'landscape')->stream($name);

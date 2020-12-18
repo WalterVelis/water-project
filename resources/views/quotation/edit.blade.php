@@ -97,16 +97,17 @@
                             </div>
                         </div>
                     </nav>
-                    <a class="float-right" href="/getTech/">
-                        <button class=" d-inline" style="    position: absolute; right: 0px;background: none; border: none; font-size: 1.5em;    width: 90px;" type="button">
-                            <i class="fa fa-download" aria-hidden="true"></i>
-                        </button>
-                    </a>
+
                     <form action="{{ route('quotation.update', $quotation->format_id) }}" method="post" id="form-quotation">
                         @csrf
                         @method('put')
                         <input type="hidden" name="status" class="set-status" value="0">
                         <div class="card-body bg-white" style="max-height: 720px;overflow: scroll">
+                            <a class="float-right" href="/quotationPdf/{{ $format->id }}">
+                                <button class=" d-inline" style="    background: none; border: none; font-size: 1.5em;" type="button">
+                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                </button>
+                            </a>
                             <div class="row">
                                 <div class="col-12 col-md-4">
                                     <label class="c_label col-12 col-form-label">{{ __('Fecha de creación') }}</label>
@@ -145,9 +146,9 @@
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
-                                    <label class="c_label col-12 col-form-label">{{ __('Tiempo de entrega') }}</label>
+                                    <label class="c_label col-12 col-form-label">{{ __('Tiempo de entrega (días)') }}</label>
                                     <div class="col-sm-12">
-                                        <input required class="form-control" id="" name="delivery" type="text" value="{{ $quotation->delivery }}" />
+                                        <input required class="form-control" id="" name="delivery" type="number" value="{{ $quotation->delivery }}" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-8">
@@ -217,10 +218,10 @@
                             </div>
                         </div>
                     </form>
-                    <div class="float-right mb-2 mt-2 mr-4">
-                        <span onclick="$('.q-details').toggle();" style="cursor: pointer;width:30px; height: 30px; border-radius:40px; font-weight:bold; background: #0b6696; color: white; display:inline-block;padding-left:5px;font-size:1.2em;padding-top:4px;">👁</span>
-                        <span onclick="$('#sendQuotation').hide();$('#applyUtility').show();" style="cursor: pointer;width:30px; height: 30px; border-radius:40px; font-weight:bold; background: #0b6696; color: white; display:inline-block;padding-left:8px;font-size:1.2em;padding-top:5px;">%</span>
-                        <span onclick="$('#sendQuotation').show();$('#applyUtility').hide();" style="cursor: pointer;width:30px; height: 30px; border-radius:40px; font-weight:bold; background: #0b6696; color: white; display:inline-block;padding-left:10px;font-size:1.2em;padding-top:5px;">+</span>
+                    <div style="text-align: right;" class="mb-2 mt-2 mr-4">
+                        <span onclick="$('.q-details').toggle();" style="    text-align: left;cursor: pointer;width:30px; height: 30px; border-radius:40px; font-weight:bold; background: #0b6696; color: white; display:inline-block;padding-left:5px;font-size:1.2em;padding-top:4px;">👁</span>
+                        <span onclick="$('#sendQuotation').hide();$('#applyUtility').show();" style="    text-align: left;cursor: pointer;width:30px; height: 30px; border-radius:40px; font-weight:bold; background: #0b6696; color: white; display:inline-block;padding-left:8px;font-size:1.2em;padding-top:5px;">%</span>
+                        <span onclick="$('#sendQuotation').show();$('#applyUtility').hide();" style="    text-align: left;cursor: pointer;width:30px; height: 30px; border-radius:40px; font-weight:bold; background: #0b6696; color: white; display:inline-block;padding-left:10px;font-size:1.2em;padding-top:5px;">+</span>
                     </div>
                     <div class="container mt-4" id="q-table">
 

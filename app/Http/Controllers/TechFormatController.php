@@ -66,7 +66,7 @@ class TechFormatController extends Controller
         $kit = AccesoryFormat::with('accesory')->where('format_id', $id)->get();
         $pdf =  PDF::loadView('layouts.pdf.techKit', compact('kit'));
         $name = Carbon::now()->toDateTimeString().'.pdf';
-        return $pdf->setPaper('letter', 'portrait')->download($name);
+        return $pdf->setPaper('letter', 'landscape')->download($name);
     }
 
     public function genPdf($id)
