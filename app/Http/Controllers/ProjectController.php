@@ -32,7 +32,7 @@ class ProjectController extends Controller
             // return view('projects.index', compact('projects'));
         }
 
-        if(User::hasPermissions("Tecnico")){
+        if(User::hasPermissions("Tech")){
             // $format = Format::where('tech_assigned');
             // $countries = Country::all();
             // return view('projects.format', compact('countries', 'format'));
@@ -67,7 +67,7 @@ class ProjectController extends Controller
             return view('projects.index', compact('projects'));
         }
 
-        if(User::hasPermissions("Tecnico")){
+        if(User::hasPermissions("Tech")){
             // $format = Format::where('tech_assigned');
             // $countries = Country::all();
             // return view('projects.format', compact('countries', 'format'));
@@ -257,6 +257,18 @@ class ProjectController extends Controller
     public function edit($id)
     {
         $admins = User::whereRole_id('1')->get();
+
+        if(User::hasPermissions("Vendor")){
+            $format = Format::find($id)->where('created_by', Auth::id())->get();
+        }
+
+        if(User::hasPermissions("Tech")){
+            $format = Format::find($id)->where('tech_assigned', Auth::id())->orWhere('created_by', Auth::id())->get();
+        }
+
+        if(User::hasPermissions("Admin")){
+            $format = Format::find($id)->all();
+        }
         $format = Format::find($id);
         $countries = Country::all();
         return view('projects.format', compact('countries', 'format', 'admins'));

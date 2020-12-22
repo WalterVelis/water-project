@@ -186,6 +186,10 @@
     margin-right: auto;
     } */
 
+    .form-control[disabled], fieldset[disabled] .form-control, .form-group .form-control[disabled], fieldset[disabled] .form-group .form-control {
+        opacity: 0.45;
+    }
+
   .loaderSpinnerLogin {
     border: 16px solid #f3f3f3;
     border-radius: 50%;

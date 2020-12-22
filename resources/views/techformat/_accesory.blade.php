@@ -15,6 +15,8 @@
         text-align: center;
     }
 </style>
+@php($total = 0)
+@if (App\User::hasPermissions("Tech") || App\User::hasPermissions("Vendor"))
 <div class="row">
     <div class="col-8">
         <table class="table c-table">
@@ -23,7 +25,7 @@
                     <th>ID</th>
                     <th>Material</th>
                     <th>Cantidad</th>
-                    <th>Acciones</th>
+                    @if (!App\User::hasPermissions("Vendor"))<th>Acciones</th>@endif
                 </tr>
             </thead>
             <tbody>
@@ -32,15 +34,16 @@
                         <td scope="row">{{ $item->id }}</td>
                         <td>{{ $item->accesory->name }}</td>
                         <td>{{ $item->qty }}</td>
-                        <td><i data-toggle="tooltip" data-placement="top" title="Eliminar" class="fa fa-trash" aria-hidden="true" onclick="removeAccesory({{ $item->id }})"></i></td>
+                        @if (!App\User::hasPermissions("Vendor"))<td><i data-toggle="tooltip" data-placement="top" title="Eliminar" class="fa fa-trash" aria-hidden="true" onclick="removeAccesory({{ $item->id }})"></i></td>@endif
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
 </div>
+@endif
 
-
+@if (App\User::hasPermissions("Admin"))
 <div class="row">
     <div class="col-12">
         <table class="table c-table">
@@ -79,6 +82,7 @@
         </table>
     </div>
 </div>
+@endif
 
 <script>
     function removeAccesory(id) {
@@ -175,5 +179,8 @@
 
     $(function () {
         $('#total-accesory').html("{{ Helper::formatMoney($total) }}");
+        @if (!App\User::hasPermissions("Admin"))
+        $('#total-accesory').html("");
+        @endif
     });
 </script>

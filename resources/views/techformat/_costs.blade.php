@@ -15,6 +15,8 @@
         text-align: center;
     }
 </style>
+@php($total = 0)
+@if (App\User::hasPermissions("Tech") || App\User::hasPermissions("Vendor"))
 <div class="row">
     <div class="col-8">
         <table class="table c-table">
@@ -24,7 +26,7 @@
                     <th>Especialidad</th>
                     <th>Costo Unitario</th>
                     <th>Total</th>
-                    <th>Acciones</th>
+                    @if (!App\User::hasPermissions("Vendor"))<th>Acciones</th>@endif
                 </tr>
             </thead>
             <tbody>
@@ -34,14 +36,18 @@
                         <td>{{ $pc->costs->name }}</td>
                         <td>{{ Helper::formatMoney($pc->cost) }}</td>
                         <td>{{ Helper::formatMoney($pc->cost * $pc->day) }}</td>
-                        <td><i data-toggle="tooltip" data-placement="top" title="Eliminar" class="fa fa-trash" aria-hidden="true" onclick="removeCost({{ $pc->id }})"></i></td>
+                        @php($total += ($pc->cost * $pc->day))
+                        @if (!App\User::hasPermissions("Vendor"))<td><i data-toggle="tooltip" data-placement="top" title="Eliminar" class="fa fa-trash" aria-hidden="true" onclick="removeCost({{ $pc->id }})"></i></td>@endif
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
 </div>
+@endif
 
+@if (App\User::hasPermissions("Admin"))
+@php($total = 0)
 <div class="row">
     <div class="col-8">
         <table class="table c-table">
@@ -55,7 +61,7 @@
                 </tr>
             </thead>
             <tbody>
-                @php($total = 0)
+
                 @foreach($project_costs as $pc)
                     @php($total += ($pc->cost * $pc->day))
                     <tr>
@@ -70,7 +76,7 @@
         </table>
     </div>
 </div>
-
+@endif
 <script>
     function removeCost(id) {
         $.ajax({

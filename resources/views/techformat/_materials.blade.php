@@ -31,6 +31,8 @@
     }
 </style>
 {{-- @dd($project_materials) --}}
+@php($total = 0)
+@if (App\User::hasPermissions("Tech") || App\User::hasPermissions("Vendor"))
 <div class="row">
     <div class="col-8">
         <table class="table c-table">
@@ -41,7 +43,7 @@
                     <th>Unidad</th>
                     <th>Cantidad</th>
                     <th>Tipo de material</th>
-                    <th>Acciones</th>
+                    @if (!App\User::hasPermissions("Vendor"))<th>Acciones</th>@endif
                 </tr>
             </thead>
             <tbody>
@@ -53,14 +55,16 @@
                         <td>{{ $item->materials->unitLabel() }}</td>
                         <td>{{ $item->qty }}</td>
                         <td>{{ $item->materials->type }}</td>
-                        <td><i data-toggle="tooltip" data-placement="top" title="Eliminar" class="fa fa-trash" aria-hidden="true" onclick="removeMaterial({{ $item->id }})"></i></td>
+                        @if (!App\User::hasPermissions("Vendor"))<td><i data-toggle="tooltip" data-placement="top" title="Eliminar" class="fa fa-trash" aria-hidden="true" onclick="removeMaterial({{ $item->id }})"></i></td>@endif
                     </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
 </div>
+@endif
 
+@if (App\User::hasPermissions("Admin"))
 <div class="row">
     <div class="col-12">
         <div class="row t-head d-flex justify-content-around" style="background: #bacfda;">
@@ -172,6 +176,7 @@
         <button class="float-right d-block btn btn-primary">Guardar</button>
     </div>
 </div>
+@endif
 <script>
     function showTable(id) {
         console.log($('#t-'+id).css('display') == 'block');
@@ -225,5 +230,8 @@
     });
     $(function () {
         $('#total-material').html("{{ Helper::formatMoney($total) }}");
+        @if (!App\User::hasPermissions("Admin"))
+        $('#total-material').html("");
+        @endif
     });
 </script>

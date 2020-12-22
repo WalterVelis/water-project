@@ -419,7 +419,7 @@ form .col-12 {
                                         <div class="col-12 col-md-3">
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                    <input {{ in_array(__('Arch Ceiling'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input @if (App\User::hasPermissions("Tecnico")) i-enabled @endif" type="checkbox"
+                                                    <input {{ in_array(__('Arch Ceiling'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input @if (App\User::hasPermissions("Tech")) i-enabled @endif" type="checkbox"
                                                         value="{{ __('Arch Ceiling') }}"> {{ __('Arch Ceiling') }}
                                                     <span class="form-check-sign">
                                                         <span class="check"></span>
@@ -430,7 +430,7 @@ form .col-12 {
                                         <div class="col-12 col-md-3">
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                    <input {{ in_array(__('Two Waters'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input @if (App\User::hasPermissions("Tecnico")) i-enabled @endif" type="checkbox"
+                                                    <input {{ in_array(__('Two Waters'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input @if (App\User::hasPermissions("Tech")) i-enabled @endif" type="checkbox"
                                                         value="{{ __('Two Waters') }}"> {{ __('Two Waters') }}
                                                     <span class="form-check-sign">
                                                         <span class="check"></span>
@@ -441,7 +441,7 @@ form .col-12 {
                                         <div class="col-12 col-md-3">
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                    <input {{ in_array(__('Flat With Pending'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input @if (App\User::hasPermissions("Tecnico")) i-enabled @endif" type="checkbox"
+                                                    <input {{ in_array(__('Flat With Pending'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input @if (App\User::hasPermissions("Tech")) i-enabled @endif" type="checkbox"
                                                         value="{{ __('Flat With Pending') }}"> {{ __('Flat With Pending') }}
                                                     <span class="form-check-sign">
                                                         <span class="check"></span>
@@ -452,7 +452,7 @@ form .col-12 {
                                         <div class="col-12 col-md-3">
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                    <input {{ in_array(__('Flat Without Pending'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input @if (App\User::hasPermissions("Tecnico")) i-enabled @endif" type="checkbox"
+                                                    <input {{ in_array(__('Flat Without Pending'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input @if (App\User::hasPermissions("Tech")) i-enabled @endif" type="checkbox"
                                                         value="{{ __('Flat Without Pending') }}">
                                                     {{ __('Flat Without Pending') }}
                                                     <span class="form-check-sign">
@@ -466,7 +466,7 @@ form .col-12 {
                                 <div style="    padding: 30px;" class="row col-12 col-md-12">
                                     <div class="col-md-6">
                                         <label style="    margin-left: 0px!important;" class="c_label col-12 col-form-label">{{ __('Rainwater Area') }}</label>
-                                        <input class="@if (App\User::hasPermissions("Tecnico")) i-enabled @endif form-control" id="rainwater_area" name="rainwater_area" type="number" value="{{ $format->rainwater_area }}" />
+                                        <input class="@if (App\User::hasPermissions("Tech")) i-enabled @endif form-control" id="rainwater_area" name="rainwater_area" type="number" value="{{ $format->rainwater_area }}" />
                                     </div>
                                     <div class="col-md-6">
                                         <label style="    margin-left: 0px!important;" class="c_label col-12 col-form-label">{{ __('Volumen de almacenamiento (CISTERNA)') }}</label>
@@ -810,6 +810,7 @@ function loadAuth() {
     $('#auth').load('/entities/'+projectId+'/1');
 }
 
+@if (!App\User::hasPermissions("Tech"))
 saving = false;
 
 function saveWork() {
@@ -828,9 +829,18 @@ function saveWork() {
 }
 }
 
+@endif
+
 $(function() {
     loadPlanning();
     loadAuth();
+
+    @if (App\User::hasPermissions("Tech"))
+        $('input, select').attr('disabled', 'true')
+        $('input, select').attr('readonly', 'true')
+        $('input.i-enabled').removeAttr('disabled')
+        $('input.i-enabled').removeAttr('readonly')
+    @endif
 
     $("input").blur(function(){
         saveWork();
@@ -847,12 +857,7 @@ $(function() {
     $('#water_consuption').val(rtotal + " m3");
 });
 
-// @if (App\User::hasPermissions("Tecnico"))
-//     $('input, select').attr('disabled', 'true')
-//     $('input, select').attr('readonly', 'true')
-//     $('input.i-enabled').removeAttr('disabled')
-//     $('input.i-enabled').removeAttr('readonly')
-// @endif
+
 
 function sendAdmin() {
     $('#isend').val(1);

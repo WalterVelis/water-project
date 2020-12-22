@@ -146,7 +146,7 @@ class UserController extends Controller
             // $vendorStatus = Vendor::where('user_id', $user->id)->get()->first();
             $vendorStatus = 0;
             $classVendor = 'd-none';
-            $roles = Role::where('name', '!=', 'Vendor')->orderBy('name')->get();
+            $roles = Role::orderBy('name')->get();
             if( $user->role->name == 'Vendor' ){
                 $roles = Role::orderBy('name')->get();
             }

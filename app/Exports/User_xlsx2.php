@@ -111,7 +111,7 @@ class User_xlsx2 implements FromCollection, ShouldAutoSize, WithHeadings, WithCu
                     'fill' => [
     			        'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
     			        'color' => [
-    			            'argb' => 'EB3C77',
+    			            'argb' => '0b6696',
     			        ]
     			    ],
                 ]);

@@ -84,7 +84,7 @@
                                 <div class="form-group{{ $errors->has('role_id') ? ' has-danger' : '' }}">
                                     <select {{$isVendor}} onchange="roleDetection();"
                                         class="js-example-basic-single js-states form-control" style="width: 100%"
-                                        id="role_input" name="role_id" data-style="select-with-transition" title=""
+                                        id="" name="role_id" data-style="select-with-transition" title=""
                                         data-size="100" required>
                                         <option value="">{{ __('Choose a role') }}</option>
                                         @foreach ($roles as $role)

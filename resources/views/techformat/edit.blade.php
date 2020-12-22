@@ -509,7 +509,7 @@ form .col-12 {
                                                     <a href="{{ route('projects.index') }}" class="btn btn-rose float-right">{{ __('CANCEL') }}</a>
                                                 </div>
                                                 <div class="col-12 col-md-2">
-                                                    <button onclick="$('#form-techformat').submit();" class="btn btn-primary">{{ __('SAVE') }}</button>
+                                                    @if (!App\User::hasPermissions("Vendor"))<button onclick="$('#form-techformat').submit();" class="btn btn-primary">{{ __('SAVE') }}</button>@endif
                                                 </div>
                                             </div>
                                         </div>
@@ -624,7 +624,7 @@ form .col-12 {
                     <br>
                     <div class="row w-100">
                         <div class="col-12 col-md-12" style="    text-align: right;">
-                            <button onclick="$('.set-status').val(1);$('#form-techformat').submit();" class="btn btn-primary">{{ __('FINALIZAR') }}</button>
+                            @if (!App\User::hasPermissions("Vendor"))<button onclick="$('.set-status').val(1);$('#form-techformat').submit();" class="btn btn-primary">{{ __('FINALIZAR') }}</button>@endif
                         </div>
                         {{-- <div class="col-12 col-md-2">
                             <a href="{{ route('projects.index') }}" class="btn btn-rose float-right">{{ __('CANCEL') }}</a>
@@ -811,6 +811,7 @@ function loadAccesory() {
 
 saving = false;
 
+@if (!App\User::hasPermissions("Vendor"))
 function saveWork() {
     console.log(saving);
     if(!saving) {
@@ -826,7 +827,7 @@ function saveWork() {
         });
     }
 }
-
+@endif
 
 $('#anual_precipitation').change(() => {
     console.log('l');
@@ -852,6 +853,13 @@ $(function() {
     loadCosts();
     loadMaterials();
     loadAccesory();
+
+    @if (App\User::hasPermissions("Vendor"))
+    $('.container input').prop('readonly', 'true');
+    $('.container input').prop('disabled', 'true');
+    $('.container select').prop('readonly', 'true');
+    $('.container select').prop('disabled', 'true');
+    @endif
 
     // setTotals();
     nval = $('#anual_precipitation').val() * $('#rainwater_area').val() * 0.85;

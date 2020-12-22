@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
-                <div class="card ">
+                <div class="card " style="    height: 90%;">
                     <div class="card-header card-header-rose card-header-icon">
                         <div class="card-icon">
                             <i class="material-icons">supervisor_account</i>
@@ -19,7 +19,7 @@
                             @csrf
                             @method('put')
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">{{ __('Name') }}</label>
+                                <label class="col-sm-3 col-form-label">{{ __('Name') }}</label>
                                 <div class="col-sm-9">
                                     <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                         <input onkeypress="return lettersOnlySpace(event)" onpaste="return false"
@@ -33,7 +33,7 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <label class="col-sm-2 col-form-label">{{ __('Description') }}</label>
+                                <label class="col-sm-3 col-form-label">{{ __('Description') }}</label>
                                 <div class="col-sm-9">
                                     <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }}">
                                         <textarea cols="30" rows="1"
@@ -105,7 +105,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="card ">
+                <div class="card " style="    height: 90%;">
                     <div class="card-header card-header-rose card-header-icon">
                         <div class="card-icon">
                             <i class="material-icons">lock</i>
