@@ -18,7 +18,7 @@
 
                         <div class="row d-none">
                             <div class="col-12 text-left">
-                                <a id="exportXlsx" href="{{ route('user_xlsx') }}"
+                                <a id="exportXlsx" href="/formatPdf"
                                     class="btn btn-sm btn-rose">{{ __('Export xlsx') }}</a>
                                 {{-- <a id="exportCsv" href="{{ route('user_csv') }}"
                                     class="btn btn-sm btn-rose">{{ __('Export csv') }}</a> --}}
@@ -128,7 +128,7 @@
                                             </td>
                                             <td class="td-actions text-right">
                                                 <!-- <a href="{{ route('projects.show', $item->id) }}"><i class="material-icons">remove_red_eye</i></a> -->
-                                                <a data-toggle="tooltip" data-placement="top" title="Editar" href="{{ route('projects.edit', $item->id) }}"><i class="material-icons">edit</i></a>
+                                                <a class="btn btn-link" data-toggle="tooltip" data-placement="top" title="Editar" href="{{ route('projects.edit', $item->id) }}"><i class="material-icons">edit</i></a>
                                                 {{-- <i class="material-icons">close</i> --}}
                                             </td>
                                         </tr>
@@ -145,6 +145,13 @@
             </div>
         </div>
     </div>
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="copyright "> &copy; <script> document.write(new Date().getFullYear()) </script> Cotizador de AguaH2O, Todos los derechos reservados. Desarrollado por ISINET.</div>
+        </div>
+    </footer>
+</div>
+
 @endsection
 
 @push('js')
@@ -196,3 +203,4 @@
 
     </script>
 @endpush
+

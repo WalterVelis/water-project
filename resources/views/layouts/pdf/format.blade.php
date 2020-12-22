@@ -51,7 +51,7 @@ use Carbon\Carbon;
     </tr>
 </table>
 
-<table style="width:100%;">
+<table style="width:100%;margin-right:0px;padding-right:20px;">
     <tbody>
         <tr>
             <td width="35%" class="right b">Fecha: </td>
@@ -78,7 +78,7 @@ use Carbon\Carbon;
         <tr>
             <td width="35%" class="right b">Puesto: </td>
             <td width="30%" colspan="2">{{ $format->position }}</td>
-            <td width="15%" colspan="4"></td>
+            <td width="15%" colspan="3"></td>
         </tr>
         <tr>
             <td width="35%" class="right b">Teléfono: </td>
@@ -90,11 +90,7 @@ use Carbon\Carbon;
             <td width="30%" colspan="2">{{ $format->email }}</td>
             <td width="15%" colspan="3"></td>
         </tr>
-    </tbody>
-</table>
 
-<table style="width:100%;">
-    <tbody>
         <tr>
             <td width="35%" class="right b">Tipo de Edificio: </td>
             <td width="15%" colspan="5">{{ $format->structure }}</td>
@@ -102,7 +98,7 @@ use Carbon\Carbon;
         <tr>
             <td width="35%" class="right b">Entorno: </td>
             <td width="15%">{{ $format->environment ? "Rural" : "Urbano" }}</td>
-            <td width="50%" colspan="5"></td>
+            <td width="50%" colspan="4"></td>
         </tr>
         <tr>
             <td width="35%" class="right b">Programa educativo o escuelas: </td>
@@ -180,33 +176,30 @@ use Carbon\Carbon;
             <td width="15%" class="b-blue">litros</td>
             <td width="15%" colspan="3"></td>
         </tr>
-    </tbody>
-</table>
-<table style="width:100%;">
-    <tbody>
+
         <tr>
             <td width="35%" class="right b">El inmueble es propio o rentado</td>
             <td width="15%">{{ $format->property_type ? "Rentado" : "Propio" }}</td>
-            <td width="15%" colspan="3"></td>
+            <td width="15%" colspan="4"></td>
         </tr>
         <tr>
             <td width="35%" class="right b">¿Cuentan con recursos para este año?</td>
             <td width="15%">{{ Helper::boolString($format->current_year_resources) }}</td>
-            <td width="15%" colspan="3"></td>
+            <td width="15%" colspan="4"></td>
         </tr>
         <tr>
             <td width="35%" class="right b">Recursos propios o de terceros: </td>
             <td width="15%">{{ $format->resources_type ? "Terceros" : "Propio" }}</td>
-            <td width="15%" colspan="3"></td>
+            <td width="15%" colspan="4"></td>
         </tr>
         <tr>
             <td width="35%" class="right b">Personal involucrado en la planificación y validación: </td>
-            <td width="15%" colspan="4"></td>
+            <td width="15%" colspan="5"></td>
         </tr>
         @foreach($entities[0] as $e)
         <tr>
             <td width="35%"></td>
-            <td width="15%"><b>Nombre:</b> {{ $e->name }}</td>
+            <td width="15%" colspan="2"><b>Nombre:</b> {{ $e->name }}</td>
             <td width="15%"><b>Puesto:</b> {{ $e->position }}</td>
             <td width="15%"><b>Tel:</b> {{ $e->telephone }}</td>
             <td width="15%"><b>Mail:</b> {{ $e->email }}</td>
@@ -214,12 +207,12 @@ use Carbon\Carbon;
         @endforeach
         <tr>
             <td width="35%" class="right b">Personas involucradas en autorización del proyecto: </td>
-            <td width="15%" colspan="4"></td>
+            <td width="15%" colspan="5"></td>
         </tr>
         @foreach($entities[1] as $e)
         <tr>
             <td width="35%"></td>
-            <td width="15%"><b>Nombre:</b> {{ $e->name }}</td>
+            <td width="15%" colspan="2"><b>Nombre:</b> {{ $e->name }}</td>
             <td width="15%"><b>Puesto:</b> {{ $e->position }}</td>
             <td width="15%"><b>Tel:</b> {{ $e->telephone }}</td>
             <td width="15%"><b>Mail:</b> {{ $e->email }}</td>
@@ -228,24 +221,24 @@ use Carbon\Carbon;
         <tr>
             <td width="35%">¿Fecha en la que quisiera realizar el proyecto?</td>
             <td>{{ $format->date }}</td>
-            <td colspan="3"></td>
+            <td colspan="4"></td>
         </tr>
         <tr>
             <td colspan="6" class="b-blue">¿Qué otras necesidades adicionales tiene o notas adicionales?</td>
         </tr>
         <tr>
-            <td colspan="6" >{{ $format->notes }}</td>
+            <td colspan="6" style="border-bottom:none;" >{{ $format->notes }}</td>
         </tr>
         <tr>
-            <td colspan="6"></td>
+            <td colspan="6" style="border-top: none;border-bottom:none;"></td>
         </tr>
         <tr>
-            <td colspan="6"></td>
+            <td colspan="6" style="border-top: none;border-bottom:none;"></td>
         </tr>
         <tr>
-            <td colspan="6"></td>
+            <td colspan="6" style="border-top: none;border-bottom:none;"></td>
         </tr>
-        <tr>
+        <tr  style="border-top: none;">
             <td colspan="3"></td>
             <td>Firma:</td>
             <td class="b-blue" style="height:100px;" colspan="2">{{ $format->user->name }}</td>

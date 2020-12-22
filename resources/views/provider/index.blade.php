@@ -24,24 +24,11 @@
                                             class="fa fa-plus fw" aria-hidden="true"></i></a>
                                     @endif
                                 </div>
-                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-left">
-                                    <div class="dropdown">
-                                        <button title="Download Data" class="dropdown-toggle"
-                                            style="background: none; border: none; font-size: 1.5em;    width: 90px;"
-                                            type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">
-                                            <i class="fa fa-download" aria-hidden="true"></i>
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            {{-- <p class="dropdown-item" onclick="exportDataCsv();"><i
-                                                    class="fa fa-file-code-o" aria-hidden="true"></i>&nbsp; CSV</p> --}}
-                                            <p class="dropdown-item" onclick="exportDataXlsx();"><i
-                                                    class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp; XLSX</p>
-                                            <p class="dropdown-item" onclick="exportDataPdf();"><i
-                                                    class="fa fa-file-pdf-o" aria-hidden="true"></i>&nbsp; PDF</p>
-                                        </div>
-                                    </div>
-                                </div>
+                                <a class="float-right" href="/providerPdf/">
+                                    <button class=" d-inline" style="    background: none; border: none; font-size: 1.5em;" type="button">
+                                        <i class="fa fa-download" aria-hidden="true"></i>
+                                    </button>
+                                </a>
                             </div>
                             {{-- @endcan --}}
 
@@ -124,11 +111,11 @@
                                                 {{ $provider->productTypeLabels() }}
                                             </td>
                                             <td class="td-actions text-right">
-                                                <a data-toggle="tooltip" data-placement="top" title="Editar" href="{{ route('providers.edit', $provider->id) }}"><i class="material-icons">edit</i></a>
+                                                <a class="btn btn-link" data-toggle="tooltip" data-placement="top" title="Editar" href="{{ route('providers.edit', $provider->id) }}"><i class="material-icons">edit</i></a>
                                                 <form style="cursor: pointer;display: inline-block;transform: translateY(6px)" action="{{ route('providers.destroy', $provider->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button data-toggle="tooltip" data-placement="top" title="Eliminar" type="submit" title="delete" style="border: none; background-color:transparent;">
+                                                    <button class="btn btn-link" data-toggle="tooltip" data-placement="top" title="Eliminar" type="submit" title="delete" style="border: none; background-color:transparent;margin-top: -10px;">
                                                         <i class="material-icons">close</i>
                                                     </button>
                                                 </form>
@@ -143,6 +130,12 @@
                 </div>
             </div>
         </div>
+    </div>
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="copyright "> &copy; <script> document.write(new Date().getFullYear()) </script> Cotizador de AguaH2O, Todos los derechos reservados. Desarrollado por ISINET.</div>
+        </div>
+    </footer>
     </div>
     @endsection
 

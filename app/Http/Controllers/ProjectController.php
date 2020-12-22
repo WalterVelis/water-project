@@ -229,10 +229,10 @@ class ProjectController extends Controller
         $entities[0] = Entity::where(['project_id' => $id, 'entity_type' => 0])->get();
         $entities[1] = Entity::where(['project_id' => $id, 'entity_type' => 1])->get();
         $format = Format::with('country')->find($id);
-        return view('layouts.pdf.format', compact('format', 'entities'));
+        // return view('layouts.pdf.format', compact('format', 'entities'));
         $pdf =  PDF::loadView('layouts.pdf.format', compact('format', 'entities'));
         $name = Carbon::now()->toDateTimeString().'.pdf';
-        return $pdf->setPaper('letter', 'landscape')->download($name);
+        return $pdf->setPaper('letter', 'landscape')->stream($name);
     }
 
     /**

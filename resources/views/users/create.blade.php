@@ -42,9 +42,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12" style="    text-align: left;">
-                        <b><label style="    font-weight: 600;" class="">{{ __('Name') }}</label></b>
+                        <b><label style="    font-weight: 600;" class="">{{ __('Nombre de usuario') }}</label></b>
                         <div style="text-align:left;" class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                          <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" placeholder="{{ __('Name') }}" value="{{ old('name') }}" required />
+                          <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" ="{{ __('Name') }}" value="{{ old('name') }}" required />
                           <span id="errorNameUser" class="d-none" style="text-align:left;">@lang('Campo obligatorio')</span>
                           @include('alerts.feedback', ['field' => 'name'])
                         </div>
@@ -52,12 +52,23 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12" style="    text-align: left;">
-                            <b><label style="    font-weight: 600;" class=" col-form-label">{{ __('Email') }}</label></b>
+                            <b><label style="    font-weight: 600;" class=" col-form-label">{{ __('Correo electrónico') }}</label></b>
                         <div style="text-align:left;" class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                          <input onkeyup="emailUnique();" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" placeholder="{{ __('Email') }}" value="{{ old('email') }}" required />
+                          <input onkeyup="emailUnique();" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" ="{{ __('Email') }}" value="{{ old('email') }}" required />
                           <span id="errorEmailU" class="d-none">@lang('This email already exists')</span>
                           <span id="errorEmailUserXX" class="d-none" style="text-align:left;">@lang('Campo obligatorio')</span>
                           @include('alerts.feedback', ['field' => 'email'])
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12" style="    text-align: left;">
+                            <b><label style="    font-weight: 600;" class=" col-form-label">{{ __('Teléfono') }}</label></b>
+                        <div style="text-align:left;" class="form-group{{ $errors->has('phone') ? ' has-danger' : '' }}">
+                          <input onkeyup="phoneUnique();" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" id="input-phone" type="phone" ="{{ __('phone') }}" value="{{ old('phone') }}" required />
+                          <span id="errorphoneU" class="d-none">@lang('This phone already exists')</span>
+                          <span id="errorphoneUserXX" class="d-none" style="text-align:left;">@lang('Campo obligatorio')</span>
+                          @include('alerts.feedback', ['field' => 'phone'])
                         </div>
                       </div>
                     </div>
@@ -120,7 +131,7 @@
                   <label class="col-sm-2 col-form-label" for="input-password">{{ __('Password') }}</label>
                   <div class="col-sm-7">
                     <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
-                      <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" input type="password" name="password" id="input-password" placeholder="{{ __('Password') }}" />
+                      <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" input type="password" name="password" id="input-password" ="{{ __('Password') }}" />
                       @include('alerts.feedback', ['field' => 'password'])
                     </div>
                   </div>
@@ -168,6 +179,11 @@
         </div>
       </div>
     </div>
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="copyright "> &copy; <script> document.write(new Date().getFullYear()) </script> Cotizador de AguaH2O, Todos los derechos reservados. Desarrollado por ISINET.</div>
+        </div>
+    </footer>
   </div>
 @endsection
 

@@ -21,7 +21,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable 
+class User extends Authenticatable
 {
     use Notifiable;
 
@@ -31,7 +31,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'id', 'activate_2fa_google', 'name', 'email', 'email_2fa', 'password', 'picture' ,'role_id', 'status','created_by', 'updated_by', 'change_password'
+        'id', 'activate_2fa_google', 'phone' ,'name', 'email', 'email_2fa', 'password', 'picture' ,'role_id', 'status','created_by', 'updated_by', 'change_password'
     ];
 
     /**
@@ -51,7 +51,7 @@ class User extends Authenticatable
     public static function search($status){
         return User::status($status)->orderBy('name')->get();
     }
-          
+
     public function scopeStatus($query, $status){
         $query->where('status',$status);
     }
@@ -92,7 +92,7 @@ class User extends Authenticatable
 
     public static function hasBudgetPermissions($budget_type,$action,$budget_id){
         if($budget_type==0 && auth()->user()->role->name=='General Producer'){ //General budget/General prooducer
-            if($budget_id==0){                                                
+            if($budget_id==0){
                 if($action=='index' || $action=='create'){
                     return true;
                 }
@@ -103,7 +103,7 @@ class User extends Authenticatable
             }
         }
         if($budget_type==0 && auth()->user()->role->name=='Executive Producer'){ //General budget/General prooducer
-            if($budget_id==0){                                                
+            if($budget_id==0){
                 if($action=='index' && Budget::where('budget_type',0)->where('executive_producer_id',auth()->user()->id)->count()>0){
                     return true;
                 }

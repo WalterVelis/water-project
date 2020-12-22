@@ -151,7 +151,7 @@
                         <td>
                             {{ $accesory->qty }}
                         </td>
-                        <td>
+                        <td style="text-align: right;">
                             {{ Helper::formatMoney($accesory->unit_cost) }}
                         </td>
                         <td style="white-space: nowrap">

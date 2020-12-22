@@ -93,6 +93,7 @@ class UserController extends Controller
             $emailSend = $request->email;
             $userInformation= new User;
             $userInformation->name = $request->name;
+            $userInformation->phone = $request->phone;
             $userInformation->password = $password2;
             $userInformation->email = $request->email;
             $userInformation->role_id = $request->role_id;

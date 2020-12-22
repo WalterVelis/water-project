@@ -12,5 +12,6 @@ class AccesoryUrban extends Model
         'name',
         'unit_cost',
         'qty',
+        'discount'
     ];
 }

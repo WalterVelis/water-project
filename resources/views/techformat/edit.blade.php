@@ -96,7 +96,7 @@ form .col-12 {
                             <span class="navbar-toggler-bar navbar-kebab"></span>
                             <span class="navbar-toggler-bar navbar-kebab"></span>
                             </button>
-                            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                            <div class="" style="width:100%;" id="navbarNavDropdown">
                                 <ul class="navbar-nav" style="">
                                     <li class="nav-item c-enabled">
                                         <a class="nav-link" href="{{ route('projects.edit', $format) }}">{{ __('Needs Diagnosis') }} <span class="sr-only">(current)</span></a>
@@ -641,6 +641,11 @@ form .col-12 {
 
         </div>
     </div>
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="copyright "> &copy; <script> document.write(new Date().getFullYear()) </script> Cotizador de AguaH2O, Todos los derechos reservados. Desarrollado por ISINET.</div>
+        </div>
+    </footer>
 </div>
 </div>
 @endsection

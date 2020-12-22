@@ -1,4 +1,4 @@
-<footer class="footer">
+{{-- <footer class="footer">
   <div class="container">
     <nav class="float-left">
     <ul>
@@ -17,4 +17,4 @@
     </script> Cotizador de AguaH2O, Todos los derechos reservados. Desarrollado por ISINET.
     </div>
   </div>
-</footer>
+</footer> --}}

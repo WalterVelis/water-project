@@ -145,7 +145,7 @@
                         <td>
                             {{ $mo->name }}
                         </td>
-                        <td>
+                        <td style="text-align:right;">
                             {{ Helper::formatMoney($mo->unit_cost) }}
                         </td>
                         <td style="white-space: nowrap">

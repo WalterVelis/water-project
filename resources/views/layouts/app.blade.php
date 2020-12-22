@@ -41,6 +41,26 @@
   <link rel="stylesheet" href="{{asset('css/vendorsTable.css')}}">
 
   <style>
+
+@media (max-width: 991px) {
+    .sidebar::before, .off-canvas-sidebar nav .navbar-collapse::before {
+        background:white;
+    }
+}
+
+.btn.btn-link, .btn.btn-default.btn-link {
+    width: 30px;
+    padding: 0px!important;
+ }
+
+.navbar-nav.nav-mobile-menu i  {
+    color: rgb(11 102 150)!important;
+}
+
+.navbar-nav.nav-mobile-menu .nav-item .nav-link  {
+    border: solid 1px #e8e8e8;
+}
+
     .has-danger .form-control, .is-focused .has-danger .form-control {
         background-image: linear-gradient(to top, #f44336 2px, rgba(244, 67, 54, 0) 2px), linear-gradient(to top, #FF5722 1px, rgba(210, 210, 210, 0) 1px);
     }

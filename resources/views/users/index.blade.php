@@ -104,6 +104,9 @@
                                             {{ __('Email') }}
                                         </th>
                                         <th>
+                                            {{ __('Teléfono') }}
+                                        </th>
+                                        <th>
                                             {{ __('Role') }}
                                         </th>
                                         <th>
@@ -128,6 +131,9 @@
                                                 {{ $user->email }}
                                             </td>
                                             <td>
+                                                {{ $user->phone }}
+                                            </td>
+                                            <td>
                                                 {{ $user->role->name }}
                                             </td>
                                             <td>
@@ -150,6 +156,12 @@
                 </div>
             </div>
         </div>
+    </div>
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="copyright "> &copy; <script> document.write(new Date().getFullYear()) </script> Cotizador de AguaH2O, Todos los derechos reservados. Desarrollado por ISINET.</div>
+        </div>
+    </footer>
     </div>
     @endsection
 
