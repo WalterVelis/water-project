@@ -72,8 +72,8 @@ function addBankAccount() {
         path_account_statement = document.getElementById('input-path_account_statement').files[0]
     }
     // if($('#input-path_account_statement').val() != ''){
-    //     
-    // }  
+    //
+    // }
     var countrySelect = $('#vendorCountry').find('option:selected').val()
     var classClabe = ''
     var classSwift = ''
@@ -444,8 +444,8 @@ function editBankAccount() {
         path_account_statement = document.getElementById('input-path_account_statementEdit').files[0]
     }
     // if($('#input-path_account_statementEdit').val() != ''){
-    //     
-    // }  
+    //
+    // }
     var countrySelect = $('#vendorCountry').find('option:selected').val()
 
     $(this).serialize();
@@ -809,7 +809,7 @@ function checkProfile() {
 
 function urlCurrent() {
     var url = window.location.href;
-    document.getElementById('urlHelp').href = "https://docs.google.com/forms/d/e/1FAIpQLScGTFUkQtmCiOy1puT5SI7S19LTZT0etzpcNDA_gOScOK0Dtw/viewform?usp=pp_url&entry.387511766=" + url
+    document.getElementById('urlHelp').href = "https://docs.google.com/forms/d/e/1FAIpQLSd6A4eeVAy8IwV1XbWypl7NYl6XCZ_Ru1CgILTaQCpOTpKhnA/viewform?usp=pp_url&entry.387511766=" + url
     document.getElementById('urlHelp').click()
 }
 
@@ -1066,7 +1066,7 @@ function vendorsFilter() {
                 '</svg>'
                 if (value.status == null) {
                     statusValue = ''
-                    
+
                 }
                 var nameValue = value.name
                 if (value.name == null) {

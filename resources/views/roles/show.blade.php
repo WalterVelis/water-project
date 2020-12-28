@@ -8,7 +8,7 @@
             <div class="card">
               <div class="card-header card-header-rose card-header-icon">
                 <div class="card-icon" style="background-image: url({{asset("img/icons").'/Gestion_Rol.png'}});">
-                  <i class="material-icons">f</i>
+                  <i class="material-icons">supervisor_account</i>
                 </div>
                 <h3 class="card-title">{{ $rol->name }}</h3>
               </div>

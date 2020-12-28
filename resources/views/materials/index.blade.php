@@ -11,7 +11,7 @@
                             <span style="color:white;"><i class="material-icons">build</i></span>
                         </div>
                         <h4 class="card-title">Materiales extra</h4>
-                        <div class="card-body">
+                        <div class="card-body"  style="padding: 0.9375rem 5px">
 
                             {{-- @can('create', App\User::class) --}}
                             <div class="row col-12">

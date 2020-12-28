@@ -17,7 +17,7 @@ class User_csv implements FromCollection, WithCustomCsvSettings, WithHeadings
             ->join('roles as r','r.id','=','us.role_id')
             ->select('us.name','us.email','r.name as rol','us.created_at')
             ->orderby('us.name', 'asc')->get();
- 
+
     }
 
     public function headings(): array
@@ -33,7 +33,7 @@ class User_csv implements FromCollection, WithCustomCsvSettings, WithHeadings
     public function getCsvSettings(): array
     {
         return [
-            'delimiter' => ';',
+            'delimiter' => ', ',
             'use_bom'  => true,
         ];
     }

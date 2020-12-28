@@ -27,11 +27,11 @@ class AssignmentController extends Controller
         $format->internal_status = $request->status;
         $format->save();
 
-        // $data = Format::with(['vendor', 'user', 'admin'])->find($id);
-        // Mail::to($data->vendor->email)->send(new VendorNotification($data));
+        $data = Format::with(['vendor', 'user', 'admin'])->find($id);
+        Mail::to($data->vendor->email)->send(new VendorNotification($data));
 
-        // $data = Format::with(['tech', 'user', 'admin'])->find($id);
-        // Mail::to($data->tech->email)->send(new TechNotification($data));
+        $data = Format::with(['tech', 'user', 'admin'])->find($id);
+        Mail::to($data->tech->email)->send(new TechNotification($data));
         return back();
     }
 }

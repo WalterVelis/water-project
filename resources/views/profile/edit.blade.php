@@ -9,9 +9,9 @@
 
 
         <div class="card">
-        <div class="card-header card-header-icon card-header-rose">
-            <div class="card-icon" style="    background-size: contain;background-repeat:no-repeat;background-image: url({{asset("img/icons").'/Editar_Perfil.png'}});">
-              <i class="material-icons">f</i>
+            <div class="card-header card-header-icon card-header-rose">
+                <div class="card-icon" style="">
+              <i class="material-icons">person</i>
             </div>
             <h4 class="card-title">{{ __('Edit Profile') }}
             </h4>

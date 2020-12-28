@@ -13,6 +13,7 @@ use App\SchoolCost;
 use App\CostFormat;
 use App\MaterialProviderFormat;
 use App\QuotationFormat;
+use App\User;
 use Carbon\Carbon;
 use PDF;
 
@@ -151,8 +152,11 @@ class QuotationController extends Controller
         $utility = Quotation::select('utility', 'indirect')->where('format_id', $id)->first();
         $allMaterials = $totalMaterial + $totalIU;
         // dd($quotation);
+        if(User::hasPermissions("Admin")){
+            return view('quotation._table', compact('quotation', 'escuela', 'costs', 'allMaterials', 'schoolCost', 'utility', 'materialUtility', 'costsUtility', 'totalManoDeObra', 'totalIU', 'totalMaterial', 'manoDeObra'));
+        }
+        return view('quotation._table-vendor', compact('quotation', 'escuela', 'costs', 'allMaterials', 'schoolCost', 'utility', 'materialUtility', 'costsUtility', 'totalManoDeObra', 'totalIU', 'totalMaterial', 'manoDeObra'));
 
-        return view('quotation._table', compact('quotation', 'escuela', 'costs', 'allMaterials', 'schoolCost', 'utility', 'materialUtility', 'costsUtility', 'totalManoDeObra', 'totalIU', 'totalMaterial', 'manoDeObra'));
     }
 
     public function applyUtility(Request $request, $id) {

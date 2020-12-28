@@ -70,38 +70,48 @@ function validationSave(){
 
     if($('#input-name').val() == ''){
         spanName.removeClass("d-none");
-        spanName.addClass("error text-danger");        
+        spanName.addClass("error text-danger");
         nameF = false
 
     }else{
         nameF = true
         spanName.removeClass("error text-danger");
         spanName.addClass("d-none");
-        
+
     }
 
     if($('#input-email').val() == ''){
         spanEmail.removeClass("d-none");
-        spanEmail.addClass("error text-danger");        
+        spanEmail.addClass("error text-danger");
         emailF = false
 
     }else{
         emailF = true
         spanEmail.removeClass("error text-danger");
         spanEmail.addClass("d-none");
-        
+
     }
 
-    if($('#role_input').val() == ''){
+    if($('#input-phone').val() == ''){
+        $('#errorPhoneXX').removeClass("d-none");
+        $('#errorPhoneXX').addClass("error text-danger");
+
+    }else{
+        $('#errorPhoneXX').removeClass("error text-danger");
+        $('#errorPhoneXX').addClass("d-none");
+
+    }
+
+    if($('#role_input').val() == 0){
         spanRole.removeClass("d-none");
-        spanRole.addClass("error text-danger");        
+        spanRole.addClass("error text-danger");
         roleF = false
 
     }else{
         roleF = true
         spanRole.removeClass("error text-danger");
         spanRole.addClass("d-none");
-        
+
     }
 
     if(userF){
@@ -118,7 +128,7 @@ function validationSave(){
                     var spanUniqueName = $('#errorEmailU');
                     spanUniqueName.removeClass("error text-danger");
                     spanUniqueName.addClass("d-none")
-                }                
+                }
             }else{
                 spanVendor.removeClass("d-none");
                 spanVendor.addClass("error text-danger");
@@ -147,38 +157,38 @@ function validationSaveUpdate(){
 
     if($('#input-name').val() == ''){
         spanName.removeClass("d-none");
-        spanName.addClass("error text-danger");        
+        spanName.addClass("error text-danger");
         nameF = false
 
     }else{
         nameF = true
         spanName.removeClass("error text-danger");
         spanName.addClass("d-none");
-        
+
     }
 
     if($('#input-email').val() == ''){
         spanEmail.removeClass("d-none");
-        spanEmail.addClass("error text-danger");        
+        spanEmail.addClass("error text-danger");
         emailF = false
 
     }else{
         emailF = true
         spanEmail.removeClass("error text-danger");
         spanEmail.addClass("d-none");
-        
+
     }
 
     if($('#role_input').val() == ''){
         spanRole.removeClass("d-none");
-        spanRole.addClass("error text-danger");        
+        spanRole.addClass("error text-danger");
         roleF = false
 
     }else{
         roleF = true
         spanRole.removeClass("error text-danger");
         spanRole.addClass("d-none");
-        
+
     }
 
     if(userF){
@@ -196,14 +206,14 @@ function validationSaveUpdate(){
                         var spanUniqueName = $('#errorEmailU');
                         spanUniqueName.removeClass("error text-danger");
                         spanUniqueName.addClass("d-none")
-                        
+
                     }else{
                         $('#saveUser2').click()
                         var spanUniqueName = $('#errorEmailU');
                         spanUniqueName.removeClass("error text-danger");
                         spanUniqueName.addClass("d-none")
                     }
-                }                
+                }
             // }else{
             //     spanVendor.removeClass("d-none");
             //     spanVendor.addClass("error text-danger");

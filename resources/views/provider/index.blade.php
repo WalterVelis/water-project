@@ -13,7 +13,7 @@
                             <span style="color:white;">GP</span>
                         </div>
                         <h4 class="card-title">Proveedores</h4>
-                        <div class="card-body">
+                        <div class="card-body" style="padding: 0.9375rem 5px">
 
                             {{-- @can('create', App\User::class) --}}
                             <div class="row col-12">

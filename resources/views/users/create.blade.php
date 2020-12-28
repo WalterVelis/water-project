@@ -54,7 +54,7 @@
                         <div class="col-sm-12" style="    text-align: left;">
                             <b><label style="    font-weight: 600;" class=" col-form-label">{{ __('Correo electrónico') }}</label></b>
                         <div style="text-align:left;" class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                          <input onkeyup="emailUnique();" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" ="{{ __('Email') }}" value="{{ old('email') }}" required />
+                          <input onkeyup="emailUnique();" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" id="input-email" type="email" ="{{ __('Email') }}" value="{{ old('email') }}" required />
                           <span id="errorEmailU" class="d-none">@lang('This email already exists')</span>
                           <span id="errorEmailUserXX" class="d-none" style="text-align:left;">@lang('Campo obligatorio')</span>
                           @include('alerts.feedback', ['field' => 'email'])
@@ -63,21 +63,21 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-12" style="    text-align: left;">
-                            <b><label style="    font-weight: 600;" class=" col-form-label">{{ __('Teléfono') }}</label></b>
+                            <b><label style="font-weight: 600;" class=" col-form-label">{{ __('Teléfono') }}</label></b>
                         <div style="text-align:left;" class="form-group{{ $errors->has('phone') ? ' has-danger' : '' }}">
-                          <input onkeyup="phoneUnique();" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" id="input-phone" type="phone" ="{{ __('phone') }}" value="{{ old('phone') }}" required />
+                          <input class="form-control {{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" id="input-phone" type="phone" ="{{ __('phone') }}" value="{{ old('phone') }}" required />
                           <span id="errorphoneU" class="d-none">@lang('This phone already exists')</span>
-                          <span id="errorphoneUserXX" class="d-none" style="text-align:left;">@lang('Campo obligatorio')</span>
+                          <span id="errorPhoneXX" class="d-none" style="text-align:left;">@lang('Campo obligatorio')</span>
                           @include('alerts.feedback', ['field' => 'phone'])
                         </div>
                       </div>
                     </div>
                     <div class="row">
                         <div style="text-align:left;" class="col-sm-12" style="    text-align: left;">
-                            <b><label style="    font-weight: 600;" class=" col-form-label">{{ __('Role') }}</label></b>
+                            <b><label style="font-weight: 600;" class=" col-form-label">{{ __('Role') }}</label></b>
                         <div class="form-group{{ $errors->has('role_id') ? ' has-danger' : '' }}">
-                          <select onchange="roleDetection();" class="js-example-basic-single js-states form-control" style="width: 100%" id="" name="role_id" data-style="select-with-transition" title="" data-size="100" required>
-                            <option value="">{{ __('Choose a role') }}</option>
+                          <select class="js-example-basic-single js-states form-control" style="width: 100%" id="role_input" name="role_id" data-style="select-with-transition" title="" data-size="100" required>
+                            <option value="0">{{ __('Choose a role') }}</option>
                             @foreach ($roles as $role)
                                 <option value="{{$role->id}}">{{ $role->name }}</option>
                             @endforeach
@@ -202,17 +202,17 @@
 
 <script>
   //role_input
-  $("#role_input").select2({
-      language: {
-          noResults: function() {
-              return "{{__('No results found')}}";
-          },
-          searching: function() {
-            return "{{__('Searching')}}...";
-          }
-      },
-      theme: "classic",
-  })
+//   $("#role_input").select2({
+//       language: {
+//           noResults: function() {
+//               return "{{__('No results found')}}";
+//           },
+//           searching: function() {
+//             return "{{__('Searching')}}...";
+//           }
+//       },
+//       theme: "classic",
+//   })
 </script>
 
 @endpush

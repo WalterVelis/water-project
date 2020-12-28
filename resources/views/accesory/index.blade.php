@@ -10,7 +10,7 @@
                         <div class="card-icon">
                             <span style="color:white;"><i class="material-icons">work_outline</i></span>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body" style="padding: 0.9375rem 5px">
                             <h4 class="card-title">Accesorios IU</h4>
                             {{-- @can('create', App\User::class) --}}
                             <div class="row col-12">
