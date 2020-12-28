@@ -7,7 +7,7 @@
 </head>
 <body>
     <div style="width:100%; text-align: center;">
-        <img style="" src="{{ url("material/img/licons/agua-logo-1.png") }}" alt="agua-logo">
+        <img style="width:130px;" src="{{ url("material/img/licons/agua-logo-1.png") }}" alt="agua-logo">
     </div>
     <br>
     <div style="background: #dde9f2; padding:20px;    max-width: 600px; margin: 0 auto;border-radius:4px;">

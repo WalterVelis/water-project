@@ -383,7 +383,7 @@ class ProjectController extends Controller
             $format->admin_assigned = Auth::id();
 
             $data = Format::with('user')->find($id);
-            // Mail::to($request->mail)->send(new AdminNotification($data));
+            Mail::to($request->mail)->send(new AdminNotification($data));
         }
 
         $format->update();
