@@ -47,6 +47,7 @@ $sublevel="";
 
 @endif --}}
 
+@if(App\User::hasPermissions('Admin'))
 @if(App\User::hasPermissions('Role Index') || App\User::hasPermissions('User Index'))
 <li class="nav-item {{ ($menuParent == 'role') ? ' active' : '' }}">
     <a class="nav-link" data-toggle="collapse" href="#bfUser"
@@ -128,7 +129,7 @@ $sublevel="";
         </ul>
     </div>
 </li>
-
+@endif
 <li class="nav-item{{ $activePage == 'projects-management' ? ' active' : '' }}">
     <a class="nav-link" href="{{ route('projects.index') }}">
         <span class="sidebar-mini photo2"><i class="material-icons">work</i></span>

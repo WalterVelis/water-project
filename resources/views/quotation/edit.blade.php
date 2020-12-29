@@ -219,7 +219,7 @@
                         </div>
                     </form>
                     <div style="text-align: right;" class="mb-2 mt-2 mr-4">
-                        <span onclick="$('.q-details').toggle();" style="    text-align: left;cursor: pointer;width:30px; height: 30px; border-radius:40px; font-weight:bold; background: #0b6696; color: white; display:inline-block;padding-left:5px;font-size:1.2em;padding-top:4px;">👁</span>
+                        <span onclick="$('.q-details').toggle();" style="    text-align: left;cursor: pointer;width:30px; height: 30px; border-radius:40px; font-weight:bold; background: #0b6696; color: white; display:inline-bl<ock;padding-left:5px;font-size:1.2em;padding-top:4px;"><i style="color:white;    transform: translate(-2px, 3px) scale(0.8);" class="material-icons">remove_red_eye</i></span>
                         <span onclick="$('#sendQuotation').hide();$('#applyUtility').show();" style="    text-align: left;cursor: pointer;width:30px; height: 30px; border-radius:40px; font-weight:bold; background: #0b6696; color: white; display:inline-block;padding-left:8px;font-size:1.2em;padding-top:5px;">%</span>
                         <span onclick="$('#sendQuotation').show();$('#applyUtility').hide();" style="    text-align: left;cursor: pointer;width:30px; height: 30px; border-radius:40px; font-weight:bold; background: #0b6696; color: white; display:inline-block;padding-left:10px;font-size:1.2em;padding-top:5px;">+</span>
                     </div>
@@ -313,5 +313,4 @@ loadTable();
 @endif
 
 </script>
-@dump($format->internal_status)
 @endpush

@@ -51,6 +51,7 @@ class AccesoryUrbanController extends Controller
             'name' => ['required'],
             'qty' => ['required'],
             'unit_cost' => ['required'],
+            'discount' => ['required'],
         ]);
         AccesoryUrban::create($request->all());
         return redirect()->route('accesory.index');
