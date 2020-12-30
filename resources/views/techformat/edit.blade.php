@@ -110,8 +110,8 @@ form .col-12 {
                                     <li class="nav-item {{ $format->internal_status == 6 ? "c-enabled" : "" }}">
                                         <a class="nav-link" href="{{ $format->internal_status == 6 ? "/order/$format->id/edit" : "#" }}">{{ __('Purchase Order') }}</a>
                                     </li>
-                                    <li class="nav-item {{ $format->internal_status >= 0 ? "c-enabled" : "" }}">
-                                        <a class="nav-link" href="{{ $format->internal_status >= 0 ? "/assignment/$format->id/edit" : "#" }}">{{ __('Assignment') }}</a>
+                                    <li class="nav-item {{ $format->internal_status >= 1 ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status >= 1 ? "/assignment/$format->id/edit" : "#" }}">{{ __('Assignment') }}</a>
                                     </li>
                                 </ul>
                             </div>

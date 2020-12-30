@@ -73,11 +73,11 @@
                                         <li class="nav-item {{ $assignmentData->internal_status >= 0 ? "c-enabled" : "" }}">
                                             <a class="nav-link" href="{{ $assignmentData->internal_status >= 0 ? route('projects.edit', $assignmentData) : "#" }}">{{ __('Needs Diagnosis') }}</a>
                                         </li>
-                                        <li class="nav-item  {{ $assignmentData->internal_status >= 1 ? "c-enabled" : "" }}">
-                                            <a class="nav-link" href="{{ $assignmentData->internal_status >= 1 ? route('techformat.edit', $assignmentData) : "#" }}">{{ __('Technical Lift') }}</a>
+                                        <li class="nav-item  {{ $assignmentData->internal_status >= 0 && !$assignmentData->tech_assigned == 0 ? "c-enabled" : "" }}">
+                                            <a class="nav-link" href="{{ $assignmentData->internal_status >= 0 ? route('techformat.edit', $assignmentData) : "#" }}">{{ __('Technical Lift') }}</a>
                                         </li>
-                                        <li class="nav-item  {{ $assignmentData->internal_status >= 1 && $assignmentData->internal_status != 2 ? "c-enabled" : "" }}">
-                                            <a class="nav-link" href="{{ $assignmentData->internal_status >= 1 ? "/quotation/$assignmentData->id/edit" : "#" }}">{{ __('Quotation') }}</a>
+                                        <li class="nav-item  {{ $assignmentData->internal_status >= 2 && $assignmentData->internal_status != 2 ? "c-enabled" : "" }}">
+                                            <a class="nav-link" href="{{ $assignmentData->internal_status >= 2 ? "/quotation/$assignmentData->id/edit" : "#" }}">{{ __('Quotation') }}</a>
                                         </li>
                                         <li class="nav-item {{ $assignmentData->internal_status == 6 ? "c-enabled" : "" }}">
                                             <a class="nav-link" href="{{ $assignmentData->internal_status == 6 ? "/order/$assignmentData->id/edit" : "#" }}">{{ __('Purchase Order') }}</a>
@@ -108,7 +108,7 @@
                                     <div class="mt-5 col-12 col-md-6">
                                         <span style="margin-bottom:-10px;font-weight:bold;">{{ __('Estatus') }}</span>
                                         <div class="form-group{{ $errors->has('status') ? ' has-danger' : '' }}">
-                                            <select class="form-control" name="status" id="" required>
+                                            <select class="form-control" name="status" id="">
                                                 <option readonly value="">Seleccione...</option>
                                                 <option {{ $assignmentData->internal_status == 4 ? "selected" : "" }} value="4">Cotizado</option>
                                                 <option {{ $assignmentData->internal_status == 5 ? "selected" : "" }} value="5">Negociación</option>
