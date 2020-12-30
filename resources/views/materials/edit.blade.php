@@ -104,7 +104,7 @@
                                             <div class="bg-w" id="providers">
                                                 @foreach($providers as $p)
                                                 <div id="p-{{ $p->provider->id }}" class="row">
-                                                    <div class="col-12 col-md-4"><span>{{ $p->provider->contact_name }}</span></div>
+                                                    <div class="col-12 col-md-4"><span>{{ $p->provider->denomination }}</span></div>
                                                     <div class="col-12 col-md-3"><input value="{{ $p->qty }}" required name="qty[]" type="number" class="form-control">
                                                         <input name="provider_id[]" type="hidden" value="{{ $p->provider->id }}">
                                                     </div>
@@ -125,8 +125,11 @@
                                             </div>
                                             <div class="bg-w">
                                                 @foreach($allProviders as $provider)
+                                                @if($provider->product_type == 1)
+                                                @continue
+                                                @endif
                                                     <div style="{{ in_array($provider->id, $alreadyProvided) ? "display:none;" : "" }}" class="row">
-                                                        <div class="col-8"><span id="provider-{{ $provider->id }}">{{ $provider->contact_name }}</span></div>
+                                                        <div class="col-8"><span id="provider-{{ $provider->id }}">{{ $provider->denomination }}</span></div>
                                                         <div class="col-4"><button type="button" style="padding: 8px 8px 8px 7px; width: 24px; height: 24px; line-height: 6px; font-weight: bold;" class="btn btn-primary btn-c btn-sm btn-round" onclick="addProvider({{ $provider->id }})">+</button></div>
                                                     </div>
                                                 @endforeach
@@ -139,7 +142,7 @@
                                             <div class="form-group{{ $errors->has('provider_id') ? ' has-danger' : '' }}">
                                                 <select name="provider_id" class="form-control {{ $errors->has('provider_id') ? ' is-invalid' : '' }}">
                                                     @foreach($providers as $provider)
-                                                        <option {{ $provider->id == $material->provider_id ? 'selected' : '' }} value="{{ $provider->id }}">{{ $provider->contact_name }}</option>
+                                                        <option {{ $provider->id == $material->provider_id ? 'selected' : '' }} value="{{ $provider->id }}">{{ $provider->denomination }}</option>
                                                     @endforeach
                                                 </select>
                                                 <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>

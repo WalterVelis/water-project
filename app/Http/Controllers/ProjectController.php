@@ -50,7 +50,7 @@ class ProjectController extends Controller
         $name = __("Proyectos");
         $pdf = PDF::loadView('projects.options.pdfAll', compact('projects'));
         $pdf->setPaper("letter", "Portrait");
-        return $pdf->stream($name.'.pdf');
+        return $pdf->download($name.'.pdf');
     }
 
     /**
@@ -232,7 +232,7 @@ class ProjectController extends Controller
         // return view('layouts.pdf.format', compact('format', 'entities'));
         $pdf =  PDF::loadView('layouts.pdf.format', compact('format', 'entities'));
         $name = Carbon::now()->toDateTimeString().'.pdf';
-        return $pdf->setPaper('letter', 'landscape')->stream($name);
+        return $pdf->setPaper('letter', 'landscape')->download($name);
     }
 
     /**
@@ -256,7 +256,7 @@ class ProjectController extends Controller
      */
     public function edit($id)
     {
-        $admins = User::whereRole_id('1')->get();
+        $admins = User::whereRole_id('1')->whereStatus(1)->get();
 
         if(User::hasPermissions("Vendor")){
             $format = Format::find($id)->where('created_by', Auth::id())->get();

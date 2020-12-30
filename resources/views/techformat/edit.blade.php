@@ -128,7 +128,7 @@ form .col-12 {
                                     @csrf
                                     @method('put')
                                     <input type="hidden" name="status" class="set-status" value="0">
-                                    <div class="card-body bg-white" style="max-height: 540px;overflow: scroll">
+                                    <div class="card-body bg-white" style="max-height: 610px;overflow: scroll">
                                         <div class="col-12 col-md-12">
                                             <div class="col-12">
                                                 <h4 class="mb-0 mt-2 d-inline" style="font-weight: bold!important">Características</h4>
@@ -292,7 +292,7 @@ form .col-12 {
                                         </div>
 
                                         <div class="row">
-                                            <label class="c_label col-12 col-form-label ml-4 mt-5">{{ __('Área de captación de agua de lluvia') }}</label>
+                                            <label class="c_label col-12 col-form-label ml-4 mt-5">{{ __('Área de captación de agua de lluvia estimada (m2)') }}</label>
                                             <div class="col-12 col-md-6">
                                                 <label class="c_label col-12 col-form-label">{{ __('Techo (m2)') }}</label>
                                                 <div class="col-sm-12">

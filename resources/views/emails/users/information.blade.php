@@ -1,5 +1,5 @@
 @component('mail::message')
-# {{ config('app.name') }}
+# Cotizador AguaH2O
 
 @lang('We welcome you, these are your account details'):<br>
 @lang('The user is: ') {{ $email }}<br>
@@ -13,5 +13,5 @@
 @endcomponent
 
 @lang('Thanks'),<br>
-{{ config('app.name') }}
+Cotizador AguaH2O
 @endcomponent

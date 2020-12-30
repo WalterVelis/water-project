@@ -42,6 +42,28 @@ form .col-12 {
     margin-top: 1rem;
 }
 
+#d-d {
+    position: absolute;
+    right: 15px;
+    top: 70px;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    width: 90px;
+}
+
+@media (max-width:998px) {
+    #d-d {
+    position: absolute;
+    right: 15px;
+    top: 275px;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    width: 90px;
+}
+}
+
 </style>
 @section('content')
 <div class="content">
@@ -92,11 +114,11 @@ form .col-12 {
                                             <i class="material-icons">supervisor_account</i>
                                         </div>
                                         <h4 class="mb-0 mt-2 d-inline" style="font-weight: bold!important">Datos Generales</h4>
-                                                <a href="/getTech/">
-                                                    <button class=" d-inline" style="    position: absolute; right: 0px;background: none; border: none; font-size: 1.5em;    width: 90px;" type="button">
-                                                        <i class="fa fa-download" aria-hidden="true"></i>
-                                                    </button>
-                                                </a>
+                                            <a href="/getFormat/{{ $format->id }}">
+                                                <button class=" d-inline" id="d-d" style="" type="button">
+                                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                                </button>
+                                            </a>
                                     </div>
 
                                     <div class="card-body ">
@@ -773,6 +795,7 @@ function addPlanning() {
         data: $('#form-planning').serialize(),
     }).done(function(data) {
         loadPlanning();
+        $('#form-planning').trigger("reset");
     });
 
 };
@@ -784,6 +807,7 @@ function addAuth() {
         data: $('#form-auth').serialize(),
     }).done(function(data) {
         loadAuth();
+        $('#form-auth').trigger("reset");
     });
 
 };

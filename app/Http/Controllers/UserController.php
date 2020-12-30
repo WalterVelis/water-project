@@ -474,7 +474,7 @@ class UserController extends Controller
         $name= __("Users");
         $pdf = PDF::loadView('users.options.pdfAll', compact('name', 'query1', 'fecha', 'hora', 'idioma'));
         $pdf->setPaper("letter", "Portrait");
-        return $pdf->stream($name.'.pdf');
+        return $pdf->download($name.'.pdf');
     }
 
 
@@ -503,7 +503,7 @@ class UserController extends Controller
 
         $pdf->setPaper("letter", "Portrait");
 
-        return $pdf->stream($name.'.pdf');
+        return $pdf->download($name.'.pdf');
         //return $pdf->download($name.'.pdf');
 
         //

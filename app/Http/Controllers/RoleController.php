@@ -255,7 +255,7 @@ class RoleController extends Controller
 
         $pdf->setPaper("letter", "Portrait");
 
-        return $pdf->stream($name.'.pdf');
+        return $pdf->download($name.'.pdf');
         //return $pdf->download($name.'.pdf');
 
         //

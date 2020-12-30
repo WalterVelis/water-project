@@ -121,8 +121,11 @@
                                         </div>
                                         <div class="bg-w">
                                             @foreach($providers as $provider)
+                                            @if($provider->product_type == 1)
+                                            @continue
+                                            @endif
                                                 <div class="row">
-                                                    <div class="col-8"><span id="provider-{{ $provider->id }}">{{ $provider->contact_name }}</span></div>
+                                                    <div class="col-8"><span id="provider-{{ $provider->id }}">{{ $provider->denomination }}</span></div>
                                                     <div class="col-4"><button type="button" style="padding: 8px 8px 8px 7px; width: 24px; height: 24px; line-height: 6px; font-weight: bold;" class="btn btn-primary btn-c btn-sm btn-round" onclick="addProvider({{ $provider->id }})">+</button></div>
                                                 </div>
                                             @endforeach

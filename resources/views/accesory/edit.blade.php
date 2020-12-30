@@ -3,7 +3,7 @@
 <div class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <form method="post" enctype="multipart/form-data" action="{{ route('accesory.update', $accesoryUrban->id) }}" autocomplete="off"
                     class="form-horizontal">
                     @csrf
@@ -22,7 +22,7 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-4">
-                                        <label class="col-12" style="margin-bottom:-12px; font-weight:bold;">{{ __('Existencia') }}</label>
+                                        <label class="col-12" style="    white-space: nowrap;margin-bottom:-12px; font-weight:bold;">{{ __('Existencia') }}</label>
                                         <div class="col-sm-12">
                                             <div class="form-group{{ $errors->has('qty') ? ' has-danger' : '' }}">
                                                 <input class="form-control{{ $errors->has('qty') ? ' is-invalid' : '' }}" name="qty" id="input-qty" type="text" value="{{ $accesoryUrban->qty }}"  />
@@ -32,7 +32,7 @@
                                         </div>
                                     </div>
                                     <div class="col-4">
-                                        <label class="col-12" style="margin-bottom:-12px; font-weight:bold;">{{ __('Nombre del material') }}</label>
+                                        <label class="col-12" style="    white-space: nowrap;margin-bottom:-12px; font-weight:bold;">{{ __('Nombre del material') }}</label>
                                         <div class="col-sm-12">
                                             <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                                 <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" value="{{ $accesoryUrban->name }}"  />
@@ -42,12 +42,22 @@
                                         </div>
                                     </div>
                                     <div class="col-4">
-                                        <label class="col-12" style="margin-bottom:-12px; font-weight:bold;">{{ __('Costo unitario con IVA') }}</label>
+                                        <label class="col-12" style="    white-space: nowrap;margin-bottom:-12px; font-weight:bold;">{{ __('Costo unitario con IVA') }}</label>
                                         <div class="col-sm-12">
                                             <div class="form-group{{ $errors->has('unit_cost') ? ' has-danger' : '' }}">
                                                 <input class="form-control{{ $errors->has('unit_cost') ? ' is-invalid' : '' }}" name="unit_cost" id="input-unit_cost" type="text" value="{{ $accesoryUrban->unit_cost }}"  />
                                                 <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>
                                                 @include('alerts.feedback', ['field' => 'unit_cost'])
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <label class="col-12" style="    white-space: nowrap;margin-bottom:-12px; font-weight:bold;">{{ __('Descuento (%)') }}</label>
+                                        <div class="col-sm-12">
+                                            <div class="form-group{{ $errors->has('discount') ? ' has-danger' : '' }}">
+                                                <input class="form-control{{ $errors->has('discount') ? ' is-invalid' : '' }}" name="discount" id="input-discount" type="text" value="{{ $accesoryUrban->discount }}"  />
+                                                <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>
+                                                @include('alerts.feedback', ['field' => 'discount'])
                                             </div>
                                         </div>
                                     </div>

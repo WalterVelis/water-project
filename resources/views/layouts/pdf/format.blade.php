@@ -45,9 +45,9 @@ use Carbon\Carbon;
 </style>
 <table style="width:100%;">
     <tr class="b-blue"  >
-        <td style="width:20%;"><img style="height:100px" src="/material/img/licons/pas-bf-white.png" alt="AGUA"></td>
+        <td style="width:20%;"><img style="height:100px" src="material/img/licons/pas-bf-white.png" alt="AGUA"></td>
         <td><h3 class="st" style="text-align:center; font-size:1.3em;">DIAGNÓSTICO DE NECESIDADES</h3></td>
-        <td style="width:20%; text-align:right;"><img style="height:100px" src="/material/img/licons/iu.png" alt="AGUA"></td>
+        <td style="width:20%; text-align:right;"><img style="height:100px" src="material/img/licons/iu.png" alt="AGUA"></td>
     </tr>
 </table>
 

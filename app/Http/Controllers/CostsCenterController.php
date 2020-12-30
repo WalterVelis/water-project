@@ -15,7 +15,7 @@ class CostsCenterController extends Controller
         $name = __("Mano de obra");
         $pdf = PDF::loadView('costs.options.pdfAll', compact('manoDeObra'));
         $pdf->setPaper("letter", "Portrait");
-        return $pdf->stream($name.'.pdf');
+        return $pdf->download($name.'.pdf');
     }
 
     /**

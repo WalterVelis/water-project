@@ -91,6 +91,9 @@
                         </nav>
                         <div class="card-body">
                             <div class="container" >
+                                {{-- @foreach($users as $user)
+                                @dump($user->hasPermissions('Admin'))
+                                @endforeach --}}
                                 <div class="row mt-2">
 
                                     <div class="mt-5 col-sm-hidden col-12 col-md-6">
@@ -122,6 +125,9 @@
                                             <select class="form-control" name="vendor_assigned" id="" required>
                                                 <option value="">No asignado</option>
                                                 @foreach($users as $user)
+                                                @if($user->status == 0)
+                                                @continue
+                                                @endif
                                                 <option {{ $assignmentData->vendor_assigned == $user->id ? "selected" : "" }} value="{{ $user->id }}">{{ $user->name }}</option>
                                                 @endforeach
                                             </select>
@@ -137,6 +143,13 @@
                                             <select class="form-control" name="tech_assigned" id="" required>
                                                 <option value="">No asignado</option>
                                                 @foreach($users as $user)
+                                                @if($user->status == 0)
+                                                @continue
+                                                @endif
+
+                                                {{-- @if(!$user->hasPermissions('Tech'))
+                                                @continue
+                                                @endif --}}
                                                 <option {{ $assignmentData->tech_assigned == $user->id ? "selected" : "" }} value="{{ $user->id }}">{{ $user->name }}</option>
                                                 @endforeach
                                             </select>
@@ -151,6 +164,9 @@
                                             <select class="form-control" name="admin_assigned" id="" required>
                                                 <option value="">No asignado</option>
                                                 @foreach($users as $user)
+                                                @if($user->status == 0)
+                                                @continue
+                                                @endif
                                                 <option {{ $assignmentData->admin_assigned == $user->id ? "selected" : "" }} value="{{ $user->id }}">{{ $user->name }}</option>
                                                 @endforeach
                                             </select>

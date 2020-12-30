@@ -99,10 +99,27 @@ class MaterialController extends Controller
     public function update(Request $request, Material $material)
     {
 
+        MaterialProvider::where('provider_id', );
+        $request->validate([
+            'name' => ['required'],
+            'unit' => ['required'],
+            'type' => ['required'],
+            // 'cost' => ['required'],
+            // 'provider_id' => ['required'],
+        ]);
         // eliminar todos los materials_providers que tengan material_id que le mando
-        $m = MaterialProvider::where('material_id', $material->id)->get();
-        dd($m);
-        MaterialProvider::where('material_id', $material->id)->delete();
+        $m = MaterialProvider::where('material_id', $material->id)->delete();
+        $material = Material::create($request->all());
+        foreach($request->provider_id as $k => $v) {
+            $materialProvider = new MaterialProvider;
+            $materialProvider->provider_id = $v;
+            $materialProvider->qty = $request->qty[$k];
+            $materialProvider->unit_cost = $request->unit_cost[$k];
+            $materialProvider->material_id = $material->id;
+            $materialProvider->save();
+        }
+        // dd($m);
+        // MaterialProvider::where('material_id', $material->id)->delete();
         // de los eliminados, eliminar todos los que tengan el id del eliminado en materialprovider_project
 
         //eliminar todos, recrear todos
@@ -113,15 +130,8 @@ class MaterialController extends Controller
             $mp = MaterialProvider::with('materialProvider')->where('provider_id', $provider_id)->get();
             dump($mp);
         }
-        dd("done");
-        MaterialProvider::where('provider_id', );
-        $request->validate([
-            'name' => ['required'],
-            'unit' => ['required'],
-            'type' => ['required'],
-            // 'cost' => ['required'],
-            // 'provider_id' => ['required'],
-        ]);
+        // dd("done");
+
         $material->update($request->all());
         return redirect()->route('materials.index');
     }

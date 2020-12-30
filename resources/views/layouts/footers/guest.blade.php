@@ -10,11 +10,11 @@
         </li> --}}
     </ul>
     </nav>
-    <div class="copyright">
+    <div class="copyright" style="    color: #607D8B!important;">
     &copy;
     <script>
       document.write(new Date().getFullYear())
     </script> Cotizador de AguaH2O, Todos los derechos reservados. Desarrollado por ISINET.
     </div>
   </div>
-</footer> --}}
+</footer>

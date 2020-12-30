@@ -15,7 +15,7 @@ class AccesoryUrbanController extends Controller
         $name = __("Accesorios IU");
         $pdf = PDF::loadView('accesory.options.pdfAll', compact('accesories'));
         $pdf->setPaper("letter", "Portrait");
-        return $pdf->stream($name.'.pdf');
+        return $pdf->download($name.'.pdf');
     }
 
     /**
@@ -93,6 +93,7 @@ class AccesoryUrbanController extends Controller
             'name' => ['required'],
             'qty' => ['required'],
             'unit_cost' => ['required'],
+            'discount' => ['required'],
         ]);
         $accesoryUrban = accesoryUrban::find($id);
         $accesoryUrban->update($request->all());

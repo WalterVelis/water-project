@@ -12,7 +12,7 @@
                 <div class="card">
                     <div class="card-header card-header-rose card-header-icon">
                         <div class="card-icon">
-                            <span style="color:white;"><i class="material-icons">supervisor_account</i></span>
+                            <span style="color:white;"><i class="material-icons">construction</i></span>
                         </div>
                         <br>
 
@@ -74,7 +74,7 @@
                                             {{ __('Actions') }}
                                         </th>
                                     </thead>
-                                    <tbody>
+                                    <tbody style="font-size:14px;">
                                         @foreach($costs as $cost)
                                         <tr>
                                             {{-- <td>
@@ -147,9 +147,6 @@
               "last":     $('#lastTable').val()
           },
         },
-        "columnDefs": [
-          { "orderable": false, "targets": 5 },
-        ],
       });
     });
     </script>

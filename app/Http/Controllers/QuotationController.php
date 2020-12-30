@@ -81,7 +81,7 @@ class QuotationController extends Controller
         // return view('layouts.pdf.quotation', compact('format', 'quotation', 'subQuotation'));
         $pdf =  PDF::loadView('layouts.pdf.quotation', compact('format', 'quotation', 'subQuotation'));
         $name = Carbon::now()->toDateTimeString().'.pdf';
-        return $pdf->setPaper('letter', 'landscape')->stream($name);
+        return $pdf->setPaper('letter', 'landscape')->download($name);
 
         $manoDeObra = CostFormat::with('costs')->where(['format_id' => $id])->get();
         $material = MaterialProviderFormat::whereHas('providers', function($query) use ($id) { $query->where('format_id', $id);})->where(['format_id' => $id])->get();
@@ -116,7 +116,7 @@ class QuotationController extends Controller
 
         $pdf =  PDF::loadView('layouts.pdf.quotation', compact('quotation', 'escuela', 'costs', 'allMaterials', 'schoolCost', 'utility', 'materialUtility', 'costsUtility', 'totalManoDeObra', 'totalIU', 'totalMaterial', 'manoDeObra'));
         $name = Carbon::now()->toDateTimeString().'.pdf';
-        return $pdf->setPaper('letter', 'landscape')->stream($name);
+        return $pdf->setPaper('letter', 'landscape')->download($name);
         return view('quotation._table', compact('quotation', 'escuela', 'costs', 'allMaterials', 'schoolCost', 'utility', 'materialUtility', 'costsUtility', 'totalManoDeObra', 'totalIU', 'totalMaterial', 'manoDeObra'));
     }
 

@@ -77,7 +77,7 @@ class ProviderController extends Controller
         $name = __("Proveedores");
         $pdf = PDF::loadView('provider.options.pdfAll', compact('providers'));
         $pdf->setPaper("letter", "Portrait");
-        return $pdf->stream($name.'.pdf');
+        return $pdf->download($name.'.pdf');
     }
 
     /**
