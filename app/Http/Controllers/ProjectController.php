@@ -143,9 +143,9 @@ class ProjectController extends Controller
         $format->updated_by = Auth::id();
         $format->status = 0;
         $format->internal_status = 0;
-        $format->tech_assigned = 1;
+        $format->tech_assigned = 0;
         $format->vendor_assigned = Auth::id();
-        $format->admin_assigned = 1;
+        $format->admin_assigned = 0;
         $format->save();
 
         $techFormat = new TechFormat;

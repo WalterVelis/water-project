@@ -87,17 +87,17 @@ form .col-12 {
                                     <li class="nav-item active">
                                         <a class="nav-link" href="{{ route('projects.edit', $format) }}">{{ __('Needs Diagnosis') }} <span class="sr-only">(current)</span></a>
                                     </li>
-                                    <li class="nav-item {{ $format->internal_status >= 0 ? "c-enabled" : "" }}">
-                                        <a class="nav-link" href="{{ $format->internal_status >= 0 ? route('techformat.edit', $format) : "#" }}">{{ __('Technical Lift') }}</a>
+                                    <li class="nav-item {{ $format->internal_status >= 0 && !$format->tech_assigned == 0 ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status >= 0 && !$format->tech_assigned == 0 ? route('techformat.edit', $format) : "#" }}">{{ __('Technical Lift') }}</a>
                                     </li>
-                                    <li class="nav-item {{ $format->internal_status >= 1 && $format->internal_status != 2 ? "c-enabled" : "" }}">
-                                        <a class="nav-link" href="{{ $format->internal_status >= 1 ? "/quotation/$format->id/edit" : "#" }}">{{ __('Quotation') }}</a>
+                                    <li class="nav-item {{ $format->internal_status >= 2 && $format->internal_status != 2 ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status >= 2 ? "/quotation/$format->id/edit" : "#" }}">{{ __('Quotation') }}</a>
                                     </li>
                                     <li class="nav-item {{ $format->internal_status == 6 ? "c-enabled" : "" }}">
                                         <a class="nav-link" href="{{ $format->internal_status == 6 ? "/order/$format->id/edit" : "#" }}">{{ __('Purchase Order') }}</a>
                                     </li>
-                                    <li class="nav-item {{ $format->internal_status >= 0 ? "c-enabled" : "" }}">
-                                        <a class="nav-link" href="{{ $format->internal_status >= 0 ? "/assignment/$format->id/edit" : "#" }}">{{ __('Assignment') }}</a>
+                                    <li class="nav-item {{ $format->internal_status >= 1 ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status >= 1 ? "/assignment/$format->id/edit" : "#" }}">{{ __('Assignment') }}</a>
                                     </li>
                                 </ul>
                             </div>
@@ -627,7 +627,7 @@ form .col-12 {
 
                         <div class="row float-right mr-4">
                             <a href="{{ route('projects.index') }}" class="btn btn-rose">{{ __('CANCEL') }}</a>
-                            <button data-toggle="modal" data-target="#mail" onclick="$('.set-status').val(1);" class="btn btn-primary">{{ __('SAVE') }}</button>
+                            <button onclick="saveWork(true)" class="btn btn-primary">{{ __('SAVE') }}</button>
                         </div>
                     </div>
 
@@ -635,6 +635,11 @@ form .col-12 {
 
                     <!-- Fin -->
 
+                </div>
+            </div>
+            <div class="row float-right mt-4 w-100">
+                <div class="col-12">
+                    <button style="    float: right;" data-toggle="modal" data-target="#mail" onclick="$('.set-status').val(1);" class="btn btn-primary">{{ __('FINALIZAR') }}</button>
                 </div>
             </div>
 
@@ -837,7 +842,7 @@ function loadAuth() {
 @if (!App\User::hasPermissions("Tech"))
 saving = false;
 
-function saveWork() {
+function saveWork(re = false) {
     console.log(saving);
     if(!saving) {
         saving = true;
@@ -851,6 +856,8 @@ function saveWork() {
             }
         });
 }
+if(re)
+    alert('Formulario Guardado');
 }
 
 @endif
