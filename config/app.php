@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Cotizador Agua H2O'),
+    'name' => env('APP_NAME', 'Cotizador AguaH2O'),
 
     /*
     |--------------------------------------------------------------------------

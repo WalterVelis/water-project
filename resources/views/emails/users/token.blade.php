@@ -1,11 +1,11 @@
 @component('mail::message')
-# {{ config('app.name') }}
+# Cotizador AguaH2o
 
 @lang('This is the confirmation token for you to log in'). <br>
-@lang('Token Confirmation'): {{ $token_login }} 
+@lang('Token Confirmation'): {{ $token_login }}
 
 
 
 @lang('Thanks'),<br>
-{{ config('app.name') }}
+Cotizador AguaH2o
 @endcomponent

@@ -295,6 +295,7 @@ class ProjectController extends Controller
     {
 
 
+
         $internalStatus = 0;
         if($request->status)
             $internalStatus = 1;
@@ -390,15 +391,13 @@ class ProjectController extends Controller
         if($request->sendMail && $internalStatus != 2) {
 
             //admin
-            $format->admin_assigned = Auth::id();
 
             $data = Format::with('user')->find($id);
             $mail = $request->mail;
             $id = User::select('id')->where('email', $mail)->first();
-            dd($id->id, $mail);
+            $format->admin_assigned = $id->id;
             Mail::to($mail)->send(new AdminNotification($data));
-
-            Notify::create(["user_id" => $id, "msg" => "<a href='projects/".$format->id."/edit'><div class='c-not'>".$data->user->name. " requiere asignación de un técnico para realizar un levantamiento técnico del proyecto <b>".$data->page."</b>.". $format->page."</a></div>"]);
+            Notify::create(["user_id" => $id->id, "msg" => "<a href='projects/".$format->id."/edit'><div class='c-not'>".$data->user->name. " requiere asignación de un técnico para realizar un levantamiento técnico del proyecto <b>".$data->page."</b>.". $format->page."</a></div>"]);
         }
 
         $format->update();

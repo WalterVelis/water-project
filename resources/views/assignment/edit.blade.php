@@ -123,7 +123,6 @@
                                         <span style="margin-bottom:-10px;font-weight:bold;">{{ __('Vendedor Titular') }}</span>
                                         <div class="form-group{{ $errors->has('vendor_assigned') ? ' has-danger' : '' }}">
                                             <select class="form-control" name="vendor_assigned" id="" required>
-                                                <option value="">No asignado</option>
                                                 @foreach($users as $user)
                                                 @if($user->status == 0)
                                                 @continue
@@ -134,19 +133,16 @@
                                             @include('alerts.feedback', ['field' => 'vendor_assigned'])
                                         </div>
                                     </div>
-
                                     <div class="mt-5 col-12 col-md-6">
                                     </div>
                                     <div class="mt-5 col-12 col-md-6">
                                         <span style="margin-bottom:-10px;font-weight:bold;">{{ __('Técnico asignado') }}</span>
                                         <div class="form-group{{ $errors->has('tech_assigned') ? ' has-danger' : '' }}">
                                             <select class="form-control" name="tech_assigned" id="" required>
-                                                <option value="">No asignado</option>
                                                 @foreach($users as $user)
                                                 @if($user->status == 0)
                                                 @continue
                                                 @endif
-
                                                 {{-- @if(!$user->hasPermissions('Tech'))
                                                 @continue
                                                 @endif --}}
@@ -162,7 +158,6 @@
                                         <span style="margin-bottom:-10px;font-weight:bold;">{{ __('Administrador') }}</span>
                                         <div class="form-group{{ $errors->has('admin_assigned') ? ' has-danger' : '' }}">
                                             <select class="form-control" name="admin_assigned" id="" required>
-                                                <option value="">No asignado</option>
                                                 @foreach($users as $user)
                                                 @if($user->status == 0)
                                                 @continue
