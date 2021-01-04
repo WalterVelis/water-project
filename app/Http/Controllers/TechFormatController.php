@@ -11,6 +11,7 @@ use App\CostsCenter;
 use App\Entity;
 use App\Format;
 use App\Mail\TechFormatNotification;
+use App\Notify;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -148,13 +149,16 @@ class TechFormatController extends Controller
         $techFormat->description = $request->description;
 
         $techFormat->save();
-
+        $format = Format::find($id);
         $internalStatus = 0;
         if($request->status) {
             $internalStatus = 2;
             $data = Format::with(['user', 'vendor', 'tech', 'admin'])->find($id);
-            // dd($data);
+            // dd($data, $data->vendor->id, $data->admin->id);
             Mail::to([$data->vendor->email, $data->admin->email])->send(new TechFormatNotification($data));
+
+            Notify::create(["user_id" => $data->vendor->id, "msg" => "<a href='projects/".$format->id."/edit'><div class='c-not'>".$data->tech->name." finalizó el registro de levantamiento técnico del proyecto .". $format->page."</a></div>"]);
+            Notify::create(["user_id" => $data->admin->id, "msg" => "<a href='projects/".$format->id."/edit'><div class='c-not'>".$data->tech->name." finalizó el registro de levantamiento técnico del proyecto .". $format->page."</a></div>"]);
         }
 
 

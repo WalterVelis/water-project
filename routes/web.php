@@ -37,6 +37,7 @@ Route::get('dashboard', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth','change']], function () {
 
     Route::get('entities/{projectId}/{type}', 'EntityController@getEntities');
+    Route::get('getNotifications', 'ProjectController@getNotifications');
     Route::post('entities', 'EntityController@store');
     Route::delete('entities/{entity}', 'EntityController@destroy');
     Route::resource('role', 'RoleController');

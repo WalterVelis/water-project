@@ -16,6 +16,7 @@ use App\TechFormat;
 use App\Quotation;
 use App\Entity;
 use App\Mail\AdminNotification;
+use App\Notify;
 use PDF;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -87,6 +88,15 @@ class ProjectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+
+     public function getNotifications() {
+         $notifications = Notify::where('user_id', Auth::id())->where('has_read', 0)->get();
+         return view("layout.notification", compact("notifications"));
+     }
+
+
     public function create()
     {
 
@@ -383,7 +393,12 @@ class ProjectController extends Controller
             $format->admin_assigned = Auth::id();
 
             $data = Format::with('user')->find($id);
-            Mail::to($request->mail)->send(new AdminNotification($data));
+            $mail = $request->mail;
+            $id = User::select('id')->where('email', $mail)->first();
+            dd($id->id, $mail);
+            Mail::to($mail)->send(new AdminNotification($data));
+
+            Notify::create(["user_id" => $id, "msg" => "<a href='projects/".$format->id."/edit'><div class='c-not'>".$data->user->name. " requiere asignación de un técnico para realizar un levantamiento técnico del proyecto <b>".$data->page."</b>.". $format->page."</a></div>"]);
         }
 
         $format->update();

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Material;
+use App\MaterialFormat;
 use App\MaterialProvider;
 use App\MaterialProviderFormat;
 use App\Provider;
@@ -98,7 +99,7 @@ class MaterialController extends Controller
      */
     public function update(Request $request, Material $material)
     {
-
+        // dd($request->provider_id);
         MaterialProvider::where('provider_id', );
         $request->validate([
             'name' => ['required'],
@@ -108,15 +109,44 @@ class MaterialController extends Controller
             // 'provider_id' => ['required'],
         ]);
         // eliminar todos los materials_providers que tengan material_id que le mando
-        $m = MaterialProvider::where('material_id', $material->id)->delete();
-        $material = Material::create($request->all());
+        $mat = MaterialProvider::where('material_id', $material->id)->get();
+
+        // * Eliminar de materials_providers si no tiene nada en material_project
+        //* if material_id in
+
+
+        $idsThatWillBeIgnored = [];
+
+        // Ignorar las que se están usando en levantamiento técnico
+        foreach($mat as $m) {
+            $check = MaterialFormat::whereIn('material_id', [$m->material_id])->get();
+            dump($check);
+            if(!$check->isEmpty()) {
+                array_push($idsThatWillBeIgnored, $m->provider_id);
+                continue;
+            } else {
+                $deleted = MaterialProvider::whereId($m->id)->delete();
+                dump('deleted', $deleted);
+            }
+        }
+        dump("idsThatWillBeIgnored", $idsThatWillBeIgnored);
+
+        // Actualiza el nombre de los materiales
+        // $m = MaterialProvider::where('material_id', $material->id)->delete();
+        $materialUpdate = $material->update($request->all());
+        // $materialUpdate = Material::whereId($material->id)->update($request->all());
+        dump("updated", $materialUpdate);
+        // Crea una nueva relación entre proveedor y material, ignorar las que ya existan
         foreach($request->provider_id as $k => $v) {
+            if(in_array($v, $idsThatWillBeIgnored))
+                continue;
             $materialProvider = new MaterialProvider;
             $materialProvider->provider_id = $v;
             $materialProvider->qty = $request->qty[$k];
             $materialProvider->unit_cost = $request->unit_cost[$k];
             $materialProvider->material_id = $material->id;
             $materialProvider->save();
+            dump("inserted", $materialProvider);
         }
         // dd($m);
         // MaterialProvider::where('material_id', $material->id)->delete();
@@ -126,13 +156,13 @@ class MaterialController extends Controller
         // $mp = MaterialProvider::with('materialProvider')->where('provider_id', )->get();
 
         //Obtener todos
-        foreach($request->provider_id as $k => $provider_id) {
-            $mp = MaterialProvider::with('materialProvider')->where('provider_id', $provider_id)->get();
-            dump($mp);
-        }
+        // foreach($request->provider_id as $k => $provider_id) {
+        //     $mp = MaterialProvider::with('materialProvider')->where('provider_id', $provider_id)->get();
+        //     dump($mp);
+        // }
         // dd("done");
 
-        $material->update($request->all());
+
         return redirect()->route('materials.index');
     }
 

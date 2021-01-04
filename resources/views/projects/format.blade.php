@@ -1,5 +1,7 @@
 {{-- ThisFileisanAliasfor'create' --}}
 @extends('layouts.app', ['activePage' => 'budgetaccount-management', 'menuParent' => 'catalog', 'sublevel' => 'budget', 'titlePage' => __('Gestión de Proyectos')])
+
+
 <style>
 
 
@@ -180,7 +182,7 @@ form .col-12 {
                                             <div class="col-12 col-md-4">
                                                 <label class="c_label col-12 col-form-label">{{ __('Email') }}</label>
                                                 <div class="col-sm-12">
-                                                    <input class="form-control" name="email" type="email"
+                                                    <input id="e-email" class="form-control" name="email" type="email"
                                                         value="{{ $format->email }}" />
                                                 </div>
                                             </div>
@@ -572,7 +574,7 @@ form .col-12 {
                                         name="name">
                                 </div>
                                 <div class="col-12 col-md-4">
-                                    <input required class="form-control mt-2" type="email" placeholder="{{ __('Email') }}"
+                                    <input id="planning-email" required class="form-control mt-2" type="email" placeholder="{{ __('Email') }}"
                                         name="email">
                                 </div>
                                 <div class="col-12 col-md-4">
@@ -605,7 +607,7 @@ form .col-12 {
                                         name="name">
                                 </div>
                                 <div class="col-12 col-md-4">
-                                    <input required class="form-control mt-2" type="email" placeholder="{{ __('Email') }}"
+                                    <input id="auth-email" required class="form-control mt-2" type="email" placeholder="{{ __('Email') }}"
                                         name="email">
                                 </div>
                                 <div class="col-12 col-md-4">
@@ -639,7 +641,7 @@ form .col-12 {
             </div>
             <div class="row float-right mt-4 w-100">
                 <div class="col-12">
-                    <button style="    float: right;" data-toggle="modal" data-target="#mail" onclick="$('.set-status').val(1);" class="btn btn-primary">{{ __('FINALIZAR') }}</button>
+                    <button style="float: right;" data-toggle="modal" data-target="#mail" onclick="$('.set-status').val(1);" class="btn btn-primary">{{ __('FINALIZAR') }}</button>
                 </div>
             </div>
 
@@ -681,7 +683,7 @@ form .col-12 {
   </div>
 @endsection
 @push('js')
-
+<script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.2/dist/jquery.validate.min.js"></script>
 <script>
 $("#budAccount").select2({
     language: {
@@ -793,7 +795,10 @@ var projectId = {{ $format->id }};
 
 
 function addPlanning() {
-    $('#form-planning').validate()
+    if(!$('#planning-email')[0].checkValidity()) {
+        alert('El correo electrónico no es válido');
+        return;
+    }
     $.ajax({
         type: 'POST',
         url: '/entities',
@@ -801,11 +806,16 @@ function addPlanning() {
     }).done(function(data) {
         loadPlanning();
         $('#form-planning').trigger("reset");
+    }).fail(() => {
+        alert('LLene todos los campos');
     });
-
 };
 
 function addAuth() {
+    if(!$('#auth-email')[0].checkValidity()) {
+        alert('El correo electrónico no es válido');
+        return;
+    }
     $.ajax({
         type: 'POST',
         url: '/entities',
@@ -813,8 +823,9 @@ function addAuth() {
     }).done(function(data) {
         loadAuth();
         $('#form-auth').trigger("reset");
+    }).fail(() => {
+        alert('LLene todos los campos');
     });
-
 };
 
 function removePerson(id) {
@@ -844,6 +855,14 @@ saving = false;
 
 function saveWork(re = false) {
     console.log(saving);
+    if(re) {
+        if($('#e-email').val() != "") {
+            if(!$('#e-email')[0].checkValidity()) {
+                alert('El correo electrónico no es válido');
+                return;
+            }
+        }
+    }
     if(!saving) {
         saving = true;
         $.ajax({
@@ -891,6 +910,12 @@ $(function() {
 
 
 function sendAdmin() {
+    if($('#e-email').val() != "") {
+        if(!$('#e-email')[0].checkValidity()) {
+            alert('El correo electrónico no es válido');
+            return;
+        }
+    }
     $('#isend').val(1);
     $('#this-mail').val($('#smail').val());
     $('#form-update').submit();

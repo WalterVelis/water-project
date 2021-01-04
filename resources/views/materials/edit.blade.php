@@ -49,28 +49,31 @@
                                         <div class="col-sm-12">
                                             <div class="form-group{{ $errors->has('type') ? ' has-danger' : '' }}">
                                                 {{-- <input class="form-control{{ $errors->has('type') ? ' is-invalid' : '' }}" name="type" id="input-type" type="text" value="{{ old('type') }}"  /> --}}
-                                                <select class="form-control" name="type" id="">
-                                                    <option {{ $material->type == 0 ? "selected" : "" }} value="0">COBRE</option>
-                                                    <option {{ $material->type == 1 ? "selected" : "" }} value="1">PVC SANITARIO</option>
-                                                    <option {{ $material->type == 2 ? "selected" : "" }} value="2">PVC HIDR RD26</option>
-                                                    <option {{ $material->type == 3 ? "selected" : "" }} value="3">CONDUIT</option>
-                                                    <option {{ $material->type == 4 ? "selected" : "" }} value="4">TUBOPLUS</option>
-                                                    <option {{ $material->type == 5 ? "selected" : "" }} value="5">PVC HIDR CED40</option>
-                                                    <option {{ $material->type == 6 ? "selected" : "" }} value="6">BUSHING GALVANIZADO</option>
-                                                    <option {{ $material->type == 7 ? "selected" : "" }} value="7">GALVANIZADA</option>
-                                                    <option {{ $material->type == 8 ? "selected" : "" }} value="8">ACERO</option>
-                                                    <option {{ $material->type == 9 ? "selected" : "" }} value="9">PLÁSTICO</option>
-                                                    <option {{ $material->type == 10 ? "selected" : "" }} value="10">PVC</option>
-                                                    <option {{ $material->type == 11 ? "selected" : "" }} value="11">SILICON</option>
-                                                    <option {{ $material->type == 12 ? "selected" : "" }} value="12">GARLOCK</option>
-                                                    <option {{ $material->type == 13 ? "selected" : "" }} value="13">BRONCE</option>
-                                                    <option {{ $material->type == 14 ? "selected" : "" }} value="14">HULE</option>
-                                                    <option {{ $material->type == 15 ? "selected" : "" }} value="15">SILER</option>
-                                                    <option {{ $material->type == 16 ? "selected" : "" }} value="16">50% ESTAÑO y 50% PLOMO</option>
-                                                    <option {{ $material->type == 17 ? "selected" : "" }} value="17">OTRO</option>
+                                                <select class="form-control" name="" id="ti">
+                                                    <option {{ $material->type == "COBRE" ? "selected" : "" }} value="COBRE">COBRE</option>
+                                                    <option {{ $material->type == "PVC SANITARIO" ? "selected" : "" }} value="PVC SANITARIO">PVC SANITARIO</option>
+                                                    <option {{ $material->type == "PVC HIDR RD26" ? "selected" : "" }} value="PVC HIDR RD26">PVC HIDR RD26</option>
+                                                    <option {{ $material->type == "CONDUIT" ? "selected" : "" }} value="CONDUIT">CONDUIT</option>
+                                                    <option {{ $material->type == "TUBOPLUS" ? "selected" : "" }} value="TUBOPLUS">TUBOPLUS</option>
+                                                    <option {{ $material->type == "PVC HIDR CED40" ? "selected" : "" }} value="PVC HIDR CED40">PVC HIDR CED40</option>
+                                                    <option {{ $material->type == "BUSHING GALVANIZADO" ? "selected" : "" }} value="BUSHING GALVANIZADO">BUSHING GALVANIZADO</option>
+                                                    <option {{ $material->type == "GALVANIZADA" ? "selected" : "" }} value="GALVANIZADA">GALVANIZADA</option>
+                                                    <option {{ $material->type == "ACERO" ? "selected" : "" }} value="ACERO">ACERO</option>
+                                                    <option {{ $material->type == "PLÁSTICO" ? "selected" : "" }} value="PLÁSTICO">PLÁSTICO</option>
+                                                    <option {{ $material->type == "PVC" ? "selected" : "" }} value="PVC">PVC</option>
+                                                    <option {{ $material->type == "SILICON" ? "selected" : "" }} value="SILICON">SILICON</option>
+                                                    <option {{ $material->type == "GARLOCK" ? "selected" : "" }} value="GARLOCK">GARLOCK</option>
+                                                    <option {{ $material->type == "BRONCE" ? "selected" : "" }} value="BRONCE">BRONCE</option>
+                                                    <option {{ $material->type == "HULE" ? "selected" : "" }} value="HULE">HULE</option>
+                                                    <option {{ $material->type == "SILER" ? "selected" : "" }} value="SILER">SILER</option>
+                                                    <option {{ $material->type == "50% ESTAÑO y 50% PLOMO" ? "selected" : "" }} value="50% ESTAÑO y 50% PLOMO">50% ESTAÑO y 50% PLOMO</option>
+                                                    <option {{ $material->type == "0" ? "selected" : "" }} value="0">OTRO</option>
                                                 </select>
                                                 <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>
                                                 @include('alerts.feedback', ['field' => 'type'])
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <input id="otro" type="text" name="type" class="form-control mt-4" style="{{ $material->type == "0" ? "" : "display:none;" }}" placeholder="Especifique..." value="{{ $material->type }}">
                                             </div>
                                         </div>
                                         </div>
@@ -135,6 +138,8 @@
                                                 @endforeach
                                             </div>
                                         </div>
+
+                                        <span class="mt-4">* No se podrán eliminar proveedores que estén en algún proyecto con este material</span>
                                         </div>
                                     {{-- <div class="col-4">
                                         <label class="col-12" style="margin-bottom:-12px; font-weight:bold;">{{ __('Proveedor') }}</label>
@@ -203,6 +208,16 @@
         $('#p-'+id).remove();
         $('#provider-'+id).parent().parent('.row').show();
     }
+
+    $('#ti').on('change', () => {
+        console.log($('#ti'));
+        if($('#ti').val() == 0){
+            $('#otro').fadeIn();
+        } else {
+            $('#otro').fadeOut();
+            $('#otro').val($('#ti').val());
+        }
+    });
 </script>
 
 @endpush

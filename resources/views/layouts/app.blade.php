@@ -335,6 +335,14 @@
                 }
               });
             @endif
+
+            $.ajax({
+                type: 'GET',
+                url: '/getNotifications'
+            })
+            .done(function(data) {
+                $('#notify').html(data);
+            });
           });
 
 function formatMoney(number, decPlaces, decSep, thouSep) {

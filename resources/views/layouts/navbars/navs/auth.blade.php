@@ -34,7 +34,7 @@
                 {{ __('Notifications') }}
               </p>
             </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+            <div id="notify" style="max-width: 420px;    min-width: 250px;" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
               @php
               $notificacionsInfo=App\Notification::textNotificationActive();
               @endphp

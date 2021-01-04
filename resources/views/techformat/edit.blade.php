@@ -517,6 +517,8 @@ form .col-12 {
                                 </form>
                             </div>
                         </div>
+
+                        @if (!App\User::hasPermissions("Vendor"))
                         <div class="card crd">
                             <div class="card-header bg-b" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                 <h5 class="mb-0 text-uppercase d-inline">Mano de obra y Herramientas</h5><div style="color:white; margin-right: 26px;" class="d-inline float-right" id="total-cost">$0.00</div>
@@ -615,7 +617,7 @@ form .col-12 {
                             </div>
                         </div>
                     </div>
-
+                    @endif
                         <form id="form-update" method="post" action="{{ route('projects.update', $techFormat->format) }}" autocomplete="off" class="form-horizontal">
                             @csrf
                             @method('patch')
