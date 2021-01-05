@@ -21,10 +21,7 @@
       </div>
       <div class="user-info">
         <a data-toggle="collapse" href="#collapseProfile"   class="username">
-          <span>
-            {{ auth()->user()->name }}
-            <b class="caret"></b>
-          </span>
+          <span style="white-space: initial;"> {{ auth()->user()->name }} <b class="caret"></b> </span>
         </a>
         <div class="collapse{{ $menuParent == 'profile' ? 'aria-expanded=true' : '' }}" id="collapseProfile">
           <ul class="nav">

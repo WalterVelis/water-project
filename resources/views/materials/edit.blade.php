@@ -104,7 +104,7 @@
                                                 <div class="col-3">Costo Unitario</div>
                                                 <div class="col-2"></div>
                                             </div>
-                                            <div class="bg-w" id="providers">
+                                            <div class="bg-w" id="providers" style="height:300px;">
                                                 @foreach($providers as $p)
                                                 <div id="p-{{ $p->provider->id }}" class="row">
                                                     <div class="col-12 col-md-4"><span>{{ $p->provider->denomination }}</span></div>
@@ -126,7 +126,7 @@
                                                 <div class="col-8">Proveedores</div>
                                                 <div class="col-4">Acciones</div>
                                             </div>
-                                            <div class="bg-w">
+                                            <div class="bg-w" style="height:300px;">
                                                 @foreach($allProviders as $provider)
                                                 @if($provider->product_type == 1)
                                                 @continue

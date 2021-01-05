@@ -627,14 +627,17 @@ form .col-12 {
                         </form>
 
                     <br>
+
+                    @if (App\User::hasPermissions("Admin") || App\User::hasPermissions("Tech"))
                     <div class="row w-100">
                         <div class="col-12 col-md-12" style="    text-align: right;">
-                            @if (!App\User::hasPermissions("Vendor"))<button onclick="$('.set-status').val(1);$('#form-techformat').submit();" class="btn btn-primary">{{ __('FINALIZAR') }}</button>@endif
+                            <button onclick="$('.set-status').val(1);$('#form-techformat').submit();" class="btn btn-primary">{{ __('FINALIZAR') }}</button>
                         </div>
                         {{-- <div class="col-12 col-md-2">
                             <a href="{{ route('projects.index') }}" class="btn btn-rose float-right">{{ __('CANCEL') }}</a>
                         </div> --}}
                     </div>
+                    @endif
                     <!-- Fin -->
 
                 </div>
@@ -816,7 +819,7 @@ function loadAccesory() {
 
 saving = false;
 
-@if (!App\User::hasPermissions("Vendor"))
+@if (!App\User::hasPermissions("Admin") && !App\User::hasPermissions("Tech"))
 function saveWork() {
     console.log(saving);
     if(!saving) {
@@ -906,7 +909,7 @@ $('input:radio[name="factible"]').change(
         }
 });
 
-@if (!App\User::hasPermissions("Admin") || !App\User::hasPermissions("Tech"))
+@if (!App\User::hasPermissions("Admin") && !App\User::hasPermissions("Tech"))
 $(document).ready(function () {
     $('input, select, textarea, radio').prop('disabled', true);
     $('input, select, textarea, radio').addClass('disabled');
