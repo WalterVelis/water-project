@@ -123,10 +123,8 @@
                                         <span style="margin-bottom:-10px;font-weight:bold;">{{ __('Vendedor Titular') }}</span>
                                         <div class="form-group{{ $errors->has('vendor_assigned') ? ' has-danger' : '' }}">
                                             <select class="form-control" name="vendor_assigned" id="" required>
-                                                @foreach($users as $user)
-                                                @if($user->status == 0)
-                                                @continue
-                                                @endif
+                                                <option value="0">No asignado</option>
+                                                @foreach($users->where('role_id', 6) as $user)
                                                 <option {{ $assignmentData->vendor_assigned == $user->id ? "selected" : "" }} value="{{ $user->id }}">{{ $user->name }}</option>
                                                 @endforeach
                                             </select>
@@ -139,10 +137,8 @@
                                         <span style="margin-bottom:-10px;font-weight:bold;">{{ __('Técnico asignado') }}</span>
                                         <div class="form-group{{ $errors->has('tech_assigned') ? ' has-danger' : '' }}">
                                             <select class="form-control" name="tech_assigned" id="" required>
-                                                @foreach($users as $user)
-                                                @if($user->status == 0)
-                                                @continue
-                                                @endif
+                                                <option value="0">No asignado</option>
+                                                @foreach($users->where('role_id', 4) as $user)
                                                 {{-- @if(!$user->hasPermissions('Tech'))
                                                 @continue
                                                 @endif --}}
@@ -158,10 +154,8 @@
                                         <span style="margin-bottom:-10px;font-weight:bold;">{{ __('Administrador') }}</span>
                                         <div class="form-group{{ $errors->has('admin_assigned') ? ' has-danger' : '' }}">
                                             <select class="form-control" name="admin_assigned" id="" required>
-                                                @foreach($users as $user)
-                                                @if($user->status == 0)
-                                                @continue
-                                                @endif
+                                                <option value="0">No asignado</option>
+                                                @foreach($users->where('role_id', 1) as $user)
                                                 <option {{ $assignmentData->admin_assigned == $user->id ? "selected" : "" }} value="{{ $user->id }}">{{ $user->name }}</option>
                                                 @endforeach
                                             </select>

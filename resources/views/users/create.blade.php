@@ -82,7 +82,7 @@
                                 <option value="{{$role->id}}">{{ $role->name }}</option>
                             @endforeach
                           </select>
-                          <span id="errorRoleUser" class="d-none" style="text-align:left;">@lang('Campo obligatorio')</span>
+                          <span id="errorRoleUser" class="d-none" style="text-align:left;    transform: translateY(35px); display: block;">@lang('Campo obligatorio')</span>
                           @include('alerts.feedback', ['field' => 'role_id'])
                         </div>
                       </div>

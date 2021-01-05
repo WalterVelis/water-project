@@ -7,6 +7,7 @@ use App\MaterialFormat;
 use App\MaterialProvider;
 use App\MaterialProviderFormat;
 use App\Provider;
+use PDF;
 use Illuminate\Http\Request;
 
 class MaterialController extends Controller
@@ -20,6 +21,16 @@ class MaterialController extends Controller
     {
         $materials = MaterialProvider::with(['material', 'provider'])->get();
         return view('materials.index',compact('materials'));
+    }
+
+    public function queryPdf()
+    {
+        $materials = MaterialProvider::with(['material', 'provider'])->get();
+
+        $name = __("Materiales Extra");
+        $pdf = PDF::loadView('materials.pdf', compact('materials'));
+        $pdf->setPaper("letter", "Portrait");
+        return $pdf->download($name.'.pdf');
     }
 
     /**

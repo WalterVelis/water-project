@@ -641,7 +641,7 @@ form .col-12 {
             </div>
             <div class="row float-right mt-4 w-100">
                 <div class="col-12">
-                    <button style="float: right;" data-toggle="modal" data-target="#mail" onclick="$('.set-status').val(1);" class="btn btn-primary">{{ __('FINALIZAR') }}</button>
+                    <button id="finish" style="float: right;" data-toggle="modal" data-target="#mail" onclick="$('.set-status').val(1);" class="btn btn-primary">{{ __('FINALIZAR') }}</button>
                 </div>
             </div>
 
@@ -924,13 +924,25 @@ function sendAdmin() {
 
 $('input:radio[name="factible"]').change(
     function(){
+        console.log($(this).val());
         if ($(this).val() == 1) {
             // no factible
             $('#feasible').fadeIn();
+            $('#finish').prop('disabled', true);
+            $('#finish').addClass('disabled');
+            console.log('nfac');
         } else {
             $('#feasible').fadeOut();
+            $('#finish').prop('disabled', false);
+            $('#finish').removeClass('disabled');
         }
 });
+
+if($('input:radio[name="factible"]:checked').val() == 1){
+    $('#finish').prop('disabled', true);
+    $('#finish').addClass('disabled');
+    console.log('no fac');
+}
 
 </script>
 

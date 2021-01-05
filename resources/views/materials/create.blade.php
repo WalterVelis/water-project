@@ -39,8 +39,8 @@
                                         <label class="col-12" style="margin-bottom:-12px; font-weight:bold;">{{ __('Nombre de material') }}</label>
                                         <div class="col-sm-12">
                                             <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                                <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" value="{{ old('name') }}"  />
-                                                <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>
+                                                <input class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" id="input-name" type="text" value="{{ old('name') }}"  required />
+                                                {{-- <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span> --}}
                                                 @include('alerts.feedback', ['field' => 'name'])
                                             </div>
                                         </div>
@@ -89,7 +89,7 @@
                                                     <option value="50% ESTAÑO y 50% PLOMO">50% ESTAÑO y 50% PLOMO</option>
                                                     <option value="0">OTRO</option>
                                                 </select>
-                                                <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span>
+                                                {{-- <span id="errorNameUser" class="d-none">@lang('Campo obligatorio')</span> --}}
                                                 @include('alerts.feedback', ['field' => 'type'])
                                             </div>
                                         </div>

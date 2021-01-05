@@ -502,6 +502,7 @@ form .col-12 {
                                                     <input name="why_not_feasible" type="text" class="form-control" placeholder="¿Por qué?" value="{{ $format->why_not_feasible }}">
                                                 </div>
                                             </div>
+                                            @if (App\User::hasPermissions("Admin") || App\User::hasPermissions("Tech"))
                                             <div class="row w-100">
                                                 <div class="col-12 col-md-8">
                                                 </div>
@@ -509,16 +510,18 @@ form .col-12 {
                                                     <a href="{{ route('projects.index') }}" class="btn btn-rose float-right">{{ __('CANCEL') }}</a>
                                                 </div>
                                                 <div class="col-12 col-md-2">
-                                                    @if (!App\User::hasPermissions("Vendor"))<button onclick="$('#form-techformat').submit();" class="btn btn-primary">{{ __('SAVE') }}</button>@endif
+                                                    <button onclick="$('#form-techformat').submit();" class="btn btn-primary">{{ __('SAVE') }}</button>
+
                                                 </div>
                                             </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
 
-                        @if (!App\User::hasPermissions("Vendor"))
+                        @if (App\User::hasPermissions("Admin") || App\User::hasPermissions("Tech"))
                         <div class="card crd">
                             <div class="card-header bg-b" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                 <h5 class="mb-0 text-uppercase d-inline">Mano de obra y Herramientas</h5><div style="color:white; margin-right: 26px;" class="d-inline float-right" id="total-cost">$0.00</div>
@@ -902,6 +905,13 @@ $('input:radio[name="factible"]').change(
             $('#feasible').fadeOut();
         }
 });
+
+@if (!App\User::hasPermissions("Admin") || !App\User::hasPermissions("Tech"))
+$(document).ready(function () {
+    $('input, select, textarea, radio').prop('disabled', true);
+    $('input, select, textarea, radio').addClass('disabled');
+});
+@endif
 
 
 </script>

@@ -25,11 +25,30 @@
                             </div>
                         </div>
 
+                        {{-- <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-left">
+                            <div class="dropdown">
+                                <button title="Download Data" class="dropdown-toggle" style="background: none; border: none; font-size: 1.5em;    width: 90px;"
+                                    type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a id="exportXlsx" href="{{ route('role_xlsx') }}"
+                                    class="btn btn-sm btn-rose">{{ __('Export xlsx') }}</a>
+                                <a id="exportCsv" href="{{ route('role_csv') }}"
+                                    class="btn btn-sm btn-rose">{{ __('Export csv') }}</a>
+                                <a id="exportPdf" href="{{ route('rolePdf',['all'])}}" target='_blank'
+                                    class="btn btn-sm btn-rose">{{ __('Export pdf') }}</a>
+                                </div>
+                            </div>
+                        </div> --}}
+
                         <div class="row col-12">
                             <div class="col-lg-11 col-md-11 col-sm-11 col-xs-12 text-right">
                                 <a href="{{ route('role.create') }}" class="btn-add"><i style="background: #0b6696; color: white; font-size: 1em; width: 30px; padding: 10px; border-radius: 50px;" class="fa fa-plus fw" aria-hidden="true"></i></a>
                             </div>
-                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12 text-left">
+
+                            {{-- <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12 text-left">
                                 <div class="dropdown">
                                     <button title="Download Data" class="btn btn-ns" type="button"
                                         id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
@@ -45,7 +64,27 @@
                                                 aria-hidden="true"></i>&nbsp; PDF</p>
                                     </div>
                                 </div>
+                            </div> --}}
+
+
+                            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-left">
+                                <div class="dropdown">
+                                    <button title="Download Data" class="dropdown-toggle" style="background: none; border: none; font-size: 1.5em;    width: 90px;"
+                                        type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-download" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <p class="dropdown-item" onclick="exportDataCsv();"><i class="fa fa-file-code-o"
+                                                aria-hidden="true"></i>&nbsp; CSV</p>
+                                        <p class="dropdown-item" onclick="exportDataXlsx();"><i
+                                                class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp; XLSX</p>
+                                        <p class="dropdown-item" onclick="exportDataPdf();"><i class="fa fa-file-pdf-o"
+                                                aria-hidden="true"></i>&nbsp; PDF</p>
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
 
                         <div class="table-responsive">

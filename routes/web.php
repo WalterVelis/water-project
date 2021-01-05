@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth','change']], function () {
     Route::get('formatPdf', 'ProjectController@queryPdf');
     Route::get('quotationPdf/{id}', 'QuotationController@genPdf');
     Route::get('accesoryPdf', 'AccesoryUrbanController@queryPdf');
+    Route::get('materialPdf', 'MaterialController@queryPdf');
     Route::get('userInactiveAllPdf/{all}', 'UserController@query2PdfUser')->name('user2Pdf');
     Route::post('changeUser/{id}','UserController@change');
     Route::post('email2reset/{id}','UserController@email2Reset');

@@ -23,22 +23,11 @@
                                     @endif
                                 </div>
                                 <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-left">
-                                    <div class="dropdown">
-                                        <button title="Download Data" class="dropdown-toggle"
-                                            style="background: none; border: none; font-size: 1.5em;    width: 90px;"
-                                            type="button" id="dropdownMenuButton" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">
+                                    <a class="float-right" href="/materialPdf/">
+                                        <button class=" d-inline" style="    background: none; border: none; font-size: 1.5em;" type="button">
                                             <i class="fa fa-download" aria-hidden="true"></i>
                                         </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <p class="dropdown-item" onclick="exportDataCsv();"><i
-                                                    class="fa fa-file-code-o" aria-hidden="true"></i>&nbsp; CSV</p>
-                                            <p class="dropdown-item" onclick="exportDataXlsx();"><i
-                                                    class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp; XLSX</p>
-                                            <p class="dropdown-item" onclick="exportDataPdf();"><i
-                                                    class="fa fa-file-pdf-o" aria-hidden="true"></i>&nbsp; PDF</p>
-                                        </div>
-                                    </div>
+                                    </a>
                                 </div>
                             </div>
                             {{-- @endcan --}}
