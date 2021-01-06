@@ -29,6 +29,7 @@ class MaterialFormatController extends Controller
             // dump($pm->material_id );
             $materialProvider[$pm->material_id] = MaterialProvider::with('provider')->with('materialProvider')->where('material_id', $pm->material_id)->get();
         }
+        return view('techformat._materials', compact('project_materials', 'materialProvider'));
         // dd($materialProvider);
         // $mp = MaterialProvider::with('provider')->where('material_id', $materialId)->get();
         // dd($mp);
@@ -41,7 +42,6 @@ class MaterialFormatController extends Controller
         // dd($project_materials);
         // $pj = MaterialProviderFormat::whereHas('providers', function($query) use ($projectId) { $query->where('provider_id', $projectId);})->with('providers.material')->with('providers.provider')->where('format_id', $projectId)->get();
         // dd($pj);
-        return view('techformat._materials', compact('project_materials', 'materialProvider'));
     }
 
     /**

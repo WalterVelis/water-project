@@ -90,6 +90,7 @@
         margin-top: -4px;
     }
     select.form-control {
+        padding-right: 35px;
         background-image: linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%), linear-gradient(to right, transparent, transparent)!important;
         background-position: calc(100% - 20px) calc(1em + 2px), calc(100% - 14px) calc(1em + 2px), calc(100% - 2.5em) 0.5em;
         background-size: 6px 6px, 6px 6px, 1px 1.5em;

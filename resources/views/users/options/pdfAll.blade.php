@@ -74,7 +74,7 @@
             <table width="100%">
                 <tr>
                     <td align="left" style="width: 50%;">
-                        &copy;  2020 Cotizador de AguaH2O, Todos los derechos reservados. Desarrollado por ISINET.
+                        &copy;  2020 Cotizador AguaH2O, Todos los derechos reservados. Desarrollado por ISINET.
                     </td>
                     <td align="right" style="width: 50%;">
                     </td>

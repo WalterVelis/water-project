@@ -11,6 +11,8 @@ use App\CostsCenter;
 use App\Entity;
 use App\Format;
 use App\Mail\TechFormatNotification;
+use App\MaterialFormat;
+use App\MaterialProvider;
 use App\Notify;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -59,6 +61,22 @@ class TechFormatController extends Controller
     public function show(TechFormat $techFormat)
     {
         //
+    }
+
+
+    public function getMatPdf($id) {
+
+        $project_materials = MaterialFormat::with('materials.providers.provider')->with('materials.providers.materialProvider')->where('format_id', $id)->get();
+        // dd($project_materials);
+        foreach($project_materials as $pm) {
+            // dump($pm->material_id );
+            $materialProvider[$pm->material_id] = MaterialProvider::with('provider')->with('materialProvider')->where('material_id', $pm->material_id)->get();
+        }
+        // return view('techformat._materials', compact('project_materials', 'materialProvider'));
+
+        $pdf =  PDF::loadView('layouts.pdf.techMat', compact('project_materials', 'materialProvider'));
+        $name = Carbon::now()->toDateTimeString().'.pdf';
+        return $pdf->setPaper('letter', 'landscape')->download($name);
     }
 
 

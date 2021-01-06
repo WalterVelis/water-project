@@ -104,7 +104,7 @@
                                                 <div class="col-3">Costo Unitario</div>
                                                 <div class="col-2"></div>
                                             </div>
-                                            <div class="bg-w" id="providers" style="height:300px;">
+                                            <div class="bg-w" id="providers" style="height:300px;overflow-y: scroll; overflow-x: hidden;">
                                                 @foreach($providers as $p)
                                                 <div id="p-{{ $p->provider->id }}" class="row">
                                                     <div class="col-12 col-md-4"><span>{{ $p->provider->denomination }}</span></div>
@@ -126,7 +126,7 @@
                                                 <div class="col-8">Proveedores</div>
                                                 <div class="col-4">Acciones</div>
                                             </div>
-                                            <div class="bg-w" style="height:300px;">
+                                            <div class="bg-w" style="height:300px;overflow-y: scroll; overflow-x: hidden;">
                                                 @foreach($allProviders as $provider)
                                                 @if($provider->product_type == 1)
                                                 @continue
@@ -170,7 +170,7 @@
     </div>
     <footer class="footer">
         <div class="container-fluid">
-            <div class="copyright "> &copy; <script> document.write(new Date().getFullYear()) </script> Cotizador de AguaH2O, Todos los derechos reservados. Desarrollado por ISINET.</div>
+            <div class="copyright "> &copy; <script> document.write(new Date().getFullYear()) </script> Cotizador AguaH2O, Todos los derechos reservados. Desarrollado por ISINET.</div>
         </div>
     </footer>
 </div>

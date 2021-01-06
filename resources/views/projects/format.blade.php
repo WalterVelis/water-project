@@ -641,7 +641,11 @@ form .col-12 {
             </div>
             <div class="row float-right mt-4 w-100">
                 <div class="col-12">
+                    @if(App\User::hasPermissions('Vendor'))
                     <button id="finish" style="float: right;" data-toggle="modal" data-target="#mail" onclick="$('.set-status').val(1);" class="btn btn-primary">{{ __('FINALIZAR') }}</button>
+                    @elseif(App\User::hasPermissions('Admin'))
+                    <button onclick="saveWork(true)" class="btn btn-primary">{{ __('FINALIZAR') }}</button>
+                    @endif
                 </div>
             </div>
 
@@ -652,7 +656,7 @@ form .col-12 {
     </div>
     <footer class="footer">
         <div class="container-fluid">
-            <div class="copyright "> &copy; <script> document.write(new Date().getFullYear()) </script> Cotizador de AguaH2O, Todos los derechos reservados. Desarrollado por ISINET.</div>
+            <div class="copyright "> &copy; <script> document.write(new Date().getFullYear()) </script> Cotizador AguaH2O, Todos los derechos reservados. Desarrollado por ISINET.</div>
         </div>
     </footer>
 </div>
@@ -850,7 +854,7 @@ function loadAuth() {
     $('#auth').load('/entities/'+projectId+'/1');
 }
 
-@if (!App\User::hasPermissions("Tech"))
+
 saving = false;
 
 function saveWork(re = false) {
@@ -879,17 +883,20 @@ if(re)
     alert('Formulario Guardado');
 }
 
-@endif
 
 $(function() {
     loadPlanning();
     loadAuth();
 
+
     @if (App\User::hasPermissions("Tech"))
+
+    setTimeout(() => {
         $('input, select').attr('disabled', 'true')
         $('input, select').attr('readonly', 'true')
         $('input.i-enabled').removeAttr('disabled')
         $('input.i-enabled').removeAttr('readonly')
+    }, 500);
     @endif
 
     $("input").blur(function(){

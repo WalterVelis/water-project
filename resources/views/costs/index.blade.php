@@ -86,7 +86,7 @@
                                             <td>
                                                 {{ $cost->name }}
                                             </td>
-                                            <td style="text-align: right">
+                                            <td style="text-align:">
                                                 {{ Helper::formatMoney($cost->unit_cost) }}
                                             </td>
                                             <td>
@@ -115,7 +115,7 @@
     </div>
     <footer class="footer">
         <div class="container-fluid">
-            <div class="copyright "> &copy; <script> document.write(new Date().getFullYear()) </script> Cotizador de AguaH2O, Todos los derechos reservados. Desarrollado por ISINET.</div>
+            <div class="copyright "> &copy; <script> document.write(new Date().getFullYear()) </script> Cotizador AguaH2O, Todos los derechos reservados. Desarrollado por ISINET.</div>
         </div>
     </footer>
     </div>

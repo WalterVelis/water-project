@@ -10,7 +10,7 @@
         <th scope="col">{{ __('Email') }}</th>
         <th scope="col">{{ __('Telephone') }}</th>
         <th scope="col">{{ __('Job Position') }}</th>
-        <th scope="col">{{ __('Actions') }}</th>
+        @if (!App\User::hasPermissions("Tech"))<th scope="col">{{ __('Actions') }}</th>@endif
     </thead>
     <tbody>
         @foreach ($entities as $item)
@@ -19,7 +19,7 @@
                 <td> {{ $item->email }} </td>
                 <td> {{ $item->telephone }} </td>
                 <td> {{ $item->position }} </td>
-                <td> <i data-toggle="tooltip" data-placement="top" title="Eliminar" onclick="removePerson({{ $item->id }})" class="fa fa-trash" aria-hidden="true"></i> </td>
+                @if (!App\User::hasPermissions("Tech"))<td> <i data-toggle="tooltip" data-placement="top" title="Eliminar" onclick="removePerson({{ $item->id }})" class="fa fa-trash" aria-hidden="true"></i> </td>@endif
             </tr>
         @endforeach
     </tbody>

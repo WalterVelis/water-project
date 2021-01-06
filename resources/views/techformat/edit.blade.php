@@ -580,6 +580,13 @@ form .col-12 {
                                                 <button type="button" onclick="addMaterial()" class="btn btn-primary">Agregar</button>
                                             </div>
                                         </div>
+                                        <div>
+                                            <a href="/getMat/{{ $format->id }}">
+                                                <button class=" d-inline" style="    top: 20px;position: absolute; right: 0px;background: none; border: none; font-size: 1.5em;    width: 90px;" type="button">
+                                                    <i class="fa fa-download" aria-hidden="true"></i>
+                                                </button>
+                                            </a>
+                                        </div>
                                     </form>
                                     <div id="materials"></div>
                                 </div>
@@ -651,7 +658,7 @@ form .col-12 {
     </div>
     <footer class="footer">
         <div class="container-fluid">
-            <div class="copyright "> &copy; <script> document.write(new Date().getFullYear()) </script> Cotizador de AguaH2O, Todos los derechos reservados. Desarrollado por ISINET.</div>
+            <div class="copyright "> &copy; <script> document.write(new Date().getFullYear()) </script> Cotizador AguaH2O, Todos los derechos reservados. Desarrollado por ISINET.</div>
         </div>
     </footer>
 </div>
