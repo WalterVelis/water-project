@@ -533,6 +533,7 @@ form .col-12 {
                                             <i class="fa fa-download" aria-hidden="true"></i>
                                         </button>
                                     </a>
+                                    @if (App\User::hasPermissions("Tech"))
                                     <form action="" id="form-costformat">
                                         @csrf
                                         <div class="row">
@@ -552,6 +553,7 @@ form .col-12 {
                                             </div>
                                         </div>
                                     </form>
+                                    @endif
                                     <div id="costs"></div>
                                 </div>
                             </div>
@@ -562,6 +564,7 @@ form .col-12 {
                             </div>
                             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                                 <div class="card-body bg-white">
+                                    @if (App\User::hasPermissions("Tech"))
                                     <form action="" id="form-materialformat">
                                         @csrf
                                         <div class="row">
@@ -588,6 +591,7 @@ form .col-12 {
                                             </a>
                                         </div>
                                     </form>
+                                    @endif
                                     <div id="materials"></div>
                                 </div>
                             </div>
@@ -603,6 +607,7 @@ form .col-12 {
                                             <i class="fa fa-download" aria-hidden="true"></i>
                                         </button>
                                     </a>
+                                    @if (App\User::hasPermissions("Tech"))
                                     <form action="" id="form-accesoryformat">
                                         @csrf
                                         <div class="row">
@@ -622,6 +627,7 @@ form .col-12 {
                                             </div>
                                         </div>
                                     </form>
+                                    @endif
                                     <div id="accesories"></div>
                                 </div>
                             </div>
@@ -826,7 +832,6 @@ function loadAccesory() {
 
 saving = false;
 
-@if (!App\User::hasPermissions("Admin") && !App\User::hasPermissions("Tech"))
 function saveWork() {
     console.log(saving);
     if(!saving) {
@@ -842,7 +847,6 @@ function saveWork() {
         });
     }
 }
-@endif
 
 $('#anual_precipitation').change(() => {
     console.log('l');
