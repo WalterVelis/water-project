@@ -104,8 +104,8 @@ form .col-12 {
                                     <li class="nav-item active {{ $format->internal_status >= 0 ? "c-enabled" : "" }}">
                                         <a class="nav-link" href="{{ $format->internal_status >= 0 ? route('techformat.edit', $format) : "#" }}">{{ __('Technical Lift') }}</a>
                                     </li>
-                                    <li class="nav-item {{ $format->internal_status >= 2 && $format->internal_status != 2 ? "c-enabled" : "" }}">
-                                        <a class="nav-link" href="{{ $format->internal_status >= 2 && $format->internal_status != 2  ? "/quotation/$format->id/edit" : "#" }}">{{ __('Quotation') }}</a>
+                                    <li class="nav-item {{ $format->internal_status >= 2 ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status >= 2  ? "/quotation/$format->id/edit" : "#" }}">{{ __('Quotation') }}</a>
                                     </li>
                                     <li class="nav-item {{ $format->internal_status == 6 ? "c-enabled" : "" }}">
                                         <a class="nav-link" href="{{ $format->internal_status == 6 ? "/order/$format->id/edit" : "#" }}">{{ __('Purchase Order') }}</a>
