@@ -1,4 +1,3 @@
-@dd("done")
 @extends('layouts.app', ['activePage' => 'profile-edit', 'menuParent' => 'profile', 'titlePage' => __('User Profile')])
 @section('content')
 <div class="content">
