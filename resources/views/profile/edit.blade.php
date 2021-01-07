@@ -149,7 +149,7 @@
   </div>
   <footer class="footer">
     <div class="container-fluid">
-        <div class="copyright "> &copy; <script> document.write(new Date().getFullYear()) </script> Cotizador AguaH2O, Todos los derechos reservados. Desarrollado por ISINET.</div>
+        <div class="copyright "> &copy; 2021 Cotizador AguaH2O, Todos los derechos reservados. Desarrollado por ISINET.</div>
     </div>
 </footer>
 </div>
