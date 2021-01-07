@@ -108,7 +108,7 @@
                                     <div class="mt-5 col-12 col-md-6">
                                         <span style="margin-bottom:-10px;font-weight:bold;">{{ __('Estatus') }}</span>
                                         <div class="form-group{{ $errors->has('status') ? ' has-danger' : '' }}">
-                                            <select class="form-control" name="status" id="">
+                                            <select class="form-control" name="status" id="stt">
                                                 <option readonly value="">Seleccione...</option>
                                                 <option {{ $assignmentData->internal_status == 4 ? "selected" : "" }} value="4">Cotizado</option>
                                                 <option {{ $assignmentData->internal_status == 5 ? "selected" : "" }} value="5">Negociación</option>
@@ -167,7 +167,9 @@
                         </div>
                         <div class="card-footer d-flex flex-row-reverse" style="justify-content: end;">
                             {{-- <p onclick="validationSave();" class="btn btn-primary">{{ __('Save') }}</p> --}}
+                            @if (!App\User::hasPermissions("Tech"))
                             <button id="saveUser" type="submit" class="btn btn-primary">{{ __('Save') }}</button>
+                            @endif
                         </div>
                     </div>
                 </form>
@@ -193,6 +195,23 @@
             }
         }));
     });
+
+    @if (App\User::hasPermissions("Tech"))
+    $(function () {
+        $('input, select').addClass('disabled');
+        $('input, select').prop('disabled', true);
+    });
+    @endif
+
+    @if (App\User::hasPermissions("Vendor"))
+    $(function () {
+        $('input, select').addClass('disabled');
+        $('input, select').prop('disabled', true);
+        $('#stt').removeClass('disabled');
+        $('#stt').prop('disabled', false);
+    });
+    @endif
+
 </script>
 
 @endpush

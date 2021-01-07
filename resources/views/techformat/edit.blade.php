@@ -542,7 +542,7 @@ form .col-12 {
                                                 <input required type="hidden" name="format_id" class="form-control" value="{{ $techFormat->id }}" required>
                                             </div>
                                             <div class="col-4">
-                                                <select name="cost_id" id="" class="form-control">
+                                                <select required name="cost_id" id="" class="form-control">
                                                     @foreach($costs as $cost)
                                                         <option value="{{ $cost->id }}">{{ $cost->name }}</option>
                                                     @endforeach
@@ -569,7 +569,7 @@ form .col-12 {
                                         @csrf
                                         <div class="row">
                                             <div class="col-4">
-                                                <select name="material_id" id="" class="form-control">
+                                                <select required name="material_id" id="" class="form-control">
                                                     @foreach($materials as $material)
                                                         <option value="{{ $material->id }}">{{ $material->name }}, {{ $material->unitLabel() }}, {{ $material->type }}</option>
                                                     @endforeach
@@ -612,15 +612,15 @@ form .col-12 {
                                         @csrf
                                         <div class="row">
                                             <div class="col-4">
-                                                <select name="accesory_id" id="" class="form-control">
+                                                <select name="accesory_id" id="" class="form-control" required>
                                                     @foreach($accesories as $accesory)
                                                         <option value="{{ $accesory->id }}">{{ $accesory->name }}</option>
                                                     @endforeach
                                                 </select>
                                             </div>
                                             <div class="col-4">
-                                                <input required type="text" name="qty" class="form-control" placeholder="Piezas" required>
-                                                <input required type="hidden" name="format_id" class="form-control" value="{{ $techFormat->id }}" required>
+                                                <input required type="text" name="qty" class="form-control" placeholder="Piezas">
+                                                <input required type="hidden" name="format_id" class="form-control" value="{{ $techFormat->id }}">
                                             </div>
                                             <div class="col-2">
                                                 <button type="button" onclick="addAccesory()" class="btn btn-primary">Agregar</button>

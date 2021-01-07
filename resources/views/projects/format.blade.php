@@ -640,7 +640,7 @@ form .col-12 {
                 </div>
             </div>
             <div class="row float-right mt-4 w-100">
-                <div class="col-12">
+                <div class="col-12" style="text-align: right;">
                     @if(App\User::hasPermissions('Vendor'))
                     <button id="finish" style="float: right;" data-toggle="modal" data-target="#mail" onclick="$('.set-status').val(1);" class="btn btn-primary">{{ __('FINALIZAR') }}</button>
                     @elseif(App\User::hasPermissions('Admin'))
