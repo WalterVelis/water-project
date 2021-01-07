@@ -34,9 +34,9 @@
                     <tr>
                         <td scope="row">{{ $pc->day }}</td>
                         <td>{{ $pc->costs->name }}</td>
-                        <td>{{ Helper::formatMoney($pc->cost) }}</td>
-                        <td>{{ Helper::formatMoney($pc->cost * $pc->day) }}</td>
-                        @php($total += ($pc->cost * $pc->day))
+                        <td>{{ Helper::formatMoney($pc->costs->unit_cost) }}</td>
+                        <td>{{ Helper::formatMoney($pc->costs->unit_cost * $pc->day) }}</td>
+                        @php($total += ($pc->costs->unit_cost * $pc->day))
                         @if (!App\User::hasPermissions("Vendor"))<td><i data-toggle="tooltip" data-placement="top" title="Eliminar" class="fa fa-trash" aria-hidden="true" onclick="removeCost({{ $pc->id }})"></i></td>@endif
                     </tr>
                 @endforeach
@@ -63,12 +63,12 @@
             <tbody>
 
                 @foreach($project_costs as $pc)
-                    @php($total += ($pc->cost * $pc->day))
+                    @php($total += ($pc->costs->unit_cost * $pc->day))
                     <tr>
                         <td scope="row">{{ $pc->day }}</td>
                         <td>{{ $pc->costs->name }}</td>
-                        <td><input class="form-control unit_cost" style="width: 70px;" data-id="{{ $pc->id }}" type="number" name="unit_cost" value="{{{ $pc->cost }}}"></td>
-                        <td>{{ Helper::formatMoney($pc->cost * $pc->day) }}</td>
+                        <td><input class="form-control unit_cost" style="width: 70px;" data-id="{{ $pc->id }}" type="number" name="unit_cost" value="{{{ $pc->costs->unit_cost }}}"></td>
+                        <td>{{ Helper::formatMoney($pc->costs->unit_cost * $pc->day) }}</td>
                         {{-- <td><i class="fa fa-trash" aria-hidden="true" onclick="removeCost({{ $pc->id }})"></i></td> --}}
                     </tr>
                 @endforeach
