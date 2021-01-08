@@ -12,6 +12,9 @@ form label, .col-form-label {
     padding-right: 0px!important;
 }
 
+.bg-red {
+    border-color:red;
+}
 .c_label {
     /* font-size: 1.1em !important; */
     padding: 0 !important;
@@ -547,7 +550,7 @@ form .col-12 {
                                             value="{{ $format->notes }}" />
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 mt-3">
+                                <div class="col-12 col-md-12 mt-3">
                                     <label class="c_label col-12 col-form-label">{{ __('¿Es factible?') }}</label>
                                     <div class="col-sm-12">
                                         <input {{ $format->status == 3 ? 'checked' : '' }} class="d-inline mt-3" name="factible" type="radio" value="0" id="is_factible" /> <label class="mr-3" for="is_factible">Es factible</label>
@@ -800,7 +803,13 @@ var projectId = {{ $format->id }};
 
 function addPlanning() {
     if(!$('#planning-email')[0].checkValidity()) {
-        alert('El correo electrónico no es válido');
+        $.notify({
+            // options
+            message: 'El correo electrónico no es válido'
+        },{
+            // settings
+            type: 'danger'
+        });
         return;
     }
     $.ajax({
@@ -811,13 +820,25 @@ function addPlanning() {
         loadPlanning();
         $('#form-planning').trigger("reset");
     }).fail(() => {
-        alert('LLene todos los campos');
+        $.notify({
+            // options
+            message: 'Por favor, ingrese todos los datos correspondientes'
+        },{
+            // settings
+            type: 'danger'
+        });
     });
 };
 
 function addAuth() {
     if(!$('#auth-email')[0].checkValidity()) {
-        alert('El correo electrónico no es válido');
+        $.notify({
+            // options
+            message: 'El correo electrónico no es válido'
+        },{
+            // settings
+            type: 'danger'
+        });
         return;
     }
     $.ajax({
@@ -828,7 +849,13 @@ function addAuth() {
         loadAuth();
         $('#form-auth').trigger("reset");
     }).fail(() => {
-        alert('LLene todos los campos');
+        $.notify({
+            // options
+            message: 'Por favor, ingrese todos los datos correctamente'
+        },{
+            // settings
+            type: 'danger'
+        });
     });
 };
 
@@ -862,7 +889,13 @@ function saveWork(re = false) {
     if(re) {
         if($('#e-email').val() != "") {
             if(!$('#e-email')[0].checkValidity()) {
-                alert('El correo electrónico no es válido');
+                $.notify({
+                    // options
+                    message: 'El correo electrónico no es válido'
+                },{
+                    // settings
+                    type: 'danger'
+                });
                 return;
             }
         }
@@ -880,7 +913,13 @@ function saveWork(re = false) {
         });
 }
 if(re)
-    alert('Formulario Guardado');
+$.notify({
+            // options
+            message: 'Formulario Guardado Exitosamente'
+        },{
+            // settings
+            type: 'success'
+        });
 }
 
 
@@ -919,10 +958,18 @@ $(function() {
 function sendAdmin() {
     if($('#e-email').val() != "") {
         if(!$('#e-email')[0].checkValidity()) {
-            alert('El correo electrónico no es válido');
+            $.notify({
+            // options
+            message: 'El correo electrónico del formato técnico no es válido'
+            },{
+                // settings
+                type: 'danger'
+            });
+            $('#e-email').addClass("bg-red");
             return;
         }
     }
+    $('#e-email').removeClass("bg-red");
     $('#isend').val(1);
     $('#this-mail').val($('#smail').val());
     $('#form-update').submit();

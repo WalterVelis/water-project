@@ -191,7 +191,13 @@
     $('#form-create').on('submit', (e) => {
         if(counter <= 0)
         {
-            alert('Debe asignar al menos un proveedor')
+            $.notify({
+            // options
+            message: 'El listado de proveedores no puede ser vacio.'
+            },{
+                // settings
+                type: 'danger'
+            });
             e.preventDefault();
         }
     });

@@ -246,6 +246,7 @@ form .col-12 {
                                             @php
                                                 $rooftop = explode(",",$techFormat->rooftop);
                                             @endphp
+                                            <fieldset id="chk-azotea">
                                             <div class="row col-sm-12 mt-2">
                                                 <div class="col-12 col-md-3">
                                                     <div class="form-check">
@@ -289,6 +290,7 @@ form .col-12 {
                                                     </div>
                                                 </div>
                                             </div>
+                                            </fieldset>
                                         </div>
 
                                         <div class="row">
@@ -309,7 +311,7 @@ form .col-12 {
                                         </div>
                                         <div class="row">
                                             <div class="col-12 col-md-4">
-                                                <label style="" class="c_label col-12 col-form-label">{{ __('Promedio anual de precipitación pluvial de la zona (mm)') }}</label>
+                                                <label style="" class="c_label col-12 col-form-label">{{ __('Promedio anual de precipitación pluvial de la zona (m3)') }}</label>
                                                 <div class="col-sm-12">
                                                     <input required class="form-control" id="anual_precipitation" name="anual_precipitation" type="text" value="{{ $techFormat->anual_precipitation }}" />
                                                 </div>
@@ -492,7 +494,7 @@ form .col-12 {
                                                     <input required class="form-control" id="" name="description" type="text" value="{{ $techFormat->description }}" />
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-md-6 mt-3">
+                                            <div class="col-12 col-md-12 mt-3">
                                                 <label class="c_label col-12 col-form-label">{{ __('¿Es factible?') }}</label>
                                                 <div class="col-sm-12">
                                                     <input {{ $format->status == 3 ? 'checked' : '' }} class="d-inline mt-3" name="factible" type="radio" value="0" id="is_factible" /> <label class="mr-3" for="is_factible">Es factible</label>
@@ -644,7 +646,7 @@ form .col-12 {
                     @if (App\User::hasPermissions("Admin") || App\User::hasPermissions("Tech"))
                     <div class="row w-100">
                         <div class="col-12 col-md-12" style="    text-align: right;">
-                            <button onclick="$('.set-status').val(1);$('#form-techformat').submit();" class="btn btn-primary">{{ __('FINALIZAR') }}</button>
+                            <button onclick="sendForm()" class="btn btn-primary">{{ __('FINALIZAR') }}</button>
                         </div>
                         {{-- <div class="col-12 col-md-2">
                             <a href="{{ route('projects.index') }}" class="btn btn-rose float-right">{{ __('CANCEL') }}</a>
@@ -927,6 +929,31 @@ $(document).ready(function () {
 });
 @endif
 
+function sendForm() {
+    if($('input[name="rooftop[]"]:checked').length <= 0) {
+        $.notify({
+            // options
+            message: 'Debe seleccionar al menos un Acabado de Azotea'
+        },{
+            // settings
+            type: 'danger'
+        });
+        return;
+    }
+
+    if($('input[name="roof_type[]"]:checked').length <= 0) {
+        $.notify({
+            // options
+            message: 'Debe seleccionar al menos un Tipo de Techo para Captación de Agua'
+        },{
+            // settings
+            type: 'danger'
+        });
+        return;
+    }
+
+    $('.set-status').val(1);$('#form-techformat').submit();
+}
 
 </script>
 
