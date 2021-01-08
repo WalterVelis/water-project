@@ -76,8 +76,8 @@
                                         <li class="nav-item  {{ $assignmentData->internal_status >= 0 && !$assignmentData->tech_assigned == 0 ? "c-enabled" : "" }}">
                                             <a class="nav-link" href="{{ $assignmentData->internal_status >= 0 ? route('techformat.edit', $assignmentData) : "#" }}">{{ __('Technical Lift') }}</a>
                                         </li>
-                                        <li class="nav-item  {{ $assignmentData->internal_status >= 2 && $assignmentData->internal_status != 2 ? "c-enabled" : "" }}">
-                                            <a class="nav-link" href="{{ $assignmentData->internal_status >= 2 ? "/quotation/$assignmentData->id/edit" : "#" }}">{{ __('Quotation') }}</a>
+                                        <li class="nav-item  {{ $assignmentData->internal_status >= 2 && $assignmentData->internal_status != 2 && !App\User::hasPermissions("Tech") ? "c-enabled" : "" }}">
+                                            <a class="nav-link" href="{{ $assignmentData->internal_status >= 2 && !App\User::hasPermissions("Tech") ? "/quotation/$assignmentData->id/edit" : "#" }}">{{ __('Quotation') }}</a>
                                         </li>
                                         <li class="nav-item {{ $assignmentData->internal_status == 6 ? "c-enabled" : "" }}">
                                             <a class="nav-link" href="{{ $assignmentData->internal_status == 6 ? "/order/$assignmentData->id/edit" : "#" }}">{{ __('Purchase Order') }}</a>

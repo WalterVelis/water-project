@@ -31,6 +31,6 @@ class AdminNotification extends Mailable
      */
     public function build()
     {
-        return $this->from('cotizador@aguah2o.com')->view('mails.notify');
+        return $this->subject("Cotizador AguaH2O - Solicitud de asignación de técnico")->from('cotizador@aguah2o.com')->view('mails.notify');
     }
 }

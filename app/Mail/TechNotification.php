@@ -31,6 +31,6 @@ class TechNotification extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.notify-tech');
+        return $this->subject("Cotizador AguaH2O -  Asignación de técnico")->view('mails.notify-tech');
     }
 }

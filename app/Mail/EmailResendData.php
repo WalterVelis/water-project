@@ -31,7 +31,7 @@ class EmailResendData extends Mailable
     public function build()
     {
         return $this->markdown('emails.users.resendData')
-        ->subject(__('Forwarding user account data'))
+        ->subject("Cotizador AguaH2O")
         ->with([
                 'email' => $this->user->email,
                 'password' => $this->user->password

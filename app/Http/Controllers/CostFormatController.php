@@ -38,11 +38,13 @@ class CostFormatController extends Controller
      */
     public function store(Request $request)
     {
-        $cost = CostsCenter::find($request->cost_id)->pluck('unit_cost')->first();
-        $request->cost = $cost;
+        // dump($request->cost_id);
+        $cost = CostsCenter::where('id', $request->cost_id)->first();
+        // dd($cost);
+        // $request->cost = $cost->unit_cost;
         $costFormat = new CostFormat;
         $costFormat->day = $request->day;
-        $costFormat->cost = $cost;
+        $costFormat->cost = $cost->unit_cost;
         $costFormat->format_id = $request->format_id;
         $costFormat->cost_id = $request->cost_id;
         $costFormat->save();
@@ -105,6 +107,7 @@ class CostFormatController extends Controller
         $data = CostFormat::where(['id' => $costId, 'format_id' => $projectId])->first();
         $data->cost = $request->cost;
         $data->save();
+        dd($data);
     }
 
 

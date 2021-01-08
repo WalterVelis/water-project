@@ -32,7 +32,7 @@ class VendorChangeProfile extends Mailable
     public function build()
     {
         return $this->markdown('emails.vendors.changeProfile')
-        ->subject(__('Complete vendor profile'))
+        ->subject("Cotizador AguaH2O")
         ->with([
                 'vendorName' => auth()->user()->vendor->name,
                 'dataChanges' => $this->detectedChanges,

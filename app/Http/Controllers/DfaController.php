@@ -37,10 +37,10 @@ class DfaController extends Controller
                 } catch(\Exception $e){
                   return ['is_user_found' => false, 'refreshPage' => true];
                 }
-                return ['is_user_found' => true, 'user_id' => $user->id, 'is_google_factor' => false]; 
+                return ['is_user_found' => true, 'user_id' => $user->id, 'is_google_factor' => false];
               }else{
-                return ['is_user_found' => false, 'refreshPage' => false]; 
-              }  
+                return ['is_user_found' => false, 'refreshPage' => false];
+              }
             }
 
           }
@@ -50,22 +50,22 @@ class DfaController extends Controller
 
             if($user2->activate_2fa_google == true){
               if(Hash::check($request['password'], $user2->password)){
-                return ['is_user_found' => true, 'user_id' => $user2->id, 'is_google_factor' => true]; 
+                return ['is_user_found' => true, 'user_id' => $user2->id, 'is_google_factor' => true];
               }else{
-                return ['is_user_found' => false, 'refreshPage' => false]; 
-              }  
+                return ['is_user_found' => false, 'refreshPage' => false];
+              }
             }
 
           }
 
-          
 
-                         
+
+
         }else{
 
           return ['is_user_found' => false, 'refreshPage' => false];
 
-          
+
 
 
         }
@@ -77,9 +77,9 @@ class DfaController extends Controller
       $user = User::findorFail((int)$request['user_id']);
 
       if( $user->token_login == $request['token_login_view'] ){
-        return ['token_code_controller' => true]; 
+        return ['token_code_controller' => true];
       }else{
-        return ['token_code_controller' => false]; 
+        return ['token_code_controller' => false];
       }
 
     }
@@ -89,15 +89,15 @@ class DfaController extends Controller
 
       $user = User::findorFail((int)$request['user_id']);
 
-      if ((new Google2FA())->verifyKey($user->token_login_google, $request['token_login_view'])) {        
+      if ((new Google2FA())->verifyKey($user->token_login_google, $request['token_login_view'])) {
         return ['token_code_controller' => true];
       }else{
-        return ['token_code_controller' => false]; 
+        return ['token_code_controller' => false];
       }
 
     }
 
 
 
-    
+
 }

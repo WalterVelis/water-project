@@ -38,14 +38,14 @@ class VendorController extends Controller
      */
     public function index()
     {
-        
+
         if(User::hasPermissions("Vendor Index")){
             $vendors = Vendor::where('is_active', true)->orderBy('id', 'asc')->get();
             $categories = Category::orderBy('name', 'asc')->get();
             return view('vendors.index',compact('vendors', 'categories'));
         }else{
             return redirect('/');
-        }        
+        }
     }
 
     public function deleteVendor(Request $request){
@@ -54,7 +54,7 @@ class VendorController extends Controller
             $vendor = Vendor::findorFail((int)$request->vendorId);
             $vendor->is_active = false;
             $vendor->update();
-            DB::commit();                    
+            DB::commit();
             return ['deleteVendor' => true, 'message' => __('Vendor successfully removed')];
         } catch(\Exception $e){
             DB::rollback();
@@ -70,7 +70,7 @@ class VendorController extends Controller
      */
     public function create()
     {
-        if(User::hasPermissions("Vendor Create")){ 
+        if(User::hasPermissions("Vendor Create")){
             $categories = Category::orderBy('name', 'asc')->get();
            return view('vendors.create', compact('categories'));
         }else{
@@ -105,8 +105,8 @@ class VendorController extends Controller
         return redirect()->route('vendor.index')->withStatus(__('Vendor successfully created.'));
     }
 
-    public function edit2($id){        
-        if(User::hasPermissions("Vendor Edit")){ 
+    public function edit2($id){
+        if(User::hasPermissions("Vendor Edit")){
             $vendor= Vendor::findorFail($id);
             $services = Service::groupBy('category')->orderBy('category', 'asc')->get();
             return view('vendors.edit2', compact('vendor','services'));
@@ -159,11 +159,11 @@ class VendorController extends Controller
                             $vendorService->updated_by = auth()->user()->id;
                             $vendorService->save();
                         }
-                    }                
-        
+                    }
+
                 }
             }
-            DB::commit();                    
+            DB::commit();
             return ['updateVendor' => true];
         } catch(\Exception $e){
             DB::rollback();
@@ -200,7 +200,7 @@ class VendorController extends Controller
             $vendor= Vendor::findorFail($id);
         }
         $tableClass = 'd-none';
-        $messageClass = '';        
+        $messageClass = '';
         $btnSendClass = '';
         $btnSendMsj = __('Profile completed');
         $query = "SELECT COUNT(va.vendor_id) AS 'totalActive' FROM vendor_bank_accounts AS va, bank_accounts AS ba WHERE va.bank_account_id = ba.id AND ba.is_status_complete = 1 AND ba.is_status_active = 1 AND va.vendor_id = ".$id;
@@ -243,22 +243,22 @@ class VendorController extends Controller
             $vendor->path_cover_rfc = null;
             $vendor->path_32d = null;
         }
-        $vendor->update();        
+        $vendor->update();
         $clabeClass = 'd-none';
         $btnAddAccount = '';
-        $btnAddAccountTitle = '';    
+        $btnAddAccountTitle = '';
         if($vendor->country_id == 142){
-            $clabeClass = '';                        
+            $clabeClass = '';
         }
         $divBank = '';
-        if($vendor->country_id == null){          
+        if($vendor->country_id == null){
             $divBank = 'd-none';
             $btnAddAccount = 'd-none';
             $btnAddAccountTitle = __('Select a country to activate this option');
         }
         $swiftClass = 'd-none';
         if($vendor->country_id != 142 && $vendor->country_id != null){
-            $swiftClass = '';            
+            $swiftClass = '';
         }
 
         $countries = Country::orderBy('id', 'asc')->get();
@@ -275,20 +275,20 @@ class VendorController extends Controller
         }
         $notifysOpen = VendorNotification::where('vendor_id', $vendor->id)->where('revision_number', $vendor->revision_number)->where('motive', '!=', null)->get();
         if($vendor->status == '2'){
-            return view('vendors.editRead',compact('notifysOpen','divUpdate','inputClassEnable','btnClassEnable','categories', 'btnColor','divBank', 'states','swiftClass','vendor','btnAddAccountTitle', 'btnAddAccount','tableClass', 'messageClass', 'btnSendClass', 'btnSendMsj', 'clabeClass', 'countries'));        
+            return view('vendors.editRead',compact('notifysOpen','divUpdate','inputClassEnable','btnClassEnable','categories', 'btnColor','divBank', 'states','swiftClass','vendor','btnAddAccountTitle', 'btnAddAccount','tableClass', 'messageClass', 'btnSendClass', 'btnSendMsj', 'clabeClass', 'countries'));
         }else{
-            return view('vendors.edit',compact('notifysOpen','feedbacks','categories', 'btnColor','divBank', 'states','swiftClass','vendor','btnAddAccountTitle', 'btnAddAccount','tableClass', 'messageClass', 'btnSendClass', 'btnSendMsj', 'clabeClass', 'countries'));        
-        }        
+            return view('vendors.edit',compact('notifysOpen','feedbacks','categories', 'btnColor','divBank', 'states','swiftClass','vendor','btnAddAccountTitle', 'btnAddAccount','tableClass', 'messageClass', 'btnSendClass', 'btnSendMsj', 'clabeClass', 'countries'));
+        }
     }
 
 
 
     public function readVendor($id)
-    {        
+    {
         if( (User::hasPermissions("Vendor Watch")) || (User::hasPermissions("Vendor Edit")) || (User::hasPermissions("Vendor Watch")) ){
             $vendor= Vendor::findorFail($id);
             $tableClass = 'd-none';
-            $messageClass = '';        
+            $messageClass = '';
             $btnSendClass = '';
             $btnSendMsj = __('Profile completed');
             $query = "SELECT COUNT(va.vendor_id) AS 'totalActive' FROM vendor_bank_accounts AS va, bank_accounts AS ba WHERE va.bank_account_id = ba.id AND ba.is_status_complete = 1 AND ba.is_status_active = 1 AND va.vendor_id = ".$id;
@@ -331,22 +331,22 @@ class VendorController extends Controller
                 $vendor->path_cover_rfc = null;
                 $vendor->path_32d = null;
             }
-            $vendor->update();        
+            $vendor->update();
             $clabeClass = 'd-none';
             $btnAddAccount = '';
-            $btnAddAccountTitle = '';    
+            $btnAddAccountTitle = '';
             if($vendor->country_id == 142){
-                $clabeClass = '';                        
+                $clabeClass = '';
             }
             $divBank = '';
-            if($vendor->country_id == null){          
+            if($vendor->country_id == null){
                 $divBank = 'd-none';
                 $btnAddAccount = 'd-none';
                 $btnAddAccountTitle = __('Select a country to activate this option');
             }
             $swiftClass = 'd-none';
             if($vendor->country_id != 142 && $vendor->country_id != null){
-                $swiftClass = '';            
+                $swiftClass = '';
             }
 
             $countries = Country::orderBy('id', 'asc')->get();
@@ -368,10 +368,10 @@ class VendorController extends Controller
 
             $notifysOpen = VendorNotification::where('vendor_id', $vendor->id)->where('revision_number', $vendor->revision_number)->where('motive', '!=', null)->get();
 
-            return view('vendors.editRead',compact('notifysOpen','inputClassEnable','btnClassEnable', 'divUpdate','categories', 'btnColor','divBank', 'states','swiftClass','vendor','btnAddAccountTitle', 'btnAddAccount','tableClass', 'messageClass', 'btnSendClass', 'btnSendMsj', 'clabeClass', 'countries'));        
+            return view('vendors.editRead',compact('notifysOpen','inputClassEnable','btnClassEnable', 'divUpdate','categories', 'btnColor','divBank', 'states','swiftClass','vendor','btnAddAccountTitle', 'btnAddAccount','tableClass', 'messageClass', 'btnSendClass', 'btnSendMsj', 'clabeClass', 'countries'));
         }else{
             return redirect('/');
-        }           
+        }
     }
 
 
@@ -389,7 +389,7 @@ class VendorController extends Controller
     {
         try{
             $vendor= Vendor::findorFail((int)$request->vendorId);
-            
+
             $servicesInfo = explode(",", $request->vendorServices);
             foreach($vendor->vendorServices as $item){
                 $stateRemoval = false;
@@ -401,9 +401,9 @@ class VendorController extends Controller
                 if($stateRemoval == false){
                     VendorService::destroy($item->id);
                 }
-    
+
             }
-    
+
             foreach($servicesInfo as $key){
                 if($request->vendorServices != null){
                     $stateAdd = false;
@@ -419,8 +419,8 @@ class VendorController extends Controller
                         $vendorService->updated_by = auth()->user()->id;
                         $vendorService->save();
                     }
-                }                
-    
+                }
+
             }
 
             $vendor->name = $request->name;
@@ -508,11 +508,11 @@ class VendorController extends Controller
                 ($vendor->delegation == '') || ($vendor->postal_code == '') || ($vendor->country_id == '') ||
                 ($vendor->state_id == '') || ($vendor->city == '') || ($accountActives[0]->totalActive == 0) ||
                 ($servicesT[0]->total == 0) ||
-                ($vendor->key_rfc == '') || ($vendor->path_cover_rfc == '') || 
+                ($vendor->key_rfc == '') || ($vendor->path_cover_rfc == '') ||
                 ($vendor->mobile == '')  ||
                 ($vendor->path_official_identification == '') || ($vendor->path_32d == '')
-   
-           ){           
+
+           ){
             }else{
                 $vendorStatusForm = true;
             }
@@ -521,15 +521,15 @@ class VendorController extends Controller
                 $vendor->path_cover_rfc = null;
                 $vendor->path_32d = null;
             }
-            $vendor->update();            
+            $vendor->update();
             //$message = $servicesInfo[0];
             $message = __('Successfully updated profile');
             return ['updateVendor' => true, 'message' => $message, 'vendorStatusForm' => $vendorStatusForm, $vendor->toArray(),];
-            
+
         } catch(\Exception $e){
             $message = __('Cannot update profile');
             return ['updateVendor' => false,'message' => $message, $e];
-        }               
+        }
     }
 
     public function checkVendorProfile(Request $request){
@@ -545,7 +545,7 @@ class VendorController extends Controller
             $vendor->path_cover_rfc = '-----';
             $vendor->path_32d = '-----';
             }
-            $vendor->update();            
+            $vendor->update();
             if(
                 ($vendor->name == '') || ($vendor->street == '') || ($vendor->path_address_proof == '') ||
                 ($vendor->legal_name == '') ||($vendor->contact_name == '') ||
@@ -557,7 +557,7 @@ class VendorController extends Controller
                 ($vendor->mobile == '')  ||
                 ($vendor->path_official_identification == '') || ($vendor->path_32d == '')
 
-            ){           
+            ){
             }else{
                 $vendorStatusForm = true;
             }
@@ -566,7 +566,7 @@ class VendorController extends Controller
             $vendor->path_cover_rfc = null;
             $vendor->path_32d = null;
             }
-            $vendor->update();        
+            $vendor->update();
             return ['vendorStatusForm' => $vendorStatusForm];
             } catch(\Exception $e){
                 return ['vendorStatusForm' => false, 'message' => $e];
@@ -582,14 +582,14 @@ class VendorController extends Controller
             return null;
         }
 
-    }    
+    }
 
     public function changesVendor(Request $request){
 
         try{
             //DB::beginTransaction();
             $vendor= Vendor::findorFail((int)$request->vendorId);
-            $detectedChanges= array();            
+            $detectedChanges= array();
             if($vendor->name != $request->name){
                 array_push($detectedChanges, __('Full Name').' '.__('changed from').' <b style="font-weight: bold;">'.$vendor->name.' </b>'.__('to').' <b style="font-weight: bold;">'.$request->name.'</b>');
             }
@@ -598,7 +598,7 @@ class VendorController extends Controller
             }
             if($vendor->contact_name != $request->contact_name){
                 array_push($detectedChanges, __('Contact name').' '.__('changed from').' <b style="font-weight: bold;">'.$vendor->contact_name.' </b>'.__('to').' <b style="font-weight: bold;">'.$request->contact_name.'</b>');
-            }            
+            }
             if($vendor->mobile != $request->mobile){
                 array_push($detectedChanges, __('Mobile Phone').' '.__('changed from').' <b style="font-weight: bold;">'.$vendor->mobile.' </b>'.__('to').' <b style="font-weight: bold;">'.$request->mobile.'</b>');
             }
@@ -649,7 +649,7 @@ class VendorController extends Controller
             if($request->path_32d != null){
                 array_push($detectedChanges, __('Tax compliance opinion (32D)').', '.__('was ').'<a href="#" onclick=watchDocument("vendors","path_32d",'.$vendor->id.');  style="color: blue; text-decoration-line: underline; font-weight: bold;">'.__('updated').'</a>.');
             }
-            $countChange = 0;            
+            $countChange = 0;
 
             $servicesInfo = explode(",", $request->vendorServices);
             foreach($vendor->vendorServices as $item){
@@ -663,8 +663,8 @@ class VendorController extends Controller
                     VendorService::destroy($item->id);
                     $countChange = $countChange + 1;
                 }
-    
-            }    
+
+            }
             foreach($servicesInfo as $key){
                 if($request->vendorServices != null){
                     $stateAdd = false;
@@ -681,8 +681,8 @@ class VendorController extends Controller
                         $vendorService->save();
                         $countChange = $countChange + 1;
                     }
-                }                
-    
+                }
+
             }
             if($countChange > 0){
                 array_push($detectedChanges, __('Service provided in production').', '.__('was ').__('updated').__('.'));
@@ -769,13 +769,13 @@ class VendorController extends Controller
             if($notifyDecline != null){
                 $notifyDecline->is_status_activated = false;
                 $notifyDecline->update();
-            } 
+            }
             $vendor->update();
-            $vendorStatusForm = true;                           
+            $vendorStatusForm = true;
             $message = __('Your profile has been sent for review');
             $query1 = "SELECT u.id AS userId, u.name AS userName, u.email AS userEmail, r.name AS rolName, p.name AS permissionName FROM permissions AS p, role_permissions AS rp, roles AS r, users AS u WHERE p.name = 'Vendor Approve' AND rp.permission_id=p.id AND r.id=rp.role_id AND u.role_id= r.id AND u.status =1";
             $usersNotify =DB::select( DB::raw($query1));
-            $flagSendEmail = true; 
+            $flagSendEmail = true;
             $mailsUser = array();
             foreach($usersNotify as $userMail){
                 array_push($mailsUser, $userMail->userEmail);
@@ -785,7 +785,7 @@ class VendorController extends Controller
             } catch(\Exception $e){
                 $flagSendEmail = false;
                 $erro1 = $e;
-            }                
+            }
             foreach($usersNotify as $user){
                 if($flagSendEmail){
                     $notification = new Notification();
@@ -808,7 +808,7 @@ class VendorController extends Controller
             }
             DB::commit();
             return ['updateVendor' => true, 'btnSuccess' => __('Roger that'), 'message' => $message, 'vendorStatusForm' => $vendorStatusForm, $vendor->toArray(), 'changes' => $detectedChanges, $vendorReview->toArray()];
-            
+
         } catch(\Exception $e){
             DB::rollback();
             $message = __('System error could not be sent for rereview');
@@ -823,7 +823,7 @@ class VendorController extends Controller
         try{
             DB::beginTransaction();
             $detectedChanges= array();
-            $vendor = Vendor::findorFail( (int)$request->vendorId );  
+            $vendor = Vendor::findorFail( (int)$request->vendorId );
             if($vendor->name != $request->name){
                 array_push($detectedChanges, __('Full Name').' '.__('changed from').' <b style="font-weight: bold;">'.$vendor->name.' </b>'.__('to').' <b style="font-weight: bold;">'.$request->name.'</b>');
             }
@@ -832,7 +832,7 @@ class VendorController extends Controller
             }
             if($vendor->contact_name != $request->contact_name){
                 array_push($detectedChanges, __('Contact name').' '.__('changed from').' <b style="font-weight: bold;">'.$vendor->contact_name.' </b>'.__('to').' <b style="font-weight: bold;">'.$request->contact_name.'</b>');
-            }            
+            }
             if($vendor->mobile != $request->mobile){
                 array_push($detectedChanges, __('Mobile Phone').' '.__('changed from').' <b style="font-weight: bold;">'.$vendor->mobile.' </b>'.__('to').' <b style="font-weight: bold;">'.$request->mobile.'</b>');
             }
@@ -883,7 +883,7 @@ class VendorController extends Controller
             if($request->path_32d != null){
                 array_push($detectedChanges, __('Tax compliance opinion (32D)').', '.__('was ').'<a href="#" onclick=watchDocument("vendors","path_32d",'.$vendor->id.');  style="color: blue; text-decoration-line: underline; font-weight: bold;">'.__('updated').'</a>.');
             }
-            $countChange = 0;            
+            $countChange = 0;
 
             $servicesInfo = explode(",", $request->vendorServices);
             foreach($vendor->vendorServices as $item){
@@ -897,8 +897,8 @@ class VendorController extends Controller
                     VendorService::destroy($item->id);
                     $countChange = $countChange + 1;
                 }
-    
-            }    
+
+            }
             foreach($servicesInfo as $key){
                 if($request->vendorServices != null){
                     $stateAdd = false;
@@ -915,8 +915,8 @@ class VendorController extends Controller
                         $vendorService->save();
                         $countChange = $countChange + 1;
                     }
-                }                
-    
+                }
+
             }
             if($countChange > 0){
                 array_push($detectedChanges, __('Service provided in production').', '.__('was ').__('updated').__('.'));
@@ -1003,13 +1003,13 @@ class VendorController extends Controller
             if($notifyDecline != null){
                 $notifyDecline->is_status_activated = false;
                 $notifyDecline->update();
-            } 
+            }
             $vendor->update();
 
             if((int) $request->type == 1){
                 $bankAccount = new BankAccount();
             }else{
-                $bankAccount = BankAccount::findorFail( (int)$request->idBank );                
+                $bankAccount = BankAccount::findorFail( (int)$request->idBank );
                 if($bankAccount->bank != $request->bank){
                     array_push($detectedChanges, __('In the account ').'<b style="font-weight: bold;">'.substr($bankAccount->account_number, -4).'</b>, '.__('Bank').' '.__('changed from').' <b style="font-weight: bold;">'.$bankAccount->bank.' </b>'.__('to').' <b style="font-weight: bold;">'.$request->bank.'</b>');
                 }
@@ -1019,37 +1019,37 @@ class VendorController extends Controller
                 if($bankAccount->account_number != $request->account_number){
                     array_push($detectedChanges, __('In the account ').'<b style="font-weight: bold;">'.substr($bankAccount->account_number, -4).'</b>, '.__('Account No.').' '.__('changed from').' <b style="font-weight: bold;">'.$bankAccount->account_number.' </b>'.__('to').' <b style="font-weight: bold;">'.$request->account_number.'</b>');
                 }
-                if($request->countrySelect == '142'){ 
+                if($request->countrySelect == '142'){
                     if($bankAccount->clabe != $request->clabe){
                         array_push($detectedChanges, __('In the account ').'<b style="font-weight: bold;">'.substr($bankAccount->account_number, -4).'</b>, '.__('CLABE').' '.__('changed from').' <b style="font-weight: bold;">'.$bankAccount->clabe.' </b>'.__('to').' <b style="font-weight: bold;">'.$request->clabe.'</b>');
-                    }              
+                    }
                 }else{
                     if($bankAccount->swift != $request->swift){
                         array_push($detectedChanges, __('In the account ').'<b style="font-weight: bold;">'.substr($bankAccount->account_number, -4).'</b>, '.__('Key SWIFT/BIC').' '.__('changed from').' <b style="font-weight: bold;">'.$bankAccount->swift.' </b>'.__('to').' <b style="font-weight: bold;">'.$request->swift.'</b>');
                     }
-                }                                
+                }
                 if($request->path_account_statement != null){
                     array_push($detectedChanges, __('In the account ').'<b style="font-weight: bold;">'.substr($bankAccount->account_number, -4).'</b>, '.__('Account statement').', '.__('was ').'<a href="#" onclick=watchDocument("bank_accounts","path_account_statement",'.$bankAccount->id.');  style="color: blue; text-decoration-line: underline; font-weight: bold;">'.__('updated').'</a>.');
                 }
-            }                        
+            }
             $bankAccount->bank = $request->bank;
             $bankAccount->account_owner = $request->account_owner;
             $bankAccount->account_number = $request->account_number;
             $bankAccount->clabe = $request->clabe;
             $bankAccount->swift = $request->swift;
-            if($request->countrySelect == '142'){ 
-                $bankAccount->swift = null;               
+            if($request->countrySelect == '142'){
+                $bankAccount->swift = null;
             }else{
                 $bankAccount->clabe = null;
             }
             $bankAccount->is_status_complete = true;
-            $bankAccount->save();                                                        
+            $bankAccount->save();
             if((int) $request->type == 1){
                 if($request->path_account_statement != ''){
                     $path = \Storage::disk('s3')->put('bankAccounts/'.$bankAccount->id, $request['path_account_statement']);
                     $bankAccount['path_account_statement'] = $path;
                     $bankAccount->save();
-                }                
+                }
                 $vendorBankAccount = new VendorBankAccounts();
                 $vendorBankAccount->vendor_id = $request->vendorId;
                 $vendorBankAccount->bank_account_id = $bankAccount->id;
@@ -1064,13 +1064,13 @@ class VendorController extends Controller
                         $document->record_id = $bankAccount->id;
                         $document->path_document = $bankAccount->path_account_statement;
                         $document->record_column_name = 'path_account_statement';
-                        $document->save();    
+                        $document->save();
                     }
                     $path = \Storage::disk('s3')->put('bankAccounts/'.$bankAccount->id, $request['path_account_statement']);
                     $bankAccount['path_account_statement'] = $path;
                     $bankAccount->save();
                 }
-            }                        
+            }
             $vendor->is_status_complete = true;
             $vendor->status = '2';
             $vendor->color_status = '#ffee58';
@@ -1080,7 +1080,7 @@ class VendorController extends Controller
             if($notifyDecline != null){
                 $notifyDecline->is_status_activated = false;
                 $notifyDecline->update();
-            }                      
+            }
             $query1 = "SELECT u.id AS userId, u.name AS userName, u.email AS userEmail, r.name AS rolName, p.name AS permissionName FROM permissions AS p, role_permissions AS rp, roles AS r, users AS u WHERE p.name = 'Vendor Approve' AND rp.permission_id=p.id AND r.id=rp.role_id AND u.role_id= r.id AND u.status =1";
             $usersNotify =DB::select( DB::raw($query1));
             $flagSendEmail = true;
@@ -1093,7 +1093,7 @@ class VendorController extends Controller
             } catch(\Exception $e){
                 $flagSendEmail = false;
                 $erro1 = $e;
-            }                
+            }
             foreach($usersNotify as $user){
                 if($flagSendEmail){
                     $notification = new Notification();
@@ -1118,7 +1118,7 @@ class VendorController extends Controller
                 }
             }
             DB::commit();
-            return ['bank' => $vendorReview->toArray(),'updateVendor' => true, 'btnSuccess' => __('Roger that'), 'message' => __('Your profile has been sent for review')];      
+            return ['bank' => $vendorReview->toArray(),'updateVendor' => true, 'btnSuccess' => __('Roger that'), 'message' => __('Your profile has been sent for review')];
         } catch(\Exception $e){
             DB::rollback();
             $message = __('System error could not be sent for rereview');
@@ -1133,7 +1133,7 @@ class VendorController extends Controller
     public function addBankAccount(Request $request){
         try{
             $bankAccount = new BankAccount();
-            
+
             $bankAccount->bank = $request->bank;
             $bankAccount->account_owner = $request->account_owner;
             $bankAccount->account_number = $request->account_number;
@@ -1146,18 +1146,18 @@ class VendorController extends Controller
                 $bankAccount['path_account_statement'] = $path;
                 $bankAccount->save();
             }
-            if($request->countrySelect == '142'){ 
-                $bankAccount->swift = '0000';               
+            if($request->countrySelect == '142'){
+                $bankAccount->swift = '0000';
             }else{
                 $bankAccount->clabe = '0000';
-            }            
+            }
             if( ($bankAccount->bank == '') || ($bankAccount->account_owner == '') || ($bankAccount->account_number == '') || ($bankAccount->clabe == '') || ($bankAccount->path_account_statement == '') || ($bankAccount->swift == '') ){
                 $bankAccount->is_status_complete = false;
             }else{
                 $bankAccount->is_status_complete = true;
             }
-            if($request->countrySelect == '142'){ 
-                $bankAccount->swift = null;               
+            if($request->countrySelect == '142'){
+                $bankAccount->swift = null;
             }else{
                 $bankAccount->clabe = null;
             }
@@ -1168,7 +1168,7 @@ class VendorController extends Controller
             $vendorBankAccount->bank_account_id = $bankAccount->id;
             $vendorBankAccount->created_by = auth()->user()->id;
             $vendorBankAccount->save();
-            
+
 
             return ['saveBankAccount' => true, $bankAccount->toArray(), 'prueba' =>$request->countrySelect];
 
@@ -1197,12 +1197,12 @@ class VendorController extends Controller
     public function editBankAccount(Request $request){
         try{
             $bankAccount = BankAccount::findorFail((int)$request->accountId);
-            
+
             $bankAccount->bank = $request->bank;
             $bankAccount->account_owner = $request->account_owner;
             $bankAccount->account_number = $request->account_number;
-            $bankAccount->clabe = $request->clabe; 
-            $bankAccount->swift = $request->swift;          
+            $bankAccount->clabe = $request->clabe;
+            $bankAccount->swift = $request->swift;
             $bankAccount->update();
 
             if($request->path_account_statement != ''){
@@ -1219,8 +1219,8 @@ class VendorController extends Controller
                 $bankAccount['path_account_statement'] = $path;
                 $bankAccount->save();
             }
-            if($request->countrySelect == '142'){ 
-                $bankAccount->swift = '0000';               
+            if($request->countrySelect == '142'){
+                $bankAccount->swift = '0000';
             }else{
                 $bankAccount->clabe = '0000';
             }
@@ -1229,13 +1229,13 @@ class VendorController extends Controller
             }else{
                 $bankAccount->is_status_complete = true;
             }
-            if($request->countrySelect == '142'){ 
-                $bankAccount->swift = null;               
+            if($request->countrySelect == '142'){
+                $bankAccount->swift = null;
             }else{
                 $bankAccount->clabe = null;
             }
             $bankAccount->update();
-            
+
 
             return ['saveBankAccount' => true, $bankAccount->toArray(),];
 
@@ -1290,7 +1290,7 @@ $field=$request['field'];
 
     }
 
-    
+
     public function watchDocument(Request $request){
         $documentFile = DB::table($request->table)
         ->where('id', (int)$request->id)
@@ -1355,7 +1355,7 @@ $field=$request['field'];
                 } catch(\Exception $e){
                     $flagSendEmail = false;
                     $erro1 = $e;
-                }            
+                }
                 foreach($usersNotify as $user){
                     if($flagSendEmail){
                         $notification = new Notification();
@@ -1385,14 +1385,14 @@ $field=$request['field'];
                     if($notifyDecline != null){
                         $notifyDecline->is_status_activated = false;
                         $notifyDecline->update();
-                    }                    
+                    }
                     DB::commit();
                     return ['vendorComplete' => true, 'btnSuccess' => __('Roger that'), 'message' => __('Your profile has been sent for review')];
                 }else{
                     DB::rollback();
                     return ['vendorComplete' => false, 'message' => __('System error could not be sent for review'), $e];
                 }
-            }            
+            }
         } catch(\Exception $e){
             DB::rollback();
             return ['vendorComplete' => false, 'btnSuccess' => __('Roger that'), 'message' => __('System error could not be sent for review'), $e];
@@ -1422,17 +1422,17 @@ $field=$request['field'];
         }
         if($countType == 5){
             $vendors = Vendor::where('is_active', true)->where('status', $request->filterType[0])->orWhere('status', $request->filterType[1])->orWhere('status', $request->filterType[2])->orWhere('status', $request->filterType[3])->orWhere('status', $request->filterType[4])->get();
-        }                        
+        }
         $servicesVendors = array();
         $reviewsUser = array();
         $countBudgetVendor = array();
         foreach($vendors as $vendor){
-            $services = array();            
-            array_push($countBudgetVendor, count($vendor->vendorBudgetAccounts) );             
-            $reviewsVendor = VendorNotification::where('user_id', auth()->user()->id)->where('revision_number', $vendor->revision_number)->where('vendor_id', $vendor->id)->get();           
+            $services = array();
+            array_push($countBudgetVendor, count($vendor->vendorBudgetAccounts) );
+            $reviewsVendor = VendorNotification::where('user_id', auth()->user()->id)->where('revision_number', $vendor->revision_number)->where('vendor_id', $vendor->id)->get();
             if( count($reviewsVendor) >0 ){
                 array_push($reviewsUser, $reviewsVendor);
-            }            
+            }
             foreach($vendor->vendorServices as $item){
                 array_push($services, $item->service);
             }
@@ -1442,11 +1442,11 @@ $field=$request['field'];
             $permissionAsingUser = false;
             if(User::hasPermissions("Vendor Create User")){
                 $permissionAsingUser = true;
-            } 
+            }
             $permissionDeleteVendor = false;
             if(User::hasPermissions("Vendor Delete")){
                 $permissionDeleteVendor = true;
-            }           
+            }
             return [$vendors->toArray(), $servicesVendors,'permissionAsingUser' => $permissionAsingUser , $reviewsUser, 'permissionDeleteVendor'=>$permissionDeleteVendor, $countBudgetVendor];
         }else{
             return null;
@@ -1455,7 +1455,7 @@ $field=$request['field'];
 
 
 
-    public function asigUserVendor(Request $request){        
+    public function asigUserVendor(Request $request){
         try{
             $vendor = Vendor::findorFail((int)$request->vendorId);
             $name = '';
@@ -1480,7 +1480,7 @@ $field=$request['field'];
             $userVendor->change_password = false;
             $userVendor->password = bcrypt($password2);
             $userVendor->email = $request->email;
-            $userVendor->created_by = auth()->user()->id;            
+            $userVendor->created_by = auth()->user()->id;
             $flagSendEmail = true;
             $userVendor->save();
             try{
@@ -1523,7 +1523,7 @@ $field=$request['field'];
         //1 Approve
         try{
             DB::beginTransaction();
-            $vendor = Vendor::findorFail( (int)$request->vendorId );            
+            $vendor = Vendor::findorFail( (int)$request->vendorId );
             $query1 = "SELECT * FROM notifications WHERE action = 'Approve Vendor' AND is_status_activated = 1 AND targeted_user = ".auth()->user()->id;
             $queryResult =DB::select( DB::raw($query1));
             if($queryResult != null){
@@ -1552,7 +1552,7 @@ $field=$request['field'];
             $feedbackReview = VendorNotification::where('revision_number', $vendor->revision_number)->where('vendor_id', $vendor->id)->where('is_review', 1)->get();
             $feedbackApprove = VendorNotification::where('is_review', 1)->where('revision_number', $vendor->revision_number)->where('vendor_id', $vendor->id)->where('motive', null)->get();
             if(count($feedbackTotal) == count($feedbackReview)){
-                $notification = new Notification();                
+                $notification = new Notification();
                 if(count($feedbackApprove) == count($feedbackTotal)){
                     $notification->action = 'Agreed Vendor';
                     $notification->description = 'Your profile has been approved by every reviewer.';
@@ -1573,7 +1573,7 @@ $field=$request['field'];
                     $vendor->color_status = '#ffa726';
                     $vendor->is_status_complete = false;
                     $vendor->update();
-                    Mail::to($vendor->user->email)->send(new VendorReviewProfile($vendor));                    
+                    Mail::to($vendor->user->email)->send(new VendorReviewProfile($vendor));
                     $notification->action_url = '/vendor/'.$vendor->id.'/edit';
                     $notification->targeted_user = $vendor->user->id;
                     $notification->created_by = auth()->user()->id;
@@ -1581,13 +1581,13 @@ $field=$request['field'];
                     $notification->save();
                 }
             }else{
-                if($request->approvalType){                    
+                if($request->approvalType){
                 }else{
-                    Mail::to($vendor->user->email)->send(new VendorFeedbackProfile($feedback, $vendor));                    
+                    Mail::to($vendor->user->email)->send(new VendorFeedbackProfile($feedback, $vendor));
                 }
 
-            }            
-            DB::commit();            
+            }
+            DB::commit();
             return ['save_info' => true, 'message' => $message, 'btnText' => __('Roger that')];
         } catch(\Exception $e){
             DB::rollback();

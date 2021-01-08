@@ -104,8 +104,8 @@ form .col-12 {
                                     <li class="nav-item active {{ $format->internal_status >= 0 ? "c-enabled" : "" }}">
                                         <a class="nav-link" href="{{ $format->internal_status >= 0 ? route('techformat.edit', $format) : "#" }}">{{ __('Technical Lift') }}</a>
                                     </li>
-                                    <li class="nav-item {{ $format->internal_status >= 2 ? "c-enabled" : "" }}">
-                                        <a class="nav-link" href="{{ $format->internal_status >= 2  ? "/quotation/$format->id/edit" : "#" }}">{{ __('Quotation') }}</a>
+                                    <li class="nav-item {{ $format->internal_status >= 2 && !App\User::hasPermissions("Tech") ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status >= 2 && !App\User::hasPermissions("Tech")  ? "/quotation/$format->id/edit" : "#" }}">{{ __('Quotation') }}</a>
                                     </li>
                                     <li class="nav-item {{ $format->internal_status == 6 ? "c-enabled" : "" }}">
                                         <a class="nav-link" href="{{ $format->internal_status == 6 ? "/order/$format->id/edit" : "#" }}">{{ __('Purchase Order') }}</a>
@@ -330,7 +330,7 @@ form .col-12 {
                                             </div>
 
                                             <div class="col-12 col-md-4">
-                                                <label class="c_label col-12 col-form-label">{{ __('Tinaco que surte a servicio (L)') }}</label>
+                                                <label class="c_label col-12 col-form-label">{{ __('Medida del tinaco que surte a servicio (L)') }}</label>
                                                 <div class="col-sm-12">
                                                     <input required class="form-control" id="" name="water_tank" type="text" value="{{ $techFormat->water_tank }}" />
                                                 </div>
@@ -344,7 +344,7 @@ form .col-12 {
                                             </div>
 
                                             <div class="col-12 col-md-4">
-                                                <label class="c_label col-12 col-form-label">{{ __('Nivel de limpieza del techo') }}</label>
+                                                <label class="c_label col-12 col-form-label">{{ __('Estado del nivel de limpieza del techo') }}</label>
                                                 <div class="col-sm-12">
                                                     {{-- <input required class="form-control" id="" name="cleanliness" type="text" value="{{ $techFormat->cleanliness }}" /> --}}
                                                     <select class="form-control" name="cleanliness">
@@ -509,7 +509,7 @@ form .col-12 {
                                                 <div class="col-12 col-md-8">
                                                 </div>
                                                 <div class="col-12 col-md-2">
-                                                    <a href="{{ route('projects.index') }}" class="btn btn-rose float-right">{{ __('CANCEL') }}</a>
+                                                    {{-- <a href="{{ route('projects.index') }}" class="btn btn-rose float-right">{{ __('CANCEL') }}</a> --}}
                                                 </div>
                                                 <div class="col-12 col-md-2">
                                                     <button onclick="$('#form-techformat').submit();" class="btn btn-primary">{{ __('SAVE') }}</button>
@@ -585,16 +585,17 @@ form .col-12 {
                                                 <button type="button" onclick="addMaterial()" class="btn btn-primary">Agregar</button>
                                             </div>
                                         </div>
-                                        <div>
-                                            <a href="/getMat/{{ $format->id }}">
-                                                <button class=" d-inline" style="    top: 20px;position: absolute; right: 0px;background: none; border: none; font-size: 1.5em;    width: 90px;" type="button">
-                                                    <i class="fa fa-download" aria-hidden="true"></i>
-                                                </button>
-                                            </a>
-                                        </div>
+
                                     </form>
                                     @endif
-                                    <div id="materials"></div>
+                                    <div>
+                                        <a href="/getMat/{{ $format->id }}">
+                                            <button class=" d-inline" style="    top: 20px;position: absolute; right: 0px;background: none; border: none; font-size: 1.5em;    width: 90px;" type="button">
+                                                <i class="fa fa-download" aria-hidden="true"></i>
+                                            </button>
+                                        </a>
+                                    </div>
+                                    <div class="mt-5" id="materials"></div>
                                 </div>
                             </div>
                         </div>
@@ -604,11 +605,13 @@ form .col-12 {
                             </div>
                             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                                 <div class="card-body bg-white">
+                                    @if (App\User::hasPermissions("Admin"))
                                     <a href="/getKit/{{ $format->id }}">
                                         <button class=" d-inline" style="    position: absolute; right: 0px;background: none; border: none; font-size: 1.5em;    width: 90px;" type="button">
                                             <i class="fa fa-download" aria-hidden="true"></i>
                                         </button>
                                     </a>
+                                    @endif
                                     @if (App\User::hasPermissions("Tech"))
                                     <form action="" id="form-accesoryformat">
                                         @csrf
@@ -630,7 +633,7 @@ form .col-12 {
                                         </div>
                                     </form>
                                     @endif
-                                    <div id="accesories"></div>
+                                    <div id="accesories" class="mt-5"></div>
                                 </div>
                             </div>
                         </div>

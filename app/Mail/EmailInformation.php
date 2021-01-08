@@ -38,7 +38,7 @@ class EmailInformation extends Mailable
         if($this->user->role->name == 'Vendor'){
             //
             return $this->markdown('emails.users.information')
-            ->subject(__('Vendor Account Creation'))
+            ->subject("Cotizador AguaH2O")
             ->with([
                 'email' => $this->user->email,
                 'password' => $this->user->password,
@@ -47,13 +47,13 @@ class EmailInformation extends Mailable
             ]);
         }else{
             return $this->markdown('emails.users.information')
-            ->subject(__('Account creation details'))
+            ->subject("Cotizador AguaH2O")
             ->with([
                 'email' => $this->user->email,
                 'password' => $this->user->password,
                 'typeRol' => false,
                 'userRole' => $this->user->role->name
             ]);
-        }        
+        }
     }
 }

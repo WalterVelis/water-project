@@ -31,6 +31,6 @@ class VendorNotification extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.notify-vendor');
+        return $this->subject("Cotizador H2O - Asignación de técnico")->view('mails.notify-vendor');
     }
 }

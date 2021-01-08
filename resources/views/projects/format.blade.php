@@ -95,8 +95,8 @@ form .col-12 {
                                     <li class="nav-item {{ $format->internal_status >= 0 && !$format->tech_assigned == 0 ? "c-enabled" : "" }}">
                                         <a class="nav-link" href="{{ $format->internal_status >= 0 && !$format->tech_assigned == 0 ? route('techformat.edit', $format) : "#" }}">{{ __('Technical Lift') }}</a>
                                     </li>
-                                    <li class="nav-item {{ $format->internal_status >= 2 ? "c-enabled" : "" }}">
-                                        <a class="nav-link" href="{{ $format->internal_status >= 2 ? "/quotation/$format->id/edit" : "#" }}">{{ __('Quotation') }}</a>
+                                    <li class="nav-item {{ $format->internal_status >= 2 && !App\User::hasPermissions("Tech") ? "c-enabled" : "" }}">
+                                        <a class="nav-link" href="{{ $format->internal_status >= 2 && !App\User::hasPermissions("Tech") ? "/quotation/$format->id/edit" : "#" }}">{{ __('Quotation') }}</a>
                                     </li>
                                     <li class="nav-item {{ $format->internal_status == 6 ? "c-enabled" : "" }}">
                                         <a class="nav-link" href="{{ $format->internal_status == 6 ? "/order/$format->id/edit" : "#" }}">{{ __('Purchase Order') }}</a>
@@ -565,6 +565,7 @@ form .col-12 {
                         </form>
 
                         <div class="row">
+                            @if (App\User::hasPermissions("Vendor") || App\User::hasPermissions("Admin"))
                             <form class="col-12 row" method="post" id="form-planning">
                                 @csrf
                                 <input type="hidden" name="project_id" value="{{ $format->id }}">
@@ -589,15 +590,19 @@ form .col-12 {
                                         name="position">
                                 </div>
                                 <div class="col-12">
+                                    @if (App\User::hasPermissions("Vendor") || App\User::hasPermissions("Admin"))
                                     <button type="button" class="btn btn-primary float-right"
                                         onclick="addPlanning()">Agregar</button>
+                                    @endif
                                 </div>
                             </form>
+                            @endif
                         </div>
                         <div class="col-12 mt-4" id="planning"></div>
                         <br>
                         <br>
                         <div class="row">
+                            @if (App\User::hasPermissions("Vendor") || App\User::hasPermissions("Admin"))
                             <form class="col-12 row" method="post" id="form-auth">
                                 <input type="hidden" name="project_id" value="{{ $format->id }}">
                                 @csrf
@@ -622,35 +627,40 @@ form .col-12 {
                                         name="position">
                                 </div>
                                 <div class="col-12">
+                                    @if (App\User::hasPermissions("Vendor") || App\User::hasPermissions("Admin"))
                                     <button type="button" class="btn btn-primary float-right"
                                         onclick="addAuth()">Agregar</button>
+                                    @endif
                                 </div>
 
                             </form>
+                            @endif
                         </div>
                         <div class="col-12" id="auth"></div>
 
                         <div class="row float-right mr-4">
-                            <a href="{{ route('projects.index') }}" class="btn btn-rose">{{ __('CANCEL') }}</a>
+                            {{-- <a href="{{ route('projects.index') }}" class="btn btn-rose">{{ __('CANCEL') }}</a> --}}
                             <button onclick="saveWork(true)" class="btn btn-primary">{{ __('SAVE') }}</button>
                         </div>
                     </div>
 
-                    <br>
+                    {{-- <br> --}}
 
                     <!-- Fin -->
 
+
+                <div class="row mt-4 w-100">
+                    <div class="col-12" style="text-align: right;">
+                        @if(App\User::hasPermissions('Vendor'))
+                        <button id="finish" style="float: right;" data-toggle="modal" data-target="#mail" onclick="$('.set-status').val(1);" class="btn btn-primary">{{ __('FINALIZAR') }}</button>
+                        @elseif(App\User::hasPermissions('Admin'))
+                        <button onclick="saveWork(true)" class="btn btn-primary">{{ __('FINALIZAR') }}</button>
+                        @endif
+                    </div>
                 </div>
             </div>
-            <div class="row float-right mt-4 w-100">
-                <div class="col-12" style="text-align: right;">
-                    @if(App\User::hasPermissions('Vendor'))
-                    <button id="finish" style="float: right;" data-toggle="modal" data-target="#mail" onclick="$('.set-status').val(1);" class="btn btn-primary">{{ __('FINALIZAR') }}</button>
-                    @elseif(App\User::hasPermissions('Admin'))
-                    <button onclick="saveWork(true)" class="btn btn-primary">{{ __('FINALIZAR') }}</button>
-                    @endif
-                </div>
             </div>
+
 
 
 
@@ -682,7 +692,7 @@ form .col-12 {
           </select>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          {{-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button> --}}
           <button type="button" data-dismiss="modal" class="btn btn-primary" onclick="sendAdmin();">Guardar</button>
         </div>
       </div>

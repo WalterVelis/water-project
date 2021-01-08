@@ -31,7 +31,7 @@ class TokenConfirmation extends Mailable
     public function build()
     {
         return $this->markdown('emails.users.token')
-        ->subject(__('Token Confirmation'))
+        ->subject("Cotizador AguaH2O - Confirmación de Token")
         ->with([
                 'token_login' => $this->user->token_login
         ]);
