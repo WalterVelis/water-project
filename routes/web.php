@@ -24,6 +24,7 @@ Route::get('/', function () {
 Route::get('lang/{locale}', 'LocalizationController@index');
 
 Auth::routes();
+Route::get('getNotifications', 'ProjectController@getNotifications');
 Route::post('user/doubleFactor','DfaController@checkDoubleFactor')->name('loginDoubleFactor');
 Route::post('user/doubleFactor/tokenEmail/verificate','DfaController@tokenByEmail');
 Route::post('user/doubleFactor/tokenGoogle/verificate','DfaController@tokenByGoogle');
@@ -37,7 +38,7 @@ Route::get('dashboard', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['auth','change']], function () {
 
     Route::get('entities/{projectId}/{type}', 'EntityController@getEntities');
-    Route::get('getNotifications', 'ProjectController@getNotifications');
+
     Route::post('entities', 'EntityController@store');
     Route::delete('entities/{entity}', 'EntityController@destroy');
     Route::resource('role', 'RoleController');

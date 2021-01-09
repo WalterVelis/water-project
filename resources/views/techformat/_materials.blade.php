@@ -134,10 +134,10 @@
                                 <td style="text-align:right;">{{ Helper::formatMoney($uc) }}</td>
                                 <td>
                                     @if($mp->materialProvider)
-                                        <input max="{{ $mp->qty }}" class="total-item-{{ $currentId }} form-control data-material" data-id="{{ $mp->id }}" type="number" value="{{ $mp->materialProvider->qty }}">
+                                        <input oninput="validity.valid||(value='{{ $mp->qty }}');" min="0" max="{{ $mp->qty }}" class="total-item-{{ $currentId }} form-control data-material" data-id="{{ $mp->id }}" type="number" value="{{ $mp->materialProvider->qty }}">
                                         @php($tqty = $mp->materialProvider->qty)
                                     @else
-                                        <input max="{{ $mp->qty }}" class="total-item-{{ $currentId }} form-control data-material" data-id="{{ $mp->id }}" type="number" value="0">
+                                        <input oninput="validity.valid||(value='{{ $mp->qty }}');" min="0" max="{{ $mp->qty }}" class="total-item-{{ $currentId }} form-control data-material" data-id="{{ $mp->id }}" type="number" value="0">
                                         @php($tqty = 0)
                                     @endif
                                 </td>
@@ -171,9 +171,6 @@
                 </table>
             </div>
         @endforeach
-    </div>
-    <div class="col-12">
-        <button class="float-right d-block btn btn-primary">Guardar</button>
     </div>
 </div>
 @endif
@@ -223,7 +220,7 @@
                     "qty": data
                 }
             }).done(function(data) {
-                loadCosts();
+                loadMaterials();
             });
         }, 500);
 

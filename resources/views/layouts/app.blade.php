@@ -322,6 +322,8 @@
                   align: 'right'
                 }
               });
+
+
             @endif
             @if (session('error')) //Error
               $.notify({
@@ -335,15 +337,11 @@
                   align: 'right'
                 }
               });
+
+
             @endif
 
-            $.ajax({
-                type: 'GET',
-                url: '/getNotifications'
-            })
-            .done(function(data) {
-                $('#notify').html(data);
-            });
+
           });
 
 function formatMoney(number, decPlaces, decSep, thouSep) {
@@ -365,6 +363,14 @@ function formatMoney(number, decPlaces, decSep, thouSep) {
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
                 $('[data-toggle="tooltip"]').css('cursor', 'pointer')
+
+                $.ajax({
+                type: 'GET',
+                url: '/getNotifications'
+                })
+                .done(function(data) {
+                    $('#notify').html(data);
+                });
             })
         </script>
         @stack('js')

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\AccesoryFormat;
+use App\AccesoryUrban;
 use Illuminate\Http\Request;
 
 class AccesoryFormatController extends Controller
@@ -42,7 +43,17 @@ class AccesoryFormatController extends Controller
      */
     public function store(Request $request)
     {
-        return AccesoryFormat::create($request->all());
+        // dd($request->all());
+        $accesoryData = AccesoryUrban::where('id', $request->accesory_id)->first();
+        // dd($accesoryData);
+        $accesory = new AccesoryFormat;
+        $accesory->accesory_id = $request->accesory_id;
+        $accesory->qty = $request->qty;
+        $accesory->format_id = $request->format_id;
+        $accesory->discount = $accesoryData->discount;
+        $accesory->cost = $accesoryData->unit_cost;
+        $accesory->save();
+        // return AccesoryFormat::create($request->all());
     }
 
     /**
