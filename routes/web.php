@@ -25,6 +25,7 @@ Route::get('lang/{locale}', 'LocalizationController@index');
 
 Auth::routes();
 Route::get('getNotifications', 'ProjectController@getNotifications');
+Route::post('updateNotifications', 'ProjectController@updateNotifications');
 Route::post('user/doubleFactor','DfaController@checkDoubleFactor')->name('loginDoubleFactor');
 Route::post('user/doubleFactor/tokenEmail/verificate','DfaController@tokenByEmail');
 Route::post('user/doubleFactor/tokenGoogle/verificate','DfaController@tokenByGoogle');

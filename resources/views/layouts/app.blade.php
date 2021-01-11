@@ -342,6 +342,20 @@
             @endif
 
 
+            $('#navbarDropdownMenuLink').on("click", () => {
+                $.ajax({
+                    type: "post",
+                    url: "/updateNotifications",
+                    data: {
+                        "_token": "{{ csrf_token() }}"
+                    },
+                    dataType: "dataType",
+                    success: function (response) {
+
+                    }
+                });
+            });
+
           });
 
 function formatMoney(number, decPlaces, decSep, thouSep) {

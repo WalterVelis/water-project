@@ -116,9 +116,16 @@
                                             <td>
                                                 {{ $item->statusLabel() }}
                                             </td>
-                                            <td class="td-actions text-right">
+                                            <td class="td-actions text-right" style="    white-space: nowrap;">
                                                 <!-- <a href="{{ route('projects.show', $item->id) }}"><i class="material-icons">remove_red_eye</i></a> -->
                                                 <a class="btn btn-link" data-toggle="tooltip" data-placement="top" title="Editar" href="{{ route('projects.edit', $item->id) }}"><i class="material-icons">edit</i></a>
+                                                @if($item->status == 0)
+                                                <form action="{{ route('projects.destroy', $item->id) }}" method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button class="btn btn-link" data-toggle="tooltip" data-placement="top" title="Eliminar" ><i class="material-icons">close</i></button>
+                                                </form>
+                                                @endif
                                                 {{-- <i class="material-icons">close</i> --}}
                                             </td>
                                         </tr>

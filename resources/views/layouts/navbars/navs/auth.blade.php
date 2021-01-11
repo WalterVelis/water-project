@@ -25,10 +25,7 @@
               $notificacions=App\Notification::countNotificationActive();
               @endphp
               @foreach ($notificacions as $item)
-              @if ($item->notifications == 0)
-              @else
-              <span class="notification">{{$item->notifications}}</span>
-              @endif
+              <span id="n-total" class="notification">0</span>
               @endforeach
               <p class="d-lg-none d-md-block">
                 {{ __('Notifications') }}
@@ -84,3 +81,7 @@
     </div>
   </nav>
   <!-- End Navbar -->
+
+  <script>
+
+  </script>

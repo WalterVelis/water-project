@@ -260,9 +260,9 @@ form .col-12 {
                                     <label class="c_label col-12 col-form-label">{{ __('Country') }}</label>
                                     <div class="col-sm-12">
                                         <select class="country form-control" name="country">
-                                            <option selected value="142"> México </option>
+                                            <option {{ $format->country_id == 0 ? "selected" : "" }} value="142"> México </option>
                                             @foreach($countries as $item)
-                                            <option value="{{ $item->id }}"> {{ $item->name }} </option>
+                                            <option {{ $format->country_id == $item->id ? "selected" : "" }} value="{{ $item->id }}"> {{ $item->name }} </option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -1007,6 +1007,26 @@ if($('input:radio[name="factible"]:checked').val() == 1){
     $('#finish').addClass('disabled');
     console.log('no fac');
 }
+
+function preload() {
+    $('#in-state option:contains("{{ $format->state }}")').prop('selected', true);
+    $('#in-municipality option:contains("{{ $format->municipality }}")').prop('selected', true);
+    // $('.selDiv option:eq(1)').prop('selected', true)
+}
+
+$(function () {
+    coid = $(".country").children().val();
+    console.log(coid != "142");
+    if(coid != 142) {
+        console.log('iff');
+        $('#state').html(
+            `<input class="form-control" class="" name="state" type="text" value="{{ $format->state }}" />`
+        );
+        $('#municipality').html(
+            `<input class="form-control" class="" name="municipality" type="text" value="{{ $format->municipality }}" />`
+        );
+    }
+});
 
 </script>
 

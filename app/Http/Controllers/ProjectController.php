@@ -96,6 +96,11 @@ class ProjectController extends Controller
          return view("layout.notification", compact("notifications"));
      }
 
+     public function updateNotifications() {
+         Notify::where('user_id', Auth::id())->where('has_read', 0)->update(['has_read' => 1]);
+        //  return view("layout.notification", compact("notifications"));
+     }
+
 
     public function create()
     {
@@ -397,7 +402,7 @@ class ProjectController extends Controller
             $id = User::select('id')->where('email', $mail)->first();
             $format->admin_assigned = $id->id;
             Mail::to($mail)->send(new AdminNotification($data));
-            Notify::create(["user_id" => $id->id, "msg" => "<a href='projects/".$format->id."/edit'><div class='c-not'>".$data->user->name. " requiere asignación de un técnico para realizar un levantamiento técnico del proyecto <b>".$data->page."</b>.". $format->page."</a></div>"]);
+            Notify::create(["user_id" => $id->id, "msg" => "<a href='/projects/".$format->id."/edit'><div class='c-not'>".$data->user->name. " requiere asignación de un técnico para realizar un levantamiento técnico del proyecto <b>".$data->page."</b>.". $format->page."</a></div>"]);
         }
 
         $format->update();
@@ -414,9 +419,13 @@ class ProjectController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project)
+    public function destroy($id)
     {
-        $project->delete();
+        // dd("s");
+        \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        Format::find($id)->delete();
+        \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        // $format->delete();
         return redirect()->route('projects.index')->with('success', 'Project Deleted');
     }
 }

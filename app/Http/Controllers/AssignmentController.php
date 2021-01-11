@@ -31,12 +31,12 @@ class AssignmentController extends Controller
         $data = Format::with(['vendor', 'user', 'admin'])->find($id);
         Mail::to($data->vendor->email)->send(new VendorNotification($data));
 
-        Notify::create(["user_id" => $data->vendor->id, "msg" => "<a href='projects/".$format->id."/edit'><div class='c-not'>".$data->admin->name. "asignó un técnico al proyecto ".$data->page." para realizar un levantamiento técnico.". $format->page."</a></div>"]);
+        Notify::create(["user_id" => $data->vendor->id, "msg" => "<a href='/projects/".$format->id."/edit'><div class='c-not'>".$data->admin->name. "asignó un técnico al proyecto ".$data->page." para realizar un levantamiento técnico.". $format->page."</a></div>"]);
 
         $data = Format::with(['tech', 'user', 'admin'])->find($id);
         Mail::to($data->tech->email)->send(new TechNotification($data));
 
-        Notify::create(["user_id" => $data->tech->id, "msg" => "<a href='projects/".$format->id."/edit'><div class='c-not'>".$data->admin->name. "asignó un técnico al proyecto ".$data->page." para realizar un levantamiento técnico.". $format->page."</a></div>"]);
+        Notify::create(["user_id" => $data->tech->id, "msg" => "<a href='/projects/".$format->id."/edit'><div class='c-not'>".$data->admin->name. "asignó un técnico al proyecto ".$data->page." para realizar un levantamiento técnico.". $format->page."</a></div>"]);
         return back();
     }
 }

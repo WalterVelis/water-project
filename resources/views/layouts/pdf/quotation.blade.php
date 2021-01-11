@@ -42,7 +42,7 @@
         <div style="color:#32526f;">www.aguah2o.com.mx</div>
     </div>
 </div>
-<div class="blue" style="text-align:center;line-height:20px;padding: 10px 18px;position: absolute;margin-left:-234px;height:20px;   ;top:60px;border: solid 1px gray"> <b>COTIZACIÓN</b> </div>
+<div class="blue" style="text-align:center;line-height:20px;padding: 10px 18px;position: absolute;margin-left:-221px;height:20px;width:182px;   ;top:60px;border: solid 1px gray"> <b>COTIZACIÓN</b> </div>
 <div style="text-align: center;">
 
 

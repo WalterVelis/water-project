@@ -80,7 +80,7 @@ class QuotationController extends Controller
         $subQuotation = QuotationFormat::where('format_id', $id)->get();
         // return view('layouts.pdf.quotation', compact('format', 'quotation', 'subQuotation'));
         $pdf =  PDF::loadView('layouts.pdf.quotation', compact('format', 'quotation', 'subQuotation'));
-        $name = Carbon::now()->toDateTimeString().'.pdf';
+        $name = 'Cotizacion_'.Carbon::now()->format("Y-m-d").'.pdf';
         return $pdf->setPaper('letter', 'landscape')->download($name);
 
         $manoDeObra = CostFormat::with('costs')->where(['format_id' => $id])->get();
@@ -116,7 +116,7 @@ class QuotationController extends Controller
 
         $pdf =  PDF::loadView('layouts.pdf.quotation', compact('quotation', 'escuela', 'costs', 'allMaterials', 'schoolCost', 'utility', 'materialUtility', 'costsUtility', 'totalManoDeObra', 'totalIU', 'totalMaterial', 'manoDeObra'));
         $name = Carbon::now()->toDateTimeString().'.pdf';
-        return $pdf->setPaper('letter', 'landscape')->download($name);
+        return $pdf->setPaper('letter', 'landscape')->stream($name);
         return view('quotation._table', compact('quotation', 'escuela', 'costs', 'allMaterials', 'schoolCost', 'utility', 'materialUtility', 'costsUtility', 'totalManoDeObra', 'totalIU', 'totalMaterial', 'manoDeObra'));
     }
 

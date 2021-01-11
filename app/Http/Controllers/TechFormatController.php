@@ -175,8 +175,8 @@ class TechFormatController extends Controller
             // dd($data, $data->vendor->id, $data->admin->id);
             Mail::to([$data->vendor->email, $data->admin->email])->send(new TechFormatNotification($data));
 
-            Notify::create(["user_id" => $data->vendor->id, "msg" => "<a href='projects/".$format->id."/edit'><div class='c-not'>".$data->tech->name." finalizó el registro de levantamiento técnico del proyecto .". $format->page."</a></div>"]);
-            Notify::create(["user_id" => $data->admin->id, "msg" => "<a href='projects/".$format->id."/edit'><div class='c-not'>".$data->tech->name." finalizó el registro de levantamiento técnico del proyecto .". $format->page."</a></div>"]);
+            Notify::create(["user_id" => $data->vendor->id, "msg" => "<a href='/projects/".$format->id."/edit'><div class='c-not'>".$data->tech->name." finalizó el registro de levantamiento técnico del proyecto .". $format->page."</a></div>"]);
+            Notify::create(["user_id" => $data->admin->id, "msg" => "<a href='/projects/".$format->id."/edit'><div class='c-not'>".$data->tech->name." finalizó el registro de levantamiento técnico del proyecto .". $format->page."</a></div>"]);
         }
 
 
