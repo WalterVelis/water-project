@@ -79,9 +79,9 @@ class QuotationController extends Controller
         $quotation = Quotation::where('format_id', $id)->first();
         $subQuotation = QuotationFormat::where('format_id', $id)->get();
         // return view('layouts.pdf.quotation', compact('format', 'quotation', 'subQuotation'));
-        $pdf =  PDF::loadView('layouts.pdf.quotation', compact('format', 'quotation', 'subQuotation'));
-        $name = 'Cotizacion_'.Carbon::now()->format("Y-m-d").'.pdf';
-        return $pdf->setPaper('letter', 'landscape')->download($name);
+        // $pdf =  PDF::loadView('layouts.pdf.quotation', compact('format', 'quotation', 'subQuotation'));
+        // $name = 'Cotizacion_'.Carbon::now()->format("Y-m-d").'.pdf';
+        // return $pdf->setPaper('letter', 'landscape')->stream($name);
 
         $manoDeObra = CostFormat::with('costs')->where(['format_id' => $id])->get();
         $material = MaterialProviderFormat::whereHas('providers', function($query) use ($id) { $query->where('format_id', $id);})->where(['format_id' => $id])->get();
@@ -114,7 +114,7 @@ class QuotationController extends Controller
         $allMaterials = $totalMaterial + $totalIU;
         // dd($quotation);
 
-        $pdf =  PDF::loadView('layouts.pdf.quotation', compact('quotation', 'escuela', 'costs', 'allMaterials', 'schoolCost', 'utility', 'materialUtility', 'costsUtility', 'totalManoDeObra', 'totalIU', 'totalMaterial', 'manoDeObra'));
+        $pdf =  PDF::loadView('layouts.pdf.quotation', compact('format', 'subQuotation' ,'quotation', 'escuela', 'costs', 'allMaterials', 'schoolCost', 'utility', 'materialUtility', 'costsUtility', 'totalManoDeObra', 'totalIU', 'totalMaterial', 'manoDeObra'));
         $name = Carbon::now()->toDateTimeString().'.pdf';
         return $pdf->setPaper('letter', 'landscape')->stream($name);
         return view('quotation._table', compact('quotation', 'escuela', 'costs', 'allMaterials', 'schoolCost', 'utility', 'materialUtility', 'costsUtility', 'totalManoDeObra', 'totalIU', 'totalMaterial', 'manoDeObra'));

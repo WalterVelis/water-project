@@ -31,7 +31,7 @@
 
                         <div class="row col-12">
                             <div class="col-lg-11 col-md-11 col-sm-11 col-xs-12 text-right">
-                                <a name="" id="" class="btn btn-primary btn-sm btn-round" style="color:white; padding:5px;" href="{{ route('projects.create') }}" role="button"><i style="color:white;font-size: 1em;padding: 4px;" class="fa fa-plus fw" aria-hidden="true"></i></a>
+                                @if(App\User::hasPermissions("Admin") || App\User::hasPermissions("Vendor") )<a name="" id="" class="btn btn-primary btn-sm btn-round" style="color:white; padding:5px;" href="{{ route('projects.create') }}" role="button"><i style="color:white;font-size: 1em;padding: 4px;" class="fa fa-plus fw" aria-hidden="true"></i></a>@endif
                                 @if(App\User::hasPermissions("Budget Create Account"))
                                     <a href="{{ route('projects.create') }}"
                                         class="btn btn-sm btn-rose">{{ __('Nuevo Proyecto') }}</a>

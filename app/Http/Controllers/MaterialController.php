@@ -131,22 +131,22 @@ class MaterialController extends Controller
         // Ignorar las que se están usando en levantamiento técnico
         foreach($mat as $m) {
             $check = MaterialFormat::whereIn('material_id', [$m->material_id])->get();
-            dump($check);
+            // dump($check);
             if(!$check->isEmpty()) {
                 array_push($idsThatWillBeIgnored, $m->provider_id);
                 continue;
             } else {
                 $deleted = MaterialProvider::whereId($m->id)->delete();
-                dump('deleted', $deleted);
+                // dump('deleted', $deleted);
             }
         }
-        dump("idsThatWillBeIgnored", $idsThatWillBeIgnored);
+        // dump("idsThatWillBeIgnored", $idsThatWillBeIgnored);
 
         // Actualiza el nombre de los materiales
         // $m = MaterialProvider::where('material_id', $material->id)->delete();
         $materialUpdate = $material->update($request->all());
         // $materialUpdate = Material::whereId($material->id)->update($request->all());
-        dump("updated", $materialUpdate);
+        // dump("updated", $materialUpdate);
         // Crea una nueva relación entre proveedor y material, ignorar las que ya existan
         foreach($request->provider_id as $k => $v) {
             if(in_array($v, $idsThatWillBeIgnored))
@@ -157,7 +157,7 @@ class MaterialController extends Controller
             $materialProvider->unit_cost = $request->unit_cost[$k];
             $materialProvider->material_id = $material->id;
             $materialProvider->save();
-            dump("inserted", $materialProvider);
+            // dump("inserted", $materialProvider);
         }
         // dd($m);
         // MaterialProvider::where('material_id', $material->id)->delete();

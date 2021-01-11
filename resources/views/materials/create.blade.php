@@ -51,7 +51,7 @@
                                             <div class="form-group{{ $errors->has('unit') ? ' has-danger' : '' }}">
                                                 {{-- <input class="form-control{{ $errors->has('unit') ? ' is-invalid' : '' }}" name="unit" id="input-unit" type="text" value="{{ old('unit') }}"  /> --}}
                                                 <select class="form-control" name="unit" id="">
-                                                    <option value="0">TRAMO</option>
+                                                    <option selected value="0">TRAMO</option>
                                                     <option value="1">PZA</option>
                                                     <option value="2">ML</option>
                                                     <option value="3">M2</option>
@@ -70,7 +70,7 @@
                                             <div class="form-group{{ $errors->has('type') ? ' has-danger' : '' }}">
                                                 {{-- <input class="form-control{{ $errors->has('type') ? ' is-invalid' : '' }}" name="type" id="input-type" type="text" value="{{ old('type') }}"  /> --}}
                                                 <select class="form-control" name="" id="ti">
-                                                    <option value="COBRE">COBRE</option>
+                                                    <option selected value="COBRE">COBRE</option>
                                                     <option value="PVC SANITARIO">PVC SANITARIO</option>
                                                     <option value="PVC HIDR RD26">PVC HIDR RD26</option>
                                                     <option value="CONDUIT">CONDUIT</option>
@@ -94,7 +94,7 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-12">
-                                            <input id="otro" type="text" name="type" class="form-control mt-4" style="display:none;" placeholder="Especifique...">
+                                            <input id="otro" type="text" name="type" class="form-control mt-4" style="display:none;" placeholder="Especifique..." value="COBRE">
                                         </div>
                                     </div>
                                     <script>
@@ -210,6 +210,10 @@
             $('#otro').fadeOut();
             $('#otro').val($('#ti').val());
         }
+    });
+
+    $(function () {
+        $('#otro').val($('#ti').val());
     });
 </script>
 
