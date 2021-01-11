@@ -109,7 +109,7 @@ class QuotationController extends Controller
         // $accesoryQty = AccesoryFormat::with('')
         // $materialsTotal = MaterialFormat::with('materials.providers')->where('format_id', $id)->get();
         // dd($materialsTotal);
-        $quotation = QuotationFormat::where('format_id', $id)->get();
+        // $quotation = QuotationFormat::where('format_id', $id)->get();
         $utility = Quotation::select('utility', 'indirect')->where('format_id', $id)->first();
         $allMaterials = $totalMaterial + $totalIU;
         // dd($quotation);

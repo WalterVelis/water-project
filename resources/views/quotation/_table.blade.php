@@ -114,10 +114,10 @@
             <td style="text-align: right" colspan="7"><div class="row"><div style="font-weight: bold" class="col-10">Subtotal:</div> <div class="col-2"> {{ Helper::formatMoney($subTotal) }} </div></div></td>
         </tr>
         <tr>
-            <td style="text-align: right" colspan="7"><div class="row"><div style="font-weight: bold" class="col-10">IVA:</div> <div class="col-2">{{ Helper::formatMoney($subTotal * 0.13) }}</div></div></td>
+            <td style="text-align: right" colspan="7"><div class="row"><div style="font-weight: bold" class="col-10">IVA:</div> <div class="col-2">{{ Helper::formatMoney($subTotal * 0.16) }}</div></div></td>
         </tr>
         <tr>
-            <td style="text-align: right" colspan="7"><div class="row"><div style="font-weight: bold" class="col-10">Total:</div> <div class="col-2">{{ Helper::formatMoney($subTotal * 1.13) }}</div></div></td>
+            <td style="text-align: right" colspan="7"><div class="row"><div style="font-weight: bold" class="col-10">Total:</div> <div class="col-2">{{ Helper::formatMoney($subTotal * 1.16) }}</div></div></td>
         </tr>
     </tbody>
 </table>

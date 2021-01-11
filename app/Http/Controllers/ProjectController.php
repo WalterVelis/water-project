@@ -424,6 +424,11 @@ class ProjectController extends Controller
         // dd("s");
         \DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Format::find($id)->delete();
+        TechFormat::where("format_id", $id)->delete();
+        Quotation::where("format_id", $id)->delete();
+        SchoolCost::where("format_id", $id)->delete();
+        MaterialUtility::where("format_id", $id)->delete();
+        CostsUtility::where("format_id", $id)->delete();
         \DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         // $format->delete();
         return redirect()->route('projects.index')->with('success', 'Project Deleted');

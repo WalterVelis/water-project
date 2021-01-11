@@ -88,9 +88,11 @@
             </tr>
         </tbody>
     </table>
-
+@php($subTotal = 0)
+@php($id = 0)
     <table style="margin-top:10px;width:100%;border-collapse: collapse;" class="table c-table2">
         <thead>
+
             <tr style="text-align: center; font-weight:bold; background:#8db3e2">
                 <td>ID</td>
                 <td>Descripción</td>
@@ -100,34 +102,64 @@
             </tr>
         </thead>
         <tbody>
+            <tr>
+                <td>{{ $id + 1 }} @php($id += 1)</td>
+                <td>Mano de obra y operaciones</td>
+                <td>1</td>
+                <td style="text-align: right">{{ Helper::formatMoney($totalManoDeObra) }}</td>
+                <td style="text-align: right">{{ Helper::formatMoney(( ($totalManoDeObra / (((100 - $costsUtility->utility) / 100))) + (($totalManoDeObra / (((100 - $costsUtility->utility) / 100))) * ((($costsUtility->indirect) / 100))))) }}</td>
+                @php($subTotal += ( ($totalManoDeObra / (((100 - $costsUtility->utility) / 100))) + (($totalManoDeObra / (((100 - $costsUtility->utility) / 100))) * ((($costsUtility->indirect) / 100)))))
+                {{-- <td>{{ Helper::formatMoney($totalManoDeObra) }}</td> --}}
+            </tr>
+            @if($escuela->has_educational_programs)
+            <tr>
+                <td>{{ $id + 1 }} @php($id += 1)</td>
+                <td>Programa completo de escuelas de lluvia - Capacitación, supervisión y seguimiento técnica y propuesta participativa y educativa completa</td>
+                <td>{{ $escuela->children }}</td>
+                <td style="text-align: right">{{ Helper::formatMoney($schoolCost->cost) }}</td>
+                <td style="text-align: right">{{ Helper::formatMoney($escuela->children * ( ($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) + (($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) * ((($schoolCost->indirect) / 100))))) }}</td>
+                @php($subTotal += $escuela->children * ( ($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) + (($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) * ((($schoolCost->indirect) / 100)))))
+            </tr>
+            @endif
             @foreach($subQuotation as $sc)
             <tr>
-                <td>{{ $sc->id }}</td>
+                <td>{{ $id + 1 }} @php($id += 1)</td>
                 <td>{{ $sc->description }}</td>
                 <td>{{ $sc->qty }}</td>
                 <td style="text-align: right;">{{ Helper::formatMoney($sc->cost) }}</td>
                 <td style="text-align: right;">{{ Helper::formatMoney($sc->qty * $sc->cost) }}</td>
+                {{-- <td>{{ $sc->qty * ( ($sc->cost / (((100 - $sc->utility) / 100))) + (($sc->cost / (((100 - $sc->utility) / 100))) * ((($sc->indirect) / 100)))) }}</td> --}}
+                {{-- @php($subTotal += ( ($sc->qty / (((100 - $sc->utility) / 100))) + (($sc->qty / (((100 - $sc->utility) / 100))) * ((($sc->indirect) / 100))))) --}}
+                @php($subTotal += $sc->qty * ( ($sc->cost / (((100 - $sc->utility) / 100))) + (($sc->cost / (((100 - $sc->utility) / 100))) * ((($sc->indirect) / 100)))))
             </tr>
             @endforeach
             <tr>
+                <td>{{ $id + 1 }} @php($id += 1)</td>
+                <td>Materiales y Equipo de instalación </td>
+                <td>1</td>
+                <td style="text-align: right">{{ Helper::formatMoney($allMaterials) }}</td>
+                <td style="text-align: right">{{ Helper::formatMoney(( ($allMaterials / (((100 - $materialUtility->utility) / 100))) + (($allMaterials / (((100 - $materialUtility->utility) / 100))) * ((($materialUtility->indirect) / 100))))) }}</td>
+                @php($subTotal += ( ($allMaterials / (((100 - $materialUtility->utility) / 100))) + (($allMaterials / (((100 - $materialUtility->utility) / 100))) * ((($materialUtility->indirect) / 100)))))
+            </tr>
+            <tr>
                 <td colspan="3" style="border-bottom:solid 1px transparent;"></td>
                 <td class="b">Sub Total</td>
-                <td style="text-align: right;">$0.00</td>
+                <td style="text-align: right;">{{ Helper::formatMoney($subTotal) }}</td>
             </tr>
             <tr>
                 <td colspan="3" style="border-bottom:solid 1px transparent;"></td>
                 <td class="b">IVA 16%</td>
-                <td style="text-align: right;">$0.00</td>
+                <td style="text-align: right;">{{ Helper::formatMoney($subTotal * 0.16) }}</td>
             </tr>
             <tr>
                 <td colspan="3"></td>
                 <td class="b">TOTAL</td>
-                <td style="text-align: right;"><b>$0.00</b></td>
+                <td style="text-align: right;"><b>{{ Helper::formatMoney($subTotal * 1.16) }}</b></td>
             </tr>
         </tbody>
     </table>
     <br>
-    <div style="margin-top:40px" class="clearfix" style="page-break-inside: avoid;">
+    <div style="margin-top:90px" class="clearfix" style="page-break-inside: avoid;">
         <div style="width:40%; display: inline-block;page-break-inside: avoid;" class="clearfix">
             <div>
                 <div style="border:solid 1px gray; width:200px;" class="blue b">Tiempo de Entrega (días)</div>
@@ -144,9 +176,9 @@
                 </div>
             </div>
         </div>
-        <div style="margin-top:-5px;width:50%; display: inline-block;margin-left:9%;">
+        <div style="margin-top:-25px;width:50%; display: inline-block;margin-left:9%;">
             <div style="border:solid 1px gray;width:100px;" class="blue b">Notas:</div>
-            <div style="height:180px;border:solid 1px gray;text-align:left;padding: 2px 6px;">{{ $quotation->notes }} Lorem imilique numquam eaque odio veritatis alias fuga iure autem, commodi dolore facilis, pariatur aspernatur incidunt suscipit, dolores quo doloribus reiciendis?</div>
+            <div style="height:180px;border:solid 1px gray;text-align:left;padding: 2px 6px;">{{ $quotation->notes }}</div>
         </div>
     </div>
 
