@@ -133,7 +133,7 @@ form .col-12 {
                                             <div class="col-12">
                                                 <h4 class="mb-0 mt-2 d-inline" style="font-weight: bold!important">Características</h4>
                                                 <a href="/getTech/{{ $format->id }}">
-                                                    <button class=" d-inline" style="    position: absolute; right: 0px;background: none; border: none; font-size: 1.5em;    width: 90px;" type="button">
+                                                    <button {{$format->internal_status >= 2 ? "" : "disabled"}} class=" d-inline" style="{{$format->internal_status >= 2 ? "" : "opacity:0.4;"}} position: absolute; right: 0px;background: none; border: none; font-size: 1.5em;    width: 90px;" type="button">
                                                         <i class="fa fa-download" aria-hidden="true"></i>
                                                     </button>
                                                 </a>

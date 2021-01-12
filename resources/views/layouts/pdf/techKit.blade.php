@@ -15,7 +15,7 @@
     }
 
     .c-table {
-        text-align: center;
+        /* text-align: center; */
     }
 
     table {
@@ -59,9 +59,9 @@
                     <td scope="row">{{ $item->id }}</td>
                     <td>{{ $item->accesory->name }}</td>
                     <td>{{ $item->qty }}</td>
-                    <td><input type="number" data-id="{{ $item->id }}" class="accesory-cost form-control" value="{{ $item->cost }}"></td>
+                    <td>{{ Helper::formatMoney($item->cost) }}</td>
                     <td>{{ Helper::formatMoney($item->cost - ($item->cost * 0.16)) }}</td>
-                    <td><input type="number"  data-id="{{ $item->id }}" class="accesory-discount form-control" value="{{ $item->discount }}"></td>
+                    <td>{{ $item->discount }}%</td>
                     <td>{{ Helper::formatMoney(($item->cost - ($item->discount / 100) * $item->cost)) }}</td>
                     <td>{{ Helper::formatMoney((($item->cost - ($item->discount / 100) * $item->cost)) * $item->qty) }}</td>
                     <td>{{ $item->details }}</td>

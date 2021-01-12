@@ -65,7 +65,7 @@ use Carbon\Carbon;
     <tbody>
         <tr>
             <td class="right b">Fecha: </td>
-            <td colspan="2"> {{ $format->created_at->format('Y-m-d') }}</td>
+            <td colspan="2"> {{ $format->date }}</td>
             <td colspan="1"></td>
             <td> Folio</td>
             <td> {{ $format->page }}</td>

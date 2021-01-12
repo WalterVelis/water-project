@@ -100,7 +100,7 @@
                 <div  style="padding: 4px 8px;width: 16.6%">{{ $item->materials->type }}</div>
                 <div  style="padding: 4px 8px;width: 16.6%" id="total-{{ $item->id }}">$0.00</div>
             </div>
-            <div id="t-{{ $item->id }}" style="display: none" class="mt-2 mb-4">
+            <div id="t-{{ $item->id }}" style="" class="mt-2 mb-4">
 
                 <table class="table c-table">
                     <thead>
