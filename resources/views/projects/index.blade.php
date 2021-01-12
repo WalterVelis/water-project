@@ -65,7 +65,7 @@
                                             {{ __('Place') }}
                                         </th>
                                         <th>
-                                            {{ __('First Contact') }}
+                                            {{ __('Fecha Primer Contacto') }}
                                         </th>
                                         {{-- <th>
                                             {{ __('Email') }}
@@ -129,7 +129,6 @@
                                             @if(App\User::hasPermissions("Vendor"))
                                             <td>{{ $item->tech->name }}</td>
                                             @endif
-                                            <td>{{ $item->vendor->name }}</td>
                                             <td>
                                                 {{ $item->created_at->format('Y-m-d') }}
                                             </td>
