@@ -32,8 +32,8 @@
                 <tr>
                     <td>{{ $pc->day }}</td>
                     <td>{{ $pc->costs->name }}</td>
-                    <td>{{ Helper::formatMoney($pc->cost) }}</td>
-                    <td>{{ Helper::formatMoney($pc->cost * $pc->day) }}</td>
+                    <td style="text-align: right;">{{ Helper::formatMoney($pc->cost) }}</td>
+                    <td style="text-align: right;">{{ Helper::formatMoney($pc->cost * $pc->day) }}</td>
                 </tr>
             @endforeach
             <tr style="background:#8db3e2">
