@@ -611,7 +611,7 @@ form .col-12 {
                             </div>
                             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                                 <div class="card-body bg-white">
-                                    @if (App\User::hasPermissions("Admin"))
+                                    @if (App\User::hasPermissions("Admin") || App\User::hasPermissions("Tech"))
                                     <a href="/getKit/{{ $format->id }}">
                                         <button class=" d-inline" style="    position: absolute; right: 0px;background: none; border: none; font-size: 1.5em;    width: 90px;" type="button">
                                             <i class="fa fa-download" aria-hidden="true"></i>
