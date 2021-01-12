@@ -141,9 +141,10 @@
                                         @php($tqty = 0)
                                     @endif
                                 </td>
+                                @dump($subtotal)
                                 @php($subtotal += $tqty  * $mp->unit_cost)
 
-                                @php($total += $subtotal)
+                                @php($total = $subtotal)
                                 <td style="text-align:right;">{{ Helper::formatMoney($tqty * $mp->unit_cost) }}</td>
                             </tr>
 
