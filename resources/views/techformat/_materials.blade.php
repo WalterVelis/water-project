@@ -207,7 +207,13 @@
     }
 
     var delayer;
-    $('.data-material').on('change keyup', function() {
+
+    function updateTable() {
+
+    }
+
+    $('.data-material').blur( function() {
+        console.log('blur');
         mpId = $(this).attr('data-id');
         data = $(this).val();
         clearTimeout(delayer);
@@ -215,12 +221,18 @@
             $.ajax({
                 type: 'PUT',
                 url: '/materialformat/'+mpId+'/'+projectId,
+                beforeSend: function() {
+                    $('input').prop("readonly", true);
+                },
                 data: {
                     "_token": "{{ csrf_token() }}",
                     "qty": data
                 }
-            }).done(function(data) {
+            })
+            .done(function(data) {
                 loadMaterials();
+            }).complete(() => {
+                $('input').prop("readonly", false);
             });
         }, 500);
 
