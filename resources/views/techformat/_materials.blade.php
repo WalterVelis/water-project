@@ -141,7 +141,6 @@
                                         @php($tqty = 0)
                                     @endif
                                 </td>
-                                @dump($subtotal)
                                 @php($subtotal += $tqty  * $mp->unit_cost)
 
                                 @php($total = $subtotal)
