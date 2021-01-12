@@ -126,11 +126,15 @@ class TechFormatController extends Controller
     {
 
         $water_quality = "";
+        $filter_type = "";
         $roof_type = "";
         $rooftop = "";
 
         if($request->water_quality != null)
             $water_quality = implode(",",$request->water_quality);
+
+            if($request->filter_type != null)
+            $filter_type = implode(",",$request->filter_type);
 
         if($request->roof_type != null)
             $roof_type = implode(",",$request->roof_type);
@@ -140,6 +144,7 @@ class TechFormatController extends Controller
 
         $techFormat = TechFormat::find($id);
         $techFormat->water_quality = $water_quality;
+        $techFormat->filter_type = $filter_type;
         $techFormat->roof_type = $roof_type;
         $techFormat->obtaining_water = $request->obtaining_water;
         $techFormat->rooftop = $rooftop;

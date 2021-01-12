@@ -182,7 +182,7 @@
                             {{ $provider->direccion }}
                         </td>
                         <td>
-                            {{ $provider->product_type ? 'Islas Urbanas' : 'Materiales Extra' }}
+                            {{ $provider->product_type ? 'Accesorios de isla urbana' : 'Materiales Extra' }}
                         </td>
                         <td style="white-space: nowrap">
                             {{ $provider->created_at->format('Y-m-d') }}

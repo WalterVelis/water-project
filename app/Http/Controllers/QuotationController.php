@@ -116,7 +116,7 @@ class QuotationController extends Controller
 
         $pdf =  PDF::loadView('layouts.pdf.quotation', compact('format', 'subQuotation' ,'quotation', 'escuela', 'costs', 'allMaterials', 'schoolCost', 'utility', 'materialUtility', 'costsUtility', 'totalManoDeObra', 'totalIU', 'totalMaterial', 'manoDeObra'));
         $name = Carbon::now()->toDateTimeString().'.pdf';
-        return $pdf->setPaper('letter', 'landscape')->stream($name);
+        return $pdf->setPaper('letter', 'landscape')->download($name);
         return view('quotation._table', compact('quotation', 'escuela', 'costs', 'allMaterials', 'schoolCost', 'utility', 'materialUtility', 'costsUtility', 'totalManoDeObra', 'totalIU', 'totalMaterial', 'manoDeObra'));
     }
 

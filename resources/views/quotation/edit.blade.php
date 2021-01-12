@@ -118,7 +118,8 @@
                                 <div class="col-12 col-md-4">
                                     <label class="c_label col-12 col-form-label">{{ __('No. Cotización') }}</label>
                                     <div class="col-sm-12">
-                                        <input readonly class="form-control" id="" name="version" type="text" value="H2O-{{ str_pad($format->id, 4, '0', STR_PAD_LEFT)."-".str_pad($quotation->version, 4, '0', STR_PAD_LEFT) }}" />
+                                        @php($qId = 1)
+                                        <input readonly class="form-control" id="" name="version" type="text" value="H2O-{{ str_pad($format->id, 4, '0', STR_PAD_LEFT)."-".str_pad($qId, 4, '0', STR_PAD_LEFT) }}" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">

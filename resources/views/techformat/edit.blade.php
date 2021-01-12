@@ -142,36 +142,40 @@ form .col-12 {
                                                 <div class="row col-12">
                                                     @php
                                                         $water_quality = explode(",",$techFormat->water_quality);
+                                                        $filter_type = explode(",",$techFormat->filter_type);
                                                     @endphp
                                                     <div class="col-12 col-md-2">
                                                         <div class="form-check">
                                                             <label class="form-check-label">
-                                                                <input required {{ in_array(__('WC and Watering'), $water_quality) ? 'checked' : '' }} name="water_quality[]" class="form-check-input" type="checkbox" value="{{ __('WC and Watering') }}"> {{ __('WC and Watering') }}
+                                                                <input required {{ in_array(__('WC and Watering'), $water_quality) ? 'checked' : '' }} id="water_quality-wc" name="water_quality[]" class="form-check-input" type="checkbox" value="{{ __('WC and Watering') }}"> {{ __('WC and Watering') }}
                                                                 <span class="form-check-sign">
                                                                     <span class="check"></span>
                                                                 </span>
                                                             </label>
+                                                            <input style="{{ in_array(__('WC and Watering'), $water_quality) ? '' : 'display:none;' }}" id="filter-quality-wc" type="text" name="filter_type[]" class="filter mt-3 form-control" placeholder="Tipo de filtro" value="{{ $filter_type[0] }}">
                                                         </div>
                                                     </div>
                                                     <div class="col-12 col-md-2">
                                                         <div class="form-check">
                                                             <label class="form-check-label">
-                                                                <input required {{ in_array(__('Hygiene and personal care'), $water_quality) ? 'checked' : '' }} name="water_quality[]" class="form-check-input" type="checkbox" value="{{ __('Hygiene and personal care') }}">
+                                                                <input required {{ in_array(__('Hygiene and personal care'), $water_quality) ? 'checked' : '' }} id="water_quality-personal" name="water_quality[]" class="form-check-input" type="checkbox" value="{{ __('Hygiene and personal care') }}">
                                                                 {{ __('Hygiene and personal care') }}
                                                                 <span class="form-check-sign">
                                                                     <span class="check"></span>
                                                                 </span>
                                                             </label>
+                                                            <input style="{{ in_array(__('Hygiene and personal care'), $water_quality) ? '' : 'display:none;' }}" id="filter-quality-personal" type="text" name="filter_type[]" class="filter mt-3 form-control" placeholder="Tipo de filtro" value="{{ $filter_type[1] }}">
                                                         </div>
                                                     </div>
                                                     <div class="col-12 col-md-2">
                                                         <div class="form-check">
                                                             <label class="form-check-label">
-                                                                <input required {{ in_array(__('Purified'), $water_quality) ? 'checked' : '' }} name="water_quality[]" class="form-check-input" type="checkbox" value="{{ __('Purified') }}"> {{ __('Purified') }}
+                                                                <input required {{ in_array(__('Purified'), $water_quality) ? 'checked' : '' }} name="water_quality[]" id="water_quality-purified" class="form-check-input" type="checkbox" value="{{ __('Purified') }}"> {{ __('Purified') }}
                                                                 <span class="form-check-sign">
                                                                     <span class="check"></span>
                                                                 </span>
                                                             </label>
+                                                            <input style="{{ in_array(__('Purified'), $water_quality) ? '' : 'display:none;' }}" id="filter-quality-purified" type="text" name="filter_type[]" class="filter mt-3 form-control" placeholder="Tipo de filtro" value="{{ $filter_type[2] }}">
                                                         </div>
                                                     </div>
                                                     <div class="col-12 col-md-2">
@@ -182,10 +186,11 @@ form .col-12 {
                                                                     <span class="check"></span>
                                                                 </span>
                                                             </label>
+                                                            <input style="{{ in_array(__('Other'), $water_quality) ? '' : 'display:none;' }}" id="filter-quality-other" type="text" name="filter_type[]" class="filter mt-3 form-control" placeholder="Tipo de filtro" value="{{ $filter_type[3] }}">
                                                         </div>
                                                     </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input required id="input-quality-other" value="{{ end($water_quality) }}" name="water_quality[]" style="{{ in_array(__('Other'), $water_quality) ? '' : 'display:none;' }}" class="form-control mt-2" type="text" placeholder="{{ __('specify...') }}">
+                                                    <input required id="input-quality-other" value="{{ end($water_quality) }}" name="water_quality[]" style="{{ in_array(__('Other'), $water_quality) ? '' : 'display:none;' }}" class="form-control mt-2" type="text" placeholder="{{ __('Especifique...') }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -330,7 +335,7 @@ form .col-12 {
                                             </div>
 
                                             <div class="col-12 col-md-4">
-                                                <label class="c_label col-12 col-form-label">{{ __('Medida del tinaco que surte a servicio (L)') }}</label>
+                                                <label class="c_label col-12 col-form-label" style="    padding-right: 25px!important;">{{ __('Medida del tinaco que surte a servicio (L)') }}</label>
                                                 <div class="col-sm-12">
                                                     <input required class="form-control" id="" name="water_tank" type="text" value="{{ $techFormat->water_tank }}" />
                                                 </div>
@@ -344,7 +349,7 @@ form .col-12 {
                                             </div>
 
                                             <div class="col-12 col-md-4">
-                                                <label class="c_label col-12 col-form-label">{{ __('Estado del nivel de limpieza del techo') }}</label>
+                                                <label class="c_label col-12 col-form-label" style="padding-right: 50px!important;">{{ __('Estado del nivel de limpieza del techo') }}</label>
                                                 <div class="col-sm-12">
                                                     {{-- <input required class="form-control" id="" name="cleanliness" type="text" value="{{ $techFormat->cleanliness }}" /> --}}
                                                     <select class="form-control" name="cleanliness">
@@ -512,7 +517,7 @@ form .col-12 {
                                                     {{-- <a href="{{ route('projects.index') }}" class="btn btn-rose float-right">{{ __('CANCEL') }}</a> --}}
                                                 </div>
                                                 <div class="col-12 col-md-2">
-                                                    <button onclick="$('#form-techformat').submit();" class="btn btn-primary">{{ __('SAVE') }}</button>
+                                                    <button onclick="saveForm();" class="btn btn-primary">{{ __('SAVE') }}</button>
 
                                                 </div>
                                             </div>
@@ -769,10 +774,112 @@ $('.environment').on('change', function() {
 $('#water_quality-other').on('click', function() {
     console.log($(this).is(':checked'));
     if ($(this).is(':checked'))
-        $('#input-quality-other').fadeIn();
+        {
+            $('#input-quality-other').fadeIn();
+            $('#filter-quality-other').fadeIn();
+            $('#filter-quality-other').addClass("required");
+        }
     else
-        $('#input-quality-other').fadeOut();
+        {$('#input-quality-other').fadeOut();
+        $('#filter-quality-other').fadeOut();
+        $('#filter-quality-other').removeClass("required");
+        $('#filter-quality-other').val("");
+    }
 });
+
+$('#water_quality-wc').on('click', function() {
+    console.log($(this).is(':checked'));
+    if ($(this).is(':checked'))
+        {$('#input-quality-wc').fadeIn();
+        $('#filter-quality-wc').fadeIn();
+        $('#filter-quality-wc').addClass("required");}
+    else
+        {$('#input-quality-wc').fadeOut();
+        $('#filter-quality-wc').fadeOut();
+        $('#filter-quality-wc').removeClass("required");
+        $('#filter-quality-wc').val("");}
+});
+
+$('#water_quality-personal').on('click', function() {
+    console.log($(this).is(':checked'));
+    if ($(this).is(':checked'))
+        {$('#input-quality-personal').fadeIn();
+        $('#filter-quality-personal').fadeIn();
+        $('#filter-quality-personal').addClass("required");}
+    else
+        {$('#input-quality-personal').fadeOut();
+        $('#filter-quality-personal').fadeOut();
+        $('#filter-quality-personal').removeClass("required");
+        $('#filter-quality-personal').val("");}
+});
+
+$('#water_quality-purified').on('click', function() {
+    console.log($(this).is(':checked'));
+    if ($(this).is(':checked'))
+        {$('#input-quality-purified').fadeIn();
+        $('#filter-quality-purified').fadeIn();
+        $('#filter-quality-purified').addClass("required");}
+    else
+        {$('#input-quality-purified').fadeOut();
+        $('#filter-quality-purified').fadeOut();
+        $('#filter-quality-purified').removeClass("required");
+        $('#filter-quality-purified').val("");}
+});
+
+function saveForm() {
+    if($('input[name="rooftop[]"]:checked').length <= 0) {
+        $.notify(
+            { message: 'Debe seleccionar al menos un Acabado de Azotea' },
+            { type: 'danger' }
+        );
+        return;
+    }
+
+    if($('#filter-quality-other').hasClass("required") && $('#filter-quality-other').val() == "") {
+        $.notify(
+            { message: 'El tipo de filtro para OTRO no puede estar vacio' },
+            { type: 'danger' }
+        );
+        return;
+    }
+
+    if($('#filter-quality-personal').hasClass("required") && $('#filter-quality-personal').val() == "") {
+        $.notify(
+            { message: 'El tipo de filtro para CUIDADO E HIGIENE no puede estar vacio' },
+            { type: 'danger' }
+        );
+        return;
+    }
+
+    if($('#filter-quality-purified').hasClass("required") && $('#filter-quality-purified').val() == "") {
+        $.notify(
+            { message: 'El tipo de filtro para PURIFICADO no puede estar vacio' },
+            { type: 'danger' }
+        );
+        return;
+    }
+
+    if($('#filter-quality-wc').hasClass("required") && $('#filter-quality-wc').val() == "") {
+        $.notify(
+            { message: 'El tipo de filtro para WC Y RIEGO no puede estar vacio' },
+            { type: 'danger' }
+        );
+        return;
+    }
+
+    if($('input[name="roof_type[]"]:checked').length <= 0) {
+        $.notify({
+            // options
+            message: 'Debe seleccionar al menos un Tipo de Techo para Captación de Agua'
+        },{
+            // settings
+            type: 'danger'
+        });
+        return;
+    }
+
+    $('#form-techformat').submit();
+}
 
 var projectId = {{ $techFormat->id }};
 
@@ -934,13 +1041,42 @@ $(document).ready(function () {
 
 function sendForm() {
     if($('input[name="rooftop[]"]:checked').length <= 0) {
-        $.notify({
-            // options
-            message: 'Debe seleccionar al menos un Acabado de Azotea'
-        },{
-            // settings
-            type: 'danger'
-        });
+        $.notify(
+            { message: 'Debe seleccionar al menos un Acabado de Azotea' },
+            { type: 'danger' }
+        );
+        return;
+    }
+
+    if($('#filter-quality-other').hasClass("required") && $('#filter-quality-other').val() == "") {
+        $.notify(
+            { message: 'El tipo de filtro para OTRO no puede estar vacio' },
+            { type: 'danger' }
+        );
+        return;
+    }
+
+    if($('#filter-quality-personal').hasClass("required") && $('#filter-quality-personal').val() == "") {
+        $.notify(
+            { message: 'El tipo de filtro para CUIDADO E HIGIENE no puede estar vacio' },
+            { type: 'danger' }
+        );
+        return;
+    }
+
+    if($('#filter-quality-purified').hasClass("required") && $('#filter-quality-purified').val() == "") {
+        $.notify(
+            { message: 'El tipo de filtro para PURIFICADO no puede estar vacio' },
+            { type: 'danger' }
+        );
+        return;
+    }
+
+    if($('#filter-quality-wc').hasClass("required") && $('#filter-quality-wc').val() == "") {
+        $.notify(
+            { message: 'El tipo de filtro para WC Y RIEGO no puede estar vacio' },
+            { type: 'danger' }
+        );
         return;
     }
 

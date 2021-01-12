@@ -51,7 +51,7 @@ use Carbon\Carbon;
     </tr>
 </table>
 
-<table style="width:100%;margin-right:0px;padding-right:20px;">
+<table style="width:100%;padding-right:20px;margin-right:48px;">
     <tbody>
         <tr>
             <td width="35%" class="right b">Fecha: </td>

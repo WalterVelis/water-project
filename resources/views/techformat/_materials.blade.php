@@ -124,7 +124,7 @@
                         @endif
 
                             <tr>
-                                <td scope="row">{{ $mp->provider->contact_name }}</td>
+                                <td scope="row">{{ $mp->provider->denomination }}</td>
                                 <td>{{ $mp->qty }}</td>
                                 {{-- @if($mp->materialProvider) --}}
                                 {{-- @php($uc = $mp->materialProvider->unit_cost) --}}

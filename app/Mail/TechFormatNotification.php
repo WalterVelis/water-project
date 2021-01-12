@@ -31,6 +31,6 @@ class TechFormatNotification extends Mailable
      */
     public function build()
     {
-        return $this->subject("Cotizador AguaH2O - Levantamiento técnico finaliado")->view('mails.notify-tech-finished');
+        return $this->subject("Cotizador AguaH2O - Levantamiento técnico finalizado")->view('mails.notify-tech-finished');
     }
 }

@@ -94,20 +94,22 @@ use Carbon\Carbon;
             <td class="right b">Correo: </td>
             <td colspan="5">{{ $format->email }}</td>
         </tr>
+        @php($water_quality = explode(",",$tech->water_quality))
         <tr>
             <td class="right b">Calidad del agua requerida: </td>
-            <td>WC y riego ( )</td>
-            <td>Higiene y aseo personal ( )</td>
-            <td>Purificada ( )</td>
-            <td>Otro ( )</td>
+            <td>WC y riego {{ in_array(__('WC and Watering'), $water_quality) ? '(X)' : '( )' }}</td>
+            <td>Higiene y aseo personal {{ in_array(__('Hygiene and personal care'), $water_quality) ? '(X)' : '( )' }}</td>
+            <td>Purificada {{ in_array(__('Purified'), $water_quality) ? '(X)' : '( )' }}</td>
+            <td>Otro {{ in_array(__('Other'), $water_quality) ? '(X)' : '( )' }}</td>
             <td>Especificar: ___</td>
         </tr>
+        @php($filter_type = explode(",",$tech->filter_type))
         <tr>
             <td></td>
-            <td>Tipo de filtro: </td>
-            <td>Tipo de filtro: </td>
-            <td>Tipo de filtro: </td>
-            <td colspan="2">Tipo de filtro: </td>
+            <td>@if(in_array(__('WC and Watering'), $water_quality))Tipo de filtro: {{ $filter_type[0] }}@endif</td>
+            <td>@if(in_array(__('Hygiene and personal care'), $water_quality))Tipo de filtro: {{ $filter_type[1] }}@endif</td>
+            <td>@if(in_array(__('Purified'), $water_quality))Tipo de filtro: {{ $filter_type[2] }}@endif</td>
+            <td colspan="2">@if(in_array(__('Other'), $water_quality))Tipo de filtro: {{ $filter_type[3] }}@endif</td>
         </tr>
         <tr>
             <td class="right b">Tipo de techo captación de lluvia: </td>
