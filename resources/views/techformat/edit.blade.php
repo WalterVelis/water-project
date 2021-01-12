@@ -143,50 +143,51 @@ form .col-12 {
                                                     @php
                                                         $water_quality = explode(",",$techFormat->water_quality);
                                                         $filter_type = explode(",",$techFormat->filter_type);
-                                                    @endphp
+                                                        @endphp
+                                                        {{-- @dd($water_quality, $techFormat->water_quality) --}}
                                                     <div class="col-12 col-md-2">
                                                         <div class="form-check">
                                                             <label class="form-check-label">
-                                                                <input required {{ in_array(__('WC and Watering'), $water_quality) ? 'checked' : '' }} id="water_quality-wc" name="water_quality[]" class="form-check-input" type="checkbox" value="{{ __('WC and Watering') }}"> {{ __('WC and Watering') }}
+                                                                <input required {{ in_array(__('WC and Watering'), @$water_quality) ? 'checked' : '' }} id="water_quality-wc" name="water_quality[]" class="form-check-input" type="checkbox" value="{{ __('WC and Watering') }}"> {{ __('WC and Watering') }}
                                                                 <span class="form-check-sign">
                                                                     <span class="check"></span>
                                                                 </span>
                                                             </label>
-                                                            <input style="{{ in_array(__('WC and Watering'), $water_quality) ? '' : 'display:none;' }}" id="filter-quality-wc" type="text" name="filter_type[]" class="filter mt-3 form-control" placeholder="Tipo de filtro" value="{{ $filter_type[0] }}">
+                                                            <input style="{{ in_array(__('WC and Watering'), @$water_quality) ? '' : 'display:none;' }}" id="filter-quality-wc" type="text" name="filter_type[]" class="filter mt-3 form-control" placeholder="Tipo de filtro" value="{{ @$filter_type[0] }}">
                                                         </div>
                                                     </div>
                                                     <div class="col-12 col-md-2">
                                                         <div class="form-check">
                                                             <label class="form-check-label">
-                                                                <input required {{ in_array(__('Hygiene and personal care'), $water_quality) ? 'checked' : '' }} id="water_quality-personal" name="water_quality[]" class="form-check-input" type="checkbox" value="{{ __('Hygiene and personal care') }}">
+                                                                <input required {{ in_array(__('Hygiene and personal care'), @$water_quality) ? 'checked' : '' }} id="water_quality-personal" name="water_quality[]" class="form-check-input" type="checkbox" value="{{ __('Hygiene and personal care') }}">
                                                                 {{ __('Hygiene and personal care') }}
                                                                 <span class="form-check-sign">
                                                                     <span class="check"></span>
                                                                 </span>
                                                             </label>
-                                                            <input style="{{ in_array(__('Hygiene and personal care'), $water_quality) ? '' : 'display:none;' }}" id="filter-quality-personal" type="text" name="filter_type[]" class="filter mt-3 form-control" placeholder="Tipo de filtro" value="{{ $filter_type[1] }}">
+                                                            <input style="{{ in_array(__('Hygiene and personal care'), @$water_quality) ? '' : 'display:none;' }}" id="filter-quality-personal" type="text" name="filter_type[]" class="filter mt-3 form-control" placeholder="Tipo de filtro" value="{{ @$filter_type[1] }}">
                                                         </div>
                                                     </div>
                                                     <div class="col-12 col-md-2">
                                                         <div class="form-check">
                                                             <label class="form-check-label">
-                                                                <input required {{ in_array(__('Purified'), $water_quality) ? 'checked' : '' }} name="water_quality[]" id="water_quality-purified" class="form-check-input" type="checkbox" value="{{ __('Purified') }}"> {{ __('Purified') }}
+                                                                <input required {{ in_array(__('Purified'), @$water_quality) ? 'checked' : '' }} name="water_quality[]" id="water_quality-purified" class="form-check-input" type="checkbox" value="{{ __('Purified') }}"> {{ __('Purified') }}
                                                                 <span class="form-check-sign">
                                                                     <span class="check"></span>
                                                                 </span>
                                                             </label>
-                                                            <input style="{{ in_array(__('Purified'), $water_quality) ? '' : 'display:none;' }}" id="filter-quality-purified" type="text" name="filter_type[]" class="filter mt-3 form-control" placeholder="Tipo de filtro" value="{{ $filter_type[2] }}">
+                                                            <input style="{{ in_array(__('Purified'), @$water_quality) ? '' : 'display:none;' }}" id="filter-quality-purified" type="text" name="filter_type[]" class="filter mt-3 form-control" placeholder="Tipo de filtro" value="{{ @$filter_type[2] }}">
                                                         </div>
                                                     </div>
                                                     <div class="col-12 col-md-2">
                                                         <div class="form-check">
                                                             <label class="form-check-label">
-                                                                <input required {{ in_array(__('Other'), $water_quality) ? 'checked' : '' }} name="water_quality[]" id="water_quality-other" class="form-check-input" type="checkbox" value="{{ __('Other') }}"> {{ __('Other') }}
+                                                                <input required {{ in_array(__('Other'), @$water_quality) ? 'checked' : '' }} name="water_quality[]" id="water_quality-other" class="form-check-input" type="checkbox" value="{{ __('Other') }}"> {{ __('Other') }}
                                                                 <span class="form-check-sign">
                                                                     <span class="check"></span>
                                                                 </span>
                                                             </label>
-                                                            <input style="{{ in_array(__('Other'), $water_quality) ? '' : 'display:none;' }}" id="filter-quality-other" type="text" name="filter_type[]" class="filter mt-3 form-control" placeholder="Tipo de filtro" value="{{ $filter_type[3] }}">
+                                                            <input style="{{ in_array(__('Other'), @$water_quality) ? '' : 'display:none;' }}" id="filter-quality-other" type="text" name="filter_type[]" class="filter mt-3 form-control" placeholder="Tipo de filtro" value="{{ @$filter_type[3] }}">
                                                         </div>
                                                     </div>
                                                 <div class="col-12 col-md-4">

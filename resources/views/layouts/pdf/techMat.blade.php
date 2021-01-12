@@ -37,7 +37,7 @@
     </div>
 {{-- @dd($project_materials) --}}
 @php($total = 0)
-@if (App\User::hasPermissions("Tech") || App\User::hasPermissions("Vendor"))
+{{-- @if (App\User::hasPermissions("Tech") || App\User::hasPermissions("Vendor")) --}}
 <div class="row">
     <div class="col-8">
         <table class="table c-table">
@@ -65,6 +65,6 @@
         </table>
     </div>
 </div>
-@endif
+{{-- @endif --}}
 
 </div>

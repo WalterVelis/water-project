@@ -24,7 +24,7 @@ class Format extends Model
     public static function listStatus()
     {
         return [
-            self::STATUS_AUTOSAVE => 'Borrador',
+            self::STATUS_AUTOSAVE => 'Autoguardado',
             self::STATUS_IN_PROCESS => 'En proceso',
             self::STATUS_NO_FACTIBLE => 'No factible',
             self::STATUS_FACTIBLE => 'En proceso',
@@ -46,9 +46,9 @@ class Format extends Model
 
         // little validation here just in case someone mess things
         // up and there's a ghost status saved in DB
-        return isset($list[$this->status])
-            ? $list[$this->status]
-            : $this->status;
+        return isset($list[$this->internal_status])
+            ? $list[$this->internal_status]
+            : $this->internal_status;
     }
 
     public function user()
