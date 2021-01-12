@@ -52,7 +52,7 @@ Route::group(['middleware' => ['auth','change']], function () {
     Route::get('providerPdf', 'ProviderController@queryPdf');
     Route::get('costPdf', 'CostsCenterController@queryPdf');
     Route::get('formatPdf', 'ProjectController@queryPdf');
-    Route::get('quotationPdf/{id}', 'QuotationController@genPdf');
+    Route::get('quotationPdf/{id}', 'QuotationController@genPdf')->name('quotationPdf');;
     Route::get('accesoryPdf', 'AccesoryUrbanController@queryPdf');
     Route::get('materialPdf', 'MaterialController@queryPdf');
     Route::get('userInactiveAllPdf/{all}', 'UserController@query2PdfUser')->name('user2Pdf');

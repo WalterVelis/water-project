@@ -260,16 +260,23 @@ class QuotationController extends Controller
 
 
         $internalStatus = 0;
-        if($request->status)
+        if($request->status) {
             $internalStatus = 3;
 
+        }
+        $downpdf = false;
         $format = Format::find($id);
-        if($format->internal_status >= 3)
+        if($format->internal_status >= 3) {
             $internalStatus = $format->internal_status;
+            $downpdf = true;
+        }
         // dd($internalStatus);
         $format->internal_status = $internalStatus;
         $format->save();
 
+        if($downpdf) {
+            return redirect()->route('quotationPdf', $id);
+        }
         return redirect()->route('quotation.edit', $id)->with('success', 'Project Update');
     }
 
