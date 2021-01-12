@@ -78,7 +78,8 @@ class ProjectController extends Controller
         }
 
         if(User::hasPermissions("Admin")){
-            $projects = Format::all();
+            $projects = Format::with("tech", "vendor")->get();
+            // dd($projects);
             return view('projects.index', compact('projects'));
         }
     }

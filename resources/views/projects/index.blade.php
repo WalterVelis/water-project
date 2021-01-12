@@ -67,12 +67,22 @@
                                         <th>
                                             {{ __('First Contact') }}
                                         </th>
-                                        <th>
+                                        {{-- <th>
                                             {{ __('Email') }}
                                         </th>
                                         <th>
                                             {{ __('Phone') }}
-                                        </th>
+                                        </th> --}}
+                                        @if(App\User::hasPermissions("Admin"))
+                                        <th>Vendedor asignado</th>
+                                        <th>Técnico asignado</th>
+                                        @endif
+                                        @if(App\User::hasPermissions("Tech"))
+                                        <th>Vendedor asignado</th>
+                                        @endif
+                                        @if(App\User::hasPermissions("Vendor"))
+                                        <th>Técnico asignado</th>
+                                        @endif
                                         <th>
                                             {{ __('Quotation Date') }}
                                         </th>
@@ -103,13 +113,23 @@
                                             <td>
                                                 {{ $item->date }}
                                             </td>
-                                            <td>
+                                            {{-- <td>
                                                 {{ $item->email }}
                                             </td>
                                             <td>
                                                 {{ $item->phone }}
-                                            </td>
-
+                                            </td> --}}
+                                            @if(App\User::hasPermissions("Admin"))
+                                            <td>{{ $item->vendor->name }}</td>
+                                            <td>{{ $item->tech->name }}</td>
+                                            @endif
+                                            @if(App\User::hasPermissions("Tech"))
+                                            <td>{{ $item->vendor->name }}</td>
+                                            @endif
+                                            @if(App\User::hasPermissions("Vendor"))
+                                            <td>{{ $item->tech->name }}</td>
+                                            @endif
+                                            <td>{{ $item->vendor->name }}</td>
                                             <td>
                                                 {{ $item->created_at->format('Y-m-d') }}
                                             </td>
