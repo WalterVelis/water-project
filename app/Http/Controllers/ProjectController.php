@@ -307,7 +307,7 @@ class ProjectController extends Controller
             $internalStatus = 1;
 
         $status = 1;
-        if($request->factible) {
+        if($request->factible === "1") {
             $status = 2;
         } else if($request->factible === "0") {
             $status = 3;
