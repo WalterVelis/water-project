@@ -652,9 +652,9 @@ form .col-12 {
                 <div class="row mt-4 w-100">
                     <div class="col-12" style="text-align: right;">
                         @if(App\User::hasPermissions('Vendor'))
-                        <button id="finish" style="float: right;" data-toggle="modal" data-target="#mail" onclick="$('.set-status').val(1);" class="btn btn-primary">{{ __('FINALIZAR') }}</button>
+                        <button {{ $format->status == 2 ? "disabled" : "" }} id="finish" style="float: right;" data-toggle="modal" data-target="#mail" onclick="$('.set-status').val(1);" class="{{ $format->status == 2 ? "disabled" : "" }} btn btn-primary">{{ __('FINALIZAR') }}</button>
                         @elseif(App\User::hasPermissions('Admin'))
-                        <button onclick="saveWork(true)" class="btn btn-primary">{{ __('FINALIZAR') }}</button>
+                        <button {{ $format->status == 2 ? "disabled" : "" }} id="finish" onclick="saveWork(true)" class="{{ $format->status == 2 ? "disabled" : "" }} btn btn-primary">{{ __('FINALIZAR') }}</button>
                         @endif
                     </div>
                 </div>
@@ -911,6 +911,7 @@ function saveWork(re = false) {
         }
     }
     if(!saving) {
+        $('.set-status').val(1);
         saving = true;
         $.ajax({
             type: "patch",
@@ -919,13 +920,21 @@ function saveWork(re = false) {
             complete: function (response) {
                 console.log('Saved');
                 saving = false;
+                console.log(re);
+                if(re){
+                    setTimeout(() => {
+                        location.reload();
+
+                    }, 1000);
+                }
+
             }
         });
 }
 if(re)
 $.notify({
             // options
-            message: 'Formulario Guardado Exitosamente'
+            message: 'Formulario finalizado exitosamente'
         },{
             // settings
             type: 'success'

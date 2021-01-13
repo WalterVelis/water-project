@@ -655,7 +655,7 @@ form .col-12 {
                     @if (App\User::hasPermissions("Admin") || App\User::hasPermissions("Tech"))
                     <div class="row w-100">
                         <div class="col-12 col-md-12" style="    text-align: right;">
-                            <button onclick="sendForm()" class="btn btn-primary">{{ __('FINALIZAR') }}</button>
+                            <button id="finish" {{ $format->status == 2 ? "disabled" : "" }} onclick="sendForm()" class="{{ $format->status == 2 ? "disabled" : "" }} btn btn-primary">{{ __('FINALIZAR') }}</button>
                         </div>
                         {{-- <div class="col-12 col-md-2">
                             <a href="{{ route('projects.index') }}" class="btn btn-rose float-right">{{ __('CANCEL') }}</a>
@@ -1025,11 +1025,17 @@ $(function() {
 
 $('input:radio[name="factible"]').change(
     function(){
+        console.log($(this).val());
         if ($(this).val() == 1) {
             // no factible
             $('#feasible').fadeIn();
+            $('#finish').prop('disabled', true);
+            $('#finish').addClass('disabled');
+            console.log('nfac');
         } else {
             $('#feasible').fadeOut();
+            $('#finish').prop('disabled', false);
+            $('#finish').removeClass('disabled');
         }
 });
 

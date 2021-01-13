@@ -352,6 +352,7 @@ class ProjectController extends Controller
         if($status == 3)
             $internalStatus = 1;
 
+
         $format->date = $request->date;
         $format->client = $request->client;
         $format->main_contact = $request->main_contact;
@@ -388,11 +389,15 @@ class ProjectController extends Controller
         $format->implementation_date = $request->implementation_date;
         $format->notes = $request->notes;
         $format->why_not_feasible = $request->why_not_feasible;
+        if(User::hasPermissions("Admin"))
+            $format->vendor_assigned = Auth::id();
+        if(User::hasPermissions("Admin"))
+            $format->admin_assigned = Auth::id();
         $format->updated_by = Auth::id();
         $format->status = $status;
         $format->internal_status = $internalStatus;
 
-
+        dump($format);
 
         if($request->sendMail && $internalStatus != 2) {
 
