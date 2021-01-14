@@ -24,11 +24,13 @@ class MaterialFormatController extends Controller
         // Proveedores que tengan X material
         // En la vista, un ajax que recorra cada foreach
         $project_materials = MaterialFormat::with('materials.providers.provider')->with('materials.providers.materialProvider')->where('format_id', $projectId)->get();
-        // dd($project_materials);
+
         foreach($project_materials as $pm) {
             // dump($pm->material_id );
-            $materialProvider[$pm->material_id] = MaterialProvider::with('provider')->with('materialProvider')->where('material_id', $pm->material_id)->get();
+            $materialProvider[$pm->material_id] = MaterialProvider::with('provider')->with(['materialProvider' => function ($query) use ($projectId) { $query->where("format_id", $projectId); }])->where('material_id', $pm->material_id)->get();
+            // $materialProvider[$pm->material_id] = MaterialProvider::with('provider')->whereHas('materialProvider', function($query) use ($projectId) { $query->where("format_id", $projectId); })->where('material_id', $pm->material_id)->get();
         }
+        // dd($materialProvider);
         return view('techformat._materials', compact('project_materials', 'materialProvider'));
         // dd($materialProvider);
         // $mp = MaterialProvider::with('provider')->where('material_id', $materialId)->get();
