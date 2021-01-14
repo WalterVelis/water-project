@@ -397,7 +397,7 @@ class ProjectController extends Controller
         $format->status = $status;
         $format->internal_status = $internalStatus;
 
-        dump($format);
+        // dump($format);
 
         if($request->sendMail && $internalStatus != 2) {
 

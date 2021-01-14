@@ -175,7 +175,7 @@ class TechFormatController extends Controller
         $format = Format::find($id);
         $internalStatus = 0;
         if($request->status) {
-            $internalStatus = 2;
+            $internalStatus = 3;
             $data = Format::with(['user', 'vendor', 'tech', 'admin'])->find($id);
             // dd($data, $data->vendor->id, $data->admin->id);
             Mail::to([$data->vendor->email, $data->admin->email])->send(new TechFormatNotification($data));

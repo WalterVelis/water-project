@@ -84,8 +84,8 @@ class QuotationController extends Controller
         // return $pdf->setPaper('letter', 'landscape')->stream($name);
 
         $manoDeObra = CostFormat::with('costs')->where(['format_id' => $id])->get();
-        $material = MaterialProviderFormat::whereHas('providers', function($query) use ($id) { $query->where('format_id', $id);})->where(['format_id' => $id])->toSql();
-        dd($material);
+        $material = MaterialProviderFormat::whereHas('providers', function($query) use ($id) { $query->where('format_id', $id);})->where(['format_id' => $id])->get();
+        // dd($material);
         $totalMaterial = 0;
         $totalIU = 0;
         $totalManoDeObra = 0;
@@ -174,10 +174,10 @@ class QuotationController extends Controller
         // QuotationFormat::where(['format_id' => $format_id, 'id' => $id])->update(['utility' => $request->utility, 'indirect' => $request->indirect]);
         if($request->type === "0") {
             $update = CostsUtility::where(['format_id' => $request->format_id])->update(['utility' => $request->utility]);
-            dump($request->utility);
+            // dump($request->utility);
         } else {
             $update = CostsUtility::where(['format_id' => $request->format_id])->update(['indirect' => $request->indirect]);
-            dump($request->indirect);
+            // dump($request->indirect);
         }
         // $quotation->utility = $request->utility;
         // $quotation->indirect = $request->indirect;
@@ -188,10 +188,10 @@ class QuotationController extends Controller
         // QuotationFormat::where(['format_id' => $format_id, 'id' => $id])->update(['utility' => $request->utility, 'indirect' => $request->indirect]);
         if($request->type === "0") {
             $update = SchoolCost::where(['format_id' => $request->format_id])->update(['utility' => $request->utility]);
-            dump($request->utility);
+            // dump($request->utility);
         } else {
             $update = SchoolCost::where(['format_id' => $request->format_id])->update(['indirect' => $request->indirect]);
-            dump($request->indirect);
+            // dump($request->indirect);
         }
         // $quotation->utility = $request->utility;
         // $quotation->indirect = $request->indirect;
@@ -199,13 +199,13 @@ class QuotationController extends Controller
     }
     public function applyIndividualQuotationlUtility(Request $request) {
         // QuotationFormat::where(['format_id' => $format_id, 'id' => $id])->update(['utility' => $request->utility, 'indirect' => $request->indirect]);
-        dump($request->all());
+        // dump($request->all());
         if($request->type === "0") {
             $update = QuotationFormat::where(['format_id' => $request->format_id, 'id' => $request->u_id])->update(['utility' => $request->utility]);
-            dump($request->utility);
+            // dump($request->utility);
         } else {
             $update = QuotationFormat::where(['format_id' => $request->format_id, 'id' => $request->u_id])->update(['indirect' => $request->indirect]);
-            dump($request->indirect);
+            // dump($request->indirect);
         }
         // $quotation->utility = $request->utility;
         // $quotation->indirect = $request->indirect;
@@ -215,10 +215,10 @@ class QuotationController extends Controller
         // QuotationFormat::where(['format_id' => $format_id, 'id' => $id])->update(['utility' => $request->utility, 'indirect' => $request->indirect]);
         if($request->type === "0") {
             $update = MaterialUtility::where(['format_id' => $request->format_id])->update(['utility' => $request->utility]);
-            dump($request->utility);
+            // dump($request->utility);
         } else {
             $update = MaterialUtility::where(['format_id' => $request->format_id])->update(['indirect' => $request->indirect]);
-            dump($request->indirect);
+            // dump($request->indirect);
         }
         // $quotation->utility = $request->utility;
         // $quotation->indirect = $request->indirect;

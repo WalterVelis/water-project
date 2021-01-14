@@ -37,10 +37,10 @@
                 </tr>
             @endforeach
             <tr style="background:#8db3e2">
-                <td colspan="3">
+                <td colspan="3" style="text-align: right;">
                     TOTAL:
                 </td>
-                <td>
+                <td style="text-align: right;">
                     {{ Helper::formatMoney($total) }}
                 </td>
             </tr>

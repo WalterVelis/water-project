@@ -133,7 +133,7 @@
                                                 {{ $item->created_at->format('Y-m-d') }}
                                             </td>
                                             <td>
-                                                {{ $item->statusLabel() }}
+                                                {{ $item->status == 2 ? "No factible" : $item->statusLabel() }}
                                             </td>
                                             <td class="td-actions text-right" style="    white-space: nowrap;">
                                                 <!-- <a href="{{ route('projects.show', $item->id) }}"><i class="material-icons">remove_red_eye</i></a> -->
