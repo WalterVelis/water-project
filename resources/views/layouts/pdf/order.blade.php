@@ -70,7 +70,7 @@ use Carbon\Carbon;
 
         </tr>
         <tr>
-            <td scope="row"><span class="st">Teléfono: </span><span>000-000-0000</span></td>
+            <td scope="row"><span class="st">Teléfono: </span><span>(52) 442-246-2869</span></td>
             <td scope="row"><span class="st">Teléfono: </span><span>{{ $providers[0]->providers->provider->phone }}</span></td>
 
         </tr>
