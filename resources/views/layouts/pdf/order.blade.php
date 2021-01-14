@@ -101,7 +101,7 @@ use Carbon\Carbon;
         <tr>
             <td scope="row">{{ $provider->qty }}</td>
             <td style=" text-align:left;">{{ $provider->providers->material->name }}</td>
-            <td>{{ $provider->providers->material->unit }}</td>
+            <td>{{ $provider->providers->material->unitLabel() }}</td>
             <td>{{ $provider->providers->material->typeLabel() }}</td>
             <td>{{ Helper::formatMoney($provider->cost) }}</td>
             <td>{{ Helper::formatMoney($provider->qty * $provider->cost) }}</td>
