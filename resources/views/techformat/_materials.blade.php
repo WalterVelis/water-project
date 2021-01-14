@@ -113,6 +113,7 @@
                         </tr>
                     </thead>
                     <tbody>
+
                         @php($subtotal = 0)
                         @foreach($materialProvider[$item->material_id] as $mp)
                         @if($mp->qty <= 0)
@@ -143,7 +144,7 @@
                                 </td>
                                 @php($subtotal += $tqty  * $mp->unit_cost)
 
-                                @php($total = $subtotal)
+                                @php($total += $tqty  * $mp->unit_cost)
                                 <td style="text-align:right;">{{ Helper::formatMoney($tqty * $mp->unit_cost) }}</td>
                             </tr>
 

@@ -14,7 +14,7 @@
       </a>
     </center>
   </div>
-  <div class="sidebar-wrapper" style="height: 60%">
+  <div class="sidebar-wrapper" style="height: 70%">
     <div class="user">
       <div class="photo">
         <img src="{{ auth()->user()->profilePicture() }}" />
