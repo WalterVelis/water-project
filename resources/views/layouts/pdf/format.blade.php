@@ -142,9 +142,9 @@ use Carbon\Carbon;
         </tr>
         <tr>
             <td width="35%" class="right b">Consumo de agua (Mensual)</td>
-            <td width="15%">{{ $format->water_consuption }}</td>
+            <td width="15%">{{ $format->water_consumption }}</td>
             <td width="15%" class="b-blue">litros</td>
-            <td width="15%">{{ $format->water_consuption * 0.001 }}</td>
+            <td width="15%">{{ $format->water_consumption * 0.001 }}</td>
             <td width="12%" class="b-blue">m3</td>
             <td width="8%"></td>
         </tr>

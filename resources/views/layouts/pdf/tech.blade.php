@@ -146,7 +146,8 @@ use Carbon\Carbon;
         <tr>
             <td class="right b">Captación de Lluvia estimada (considerar 15% perdida):</td>
             <td class="b-blue">Promedio Anual</td>
-            <td>{{ $tech->anual_precipitation * $tech->rainwater_area * 0.85 }}</td>
+            @php(@$tArea = $tech->anual_precipitation * $tech->rainwater_area * 0.85)
+            <td>{{ $tArea }}</td>
             <td class="b-blue">Litros</td>
             <td></td>
             <td></td>
@@ -154,7 +155,8 @@ use Carbon\Carbon;
 
         <tr>
             <td class="right b">Volumen de almacenamiento (CISTERNA):</td>
-            <td class="">{{ $tech->rainwater_area * ($tech->environment == 0 ? 20 : 30) * 0.85 }}</td>
+            @php(@$tArea2 = $tech->rainwater_area * ($tech->environment == 0 ? 20 : 30) * 0.85)
+            <td class="">{{ $tArea2 }}</td>
             <td class="">Litros</td>
             <td></td>
             <td></td>

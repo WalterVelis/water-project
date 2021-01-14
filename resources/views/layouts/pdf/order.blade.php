@@ -56,7 +56,7 @@ use Carbon\Carbon;
     <tbody>
         <tr>
             <td scope="row"><span class="st">Razón social: </span><span>ASESORES EN GESTIÓN URBANA DEL AGUA SA DE CV</span></td>
-            <td scope="row"><span class="st">Razón social: </span><span>{{ $providers[0]->providers->provider->contact_name }}</span></td>
+            <td scope="row"><span class="st">Razón social: </span><span>{{ $providers[0]->providers->provider->denomination }}</span></td>
 
         </tr>
         <tr>
