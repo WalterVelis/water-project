@@ -173,7 +173,7 @@ class TechFormatController extends Controller
 
         $techFormat->save();
         $format = Format::find($id);
-        $internalStatus = 0;
+        $internalStatus = 3;
         if($request->status) {
             $internalStatus = 3;
             $data = Format::with(['user', 'vendor', 'tech', 'admin'])->find($id);
