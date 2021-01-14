@@ -25,7 +25,8 @@ class AssignmentController extends Controller
         $format->vendor_assigned = $request->vendor_assigned;
         $format->tech_assigned = $request->tech_assigned;
         $format->admin_assigned = $request->admin_assigned;
-        $format->internal_status = $request->status;
+        if($request->status > 3)
+            $format->internal_status = $request->status;
         $format->save();
 
         $data = Format::with(['vendor', 'user', 'admin'])->find($id);
