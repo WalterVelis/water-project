@@ -131,7 +131,9 @@ form .col-12 {
                                         <!-- Inicio -->
 
                                         @csrf
+                                        <input type="hidden" name ="_token" value="{{csrf_token()}}" id="token"/>
                                         @method('patch')
+                                        <input type="hidden" name="_method" value="patch" id="patch">
                                         <input id="isend" type="hidden" value="0" name="sendMail">
                                         <input id="this-mail" type="hidden" value="0" name="mail">
                                         <div class="row pb-5">
@@ -1020,6 +1022,19 @@ if($('input:radio[name="factible"]:checked').val() == 1){
 function preload() {
     $('#in-state option:contains("{{ $format->state }}")').prop('selected', true);
     $('#in-municipality option:contains("{{ $format->municipality }}")').prop('selected', true);
+    @if (App\User::hasPermissions("Tech"))
+
+    setTimeout(() => {
+        $('input, select').attr('disabled', 'true')
+        $('input, select').attr('readonly', 'true')
+        $('input.i-enabled').removeAttr('disabled')
+        $('#token').removeAttr('disabled')
+        $('#patch').removeAttr('disabled')
+        $('input.i-enabled').removeAttr('readonly')
+        $('#token').removeAttr('readonly')
+        $('#patch').removeAttr('readonly')
+    }, 500);
+    @endif
     // $('.selDiv option:eq(1)').prop('selected', true)
 }
 
