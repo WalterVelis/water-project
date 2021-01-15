@@ -6,7 +6,10 @@ class Helper
 {
     public static function formatMoney($money) {
         $formatter = new \NumberFormatter('en_US', \NumberFormatter::CURRENCY);
-        return $formatter->formatCurrency($money, 'USD');
+        $number = $formatter->formatCurrency($money, 'USD');
+        // dd($number);
+        $number = str_replace("$", " ", $number);
+        return $number;
     }
 
     public static function boolString($bool) {

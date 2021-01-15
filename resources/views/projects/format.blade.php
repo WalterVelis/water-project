@@ -639,7 +639,8 @@ form .col-12 {
                             @endif
                         </div>
                         <div class="col-12" id="auth"></div>
-
+                        <input type="hidden" id="current-value" value="{{ $format->state }}">
+                        <input type="hidden" id="current-municipality" value="{{ $format->municipality }}">
                         <div class="row float-right mr-4">
                             {{-- <a href="{{ route('projects.index') }}" class="btn btn-rose">{{ __('CANCEL') }}</a> --}}
                             <button onclick="saveWork(true)" class="btn btn-primary">{{ __('SAVE') }}</button>
@@ -1020,8 +1021,18 @@ if($('input:radio[name="factible"]:checked').val() == 1){
 }
 
 function preload() {
-    $('#in-state option:contains("{{ $format->state }}")').prop('selected', true);
-    $('#in-municipality option:contains("{{ $format->municipality }}")').prop('selected', true);
+    // staten = $("#in-state").children().html();
+    sta = $('#current-value').val();
+    mun = $('#current-municipality').val();
+    console.log(sta, mun);
+    $('#in-state option:contains('+sta+')').prop('selected', true);
+    id = $('#in-state').val();
+    $('#municipality').load('/municipality/'+id, () => {
+        $('#in-municipality option:contains('+mun+')').prop('selected', true);
+    })
+    // setTimeout(() => {
+    //     $('#in-municipality option:contains('+mun+')').prop('selected', true);
+    // }, 1000);
     @if (App\User::hasPermissions("Tech"))
 
     setTimeout(() => {
@@ -1050,6 +1061,10 @@ $(function () {
             `<input class="form-control" class="" name="municipality" type="text" value="{{ $format->municipality }}" />`
         );
     }
+
+    setTimeout(() => {
+        preload();
+    }, 1500);
 });
 
 </script>

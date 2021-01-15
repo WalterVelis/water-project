@@ -82,6 +82,7 @@ form .col-12 {
 
 </style>
 @section('content')
+<input class="environment" type="hidden"  value="{{ $format->environment }}">
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -329,14 +330,14 @@ form .col-12 {
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-4">
-                                                <label style="" class="c_label col-12 col-form-label">{{ __('Volumen de almacenamiento cisterna (lts)') }}</label>
+                                                <label style="" class="c_label col-12 col-form-label">{{ __('Volumen de almacenamiento cisterna (m3)') }}</label>
                                                 <div class="col-sm-12">
                                                     <input required class="form-control" disabled id="va" name="" type="text" value="" />
                                                 </div>
                                             </div>
 
                                             <div class="col-12 col-md-4">
-                                                <label class="c_label col-12 col-form-label" style="    padding-right: 25px!important;">{{ __('Medida del tinaco que surte a servicio (L)') }}</label>
+                                                <label class="c_label col-12 col-form-label" style="    padding-right: 25px!important;">{{ __('Volumen del tinaco que surte a servicio (L)') }}</label>
                                                 <div class="col-sm-12">
                                                     <input required class="form-control" id="" name="water_tank" type="text" value="{{ $techFormat->water_tank }}" />
                                                 </div>

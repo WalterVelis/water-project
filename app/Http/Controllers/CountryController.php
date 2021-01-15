@@ -18,6 +18,8 @@ class CountryController extends Controller
     {
         $municipality = MunicipalityState::with('municipio')->where('estados_id', $stateId)->get();
         // dd($municipality);
-        return view('layouts._country.municipality', compact('municipality'));
+        $state = State::find($stateId);
+        // dd($stateId);
+        return view('layouts._country.municipality', compact('municipality', 'state'));
     }
 }

@@ -248,7 +248,7 @@ class ProjectController extends Controller
         // return view('layouts.pdf.format', compact('format', 'entities'));
         $pdf =  PDF::loadView('layouts.pdf.format', compact('format', 'entities'));
         $name = Carbon::now()->toDateTimeString().'.pdf';
-        return $pdf->setPaper('letter', 'landscape')->download($name);
+        return $pdf->setPaper('letter', 'landscape')->stream($name);
     }
 
     /**

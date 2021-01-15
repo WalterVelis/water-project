@@ -8,7 +8,7 @@
 <script>
     $(function () {
 
-        preload();
+        // preload();
 
     });
 </script>
