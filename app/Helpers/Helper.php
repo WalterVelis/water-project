@@ -4,11 +4,12 @@ namespace App\Helpers;
 
 class Helper
 {
-    public static function formatMoney($money) {
+    public static function formatMoney($money, $sign = true) {
         $formatter = new \NumberFormatter('en_US', \NumberFormatter::CURRENCY);
         $number = $formatter->formatCurrency($money, 'USD');
         // dd($number);
-        $number = str_replace("$", " ", $number);
+        if(!$sign)
+            $number = str_replace("$", " ", $number);
         return $number;
     }
 

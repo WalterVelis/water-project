@@ -42,6 +42,16 @@
 
   <style>
 
+.sidebar[data-background-color="black"] .nav li .dropdown-menu .dropdown-item {
+    color: #607D8B;
+}
+
+
+
+body {
+    background-image: none;
+}
+
 @media (max-width: 991px) {
     .sidebar::before, .off-canvas-sidebar nav .navbar-collapse::before {
         background:white;

@@ -9,6 +9,15 @@ use App\AccesoryUrban;
 use App\CostFormat;
 use App\CostsCenter;
 use App\Entity;
+use App\Exports\Accesory_Format_csv;
+use App\Exports\Accesory_Format_xlsx;
+use App\Exports\Cost_Format_csv;
+use App\Exports\Cost_Format_xlsx;
+use App\Exports\Material_Format_csv;
+use App\Exports\Material_Format_xlsx;
+use Maatwebsite\Excel\Facades\Excel;
+
+
 use App\Format;
 use App\Mail\TechFormatNotification;
 use App\MaterialFormat;
@@ -213,5 +222,49 @@ class TechFormatController extends Controller
     public function destroy(TechFormat $techFormat)
     {
         //
+    }
+
+
+    public function export_materials($project_id)
+    {
+        $date=new Carbon();
+        $fecha = $date->format('d-m-Y');
+        return Excel::download(new Material_Format_xlsx($project_id), ''.$fecha.'.xlsx');
+    }
+
+    public function export_costs($project_id)
+    {
+        $date=new Carbon();
+        $fecha = $date->format('d-m-Y');
+        return Excel::download(new Cost_Format_xlsx($project_id), ''.$fecha.'.xlsx');
+    }
+
+    public function export_accesories($project_id)
+    {
+        $date=new Carbon();
+        $fecha = $date->format('d-m-Y');
+        return Excel::download(new Accesory_Format_xlsx($project_id), ''.$fecha.'.xlsx');
+    }
+
+
+    public function export_materials_csv($project_id)
+    {
+        $date=new Carbon();
+        $fecha = $date->format('d-m-Y');
+        return Excel::download(new Material_Format_csv($project_id), ''.$fecha.'.csv');
+    }
+
+    public function export_costs_csv($project_id)
+    {
+        $date=new Carbon();
+        $fecha = $date->format('d-m-Y');
+        return Excel::download(new Cost_Format_csv($project_id), ''.$fecha.'.csv');
+    }
+
+    public function export_accesories_csv($project_id)
+    {
+        $date=new Carbon();
+        $fecha = $date->format('d-m-Y');
+        return Excel::download(new Accesory_Format_csv($project_id), ''.$fecha.'.csv');
     }
 }

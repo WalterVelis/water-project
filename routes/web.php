@@ -24,8 +24,8 @@ Route::get('/', function () {
 Route::get('lang/{locale}', 'LocalizationController@index');
 
 Auth::routes();
-Route::get('getNotifications', 'ProjectController@getNotifications');
-Route::post('updateNotifications', 'ProjectController@updateNotifications');
+
+
 Route::post('user/doubleFactor','DfaController@checkDoubleFactor')->name('loginDoubleFactor');
 Route::post('user/doubleFactor/tokenEmail/verificate','DfaController@tokenByEmail');
 Route::post('user/doubleFactor/tokenGoogle/verificate','DfaController@tokenByGoogle');
@@ -37,6 +37,16 @@ Route::get('home', 'HomeController@index')->name('home');
 Route::get('dashboard', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth','change']], function () {
+    Route::get('materialProjectExcel/{project_id}', 'TechFormatController@export_materials');
+    Route::get('costProjectExcel/{project_id}', 'TechFormatController@export_costs');
+    Route::get('accesoryProjectExcel/{project_id}', 'TechFormatController@export_accesories');
+
+    Route::get('materialProjectCsv/{project_id}', 'TechFormatController@export_materials_csv');
+    Route::get('costProjectCsv/{project_id}', 'TechFormatController@export_costs_csv');
+    Route::get('accesoryProjectCsv/{project_id}', 'TechFormatController@export_accesories_csv');
+
+    Route::get('getNotifications', 'ProjectController@getNotifications');
+    Route::post('updateNotifications', 'ProjectController@updateNotifications');
 
     Route::get('entities/{projectId}/{type}', 'EntityController@getEntities');
 

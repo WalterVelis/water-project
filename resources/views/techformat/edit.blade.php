@@ -537,11 +537,25 @@ form .col-12 {
                             </div>
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                 <div class="card-body bg-white">
-                                    <a href="/getMO/{{ $format->id }}">
-                                        <button class=" d-inline" style="    position: absolute; right: 0px;background: none; border: none; font-size: 1.5em;    width: 90px;" type="button">
+                                    {{-- <a href="/getMO/{{ $format->id }}">
+                                        <button class=" d-inline" style="position: absolute; right: 0px;background: none; border: none; font-size: 1.5em;    width: 90px;" type="button">
                                             <i class="fa fa-download" aria-hidden="true"></i>
                                         </button>
-                                    </a>
+                                    </a> --}}
+
+
+
+                                    <div class="dropdown" style="position: absolute; right: 0px;">
+                                        <button title="Download Data" class="dropdown-toggle" style="background: none; border: none; font-size: 1.5em;    width: 90px;" type="button" id="costmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-download" aria-hidden="true"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="costmenu">
+                                            <a class="dropdown-item" href="/costProjectCsv/{{ $format->id }}"><p class=""><i class="fa fa-file-code-o" aria-hidden="true"></i>&nbsp; CSV</p></a>
+                                            <a class="dropdown-item" href="/costProjectExcel/{{ $format->id }}"><p class=""><i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp; XLSX</p></a>
+                                            <a class="dropdown-item" href="/getMO/{{ $format->id }}"><p class=""><i class="fa fa-file-pdf-o" aria-hidden="true"></i>&nbsp; PDF</p></a>
+                                        </div>
+                                    </div>
+
                                     @if (App\User::hasPermissions("Tech"))
                                     <form action="" id="form-costformat">
                                         @csrf
@@ -596,11 +610,23 @@ form .col-12 {
                                     </form>
                                     @endif
                                     <div>
-                                        <a href="/getMat/{{ $format->id }}">
+                                        {{-- <a href="/getMat/{{ $format->id }}">
                                             <button class=" d-inline" style="    top: 20px;position: absolute; right: 0px;background: none; border: none; font-size: 1.5em;    width: 90px;" type="button">
                                                 <i class="fa fa-download" aria-hidden="true"></i>
                                             </button>
-                                        </a>
+                                        </a> --}}
+
+                                        <div class="dropdown" style="position: absolute; right: 0px;">
+                                            <button title="Download Data" class="dropdown-toggle" style="background: none; border: none; font-size: 1.5em;    width: 90px;" type="button" id="materialmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-download" aria-hidden="true"></i>
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="materialmenu">
+                                                <a class="dropdown-item" href="/materialProjectCsv/{{ $format->id }}"><p class=""><i class="fa fa-file-code-o" aria-hidden="true"></i>&nbsp; CSV</p></a>
+                                                <a class="dropdown-item" href="/materialProjectExcel/{{ $format->id }}"><p class=""><i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp; XLSX</p></a>
+                                                <a class="dropdown-item" href="/getMat/{{ $format->id }}"><p class=""><i class="fa fa-file-pdf-o" aria-hidden="true"></i>&nbsp; PDF</p></a>
+                                            </div>
+                                        </div>
+
                                     </div>
                                     <div class="mt-5" id="materials"></div>
                                 </div>
@@ -613,11 +639,23 @@ form .col-12 {
                             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                                 <div class="card-body bg-white">
                                     @if (App\User::hasPermissions("Admin") || App\User::hasPermissions("Tech"))
-                                    <a href="/getKit/{{ $format->id }}">
+                                    {{-- <a href="/getKit/{{ $format->id }}">
                                         <button class=" d-inline" style="    position: absolute; right: 0px;background: none; border: none; font-size: 1.5em;    width: 90px;" type="button">
                                             <i class="fa fa-download" aria-hidden="true"></i>
                                         </button>
-                                    </a>
+                                    </a> --}}
+
+                                    <div class="dropdown" style="position: absolute; right: 0px;">
+                                        <button title="Download Data" class="dropdown-toggle" style="background: none; border: none; font-size: 1.5em;    width: 90px;" type="button" id="kitmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-download" aria-hidden="true"></i>
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="kitmenu">
+                                            <a class="dropdown-item" href="/accesoryProjectCsv/{{ $format->id }}"><p class=""><i class="fa fa-file-code-o" aria-hidden="true"></i>&nbsp; CSV</p></a>
+                                            <a class="dropdown-item" href="/accesoryProjectExcel/{{ $format->id }}"><p class=""><i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp; XLSX</p></a>
+                                            <a class="dropdown-item" href="/getKit/{{ $format->id }}"><p class=""><i class="fa fa-file-pdf-o" aria-hidden="true"></i>&nbsp; PDF</p></a>
+                                        </div>
+                                    </div>
+
                                     @endif
                                     @if (App\User::hasPermissions("Tech"))
                                     <form action="" id="form-accesoryformat">

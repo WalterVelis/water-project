@@ -110,8 +110,8 @@
                 <td style="text-align: center;">{{ $id + 1 }} @php($id += 1)</td>
                 <td>Mano de obra y operaciones</td>
                 <td style="text-align: center;">1</td>
-                <td style="text-align: right" class="currency"><span>$</span>{{ Helper::formatMoney($totalManoDeObra) }}</td>
-                <td style="text-align: right" class="currency"><span>$</span>{{ Helper::formatMoney(( ($totalManoDeObra / (((100 - $costsUtility->utility) / 100))) + (($totalManoDeObra / (((100 - $costsUtility->utility) / 100))) * ((($costsUtility->indirect) / 100))))) }}</td>
+                <td style="text-align: right" class="currency"><span>$</span>{{ Helper::formatMoney($totalManoDeObra, false) }}</td>
+                <td style="text-align: right" class="currency"><span>$</span>{{ Helper::formatMoney(( ($totalManoDeObra / (((100 - $costsUtility->utility) / 100))) + (($totalManoDeObra / (((100 - $costsUtility->utility) / 100))) * ((($costsUtility->indirect) / 100)))), false) }}</td>
                 @php($subTotal += ( ($totalManoDeObra / (((100 - $costsUtility->utility) / 100))) + (($totalManoDeObra / (((100 - $costsUtility->utility) / 100))) * ((($costsUtility->indirect) / 100)))))
                 {{-- <td>{{ Helper::formatMoney($totalManoDeObra) }}</td> --}}
             </tr>
@@ -121,8 +121,8 @@
                 <td>Programa completo de escuelas de lluvia - Capacitación, supervisión y seguimiento técnica y propuesta participativa y educativa completa</td>
                 <td style="text-align: center;">{{ $escuela->children }}</td>
                 {{-- <td style="text-align: right" class="currency"><span>$</span>{{ Helper::formatMoney($schoolCost->cost) }}</td> --}}
-                <td style="text-align: right; " class="currency"><span style="margin-top:10px;">$</span>{{ Helper::formatMoney( ($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) + (($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) * ((($schoolCost->indirect) / 100)))) }}</td>
-                <td style="text-align: right; " class="currency"><span style="margin-top:10px;">$</span>{{ Helper::formatMoney($escuela->children * round( ($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) + (($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) * ((($schoolCost->indirect) / 100))), 2)) }}</td>
+                <td style="text-align: right; " class="currency"><span style="margin-top:10px;">$</span>{{ Helper::formatMoney( ($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) + (($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) * ((($schoolCost->indirect) / 100))), false) }}</td>
+                <td style="text-align: right; " class="currency"><span style="margin-top:10px;">$</span>{{ Helper::formatMoney($escuela->children * round( ($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) + (($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) * ((($schoolCost->indirect) / 100))), 2), false) }}</td>
                 @php($subTotal += $escuela->children * ( ($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) + (($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) * ((($schoolCost->indirect) / 100)))))
             </tr>
             @endif
@@ -131,8 +131,8 @@
                 <td style="text-align: center;">{{ $id + 1 }} @php($id += 1)</td>
                 <td>{{ $sc->description }}</td>
                 <td style="text-align: center;">{{ $sc->qty }}</td>
-                <td style="text-align: right;" class="currency"><span>$</span>{{ Helper::formatMoney((($sc->cost / (((100 - $sc->utility) / 100))) + (($sc->cost / (((100 - $sc->utility) / 100))) * ((($sc->indirect) / 100))))) }}</td>
-                <td style="text-align: right;" class="currency"><span>$</span>{{ Helper::formatMoney($sc->qty * (($sc->cost / (((100 - $sc->utility) / 100))) + (($sc->cost / (((100 - $sc->utility) / 100))) * ((($sc->indirect) / 100))))) }}</td>
+                <td style="text-align: right;" class="currency"><span>$</span>{{ Helper::formatMoney((($sc->cost / (((100 - $sc->utility) / 100))) + (($sc->cost / (((100 - $sc->utility) / 100))) * ((($sc->indirect) / 100)))), false) }}</td>
+                <td style="text-align: right;" class="currency"><span>$</span>{{ Helper::formatMoney($sc->qty * (($sc->cost / (((100 - $sc->utility) / 100))) + (($sc->cost / (((100 - $sc->utility) / 100))) * ((($sc->indirect) / 100)))), false) }}</td>
                 {{-- <td>{{ $sc->qty * ( ($sc->cost / (((100 - $sc->utility) / 100))) + (($sc->cost / (((100 - $sc->utility) / 100))) * ((($sc->indirect) / 100)))) }}</td> --}}
                 {{-- @php($subTotal += ( ($sc->qty / (((100 - $sc->utility) / 100))) + (($sc->qty / (((100 - $sc->utility) / 100))) * ((($sc->indirect) / 100))))) --}}
                 @php($subTotal += $sc->qty * ( ($sc->cost / (((100 - $sc->utility) / 100))) + (($sc->cost / (((100 - $sc->utility) / 100))) * ((($sc->indirect) / 100)))))
@@ -142,24 +142,24 @@
                 <td style="text-align: center;">{{ $id + 1 }} @php($id += 1)</td>
                 <td>Materiales y Equipo de instalación </td>
                 <td style="text-align: center;">1</td>
-                <td style="text-align: right" class="currency"><span>$</span>{{ Helper::formatMoney($allMaterials) }}</td>
-                <td style="text-align: right" class="currency"><span>$</span>{{ Helper::formatMoney(( ($allMaterials / (((100 - $materialUtility->utility) / 100))) + (($allMaterials / (((100 - $materialUtility->utility) / 100))) * ((($materialUtility->indirect) / 100))))) }}</td>
+                <td style="text-align: right" class="currency"><span>$</span>{{ Helper::formatMoney($allMaterials, false) }}</td>
+                <td style="text-align: right" class="currency"><span>$</span>{{ Helper::formatMoney(( ($allMaterials / (((100 - $materialUtility->utility) / 100))) + (($allMaterials / (((100 - $materialUtility->utility) / 100))) * ((($materialUtility->indirect) / 100)))), false) }}</td>
                 @php($subTotal += ( ($allMaterials / (((100 - $materialUtility->utility) / 100))) + (($allMaterials / (((100 - $materialUtility->utility) / 100))) * ((($materialUtility->indirect) / 100)))))
             </tr>
             <tr>
                 <td colspan="3" style="border-bottom:solid 1px transparent;"></td>
                 <td class="b">Sub Total</td>
-                <td style="text-align: right;" class="currency"><span>$</span>{{ Helper::formatMoney($subTotal) }}</td>
+                <td style="text-align: right;" class="currency"><span>$</span>{{ Helper::formatMoney($subTotal, false) }}</td>
             </tr>
             <tr>
                 <td colspan="3" style="border-bottom:solid 1px transparent;"></td>
                 <td class="b">IVA 16%</td>
-                <td style="text-align: right;" class="currency"><span>$</span>{{ Helper::formatMoney($subTotal * 0.16) }}</td>
+                <td style="text-align: right;" class="currency"><span>$</span>{{ Helper::formatMoney($subTotal * 0.16, false) }}</td>
             </tr>
             <tr>
                 <td colspan="3"></td>
                 <td class="b">TOTAL</td>
-                <td style="text-align: right;"><b class="currency"><span>$</span>{{ Helper::formatMoney($subTotal * 1.16) }}</b></td>
+                <td style="text-align: right;"><b class="currency"><span>$</span>{{ Helper::formatMoney($subTotal * 1.16, false) }}</b></td>
             </tr>
         </tbody>
     </table>

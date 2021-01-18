@@ -141,7 +141,7 @@
     "That confirmation token is not valid": "Ese token de confirmación no es valido",
     "Double Factor Authentication": "Autentificación de doble factor",
     "Activate": "Activar",
-    "Deactivate": "Descativar",
+    "Deactivate": "Desactivar",
     "Activated Double Factor Authentication.": "Activado doble factor de autentificación.",
     "Deactivated Double Factor Authentication.": "Desactivado doble factor de autentificación.",
     "These credentials do not match our records.": "Estas credenciales no aparecen en nuestros registros",
