@@ -103,6 +103,7 @@
                       </span>
                     </div>
                       <select class="selectpicker" style="display:inline-block" name="user_type" data-style="select-with-transition" title="" data-size="100">
+                        <option disabled selected value="">Seleccione una opción</option>
                         @php
                             $roles=App\Role::getRoles();
                         @endphp

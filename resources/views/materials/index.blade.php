@@ -22,13 +22,25 @@
                                             class="fa fa-plus fw" aria-hidden="true"></i></a>
                                     @endif
                                 </div>
-                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-left">
+                                {{-- <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 text-left">
                                     <a class="float-right" href="/materialPdf/">
                                         <button class=" d-inline" style="    background: none; border: none; font-size: 1.5em;" type="button">
                                             <i class="fa fa-download" aria-hidden="true"></i>
                                         </button>
                                     </a>
+                                </div> --}}
+
+                                <div class="dropdown" style="position: absolute; right: 0px;">
+                                    <button title="Download Data" class="dropdown-toggle" style="background: none; border: none; font-size: 1.5em;    width: 90px;" type="button" id="costmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-download" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="costmenu">
+                                        <a class="dropdown-item" href="/materialCsv/"><p class=""><i class="fa fa-file-code-o" aria-hidden="true"></i>&nbsp; CSV</p></a>
+                                        <a class="dropdown-item" href="/materialXlsx/"><p class=""><i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp; XLSX</p></a>
+                                        <a class="dropdown-item" href="/materialPdf/"><p class=""><i class="fa fa-file-pdf-o" aria-hidden="true"></i>&nbsp; PDF</p></a>
+                                    </div>
                                 </div>
+
                             </div>
                             {{-- @endcan --}}
 

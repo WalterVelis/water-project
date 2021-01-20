@@ -124,70 +124,77 @@
      <div class="invoice" style="margin-left: 10px; margin-right:10px">
         <table width="100%" class="table">
             <thead style="background: #bacfda;">
-              <tr>
-                <th>
-                    {{ __('Page') }}
-                </th>
-                <th>
-                    {{ __('Client') }}
-                </th>
-                <th>
-                    {{ __('Main Contact') }}
-                </th>
-                <th>
-                    {{ __('Place') }}
-                </th>
-                <th>
-                    {{ __('First Contact') }}
-                </th>
-                <th>
-                    {{ __('Email') }}
-                </th>
-                <th>
-                    {{ __('Phone') }}
-                </th>
-                <th>
-                    {{ __('Quotation Date') }}
-                </th>
-                <th>
-                    {{ __('Estado') }}
-                </th>
-              </tr>
+                <tr>
+                    <th>
+                        {{ __('Page') }}
+                    </th>
+                    <th>
+                        {{ __('Client') }}
+                    </th>
+                    <th>
+                        {{ __('Main Contact') }}
+                    </th>
+                    <th>
+                        {{ __('Place') }}
+                    </th>
+                    <th>
+                        {{ __('Fecha Primer Contacto') }}
+                    </th>
+                    @if(App\User::hasPermissions("Admin"))
+                    <th>Vendedor asignado</th>
+                    <th>Técnico asignado</th>
+                    @endif
+                    @if(App\User::hasPermissions("Tech"))
+                    <th>Vendedor asignado</th>
+                    @endif
+                    @if(App\User::hasPermissions("Vendor"))
+                    <th>Técnico asignado</th>
+                    @endif
+                    <th>
+                        {{ __('Quotation Date') }}
+                    </th>
+                    <th>
+                        {{ __('Estado') }}
+                    </th>
+                </tr>
             </thead>
             <tbody>
                 @foreach($projects as $item)
-                        <tr>
-                            <td style="white-space: nowrap">
-                                {{ $item->page }}
-                            </td>
-                            <td>
-                                {{ $item->client }}
-                            </td>
-                            <td>
-                                {{ $item->main_contact }}
-                            </td>
+                <tr>
+                    <td style="white-space: nowrap">
+                        {{ $item->page }}
+                    </td>
+                    <td>
+                        {{ $item->client }}
+                    </td>
+                    <td>
+                        {{ $item->main_contact }}
+                    </td>
 
-                            <td>
-                                {{ $item->state }}, {{ $item->municipality }}
-                            </td>
-                            <td style="white-space: nowrap">
-                                {{ $item->date }}
-                            </td>
-                            <td>
-                                {{ $item->email }}
-                            </td>
-                            <td>
-                                {{ $item->phone }}
-                            </td>
-
-                            <td>
-                                {{ $item->created_at->format('Y-m-d') }}
-                            </td>
-                            <td>
-                                {{ $item->statusLabel() }}
-                            </td>
-                        </tr>
-                      @endforeach
+                    <td>
+                        {{ $item->state }}, {{ $item->municipality }}
+                    </td>
+                    <td>
+                        {{ $item->date }}
+                    </td>
+                    @if(App\User::hasPermissions("Admin"))
+                    <td>{{ $item->vendor->name }}</td>
+                    <td>{{ $item->tech->name }}</td>
+                    @endif
+                    @if(App\User::hasPermissions("Tech"))
+                    <td>{{ $item->vendor->name }}</td>
+                    @endif
+                    @if(App\User::hasPermissions("Vendor"))
+                    <td>{{ $item->tech->name }}</td>
+                    @endif
+                    <td style="white-space: nowrap">
+                        {{ $item->created_at->format('Y-m-d') }}
+                    </td>
+                    <td>
+                        {{ $item->status == 2 ? "No factible" : $item->statusLabel() }}
+                    </td>
+                </tr>
+                @endforeach
             </tbody>
 
         </table>

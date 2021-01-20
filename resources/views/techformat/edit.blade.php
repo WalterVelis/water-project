@@ -161,7 +161,7 @@ form .col-12 {
                                                         <div class="form-check">
                                                             <label class="form-check-label">
                                                                 <input required {{ in_array(__('Hygiene and personal care'), @$water_quality) ? 'checked' : '' }} id="water_quality-personal" name="water_quality[]" class="form-check-input" type="checkbox" value="{{ __('Hygiene and personal care') }}">
-                                                                {{ __('Hygiene and personal care') }}
+                                                                <div style="white-space: nowrap">{{ __('Hygiene and personal care') }}</div>
                                                                 <span class="form-check-sign">
                                                                     <span class="check"></span>
                                                                 </span>
@@ -192,7 +192,7 @@ form .col-12 {
                                                         </div>
                                                     </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input required id="input-quality-other" value="{{ end($water_quality) }}" name="water_quality[]" style="{{ in_array(__('Other'), $water_quality) ? '' : 'display:none;' }}" class="form-control mt-2" type="text" placeholder="{{ __('Especifique...') }}">
+                                                    <input id="input-quality-other" value="{{ end($water_quality) }}" name="water_quality[]" style="    margin-top: -10px !important; {{ in_array(__('Other'), $water_quality) ? '' : 'display:none;' }}" class="form-control mt-2" type="text" placeholder="{{ __('Especifique...') }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -203,7 +203,7 @@ form .col-12 {
                                             @php
                                                 $roof_type = explode(",",$techFormat->roof_type);
                                             @endphp
-                                            <div class="row col-sm-12 mt-2">
+                                            <div class="row col-sm-12 mt-2" id="t-te">
                                                 <div class="col-12 col-md-3">
                                                     <div class="form-check">
                                                         <label class="form-check-label">
@@ -320,7 +320,7 @@ form .col-12 {
                                             <div class="col-12 col-md-4">
                                                 <label style="" class="c_label col-12 col-form-label">{{ __('Promedio anual de precipitación pluvial de la zona (m3)') }}</label>
                                                 <div class="col-sm-12">
-                                                    <input required class="form-control" id="anual_precipitation" name="anual_precipitation" type="text" value="{{ $techFormat->anual_precipitation }}" />
+                                                    <input required class="form-control" id="anual_precipitation" name="anual_precipitation" type="number" value="{{ $techFormat->anual_precipitation }}" />
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-4">
@@ -355,6 +355,7 @@ form .col-12 {
                                                 <div class="col-sm-12">
                                                     {{-- <input required class="form-control" id="" name="cleanliness" type="text" value="{{ $techFormat->cleanliness }}" /> --}}
                                                     <select class="form-control" name="cleanliness">
+                                                        <option disabled selected value="">Seleccione una opción</option>
                                                         <option {{ $techFormat->cleanliness == 0 ? 'selected' : '' }} value="0">{{ __('Limpio y Despejado') }}</option>
                                                         <option {{ $techFormat->cleanliness == 1 ? 'selected' : '' }} value="1"> {{ __('Sucio con obstaculos') }} </option>
                                                     </select>
@@ -366,6 +367,7 @@ form .col-12 {
                                                 <div class="col-sm-12">
                                                     {{-- <input required class="form-control" id="" name="roof_slope" type="text" value="{{ $techFormat->roof_slope }}" /> --}}
                                                     <select class="form-control" name="roof_slope">
+                                                        <option disabled selected value="">Seleccione una opción</option>
                                                         <option {{ $techFormat->roof_slope == 0 ? 'selected' : '' }} value="0">{{ __('No') }}</option>
                                                         <option {{ $techFormat->roof_slope == 1 ? 'selected' : '' }} value="1"> {{ __('Sí') }} </option>
                                                     </select>
@@ -408,6 +410,7 @@ form .col-12 {
                                                 <div class="col-sm-12">
                                                     {{-- <input required class="form-control" id="" name="pump_below_tank" type="text" value="{{ $techFormat->pump_below_tank }}" /> --}}
                                                     <select class="form-control" name="pump_below_tank">
+                                                        <option disabled selected value="">Seleccione una opción</option>
                                                         <option {{ $techFormat->pump_below_tank == 0 ? 'selected' : '' }} value="0">{{ __('No') }}</option>
                                                         <option {{ $techFormat->pump_below_tank == 1 ? 'selected' : '' }} value="1"> {{ __('Sí') }} </option>
                                                     </select>
@@ -419,6 +422,7 @@ form .col-12 {
                                                 <div class="col-sm-12">
                                                     {{-- <input required class="form-control" id="" name="cleanliness" type="text" value="{{ $techFormat->pump_inundation }}" /> --}}
                                                     <select class="form-control" name="pump_inundation">
+                                                        <option disabled selected value="">Seleccione una opción</option>
                                                         <option {{ $techFormat->pump_inundation == 0 ? 'selected' : '' }} value="0">{{ __('No') }}</option>
                                                         <option {{ $techFormat->pump_inundation == 1 ? 'selected' : '' }} value="1"> {{ __('Sí') }} </option>
                                                     </select>
@@ -431,6 +435,7 @@ form .col-12 {
                                                 <div class="col-sm-12">
                                                     {{-- <input required class="form-control" id="" name="cleanliness" type="text" value="{{ $techFormat->filter_stall }}" /> --}}
                                                     <select class="form-control" name="filter_stall">
+                                                        <option disabled selected value="">Seleccione una opción</option>
                                                         <option {{ $techFormat->filter_stall == 0 ? 'selected' : '' }} value="0">{{ __('No') }}</option>
                                                         <option {{ $techFormat->filter_stall == 1 ? 'selected' : '' }} value="1"> {{ __('Sí') }} </option>
                                                     </select>
@@ -457,6 +462,7 @@ form .col-12 {
                                                 <label class="c_label col-12 col-form-label">{{ __('Doble Flotador') }}</label>
                                                 <div class="col-sm-12">
                                                     <select class="form-control" name="d_float">
+                                                        <option disabled selected value="">Seleccione una opción</option>
                                                         <option {{ $techFormat->d_float == 0 ? 'selected' : '' }} value="0">{{ __('No') }}</option>
                                                         <option {{ $techFormat->d_float == 1 ? 'selected' : '' }} value="1"> {{ __('Sí') }} </option>
                                                     </select>
@@ -466,6 +472,7 @@ form .col-12 {
                                                 <label class="c_label col-12 col-form-label">{{ __('Control') }}</label>
                                                 <div class="col-sm-12">
                                                     <select class="form-control" name="control">
+                                                        <option disabled selected value="">Seleccione una opción</option>
                                                         <option {{ $techFormat->control == 0 ? 'selected' : '' }} value="0">{{ __('Manual') }}</option>
                                                         <option {{ $techFormat->control == 1 ? 'selected' : '' }} value="1"> {{ __('Automático') }} </option>
                                                     </select>
@@ -475,6 +482,7 @@ form .col-12 {
                                                 <label class="c_label col-12 col-form-label">{{ __('Necesita conexión eléctrica') }}</label>
                                                 <div class="col-sm-12">
                                                     <select class="form-control" name="require_connection">
+                                                        <option disabled selected value="">Seleccione una opción</option>
                                                         <option {{ $techFormat->require_connection == 0 ? 'selected' : '' }} value="0">{{ __('No') }}</option>
                                                         <option {{ $techFormat->require_connection == 1 ? 'selected' : '' }} value="1"> {{ __('Sí') }} </option>
                                                     </select>
@@ -484,6 +492,7 @@ form .col-12 {
                                                 <label class="c_label col-12 col-form-label">{{ __('Electroniveles') }}</label>
                                                 <div class="col-sm-12">
                                                     <select class="form-control" name="electro">
+                                                        <option disabled selected value="">Seleccione una opción</option>
                                                         <option {{ $techFormat->electro == 0 ? 'selected' : '' }} value="0">{{ __('No') }}</option>
                                                         <option {{ $techFormat->electro == 1 ? 'selected' : '' }} value="1"> {{ __('Sí') }} </option>
                                                     </select>
@@ -566,6 +575,7 @@ form .col-12 {
                                             </div>
                                             <div class="col-4">
                                                 <select required name="cost_id" id="" class="form-control">
+                                                    <option disabled selected value="">Seleccione una opción</option>
                                                     @foreach($costs as $cost)
                                                         <option value="{{ $cost->id }}">{{ $cost->name }}</option>
                                                     @endforeach
@@ -593,6 +603,7 @@ form .col-12 {
                                         <div class="row">
                                             <div class="col-4">
                                                 <select required name="material_id" id="" class="form-control">
+                                                    <option disabled selected value="">Seleccione una opción</option>
                                                     @foreach($materials as $material)
                                                         <option value="{{ $material->id }}">{{ $material->name }}, {{ $material->unitLabel() }}, {{ $material->type }}</option>
                                                     @endforeach
@@ -663,6 +674,7 @@ form .col-12 {
                                         <div class="row">
                                             <div class="col-4">
                                                 <select name="accesory_id" id="" class="form-control" required>
+                                                    <option disabled selected value="">Seleccione una opción</option>
                                                     @foreach($accesories as $accesory)
                                                         <option value="{{ $accesory->id }}">{{ $accesory->name }}</option>
                                                     @endforeach
@@ -867,58 +879,65 @@ $('#water_quality-purified').on('click', function() {
 });
 
 function saveForm() {
+
+    $("span.error").remove();
+    hasErrors = false;
+
+
+
     if($('input[name="rooftop[]"]:checked').length <= 0) {
-        $.notify(
-            { message: 'Debe seleccionar al menos un Acabado de Azotea' },
-            { type: 'danger' }
-        );
-        return;
+        // $.notify(
+        //     { message: 'Debe seleccionar al menos un Acabado de Azotea' },
+        //     { type: 'danger' }
+        // );
+        $('#chk-azotea').after('<span class="error text-danger" style="text-align:left;">Campo obligatorio</span>');
+        hasErrors = true;
     }
 
     if($('#filter-quality-other').hasClass("required") && $('#filter-quality-other').val() == "") {
-        $.notify(
-            { message: 'El tipo de filtro para OTRO no puede estar vacio' },
-            { type: 'danger' }
-        );
-        return;
+        $("#filter-quality-other").after('<span class="error text-danger" style="text-align:left;">Campo obligatorio</span>');
+        hasErrors = true;
     }
 
     if($('#filter-quality-personal').hasClass("required") && $('#filter-quality-personal').val() == "") {
-        $.notify(
-            { message: 'El tipo de filtro para CUIDADO E HIGIENE no puede estar vacio' },
-            { type: 'danger' }
-        );
-        return;
+        $('#filter-quality-personal').after('<span class="error text-danger" style="text-align:left;">Campo obligatorio</span>');
+        hasErrors = true;
     }
 
     if($('#filter-quality-purified').hasClass("required") && $('#filter-quality-purified').val() == "") {
-        $.notify(
-            { message: 'El tipo de filtro para PURIFICADO no puede estar vacio' },
-            { type: 'danger' }
-        );
-        return;
+        $('#filter-quality-purified').after('<span class="error text-danger" style="text-align:left;">Campo obligatorio</span>');
+        hasErrors = true;
     }
 
     if($('#filter-quality-wc').hasClass("required") && $('#filter-quality-wc').val() == "") {
-        $.notify(
-            { message: 'El tipo de filtro para WC Y RIEGO no puede estar vacio' },
-            { type: 'danger' }
-        );
-        return;
+        $('#filter-quality-wc').after('<span class="error text-danger" style="text-align:left;">Campo obligatorio</span>');
+        hasErrors = true;
     }
 
     if($('input[name="roof_type[]"]:checked').length <= 0) {
-        $.notify({
-            // options
-            message: 'Debe seleccionar al menos un Tipo de Techo para Captación de Agua'
-        },{
-            // settings
-            type: 'danger'
-        });
+        // $.notify({
+        //     // options
+        //     message: 'Debe seleccionar al menos un Tipo de Techo para Captación de Agua'
+        // },{
+        //     // settings
+        //     type: 'danger'
+        // });
+        $('#t-te').after('<span class="error text-danger" style="text-align:left;">Campo obligatorio</span>');
+        hasErrors = true;
+    }
+
+    if(hasErrors) {
         return;
     }
 
     $('#form-techformat').submit();
+    $.notify({
+            // options
+            message: 'Formulario guardado exitosamente'
+    },{
+        // settings
+        type: 'success'
+    });
 }
 
 var projectId = {{ $techFormat->id }};
@@ -931,6 +950,8 @@ function addCost() {
         data: $('#form-costformat').serialize(),
     }).done(function(data) {
         loadCosts();
+        $('#form-costformat').trigger("reset");
+
     });
 
 };
@@ -942,6 +963,7 @@ function addMaterial() {
         data: $('#form-materialformat').serialize(),
     }).done(function(data) {
         loadMaterials();
+        $('#form-materialformat').trigger("reset");
     });
 
 };
@@ -953,6 +975,7 @@ function addAccesory() {
         data: $('#form-accesoryformat').serialize(),
     }).done(function(data) {
         loadAccesory();
+        $('#form-accesoryformat').trigger("reset");
     });
 
 };
@@ -1086,58 +1109,66 @@ $(document).ready(function () {
 @endif
 
 function sendForm() {
+
+    $("span.error").remove();
+    hasErrors = false;
+
+
+
     if($('input[name="rooftop[]"]:checked').length <= 0) {
-        $.notify(
-            { message: 'Debe seleccionar al menos un Acabado de Azotea' },
-            { type: 'danger' }
-        );
-        return;
+        // $.notify(
+        //     { message: 'Debe seleccionar al menos un Acabado de Azotea' },
+        //     { type: 'danger' }
+        // );
+        $('#chk-azotea').after('<span class="error text-danger" style="text-align:left;">Campo obligatorio</span>');
+        hasErrors = true;
     }
 
     if($('#filter-quality-other').hasClass("required") && $('#filter-quality-other').val() == "") {
-        $.notify(
-            { message: 'El tipo de filtro para OTRO no puede estar vacio' },
-            { type: 'danger' }
-        );
-        return;
+        $("#filter-quality-other").after('<span class="error text-danger" style="text-align:left;">Campo obligatorio</span>');
+        hasErrors = true;
     }
 
     if($('#filter-quality-personal').hasClass("required") && $('#filter-quality-personal').val() == "") {
-        $.notify(
-            { message: 'El tipo de filtro para CUIDADO E HIGIENE no puede estar vacio' },
-            { type: 'danger' }
-        );
-        return;
+        $('#filter-quality-personal').after('<span class="error text-danger" style="text-align:left;">Campo obligatorio</span>');
+        hasErrors = true;
     }
 
     if($('#filter-quality-purified').hasClass("required") && $('#filter-quality-purified').val() == "") {
-        $.notify(
-            { message: 'El tipo de filtro para PURIFICADO no puede estar vacio' },
-            { type: 'danger' }
-        );
-        return;
+        $('#filter-quality-purified').after('<span class="error text-danger" style="text-align:left;">Campo obligatorio</span>');
+        hasErrors = true;
     }
 
     if($('#filter-quality-wc').hasClass("required") && $('#filter-quality-wc').val() == "") {
-        $.notify(
-            { message: 'El tipo de filtro para WC Y RIEGO no puede estar vacio' },
-            { type: 'danger' }
-        );
-        return;
+        $('#filter-quality-wc').after('<span class="error text-danger" style="text-align:left;">Campo obligatorio</span>');
+        hasErrors = true;
     }
 
     if($('input[name="roof_type[]"]:checked').length <= 0) {
-        $.notify({
-            // options
-            message: 'Debe seleccionar al menos un Tipo de Techo para Captación de Agua'
-        },{
-            // settings
-            type: 'danger'
-        });
+        // $.notify({
+        //     // options
+        //     message: 'Debe seleccionar al menos un Tipo de Techo para Captación de Agua'
+        // },{
+        //     // settings
+        //     type: 'danger'
+        // });
+        $('#t-te').after('<span class="error text-danger" style="text-align:left;">Campo obligatorio</span>');
+        hasErrors = true;
+    }
+
+    if(hasErrors) {
         return;
     }
 
-    $('.set-status').val(1);$('#form-techformat').submit();
+    $('.set-status').val(1);
+    $('#form-techformat').submit();
+    $.notify({
+            // options
+            message: 'Formulario finalizado exitosamente'
+    },{
+        // settings
+        type: 'success'
+    });
 }
 
 </script>

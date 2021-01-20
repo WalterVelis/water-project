@@ -29,7 +29,7 @@ class Role_csv implements FromCollection, WithCustomCsvSettings, WithHeadings
     public function getCsvSettings(): array
     {
         return [
-            'delimiter' => ';',
+            'delimiter' => ',',
             'use_bom'  => true,
         ];
     }

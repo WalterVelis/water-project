@@ -111,6 +111,7 @@
                                     <div class="col-sm-12 mb-5">
                                         <div class="form-group{{ $errors->has('product_type') ? ' has-danger' : '' }}">
                                             <select class="form-control" name="product_type" id="product_type">
+                                                <option disabled selected value="">Seleccione una opción</option>
                                                 <option value="0">Materiales extra</option>
                                                 <option value="1">Accesorios Isla Urbana</option>
                                             </select>

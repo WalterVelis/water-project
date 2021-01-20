@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\AccesoryUrban;
+use App\Exports\Accesory_COST_xlsx;
+use App\Exports\Accesory_COST_csv;
+use App\Exports\Cost_COST_csv;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-
+use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 
 class AccesoryUrbanController extends Controller
@@ -16,6 +20,20 @@ class AccesoryUrbanController extends Controller
         $pdf = PDF::loadView('accesory.options.pdfAll', compact('accesories'));
         $pdf->setPaper("letter", "Portrait");
         return $pdf->download($name.'.pdf');
+    }
+
+    public function queryXlsx()
+    {
+        $date=new Carbon();
+        $fecha = $date->format('d-m-Y');
+        return Excel::download(new Accesory_COST_xlsx, ''.$fecha.'.xlsx');
+    }
+
+    public function queryCsv()
+    {
+        $date=new Carbon();
+        $fecha = $date->format('d-m-Y');
+        return Excel::download(new Accesory_COST_csv, ''.$fecha.'.csv');
     }
 
     /**

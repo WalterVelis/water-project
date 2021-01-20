@@ -2,7 +2,11 @@
 
 namespace App\Exports;
 
+use App\AccesoryFormat;
+use App\AccesoryUrban;
 use App\CostFormat;
+use App\MaterialFormat;
+use App\MaterialProvider;
 use App\Role;
 use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
 use Maatwebsite\Excel\Concerns\FromCollection;
@@ -12,18 +16,11 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 
 use DB;
 
-class Cost_Format_csv implements FromCollection, WithCustomCsvSettings, WithHeadings, WithMapping
+class MATERIAL_COST_csv implements FromCollection, WithCustomCsvSettings, WithHeadings, WithMapping
 {
-
-    protected $project_id;
-
-    function __construct($project_id) {
-            $this->project_id = $project_id;
-    }
-
     public function collection()    // Function containing the query to get the data.
     {
-        $data = CostFormat::with('costs')->where('format_id', $this->project_id)->get();
+        $data = MaterialProvider::with(['material', 'provider'])->get();
         return $data;
 
     }
@@ -31,20 +28,26 @@ class Cost_Format_csv implements FromCollection, WithCustomCsvSettings, WithHead
     public function headings(): array   // Function where the headers are specified.
     {
         return [
-            __('Días'),
-            __('Especialidad'),
+            __('ID'),
+            __('Existencia'),
+            __('Nombre material'),
+            __('Tipo material'),
             __('Costo Unitario'),
-            __('Total'),
+            __('Fecha actualización'),
+            __('Proveedor'),
         ];
     }
 
     public function map($data): array
     {
         return [
-            $data->day,
-            $data->costs->name,
-            $data->cost,
-            "$".$data->cost * $data->day,
+            $data->id,
+            $data->qty,
+            $data->material->name,
+            $data->material->type,
+            "$".$data->unit_cost,
+            $data->updated_at,
+            $data->provider->denomination,
         ];
     }
 

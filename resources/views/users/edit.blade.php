@@ -86,7 +86,7 @@
                                         class="js-example-basic-single js-states form-control" style="width: 100%"
                                         id="" name="role_id" data-style="select-with-transition" title=""
                                         data-size="100" required>
-                                        <option value="">{{ __('Choose a role') }}</option>
+                                        <option disabled value="">Seleccione una opción</option>
                                         @foreach ($roles as $role)
                                         <option value="{{$role->id}}" @if ($user->role_id ==$role->id)
                                             selected="selected" @endif>{{ $role->name }}</option>

@@ -62,7 +62,7 @@ class Accesory_Format_csv implements FromCollection, WithCustomCsvSettings, With
     public function getCsvSettings(): array
     {
         return [
-            'delimiter' => ';',
+            'delimiter' => ',',
             'use_bom'  => true,
         ];
     }

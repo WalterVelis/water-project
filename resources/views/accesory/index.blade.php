@@ -21,11 +21,23 @@
                                             class="fa fa-plus fw" aria-hidden="true"></i></a>
                                     @endif
                                 </div>
-                                <a class="float-right" href="/accesoryPdf/">
+                                {{-- <a class="float-right" href="/accesoryPdf/">
                                     <button class=" d-inline" style="    background: none; border: none; font-size: 1.5em;" type="button">
                                         <i class="fa fa-download" aria-hidden="true"></i>
                                     </button>
-                                </a>
+                                </a> --}}
+
+                                <div class="dropdown" style="position: absolute; right: 0px;">
+                                    <button title="Download Data" class="dropdown-toggle" style="background: none; border: none; font-size: 1.5em;    width: 90px;" type="button" id="costmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-download" aria-hidden="true"></i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="costmenu">
+                                        <a class="dropdown-item" href="/accesoryCsv/"><p class=""><i class="fa fa-file-code-o" aria-hidden="true"></i>&nbsp; CSV</p></a>
+                                        <a class="dropdown-item" href="/accesoryXlsx/"><p class=""><i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp; XLSX</p></a>
+                                        <a class="dropdown-item" href="/accesoryPdf/"><p class=""><i class="fa fa-file-pdf-o" aria-hidden="true"></i>&nbsp; PDF</p></a>
+                                    </div>
+                                </div>
+
                             </div>
                             {{-- @endcan --}}
 

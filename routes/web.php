@@ -61,6 +61,16 @@ Route::group(['middleware' => ['auth','change']], function () {
     Route::get('userAllPdf/{all}', 'UserController@query1PdfUser')->name('userPdf');
     Route::get('providerPdf', 'ProviderController@queryPdf');
     Route::get('costPdf', 'CostsCenterController@queryPdf');
+
+    Route::get('costXlsx', 'CostsCenterController@queryXlsx');
+    Route::get('costCsv', 'CostsCenterController@queryCsv');
+
+    Route::get('accesoryXlsx', 'AccesoryUrbanController@queryXlsx');
+    Route::get('accesoryCsv', 'AccesoryUrbanController@queryCsv');
+
+    Route::get('materialXlsx', 'MaterialController@queryXlsx');
+    Route::get('materialCsv', 'MaterialController@queryCsv');
+
     Route::get('formatPdf', 'ProjectController@queryPdf');
     Route::get('quotationPdf/{id}', 'QuotationController@genPdf')->name('quotationPdf');;
     Route::get('accesoryPdf', 'AccesoryUrbanController@queryPdf');

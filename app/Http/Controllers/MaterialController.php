@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\Cost_COST_csv;
 use App\Material;
 use App\MaterialFormat;
 use App\MaterialProvider;
 use App\MaterialProviderFormat;
+use App\Exports\MATERIAL_COST_xlsx;
+use App\Exports\MATERIAL_COST_csv;
 use App\Provider;
+use Carbon\Carbon;
 use PDF;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MaterialController extends Controller
 {
@@ -31,6 +36,20 @@ class MaterialController extends Controller
         $pdf = PDF::loadView('materials.pdf', compact('materials'));
         $pdf->setPaper("letter", "Portrait");
         return $pdf->download($name.'.pdf');
+    }
+
+    public function queryXlsx()
+    {
+        $date=new Carbon();
+        $fecha = $date->format('d-m-Y');
+        return Excel::download(new MATERIAL_COST_xlsx, ''.$fecha.'.xlsx');
+    }
+
+    public function queryCsv()
+    {
+        $date=new Carbon();
+        $fecha = $date->format('d-m-Y');
+        return Excel::download(new MATERIAL_COST_csv, ''.$fecha.'.csv');
     }
 
     /**

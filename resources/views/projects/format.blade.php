@@ -187,8 +187,7 @@ form .col-12 {
                                             <div class="col-12 col-md-4">
                                                 <label class="c_label col-12 col-form-label">{{ __('Email') }}</label>
                                                 <div class="col-sm-12">
-                                                    <input id="e-email" class="form-control" name="email" type="email"
-                                                        value="{{ $format->email }}" />
+                                                    <input id="e-email" class="form-control" name="email" type="email" value="{{ $format->email }}" />
                                                 </div>
                                             </div>
                                         </div>
@@ -206,6 +205,7 @@ form .col-12 {
                                     <label class="c_label col-12 col-form-label">{{ __('Structure') }}</label>
                                     <div class="col-sm-12">
                                         <select class="structure form-control" name="structure">
+                                            <option disabled selected value="">Seleccione una opción</option>
                                             @php ($set = 0) @endphp
                                             <option @if ($format->structure == __('House')) selected @php ($set = 1) @endphp @endif value="{{ __('House') }}"> {{ __('House') }} </option>
                                             <option @if ($format->structure == __('School')) selected @php ($set = 1) @endphp @endif value="{{ __('School') }}"> {{ __('School') }} </option>
@@ -226,6 +226,7 @@ form .col-12 {
                                     <label class="c_label col-12 col-form-label">{{ __('Environment') }}</label>
                                     <div class="col-sm-12">
                                         <select class="environment form-control" name="environment">
+                                            <option disabled selected value="">Seleccione una opción</option>
                                             <option {{ $format->environment == 0 ? 'selected' : '' }} value="0"> {{ __('Urban') }} </option>
                                             <option {{ $format->environment == 1 ? 'selected' : '' }} value="1"> {{ __('Rural') }} </option>
                                         </select>
@@ -237,6 +238,7 @@ form .col-12 {
                                         class="c_label col-12 col-form-label">{{ __('Has Educational Programs?') }}</label>
                                     <div class="col-sm-12">
                                         <select class="education form-control" name="has_educational_programs">
+                                            <option disabled selected value="">Seleccione una opción</option>
                                             @php ($set = 0) @endphp
                                             <option {{ $format->has_educational_programs == 0 ? 'selected' : '' }} value="0">{{ __('No') }}</option>
                                             <option @if ($format->has_educational_programs == 1) selected @php ($set = 1) @endphp @endif value="1"> {{ __('Yes') }} </option>
@@ -262,6 +264,7 @@ form .col-12 {
                                     <label class="c_label col-12 col-form-label">{{ __('Country') }}</label>
                                     <div class="col-sm-12">
                                         <select class="country form-control" name="country">
+                                            <option disabled selected value="">Seleccione una opción</option>
                                             <option {{ $format->country_id == 0 ? "selected" : "" }} value="142"> México </option>
                                             @foreach($countries as $item)
                                             <option {{ $format->country_id == $item->id ? "selected" : "" }} value="{{ $item->id }}"> {{ $item->name }} </option>
@@ -335,6 +338,7 @@ form .col-12 {
                                     <label class="c_label col-12 col-form-label">{{ __('Has Water Lack?') }}</label>
                                     <div class="col-sm-12">
                                         <select class="has_water_lack form-control" name="has_water_lack">
+                                            <option disabled selected value="">Seleccione una opción</option>
                                             <option {{ $format->has_water_lack == 0 ? 'selected' : '' }} value="0">{{ __('No') }}</option>
                                             <option {{ $format->has_water_lack == 1 ? 'selected' : '' }} value="1"> {{ __('Yes') }} </option>
                                         </select>
@@ -350,6 +354,7 @@ form .col-12 {
                                     <label class="c_label col-12 col-form-label">{{ __('Water Obtaining Method') }}</label>
                                     <div class="col-sm-12">
                                         <select class="obtaining form-control" name="obtaining_water">
+                                            <option disabled selected value="">Seleccione una opción</option>
                                             @php ($set = 0) @endphp
                                             <option @if ($format->obtaining_water == __('Sistema Propio')) selected @php ($set = 1) @endphp @endif value="{{ __('Sistema Propio') }}"> {{ __('Sistema Propio') }} </option>
                                             <option @if ($format->obtaining_water == __('Tuberías')) selected @php ($set = 1) @endphp @endif value="{{ __('Tuberías') }}"> {{ __('Tuberías') }} </option>
@@ -513,6 +518,7 @@ form .col-12 {
                                     <label class="c_label col-12 col-form-label">{{ __('Property Type') }}</label>
                                     <div class="col-sm-12">
                                         <select class="form-control" name="property_type">
+                                            <option disabled selected value="">Seleccione una opción</option>
                                             <option {{ $format->property_type == 0 ? 'selected' : '' }} value="0">{{ __('Propio') }}</option>
                                             <option {{ $format->property_type == 1 ? 'selected' : '' }} value="1"> {{ __('Rentado') }} </option>
                                         </select>
@@ -522,6 +528,7 @@ form .col-12 {
                                     <label class="c_label col-12 col-form-label">{{ __('Has Resource for this Year?') }}</label>
                                     <div class="col-sm-12">
                                         <select class="form-control" name="current_year_resources">
+                                            <option disabled selected value="">Seleccione una opción</option>
                                             <option {{ $format->current_year_resources == 0 ? 'selected' : '' }} value="0"> {{ __('No') }} </option>
                                             <option {{ $format->current_year_resources == 1 ? 'selected' : '' }} value="1">{{ __('Yes') }}</option>
                                         </select>
@@ -532,6 +539,7 @@ form .col-12 {
                                     <label class="c_label col-12 col-form-label">{{ __('Resources Type') }}</label>
                                     <div class="col-sm-12">
                                         <select class="form-control" name="resources_type">
+                                            <option disabled selected value="">Seleccione una opción</option>
                                             <option {{ $format->resources_type == 0 ? 'selected' : '' }} value="0" selected>{{ __('Propio') }}</option>
                                             <option {{ $format->resources_type == 1 ? 'selected' : '' }} value="1"> {{ __('Terceros') }} </option>
                                         </select>
@@ -689,6 +697,7 @@ form .col-12 {
         </div>
         <div class="modal-body">
           <select class="form-control" name="mail" id="smail">
+            <option disabled selected value="">Seleccione una opción</option>
               @foreach($admins as $admin)
               <option value="{{ $admin->email }}">{{ $admin->name }}</option>
               @endforeach
@@ -816,15 +825,28 @@ var projectId = {{ $format->id }};
 
 function addPlanning() {
     if(!$('#planning-email')[0].checkValidity()) {
-        $.notify({
-            // options
-            message: 'El correo electrónico no es válido'
-        },{
-            // settings
-            type: 'danger'
-        });
+        // $.notify({
+        //     // options
+        //     message: 'El correo electrónico no es válido'
+        // },{
+        //     // settings
+        //     type: 'danger'
+        // });
+        $('#planning-email').after('<span class="error text-danger" style="text-align:left;">El correo electrónico no es válido</span>');
         return;
     }
+    $("span.error").remove();
+    hasErrors = false;
+    $('#form-planning input').each(function() {
+        if ($(this).val() == '') {
+            hasErrors = true;
+            $(this).after('<span class="error text-danger" style="text-align:left;">Campo obligatorio</span>');
+        }
+    });
+    if(hasErrors) {
+        return;
+    }
+
     $.ajax({
         type: 'POST',
         url: '/entities',
@@ -833,27 +855,33 @@ function addPlanning() {
         loadPlanning();
         $('#form-planning').trigger("reset");
     }).fail(() => {
-        $.notify({
-            // options
-            message: 'Por favor, ingrese todos los datos correspondientes'
-        },{
-            // settings
-            type: 'danger'
-        });
+        // $.notify({
+        //     // options
+        //     message: 'Por favor, ingrese todos los datos correspondientes'
+        // },{
+        //     // settings
+        //     type: 'danger'
+        // });
     });
 };
 
 function addAuth() {
     if(!$('#auth-email')[0].checkValidity()) {
-        $.notify({
-            // options
-            message: 'El correo electrónico no es válido'
-        },{
-            // settings
-            type: 'danger'
-        });
+        $('#auth-email').after('<span class="error text-danger" style="text-align:left;">El correo electrónico no es válido</span>');
         return;
     }
+    $("span.error").remove();
+    hasErrors = false;
+    $('#form-auth input').each(function() {
+        if ($(this).val() == '') {
+            hasErrors = true;
+            $(this).after('<span class="error text-danger" style="text-align:left;">Campo obligatorio</span>');
+        }
+    });
+    if(hasErrors) {
+        return;
+    }
+
     $.ajax({
         type: 'POST',
         url: '/entities',
@@ -862,13 +890,13 @@ function addAuth() {
         loadAuth();
         $('#form-auth').trigger("reset");
     }).fail(() => {
-        $.notify({
-            // options
-            message: 'Por favor, ingrese todos los datos correctamente'
-        },{
-            // settings
-            type: 'danger'
-        });
+        // $.notify({
+        //     // options
+        //     message: 'Por favor, ingrese todos los datos correctamente'
+        // },{
+        //     // settings
+        //     type: 'danger'
+        // });
     });
 };
 
@@ -902,13 +930,7 @@ function saveWork(re = false) {
     if(re) {
         if($('#e-email').val() != "") {
             if(!$('#e-email')[0].checkValidity()) {
-                $.notify({
-                    // options
-                    message: 'El correo electrónico no es válido'
-                },{
-                    // settings
-                    type: 'danger'
-                });
+                $('#e-email').after('<span class="error text-danger" style="text-align:left;">Correo no válido</span>');
                 return;
             }
         }
@@ -980,14 +1002,15 @@ $(function() {
 function sendAdmin() {
     if($('#e-email').val() != "") {
         if(!$('#e-email')[0].checkValidity()) {
-            $.notify({
-            // options
-            message: 'El correo electrónico del formato técnico no es válido'
-            },{
-                // settings
-                type: 'danger'
-            });
-            $('#e-email').addClass("bg-red");
+            // $.notify({
+            // // options
+            // message: 'El correo electrónico del formato técnico no es válido'
+            // },{
+            //     // settings
+            //     type: 'danger'
+            // });
+            $('#e-email').after('<span class="error text-danger" style="text-align:left;">Correo no válido</span>');
+            // $('#e-email').addClass("bg-red");
             return;
         }
     }

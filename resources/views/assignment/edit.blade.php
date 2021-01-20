@@ -112,7 +112,7 @@
                                         <span style="margin-bottom:-10px;font-weight:bold;">{{ __('Estatus') }}</span>
                                         <div class="form-group{{ $errors->has('status') ? ' has-danger' : '' }}">
                                             <select class="form-control" name="status" id="stt">
-                                                <option {{ $assignmentData->internal_status == 3 ? "selected" : "" }} value="3">Seleccione...</option>
+                                                <option {{ $assignmentData->internal_status == 3 ? "selected" : "" }} value="3">Seleccione una opción</option>
                                                 <option {{ $assignmentData->internal_status == 4 ? "selected" : "" }} value="4">Cotizado</option>
                                                 <option {{ $assignmentData->internal_status == 5 ? "selected" : "" }} value="5">Negociación</option>
                                                 <option {{ $assignmentData->internal_status == 7 ? "selected" : "" }} value="7">Aceptado</option>

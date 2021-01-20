@@ -51,7 +51,8 @@
                                             <div class="form-group{{ $errors->has('unit') ? ' has-danger' : '' }}">
                                                 {{-- <input class="form-control{{ $errors->has('unit') ? ' is-invalid' : '' }}" name="unit" id="input-unit" type="text" value="{{ old('unit') }}"  /> --}}
                                                 <select class="form-control" name="unit" id="">
-                                                    <option selected value="0">TRAMO</option>
+                                                    <option disabled selected value="">Seleccione una opción</option>
+                                                    <option value="0">TRAMO</option>
                                                     <option value="1">PZA</option>
                                                     <option value="2">ML</option>
                                                     <option value="3">M2</option>
@@ -70,7 +71,8 @@
                                             <div class="form-group{{ $errors->has('type') ? ' has-danger' : '' }}">
                                                 {{-- <input class="form-control{{ $errors->has('type') ? ' is-invalid' : '' }}" name="type" id="input-type" type="text" value="{{ old('type') }}"  /> --}}
                                                 <select class="form-control" name="" id="ti">
-                                                    <option selected value="COBRE">COBRE</option>
+                                                    <option disabled selected value="">Seleccione una opción</option>
+                                                    <option value="COBRE">COBRE</option>
                                                     <option value="PVC SANITARIO">PVC SANITARIO</option>
                                                     <option value="PVC HIDR RD26">PVC HIDR RD26</option>
                                                     <option value="CONDUIT">CONDUIT</option>

@@ -95,6 +95,7 @@
                                     <div class="col-sm-12 mb-5">
                                         <div class="form-group{{ $errors->has('denomination') ? ' has-danger' : '' }}">
                                             <select class="form-control" name="product_type" id="product_type">
+                                                <option disabled value="">Seleccione una opción</option>
                                                 <option value="0">Materiales extra</option>
                                                 <option {{ $provider->product_type ? 'selected' : '' }} value="1">Accesorios Isla Urbana</option>
                                             </select>

@@ -58,19 +58,10 @@
                                             {{ __('Contacto') }}
                                         </th>
                                         <th>
-                                            {{ __('Cargo') }}
-                                        </th>
-                                        <th>
                                             {{ __('Correo') }}
                                         </th>
                                         <th>
                                             {{ __('Teléfono') }}
-                                        </th>
-                                        <th>
-                                            {{ __('RFC') }}
-                                        </th>
-                                        <th>
-                                            {{ __('Dirección') }}
                                         </th>
                                         <th>
                                             {{ __('Tipo de Producto') }}
@@ -92,21 +83,11 @@
                                                 {{ $provider->contact_name }}
                                             </td>
                                             <td>
-                                                {{ $provider->job_title }}
-                                            </td>
-                                            <td>
                                                 {{ $provider->email }}
                                             </td>
                                             <td>
                                                 {{ $provider->phone }}
                                             </td>
-                                            <td>
-                                                {{ $provider->rfc }}
-                                            </td>
-                                            <td>
-                                                {{ $provider->direccion }}
-                                            </td>
-
                                             <td>
                                                 {{ $provider->productTypeLabels() }}
                                             </td>

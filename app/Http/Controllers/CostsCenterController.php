@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\CostsCenter;
+use Carbon\Carbon;
+use App\Exports\Cost_COST_xlsx;
+use App\Exports\Cost_COST_csv;
 use Illuminate\Http\Request;
-
+use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 
 class CostsCenterController extends Controller
@@ -16,6 +19,20 @@ class CostsCenterController extends Controller
         $pdf = PDF::loadView('costs.options.pdfAll', compact('manoDeObra'));
         $pdf->setPaper("letter", "Portrait");
         return $pdf->download($name.'.pdf');
+    }
+
+    public function queryXlsx()
+    {
+        $date=new Carbon();
+        $fecha = $date->format('d-m-Y');
+        return Excel::download(new Cost_COST_xlsx, ''.$fecha.'.xlsx');
+    }
+
+    public function queryCsv()
+    {
+        $date=new Carbon();
+        $fecha = $date->format('d-m-Y');
+        return Excel::download(new Cost_COST_csv, ''.$fecha.'.csv');
     }
 
     /**
