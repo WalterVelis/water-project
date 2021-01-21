@@ -627,7 +627,7 @@ form .col-12 {
                                             </button>
                                         </a> --}}
 
-                                        <div class="dropdown" style="position: absolute; right: 0px;">
+                                        <div class="dropdown" style="position: absolute; right: 0px;top:20px;">
                                             <button title="Download Data" class="dropdown-toggle" style="background: none; border: none; font-size: 1.5em;    width: 90px;" type="button" id="materialmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 <i class="fa fa-download" aria-hidden="true"></i>
                                             </button>
