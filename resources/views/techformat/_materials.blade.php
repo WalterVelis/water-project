@@ -232,7 +232,6 @@
             })
             .done(function(data) {
                 loadMaterials();
-            }).complete(() => {
                 $('input').prop("readonly", false);
             });
         }, 500);

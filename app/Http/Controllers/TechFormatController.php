@@ -191,6 +191,57 @@ class TechFormatController extends Controller
 
             Notify::create(["user_id" => $data->vendor->id, "msg" => "<a href='/projects/".$format->id."/edit'><div class='c-not'>".$data->tech->name." finalizó el registro de levantamiento técnico del proyecto .". $format->page."</a></div>"]);
             Notify::create(["user_id" => $data->admin->id, "msg" => "<a href='/projects/".$format->id."/edit'><div class='c-not'>".$data->tech->name." finalizó el registro de levantamiento técnico del proyecto .". $format->page."</a></div>"]);
+
+
+            // Update qty on IU and ME
+
+            //Update ME
+            $project_materials = MaterialFormat::with('materials.providers.provider')->with('materials.providers.materialProvider')->where('format_id', $id)->get();
+
+            foreach($project_materials as $pm) {
+                $materialProvider[$pm->material_id] = MaterialProvider::with('provider')->with(['materialProvider' => function ($query) use ($id) { $query->where("format_id", $id); }])->where('material_id', $pm->material_id)->get();
+            }
+
+            foreach($project_materials as $item) {
+                foreach($materialProvider[$item->material_id] as $mpp) {
+                    // dump($materialProvider[$item->material_id]);
+                    // dump($mpp->provider->denomination);
+                    $provider_id = $mpp->provider->id;
+                    $material_id = $item->material_id;
+                    $tmSum = @$mpp->materialProvider->qty;
+
+                    if($mpp->materialProvider) {
+
+                        // dump("r", $provider_id, $material_id);
+
+                        // dump($provider_id, $material_id);
+                        $prevQty = MaterialProvider::select("qty")->where('provider_id', $provider_id)->where('material_id', $material_id)->limit(1)->pluck("qty");
+                        // dump($prevQty);
+                        // dump("prevQty");
+                        if(!$prevQty->isEmpty()){
+                            $nqt = $prevQty[0] - $tmSum;
+                            $willUpdate = MaterialProvider::where('provider_id', $provider_id)->where('material_id', $material_id)->update(['qty' => $nqt]);
+                        }
+
+                    }
+                }
+            }
+
+
+            // Update IU
+
+            $accesoryFormat = AccesoryFormat::with('accesory')->where('format_id', $id)->get();
+
+            foreach($accesoryFormat as $af) {
+                $accesory = AccesoryUrban::find($af->accesory_id);
+                $nqty = $accesory->qty - $af->qty;
+                AccesoryUrban::find($af->accesory_id)->update(["qty" => $nqty]);
+            }
+
+
+
+            // dd("as");
+
         }
 
 

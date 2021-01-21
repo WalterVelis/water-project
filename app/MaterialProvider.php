@@ -8,6 +8,10 @@ class MaterialProvider extends Model
 {
     protected $table = 'materials_providers';
 
+    protected $fillable = [
+        "qty"
+    ];
+
     public function provider()
     {
         return $this->hasOne('App\Provider', 'id', 'provider_id');

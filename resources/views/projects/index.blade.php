@@ -180,7 +180,7 @@
                     [10, 25, 50, -1],
                     [10, 25, 50, "All"]
                 ],
-                responsive: true,
+                // responsive: true,
                 language: {
                     search: "_INPUT_",
                     searchPlaceholder: $('#SearchTable').val(),
