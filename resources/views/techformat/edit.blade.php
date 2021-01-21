@@ -157,7 +157,7 @@ form .col-12 {
                                                             <input style="{{ in_array(__('WC and Watering'), @$water_quality) ? '' : 'display:none;' }}" id="filter-quality-wc" type="text" name="filter_type[]" class="filter mt-3 form-control" placeholder="Tipo de filtro" value="{{ @$filter_type[0] }}">
                                                         </div>
                                                     </div>
-                                                    <div class="col-12 col-md-2">
+                                                    <div class="col-12 col-md-3">
                                                         <div class="form-check">
                                                             <label class="form-check-label">
                                                                 <input required {{ in_array(__('Hygiene and personal care'), @$water_quality) ? 'checked' : '' }} id="water_quality-personal" name="water_quality[]" class="form-check-input" type="checkbox" value="{{ __('Hygiene and personal care') }}">
@@ -191,7 +191,7 @@ form .col-12 {
                                                             <input style="{{ in_array(__('Other'), @$water_quality) ? '' : 'display:none;' }}" id="filter-quality-other" type="text" name="filter_type[]" class="filter mt-3 form-control" placeholder="Tipo de filtro" value="{{ @$filter_type[3] }}">
                                                         </div>
                                                     </div>
-                                                <div class="col-12 col-md-4">
+                                                <div class="col-12 col-md-3">
                                                     <input id="input-quality-other" value="{{ end($water_quality) }}" name="water_quality[]" style="    margin-top: -10px !important; {{ in_array(__('Other'), $water_quality) ? '' : 'display:none;' }}" class="form-control mt-2" type="text" placeholder="{{ __('Especifique...') }}">
                                                 </div>
                                             </div>
