@@ -18,12 +18,29 @@ use App\Entity;
 use App\Mail\AdminNotification;
 use App\Notify;
 use PDF;
+use App\Exports\Project_csv;
+use App\Exports\Project_xlsx;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProjectController extends Controller
 {
+
+    public function queryXlsx()
+    {
+        $date=new Carbon();
+        $fecha = $date->format('d-m-Y');
+        return Excel::download(new Project_xlsx, ''.$fecha.'.xlsx');
+    }
+
+    public function queryCsv()
+    {
+        $date=new Carbon();
+        $fecha = $date->format('d-m-Y');
+        return Excel::download(new Project_csv, ''.$fecha.'.xlsx');
+    }
 
     public function queryPdf()
     {

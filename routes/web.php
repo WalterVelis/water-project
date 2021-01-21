@@ -71,6 +71,11 @@ Route::group(['middleware' => ['auth','change']], function () {
     Route::get('materialXlsx', 'MaterialController@queryXlsx');
     Route::get('materialCsv', 'MaterialController@queryCsv');
 
+    Route::get('providerXlsx', 'ProviderController@queryXlsx');
+    Route::get('providerCsv', 'ProviderController@queryCsv');
+    Route::get('projectXlsx', 'ProjectController@queryXlsx');
+    Route::get('projectCsv', 'ProjectController@queryCsv');
+
     Route::get('formatPdf', 'ProjectController@queryPdf');
     Route::get('quotationPdf/{id}', 'QuotationController@genPdf')->name('quotationPdf');;
     Route::get('accesoryPdf', 'AccesoryUrbanController@queryPdf');

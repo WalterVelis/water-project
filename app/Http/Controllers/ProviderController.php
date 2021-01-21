@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\Provider_csv;
+use App\Exports\Provider_xlsx;
 use PDF;
 use App\User;
 use App\Provider;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Throwable;
 
 class ProviderController extends Controller
@@ -25,6 +28,20 @@ class ProviderController extends Controller
             return redirect('/');
         // }
         return view('provider.index');
+    }
+
+    public function queryXlsx()
+    {
+        $date=new Carbon();
+        $fecha = $date->format('d-m-Y');
+        return Excel::download(new Provider_xlsx, ''.$fecha.'.xlsx');
+    }
+
+    public function queryCsv()
+    {
+        $date=new Carbon();
+        $fecha = $date->format('d-m-Y');
+        return Excel::download(new Provider_csv, ''.$fecha.'.xlsx');
     }
 
     /**
