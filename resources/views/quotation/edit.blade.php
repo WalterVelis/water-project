@@ -125,43 +125,43 @@
                                 <div class="col-12 col-md-4">
                                     <label class="c_label col-12 col-form-label">{{ __('Versión') }}</label>
                                     <div class="col-sm-12">
-                                        <input class="form-control" id="" name="version" type="text" value="{{ $quotation->version }}" />
+                                        <input class="vali form-control" id="" name="version" type="text" value="{{ $quotation->version }}" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <label class="c_label col-12 col-form-label">{{ __('Vigencia') }}</label>
                                     <div class="col-sm-12">
-                                        <input class="form-control" id="" name="validity" type="text" value="{{ $quotation->validity }}" />
+                                        <input class="vali form-control" id="" name="validity" type="text" value="{{ $quotation->validity }}" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <label class="c_label col-12 col-form-label">{{ __('Moneda') }}</label>
                                     <div class="col-sm-12">
-                                        <input class="form-control" id="" name="currency" type="text" value="{{ $quotation->currency }}" />
+                                        <input class="vali form-control" id="" name="currency" type="text" value="{{ $quotation->currency }}" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <label class="c_label col-12 col-form-label">{{ __('Página web') }}</label>
                                     <div class="col-sm-12">
-                                        <input class="form-control" id="" name="web" type="text" value="{{ $quotation->web }}" />
+                                        <input class="vali form-control" id="" name="web" type="text" value="{{ $quotation->web }}" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
                                     <label class="c_label col-12 col-form-label">{{ __('Tiempo de entrega (días)') }}</label>
                                     <div class="col-sm-12">
-                                        <input min="0" class="form-control" id="" name="delivery" type="number" value="{{ $quotation->delivery }}" />
+                                        <input min="0"vali  class="form-control" id="" name="delivery" type="number" value="{{ $quotation->delivery }}" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-8">
                                     <label class="c_label col-12 col-form-label">{{ __('Forma de pago') }}</label>
                                     <div class="col-sm-12">
-                                        <input class="form-control" id="" name="payment" type="text" value="{{ $quotation->payment }}" />
+                                        <input class="vali form-control" id="" name="payment" type="text" value="{{ $quotation->payment }}" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-8">
                                     <label class="c_label col-12 col-form-label">{{ __('Notas') }}</label>
                                     <div class="col-sm-12">
-                                        <input class="form-control" id="" name="notes" type="text" value="{{ $quotation->notes }}" />
+                                        <input class="vali form-control" id="" name="notes" type="text" value="{{ $quotation->notes }}" />
                                     </div>
                                 </div>
                             </div>
@@ -297,20 +297,21 @@ function applyUtility() {
 }
 
 function submitQForm() {
+    console.log('2');
 
     $("span.error").remove();
     hasErrors = false;
-    $('#form-quotation input').each(function() {
+    $("#form-quotation .vali").each(function() {
         if ($(this).val() == '') {
             hasErrors = true;
             $(this).after('<span class="error text-danger" style="text-align:left;">Campo obligatorio</span>');
         }
     });
+    console.log("hasErrors", hasErrors);
     if(hasErrors) {
         return;
     }
 
-    console.log("hasErrors", hasErrors);
     if($("#form-quotation"))
     $('.set-status').val(1);
     $('#form-quotation').submit();
