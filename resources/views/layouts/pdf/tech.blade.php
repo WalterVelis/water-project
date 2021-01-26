@@ -65,34 +65,34 @@ use Carbon\Carbon;
     <tbody>
         <tr>
             <td class="right b">Fecha: </td>
-            <td colspan="2"> {{ $format->date }}</td>
+            <td colspan="2"> {{ @$format->date }}</td>
             <td colspan="1"></td>
             <td> Folio</td>
-            <td> {{ $format->page }}</td>
+            <td> {{ @$format->page }}</td>
         </tr>
         <tr>
             <td class="right b">Dirección: </td>
-            <td colspan="5" class="b-blue">{{ $format->street }}, No. Ext. {{ $format->n_ext }}, No. Int. {{ $format->n_int }},  {{ $format->colony }}, {{ $format->municipality }}, {{ $format->state }}, {{ $format->country->name }}  </td>
+            <td colspan="5" class="b-blue">{{ @$format->street }}, No. Ext. {{ @$format->n_ext }}, No. Int. {{ @$format->n_int }},  {{ @$format->colony }}, {{ @$format->municipality }}, {{ @$format->state }}, {{ @$format->country->name }}  </td>
         </tr>
         <tr>
             <td class="right b">Cliente: </td>
-            <td colspan="5">{{ $format->client }}</td>
+            <td colspan="5">{{ @$format->client }}</td>
         </tr>
         <tr>
             <td class="right b">Contacto principal: </td>
-            <td class="b-blue" colspan="5">{{ $format->main_contact }}</td>
+            <td class="b-blue" colspan="5">{{ @$format->main_contact }}</td>
         </tr>
         <tr>
             <td class="right b">Puesto: </td>
-            <td colspan="5">{{ $format->position }}</td>
+            <td colspan="5">{{ @$format->position }}</td>
         </tr>
         <tr>
             <td class="right b">Teléfono: </td>
-            <td class="b-blue" colspan="5">{{ $format->phone }}</td>
+            <td class="b-blue" colspan="5">{{ @$format->phone }}</td>
         </tr>
         <tr>
             <td class="right b">Correo: </td>
-            <td colspan="5">{{ $format->email }}</td>
+            <td colspan="5">{{ @$format->email }}</td>
         </tr>
         @php($water_quality = explode(",",$tech->water_quality))
         <tr>
@@ -113,16 +113,16 @@ use Carbon\Carbon;
         </tr>
         <tr>
             <td class="right b">Tipo de techo captación de lluvia: </td>
-            <td colspan="5">{{ $tech->roof_type }}</td>
+            <td colspan="5">{{ @$tech->roof_type }}</td>
         </tr>
         <tr>
             <td class="right b">Acabado azotea: </td>
-            <td colspan="5">{{ $tech->rooftop }}</td>
+            <td colspan="5">{{ @$tech->rooftop }}</td>
         </tr>
         <tr>
             <td class="right b">Área de captación de agua de lluvia: </td>
             <td class="b-blue">Techo</td>
-            <td>{{ $tech->rainwater_area }}</td>
+            <td>{{ @$tech->rainwater_area }}</td>
             <td class="b-blue">M2</td>
             <td></td>
             <td></td>
@@ -130,7 +130,7 @@ use Carbon\Carbon;
         <tr>
             <td class="right b"></td>
             <td class="b-blue">Canaletas</td>
-            <td>{{ $tech->gutter }}</td>
+            <td>{{ @$tech->gutter }}</td>
             <td class="b-blue">pulgadas/metros</td>
             <td></td>
             <td></td>
@@ -138,7 +138,7 @@ use Carbon\Carbon;
         <tr>
             <td class="right b">Precipitación Pluvial de la Zona:</td>
             <td class="b-blue">Promedio Anual</td>
-            <td>{{ $tech->anual_precipitation }}</td>
+            <td>{{ @$tech->anual_precipitation }}</td>
             <td class="b-blue">M3</td>
             <td></td>
             <td></td>
@@ -147,7 +147,7 @@ use Carbon\Carbon;
             <td class="right b">Captación de Lluvia estimada (considerar 15% perdida):</td>
             <td class="b-blue">Promedio Anual</td>
             @php(@$tArea = $tech->anual_precipitation * $tech->rainwater_area * 0.85)
-            <td>{{ $tArea }}</td>
+            <td>{{ @$tArea }}</td>
             <td class="b-blue">Litros</td>
             <td></td>
             <td></td>
@@ -156,7 +156,7 @@ use Carbon\Carbon;
         <tr>
             <td class="right b">Volumen de almacenamiento (CISTERNA):</td>
             @php(@$tArea2 = $tech->rainwater_area * ($tech->environment == 0 ? 20 : 30) * 0.85)
-            <td class="">{{ $tArea2 }}</td>
+            <td class="">{{ @$tArea2 }}</td>
             <td class="">Litros</td>
             <td></td>
             <td></td>
@@ -164,7 +164,7 @@ use Carbon\Carbon;
         </tr>
         <tr>
             <td class="right b">Tinaco que surte a servicio:</td>
-            <td class="">{{ $tech->water_tank }}</td>
+            <td class="">{{ @$tech->water_tank }}</td>
             <td class="">Litros</td>
             <td></td>
             <td></td>
@@ -172,7 +172,7 @@ use Carbon\Carbon;
         </tr>
         <tr>
             <td class="right b">Distancia desde el área de captacion a la cisterna:</td>
-            <td class="">{{ $tech->distance }}</td>
+            <td class="">{{ @$tech->distance }}</td>
             <td></td>
             <td></td>
             <td></td>
@@ -180,7 +180,7 @@ use Carbon\Carbon;
         </tr>
         <tr>
             <td class="right b">Nivel de limpieza del techo:</td>
-            <td class="">{{ $tech->cleanliness ? "Sucio con obstaculos " : "Limpio y Despejado" }}</td>
+            <td class="">{{ @$tech->cleanliness ? "Sucio con obstaculos " : "Limpio y Despejado" }}</td>
             <td></td>
             <td></td>
             <td></td>
@@ -198,7 +198,7 @@ use Carbon\Carbon;
         <tr>
             <td class="right b">Otras consideraciones técnicas existentes:</td>
             <td class="b-blue">Tubería</td>
-            <td>{{ $tech->tube }}</td>
+            <td>{{ @$tech->tube }}</td>
             <td class="b-blue">tipo/diametro</td>
             <td class="b-blue">Red diametro (pulgadas):</td>
             <td></td>
@@ -206,10 +206,10 @@ use Carbon\Carbon;
         <tr>
             <td class="right b"></td>
             <td class="b-blue">Bomba</td>
-            <td>{{ $tech->pump }}</td>
+            <td>{{ @$tech->pump }}</td>
             <td class="b-blue">potencia/diametro</td>
             <td class="b-blue">Succión diametro (1"):</td>
-            <td>{{ $tech->diameter_inch }}</td>
+            <td>{{ @$tech->diameter_inch }}</td>
         </tr>
         <tr>
             <td class="right b"></td>
@@ -222,13 +222,13 @@ use Carbon\Carbon;
         <tr>
             <td class="right b"></td>
             <td class="">Notas:</td>
-            <td colspan=4>{{ $tech->notes }}</td>
+            <td colspan=4>{{ @$tech->notes }}</td>
         </tr>
 
         <tr>
             <td class="right b">Otros detalles:</td>
             <td class="">Excavación (m3)</td>
-            <td>{{ $tech->excavation }}</td>
+            <td>{{ @$tech->excavation }}</td>
             <td class="">Doble flotador</td>
             <td class="">{{ Helper::boolString($tech->d_float) }}</td>
             <td></td>
@@ -236,7 +236,7 @@ use Carbon\Carbon;
         <tr>
             <td class="right b"></td>
             <td class="">Control</td>
-            <td>{{ $tech->control ? "automático" : "manual" }}</td>
+            <td>{{ @$tech->control ? "automático" : "manual" }}</td>
             <td class=""></td>
             <td class=""></td>
             <td></td>
@@ -251,11 +251,11 @@ use Carbon\Carbon;
         </tr>
         <tr>
             <td class="right b-blue">Notas adicionales</td>
-            <td colspan="5" class="">{{ $tech->subnotes }}</td>
+            <td colspan="5" class="">{{ @$tech->subnotes }}</td>
         </tr>
         <tr>
             <td class="right b-blue">Descripción del área y condiciones del inmueble donde se implementa el sistema:</td>
-            <td colspan="5" class="">{{ $tech->description }}</td>
+            <td colspan="5" class="">{{ @$tech->description }}</td>
         </tr>
         <tr>
             <td class="b-blue" colspan="3" style="padding:5px;">
@@ -265,7 +265,7 @@ use Carbon\Carbon;
                 <p>III. En caso de Escuela (AULAS): bajantes, pretiles</p>
             </td>
             <td colspan="1">Nombre y Firma Técnico:</td>
-            <td colspan="2" style="text-align:center">{{ $tech->format->user->name }}</td>
+            <td colspan="2" style="text-align:center">{{ @$tech->format->user->name }}</td>
         </tr>
     </tbody>
 </table>
