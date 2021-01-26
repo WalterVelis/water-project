@@ -189,6 +189,43 @@ $sublevel="";
     </div>
 </li>
 @endif
+
+@if(App\User::hasPermissions("Admin"))
+
+<li class="nav-item {{ ($menuParent == 'datastudio') ? ' active' : '' }}">
+    <a class="nav-link" data-toggle="collapse" href="#dataStudio"
+        {{ ($menuParent == 'datastudio-1' || $activePage == 'datastudio-1') ? ' aria-expanded="true"' : '' }}>
+        <div class="photo2 sidebar-image">
+            <i class="material-icons">request_page</i>
+        </div>
+        <p>{{ __('Informes') }}
+            <b class="caret"></b>
+        </p>
+    </a>
+    <div class="collapse {{ ($menuParent == 'datastudio') ? ' show' : '' }}" id="dataStudio">
+        <ul class="nav">
+
+
+            <li class="nav-item{{ $activePage == 'datastudio-1' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('informe.ventas') }}">
+                    <span class="sidebar-mini sub-itm">VU</span>
+                    <span class="sidebar-normal"> {{ __('Venta y utilidad') }} </span>
+                </a>
+            </li>
+
+            <li class="nav-item{{ $activePage == 'datastudio-2' ? ' active' : '' }}">
+                <a class="nav-link" href="{{ route('informe.bateo') }}">
+                    <span class="sidebar-mini  sub-itm">IB</span>
+                    <span class="sidebar-normal"> {{ __('Índice de bateo') }} </span>
+                </a>
+            </li>
+
+
+        </ul>
+    </div>
+</li>
+
+@endif
 <!-- <img src="{{asset("img/icons").'/Gestion_proveedor.png'}}" />
 <img src="{{asset("img/icons").'/Catalogo.png'}}" />
 <img src="{{asset("img/icons").'/Gestion_presupuesto.png'}}" />

@@ -324,7 +324,7 @@ form .col-12 {
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-4">
-                                                <label style="" class="c_label col-12 col-form-label">{{ __('Promedio anual de captación de lluvia estimada') }}</label>
+                                                <label style="" class="c_label col-12 col-form-label">{{ __('Promedio anual de captación de lluvia estimada (lts)') }}</label>
                                                 <div class="col-sm-12">
                                                     <input required class="form-control" disabled id="pa" name="" type="text" value="" />
                                                 </div>

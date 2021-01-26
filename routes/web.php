@@ -37,6 +37,11 @@ Route::get('home', 'HomeController@index')->name('home');
 Route::get('dashboard', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth','change']], function () {
+
+    Route::get('informes/ventas', function () { return view('informes.ventas');})->name('informe.ventas');
+    Route::get('informes/bateo', function () { return view('informes.bateo');})->name('informe.bateo');
+    Route::get('materialProjectExcel/{project_id}', 'TechFormatController@export_materials');
+
     Route::get('materialProjectExcel/{project_id}', 'TechFormatController@export_materials');
     Route::get('costProjectExcel/{project_id}', 'TechFormatController@export_costs');
     Route::get('accesoryProjectExcel/{project_id}', 'TechFormatController@export_accesories');
