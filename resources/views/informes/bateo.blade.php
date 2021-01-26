@@ -1,7 +1,7 @@
 @extends('layouts.app', [
   'activePage' => 'datastudio-2',
   'menuParent' => 'datastudio',
-  'titlePage' => __('Índice de bateo'),
+  'titlePage' => __('Informes'),
 ])
 
 <style>
