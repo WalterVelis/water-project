@@ -39,14 +39,21 @@
 </style>
 
 @section('content')
-<div class="container" style="height: auto;">
-    <div class="card-icon-inf">
-        <span style="color:white;"><i class="material-icons">build</i></span>
-    </div>
-  <div class="row justify-content-center">
-
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-rose card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">build</i>
+                        </div>
+                        <span style="    font-size: 2em; margin-top: 20px; display: inline-block;">Venta y utilidad</span>
     <iframe style="border-radius: 15px;border: 0; width: 98%; height: 85vh; margin-top: 80px;" src="https://datastudio.google.com/embed/reporting/abf4bc48-fecb-4350-aac9-8e803ca9231a/page/yRetB" frameborder="0" allowfullscreen></iframe>
-
-  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 @endsection

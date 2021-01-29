@@ -45,14 +45,21 @@
 </style>
 
 @section('content')
-<div class="container" style="height: auto;">
-    <div class="card-icon-inf">
-        <span style="color:white;"><i class="material-icons">build</i></span>
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-rose card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">build</i>
+                        </div>
+                        <span style="    font-size: 2em; margin-top: 20px; display: inline-block;">Índice de bateo</span>
+        <iframe style="border-radius: 15px;border: 0; width: 98%; height: 85vh; margin-top: 80px;" src="https://datastudio.google.com/embed/reporting/4ab22eaa-ecbd-4426-aea2-8f5cd02f0a6a/page/yRetB" frameborder="0" allowfullscreen></iframe>
     </div>
-  <div class="row justify-content-center">
-
-    <iframe style="border-radius: 15px;border: 0; width: 98%; height: 85vh; margin-top: 80px;" src="https://datastudio.google.com/embed/reporting/4ab22eaa-ecbd-4426-aea2-8f5cd02f0a6a/page/yRetB" frameborder="0" allowfullscreen></iframe>
-
   </div>
+</div>
+</div>
+</div>
 </div>
 @endsection
