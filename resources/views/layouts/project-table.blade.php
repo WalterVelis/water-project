@@ -6,11 +6,11 @@
 @endif
 <table class="table format-table">
     <thead>
-        <th scope="col">{{ __('Name') }}</th>
-        <th scope="col">{{ __('Email') }}</th>
-        <th scope="col">{{ __('Telephone') }}</th>
-        <th scope="col">{{ __('Job Position') }}</th>
-        @if (!App\User::hasPermissions("Tech"))<th scope="col">{{ __('Actions') }}</th>@endif
+        <th style="font-size: 0.9em!important;" scope="col">{{ __('Name') }}</th>
+        <th style="font-size: 0.9em!important;" scope="col">{{ __('Email') }}</th>
+        <th style="font-size: 0.9em!important;" scope="col">{{ __('Telephone') }}</th>
+        <th style="font-size: 0.9em!important;" scope="col">{{ __('Job Position') }}</th>
+        @if (!App\User::hasPermissions("Tech"))<th style="font-size: 0.9em!important;" scope="col">{{ __('Actions') }}</th>@endif
     </thead>
     <tbody>
         @foreach ($entities as $item)

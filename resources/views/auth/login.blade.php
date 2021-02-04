@@ -12,9 +12,13 @@
     .login-page .footer .copyright, .login-page .footer a {
         color: #607D8B!important;
     }
+
+    .navbar {
+        display: none!important;
+    }
 </style>
 @section('content')
-<div class="container" style="padding: -120px">
+<div class="container" style="    padding-top: 0px!important;">
   <div class="row justify-content-center">
     <img src="{{asset("material").'/img/licons/agua-logo-1.png'}}" width="15%">
   </div>

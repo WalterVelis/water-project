@@ -224,7 +224,7 @@
                         <span onclick="$('#sendQuotation').hide();$('#applyUtility').show();" style="    text-align: left;cursor: pointer;width:30px; height: 30px; border-radius:40px; font-weight:bold; background: #0b6696; color: white; display:inline-block;padding-left:8px;font-size:1.2em;padding-top:5px;">%</span>
                         <span onclick="$('#sendQuotation').show();$('#applyUtility').hide();" style="    text-align: left;cursor: pointer;width:30px; height: 30px; border-radius:40px; font-weight:bold; background: #0b6696; color: white; display:inline-block;padding-left:10px;font-size:1.2em;padding-top:5px;">+</span>
                     </div>
-                    <div class="container mt-4" id="q-table">
+                    <div class="container mt-4" id="q-table" style="    overflow-x: auto;">
 
                     </div>
                     <div class="row float-right mr-4">

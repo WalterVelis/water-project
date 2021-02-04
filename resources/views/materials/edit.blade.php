@@ -34,7 +34,7 @@
                         <div class="card-body">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-12 col-md-4 mt-5">
                                         <label class="col-12" style="margin-bottom:-12px; font-weight:bold;">{{ __('Nombre de material') }}</label>
                                         <div class="col-sm-12">
                                             <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
@@ -44,7 +44,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-12 col-md-4 mt-5">
                                     <label class="col-12" style="margin-bottom:-12px; font-weight:bold;">{{ __('Tipo de material') }}</label>
                                         <div class="col-sm-12">
                                             <div class="form-group{{ $errors->has('type') ? ' has-danger' : '' }}">
@@ -77,7 +77,7 @@
                                             </div>
                                         </div>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-12 col-md-4 mt-5">
                                     <label class="col-12" style="margin-bottom:-12px; font-weight:bold;">{{ __('Unidad') }}</label>
                                         <div class="col-sm-12">
                                             <div class="form-group{{ $errors->has('unit') ? ' has-danger' : '' }}">
@@ -96,17 +96,17 @@
                                             </div>
                                         </div>
                                         </div>
-                                        <div class="col-7 mt-5">
+                                        <div class="col-12 col-md-7 mt-5">
                                             <span style="color:black; font-size:1.1em;">Proveedores asignados</span>
                                             <div class="row mt-4">
-                                                <div class="col-4">Proveedores</div>
-                                                <div class="col-3">Existencia</div>
-                                                <div class="col-3">Costo Unitario</div>
-                                                <div class="col-2"></div>
+                                                <div class="col-12 col-md-4">Proveedores</div>
+                                                <div class="col-12 col-md-3">Existencia</div>
+                                                <div class="col-12 col-md-3">Costo Unitario</div>
+                                                <div class="col-12 col-md-2"></div>
                                             </div>
                                             <div class="bg-w" id="providers" style="height:300px;overflow-y: scroll; overflow-x: hidden;">
                                                 @foreach($providers as $p)
-                                                <div id="p-{{ $p->provider->id }}" class="row">
+                                                <div id="p-{{ $p->provider->id }}" class="row mt-3">
                                                     <div class="col-12 col-md-4"><span>{{ $p->provider->denomination }}</span></div>
                                                     <div class="col-12 col-md-3"><input value="{{ $p->qty }}" required name="qty[]" type="number" class="form-control">
                                                         <input name="provider_id[]" type="hidden" value="{{ $p->provider->id }}">
@@ -120,7 +120,7 @@
                                             </div>
                                         </div>
                                         <div class="col-1"></div>
-                                        <div class="col-4  mt-5">
+                                        <div class="col-12 col-md-4 mt-5">
                                             <span style="color:black; font-size:1.1em;">Proveedores disponibles</span>
                                             <div class="row mt-4">
                                                 <div class="col-8">Proveedores</div>
@@ -192,7 +192,7 @@
         name = $('#provider-'+id).html();
         $('#provider-'+id).parent().parent('.row').hide();
         content = `
-        <div id="p-${id}" class="row">
+        <div id="p-${id}" class="row mt-3">
             <div class="col-12 col-md-4"><span>${name}</span></div>
             <div class="col-12 col-md-3"><input required name="qty[]" type="number" class="form-control"><input name="provider_id[]" type="hidden" value="${id}"></div>
             <div class="col-12 col-md-3"><input required name="unit_cost[]" type="number" class="form-control"></div>

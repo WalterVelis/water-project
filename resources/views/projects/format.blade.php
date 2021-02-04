@@ -608,7 +608,7 @@ form .col-12 {
                             </form>
                             @endif
                         </div>
-                        <div class="col-12 mt-4" id="planning"></div>
+                        <div class="col-12 mt-4" id="planning" style="overflow-x: auto"></div>
                         <br>
                         <br>
                         <div class="row">
@@ -646,7 +646,7 @@ form .col-12 {
                             </form>
                             @endif
                         </div>
-                        <div class="col-12" id="auth"></div>
+                        <div class="col-12" id="auth" style="overflow-x: auto"></div>
                         <input type="hidden" id="current-value" value="{{ $format->state }}">
                         <input type="hidden" id="current-municipality" value="{{ $format->municipality }}">
                         <div class="row float-right mr-4">
@@ -975,11 +975,11 @@ $(function() {
     @if (App\User::hasPermissions("Tech"))
 
     setTimeout(() => {
-        $('input, select').attr('disabled', 'true')
+        $('input, select').addClass('disabled')
         $('input, select').attr('readonly', 'true')
-        $('input.i-enabled').removeAttr('disabled')
+        $('input.i-enabled').removeClass('disabled')
         $('input.i-enabled').removeAttr('readonly')
-    }, 500);
+    }, 1500);
     @endif
 
     $("input").blur(function(){
@@ -1058,16 +1058,21 @@ function preload() {
     // }, 1000);
     @if (App\User::hasPermissions("Tech"))
 
+
     setTimeout(() => {
-        $('input, select').attr('disabled', 'true')
+        $('input, select').addClass('disabled')
         $('input, select').attr('readonly', 'true')
-        $('input.i-enabled').removeAttr('disabled')
+        // $('input.i-enabled').removeAttr('disabled')
         $('#token').removeAttr('disabled')
         $('#patch').removeAttr('disabled')
         $('input.i-enabled').removeAttr('readonly')
+        $('input.i-enabled').removeClass('disabled')
         $('#token').removeAttr('readonly')
         $('#patch').removeAttr('readonly')
-    }, 500);
+        $('.disabled').off('click');
+    }, 1500);
+
+
     @endif
     // $('.selDiv option:eq(1)').prop('selected', true)
 }
@@ -1091,5 +1096,9 @@ $(function () {
 });
 
 </script>
-
+<style>
+    .disabled {
+        opacity: 0.5!important;
+    }
+</style>
 @endpush

@@ -545,7 +545,7 @@ form .col-12 {
                                 <h5 class="mb-0 text-uppercase d-inline">Mano de obra y Herramientas</h5><div style="color:white; margin-right: 26px;" class="d-inline float-right" id="total-cost">$0.00</div>
                             </div>
                             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                                <div class="card-body bg-white">
+                                <div class="card-body bg-white" style="overflow-x: auto;">
                                     {{-- <a href="/getMO/{{ $format->id }}">
                                         <button class=" d-inline" style="position: absolute; right: 0px;background: none; border: none; font-size: 1.5em;    width: 90px;" type="button">
                                             <i class="fa fa-download" aria-hidden="true"></i>
@@ -596,7 +596,7 @@ form .col-12 {
                                 <h5 class="mb-0 text-uppercase d-inline">Listado de Materiales</h5><div style="color:white; margin-right: 26px;" class="d-inline float-right" id="total-material">$0.00</div>
                             </div>
                             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                <div class="card-body bg-white">
+                                <div class="card-body bg-white" style="overflow-x: auto;">
                                     @if (App\User::hasPermissions("Tech"))
                                     <form action="" id="form-materialformat">
                                         @csrf
@@ -648,7 +648,7 @@ form .col-12 {
                                 <h5 class="mb-0 text-uppercase d-inline">KIT Isla Urbana</h5><div style="color:white; margin-right: 26px;" class="d-inline float-right" id="total-accesory">$0.00</div>
                             </div>
                             <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-                                <div class="card-body bg-white">
+                                <div class="card-body bg-white" style="overflow-x: auto;">
                                     @if (App\User::hasPermissions("Admin") || App\User::hasPermissions("Tech"))
                                     {{-- <a href="/getKit/{{ $format->id }}">
                                         <button class=" d-inline" style="    position: absolute; right: 0px;background: none; border: none; font-size: 1.5em;    width: 90px;" type="button">

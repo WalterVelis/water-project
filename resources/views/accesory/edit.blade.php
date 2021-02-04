@@ -21,7 +21,7 @@
                         <div class="card-body">
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-4">
+                                    <div class="col-12 col-md-4">
                                         <label class="col-12" style="    white-space: nowrap;margin-bottom:-12px; font-weight:bold;">{{ __('Existencia') }}</label>
                                         <div class="col-sm-12">
                                             <div class="form-group{{ $errors->has('qty') ? ' has-danger' : '' }}">
@@ -31,7 +31,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-12 col-md-4">
                                         <label class="col-12" style="    white-space: nowrap;margin-bottom:-12px; font-weight:bold;">{{ __('Nombre del material') }}</label>
                                         <div class="col-sm-12">
                                             <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
@@ -41,7 +41,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-12 col-md-4">
                                         <label class="col-12" style="    white-space: nowrap;margin-bottom:-12px; font-weight:bold;">{{ __('Costo unitario con IVA') }}</label>
                                         <div class="col-sm-12">
                                             <div class="form-group{{ $errors->has('unit_cost') ? ' has-danger' : '' }}">
@@ -51,7 +51,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-4">
+                                    <div class="col-12 col-md-4">
                                         <label class="col-12" style="    white-space: nowrap;margin-bottom:-12px; font-weight:bold;">{{ __('Descuento (%)') }}</label>
                                         <div class="col-sm-12">
                                             <div class="form-group{{ $errors->has('discount') ? ' has-danger' : '' }}">

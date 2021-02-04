@@ -3,6 +3,14 @@
 @section('content')
 @error('error')
 @enderror
+<style>
+    @media (max-width: 568px) {
+        .downbut {
+            margin-top:30px;
+            transform: translateX(8px);
+        }
+    }
+</style>
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -17,7 +25,7 @@
 
                             {{-- @can('create', App\User::class) --}}
                             <div class="row col-12">
-                                <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 text-right">
+                                <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 text-right downbut">
                                     @if (App\User::hasPermissions("User Create"))
                                     <a href="{{ route('providers.create') }}" class="btn-add" style="margin-right: 20px"><i
                                             style="    line-height: 1em;background: #0b6696; color: white; font-size: 1em; width: 30px; padding: 10px; border-radius: 50px;"

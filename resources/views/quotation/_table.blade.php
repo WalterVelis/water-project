@@ -42,22 +42,21 @@
             @php($subTotal += ( ($totalManoDeObra / (((100 - $costsUtility->utility) / 100))) + (($totalManoDeObra / (((100 - $costsUtility->utility) / 100))) * ((($costsUtility->indirect) / 100)))))
             {{-- <td>{{ Helper::formatMoney($totalManoDeObra) }}</td> --}}
         </tr>
+        @foreach($manoDeObra as $mo)
         <tr class="q-details" style="display: none;">
             <td></td>
             <td>
-                @foreach($manoDeObra as $mo)
-                <div class="row">
-                    <div style="text-align: right;" class="col-6">{{ $mo->costs->name }}</div>
-                    <div style="text-align: right;" class="col-6">{{ Helper::formatMoney($mo->day * $mo->cost, false) }}</div>
-                </div>
-                @endforeach
+                <div style="">{{ $mo->costs->name }}</div>
+            </td>
+            <td></td>
+            <td>
+                <div style="">{{ Helper::formatMoney($mo->day * $mo->cost, false) }}</div>
             </td>
             <td></td>
             <td></td>
             <td></td>
-            <td></td>
-            <td></td>
         </tr>
+            @endforeach
         @if($escuela->has_educational_programs)
         <tr>
             <td>{{ $id + 1 }} @php($id += 1)</td>
@@ -83,15 +82,15 @@
         <tr class="q-details" style="display: none;">
             <td></td>
             <td>
-                <div class="row">
-                    <div style="text-align: right;" class="col-6">Materiales Extra</div>
-                    <div style="text-align: right;" class="col-6"class="currency"><span>$</span>{{ Helper::formatMoney($totalMaterial, false) }}</div>
-                    <div style="text-align: right;" class="col-6">Accesorios IU</div>
-                    <div style="text-align: right;" class="col-6"class="currency"><span>$</span>{{ Helper::formatMoney($totalIU, false) }}</div>
-                </div>
+                    <div style=";">Materiales Extra</div>
+                    <div style=";">Accesorios IU</div>
+
             </td>
             <td></td>
-            <td></td>
+            <td>
+                <div style=";"class="currency"><span>$</span>{{ Helper::formatMoney($totalMaterial, false) }}</div>
+                    <div style=";"class="currency"><span>$</span>{{ Helper::formatMoney($totalIU, false) }}</div>
+            </td>
             <td></td>
             <td></td>
             <td></td>

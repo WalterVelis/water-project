@@ -33,7 +33,7 @@
 {{-- @dd($project_materials) --}}
 @php($total = 0)
 @if (App\User::hasPermissions("Tech") || App\User::hasPermissions("Vendor"))
-<div class="row">
+<div class="row" style="min-width: max-content;">
     <div class="col-8">
         <table class="table c-table">
             <thead>
@@ -65,7 +65,7 @@
 @endif
 
 @if (App\User::hasPermissions("Admin"))
-<div class="row">
+<div class="row" style="min-width: max-content;">
     <div class="col-12">
         <div class="row t-head d-flex justify-content-around" style="background: #bacfda;">
             <div style="padding: 4px 8px;width: 16.6%">ID</div>

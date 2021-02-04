@@ -29,6 +29,12 @@
         font-size: 1.3em;
         margin-left: -1px;
     }
+
+    @media (max-width: 992px) {
+        .sidebar[data-background-color="black"] .nav .nav-item i {
+            font-size: 1em;
+        }
+    }
 </style>
 @php
 if(!isset($sublevel)){
@@ -86,13 +92,14 @@ $sublevel="";
 @endif
 <li class="nav-item{{ $activePage == 'provider' ? ' active' : '' }}">
     <a class="nav-link" href="{{ route('providers.index') }}">
-        <span class="sidebar-mini photo2"><i class="material-icons">assignment_ind</i></span>
-        <span class="sidebar-normal"> {{ __('Gestión de Proveedores') }} </span>
+        <div class="photo2 sidebar-image">
+            <i class="material-icons">assignment_ind</i>
+        </div>
+        <p>{{ __('Gestión de Proveedores') }} </p>
     </a>
 </li>
 <li class="nav-item {{ ($menuParent == 'costs-parent') ? ' active' : '' }}">
-    <a class="nav-link" data-toggle="collapse" href="#bfCosts"
-        {{ ($menuParent == 'laravel' || $activePage == 'costs') ? ' aria-expanded="true"' : '' }}>
+    <a class="nav-link" data-toggle="collapse" href="#bfCosts" {{ ($menuParent == 'laravel' || $activePage == 'costs') ? ' aria-expanded="true"' : '' }}>
         <div class="photo2 sidebar-image">
             <i class="material-icons">request_page</i>
         </div>
@@ -132,8 +139,8 @@ $sublevel="";
 @endif
 <li class="nav-item{{ $activePage == 'projects-management' ? ' active' : '' }}">
     <a class="nav-link" href="{{ route('projects.index') }}">
-        <span class="sidebar-mini photo2"><i class="material-icons">work</i></span>
-        <span class="sidebar-normal"> {{ __('Gestión de Proyectos') }} </span>
+        <div class="photo2 sidebar-image"><i class="material-icons">work</i></div>
+        <p>{{ __('Gestión de Proyectos') }} </p>
     </a>
 </li>
 

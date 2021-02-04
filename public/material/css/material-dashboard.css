@@ -11510,14 +11510,6 @@ fieldset[disabled] .is-focused .switch label:focus {
   background-image: linear-gradient(to top, #0b6696 1px, rgba(210, 210, 210, 0) 1px), linear-gradient(to top, #afaaaa 1px, rgba(210, 210, 210, 0) 1px);
 }
 
-fieldset[disabled][disabled] .form-control,
-.form-control.disabled,
-.form-control:disabled,
-.form-control[disabled] {
-  background-image: linear-gradient(to right, #afaaaa 0%, #afaaaa 30%, transparent 30%, transparent 100%);
-  background-repeat: repeat-x;
-  background-size: 3px 1px;
-}
 
 .form-control.form-control-success,
 .is-focused .form-control.form-control-success {
