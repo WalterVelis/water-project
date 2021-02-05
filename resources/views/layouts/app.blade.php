@@ -382,7 +382,6 @@ function formatMoney(number, decPlaces, decSep, thouSep) {
         (decPlaces ? decSep + Math.abs(number - i).toFixed(decPlaces).slice(2) : "");
 }
         </script>
-        @if (auth()->user()->change_password == 1)
         <script>
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
@@ -397,7 +396,6 @@ function formatMoney(number, decPlaces, decSep, thouSep) {
                 });
             })
         </script>
-        @endif
         @stack('js')
 </body>
 

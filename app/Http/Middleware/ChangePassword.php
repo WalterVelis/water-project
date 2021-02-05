@@ -17,6 +17,11 @@ class ChangePassword
     public function handle($request, Closure $next)
     {
         if(auth()->check()){
+
+            if(auth()->user()->change_password == 0 && $request->path() == 'getNotifications') {
+                return response('Forbidden.', 403);
+            }
+
             if(auth()->user()->change_password==1 || $request->path() == 'profile' || $request->path() == 'profile/password' || $request->route() == 'profile.password' || $request->method() == 'PUT' || $request->method() == 'put')
             {
                 return $next($request);

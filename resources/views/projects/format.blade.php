@@ -1100,5 +1100,7 @@ $(function () {
     .disabled {
         opacity: 0.5!important;
     }
+
+    .form-control.disabled
 </style>
 @endpush
