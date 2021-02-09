@@ -94,6 +94,9 @@
                 {{ __('Email') }}
               </th>
               <th align="left">
+                {{ __('Teléfono') }}
+              </th>
+              <th align="left">
                 {{ __('Role') }}
               </th>
               <th align="left">
@@ -109,6 +112,9 @@
                     </td>
                     <td align="left">
                       {{ $user->email }}
+                    </td>
+                    <td align="left">
+                      {{ $user->phone }}
                     </td>
                     <td align="left">
                       {{ $user->role->name }}

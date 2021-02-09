@@ -75,7 +75,7 @@ class CostFormatController extends Controller
         // dd($project_costs);
         // return view('layouts.pdf.mo', compact('project_costs'));
         $pdf =  PDF::loadView('layouts.pdf.mo', compact('project_costs'));
-        $name = Carbon::now()->toDateTimeString().'.pdf';
+        $name = 'Costos.pdf';
         return $pdf->setPaper('letter')->download($name);
     }
 

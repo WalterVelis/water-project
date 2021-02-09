@@ -471,7 +471,7 @@ class UserController extends Controller
         }
         $hora=$date->locale('es')->isoFormat('H:mm:ss');
         $fechaC = $date->format('Y');
-        $name= __("Users");
+        $name= __("Usuarios");
         $pdf = PDF::loadView('users.options.pdfAll', compact('name', 'query1', 'fecha', 'hora', 'idioma'));
         $pdf->setPaper("letter", "Portrait");
         return $pdf->download($name.'.pdf');
@@ -496,7 +496,7 @@ class UserController extends Controller
         $hora=$date->locale('es')->isoFormat('H:mm:ss');
         $fechaC = $date->format('Y');
         //log logica
-        $name= __("Inactive Users");
+        $name= __("Usuarios");
 
 
         $pdf = PDF::loadView('users.options.pdfAll', compact('name', 'query1', 'fecha', 'hora', 'idioma'));

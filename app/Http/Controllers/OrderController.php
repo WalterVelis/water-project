@@ -51,7 +51,7 @@ class OrderController extends Controller
         $format = Format::with('user')->whereId($formatId)->first();
         // return view('layouts.pdf.order', compact('providers', 'format', 'oderId'));
         $pdf =  PDF::loadView('layouts.pdf.order', compact('providers', 'format', 'oderId'));
-        $name = Carbon::now()->toDateTimeString().'.pdf';
+        $name = 'Orden de compra.pdf';
         return $pdf->download($name);
     }
 }

@@ -395,7 +395,7 @@ form .col-12 {
                                             <div class="col-12 col-md-2">
                                                 <div class="form-check">
                                                     <label class="form-check-label">
-                                                        <input {{ in_array(__('WC and Watering'), $water_quality) ? 'checked' : '' }} name="water_quality[]" class="form-check-input" type="checkbox"
+                                                        <input @if (App\User::hasPermissions("Tech")) onclick='return false;' @endif {{ in_array(__('WC and Watering'), $water_quality) ? 'checked' : '' }} name="water_quality[]" class="form-check-input" type="checkbox"
                                                             value="{{ __('WC and Watering') }}"> {{ __('WC and Watering') }}
                                                         <span class="form-check-sign">
                                                             <span class="check"></span>
@@ -406,7 +406,7 @@ form .col-12 {
                                             <div class="col-12 col-md-2">
                                                 <div class="form-check">
                                                     <label class="form-check-label">
-                                                        <input {{ in_array(__('Hygiene and personal care'), $water_quality) ? 'checked' : '' }} name="water_quality[]" class="form-check-input" type="checkbox"
+                                                        <input @if (App\User::hasPermissions("Tech")) onclick='return false;' @endif {{ in_array(__('Hygiene and personal care'), $water_quality) ? 'checked' : '' }} name="water_quality[]" class="form-check-input" type="checkbox"
                                                             value="{{ __('Hygiene and personal care') }}">
                                                         {{ __('Hygiene and personal care') }}
                                                         <span class="form-check-sign">
@@ -418,7 +418,7 @@ form .col-12 {
                                             <div class="col-12 col-md-2">
                                                 <div class="form-check">
                                                     <label class="form-check-label">
-                                                        <input {{ in_array(__('Purified'), $water_quality) ? 'checked' : '' }} name="water_quality[]" class="form-check-input" type="checkbox"
+                                                        <input @if (App\User::hasPermissions("Tech")) onclick='return false;' @endif {{ in_array(__('Purified'), $water_quality) ? 'checked' : '' }} name="water_quality[]" class="form-check-input" type="checkbox"
                                                             value="{{ __('Purified') }}"> {{ __('Purified') }}
                                                         <span class="form-check-sign">
                                                             <span class="check"></span>
@@ -429,7 +429,7 @@ form .col-12 {
                                             <div class="col-12 col-md-2">
                                                 <div class="form-check">
                                                     <label class="form-check-label">
-                                                        <input {{ in_array(__('Other'), $water_quality) ? 'checked' : '' }} name="water_quality[]" id="water_quality-other"
+                                                        <input @if (App\User::hasPermissions("Tech")) onclick='return false;' @endif {{ in_array(__('Other'), $water_quality) ? 'checked' : '' }} name="water_quality[]" id="water_quality-other"
                                                             class="form-check-input" type="checkbox" value="{{ __('Other') }}"> {{ __('Other') }}
                                                         <span class="form-check-sign">
                                                             <span class="check"></span>
@@ -453,7 +453,7 @@ form .col-12 {
                                         <div class="col-12 col-md-3">
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                    <input {{ in_array(__('Arch Ceiling'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input @if (App\User::hasPermissions("Tech")) i-enabled @endif" type="checkbox"
+                                                    <input {{ in_array(__('Arch Ceiling'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input" @if (App\User::hasPermissions("Tech")) onclick='return false;' @endif type="checkbox"
                                                         value="{{ __('Arch Ceiling') }}"> {{ __('Arch Ceiling') }}
                                                     <span class="form-check-sign">
                                                         <span class="check"></span>
@@ -464,7 +464,7 @@ form .col-12 {
                                         <div class="col-12 col-md-3">
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                    <input {{ in_array(__('Two Waters'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input @if (App\User::hasPermissions("Tech")) i-enabled @endif" type="checkbox"
+                                                    <input {{ in_array(__('Two Waters'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input" @if (App\User::hasPermissions("Tech")) onclick='return false;' @endif type="checkbox"
                                                         value="{{ __('Two Waters') }}"> {{ __('Two Waters') }}
                                                     <span class="form-check-sign">
                                                         <span class="check"></span>
@@ -475,7 +475,7 @@ form .col-12 {
                                         <div class="col-12 col-md-3">
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                    <input {{ in_array(__('Flat With Pending'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input @if (App\User::hasPermissions("Tech")) i-enabled @endif" type="checkbox"
+                                                    <input {{ in_array(__('Flat With Pending'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input" @if (App\User::hasPermissions("Tech")) onclick='return false;' @endif type="checkbox"
                                                         value="{{ __('Flat With Pending') }}"> {{ __('Flat With Pending') }}
                                                     <span class="form-check-sign">
                                                         <span class="check"></span>
@@ -486,7 +486,7 @@ form .col-12 {
                                         <div class="col-12 col-md-3">
                                             <div class="form-check">
                                                 <label class="form-check-label">
-                                                    <input {{ in_array(__('Flat Without Pending'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input @if (App\User::hasPermissions("Tech")) i-enabled @endif" type="checkbox"
+                                                    <input {{ in_array(__('Flat Without Pending'), $roof_type) ? 'checked' : '' }} name="roof_type[]" class="form-check-input" @if (App\User::hasPermissions("Tech")) onclick='return false;' @endif type="checkbox"
                                                         value="{{ __('Flat Without Pending') }}">
                                                     {{ __('Flat Without Pending') }}
                                                     <span class="form-check-sign">
@@ -1101,6 +1101,10 @@ $(function () {
         opacity: 0.5!important;
     }
 
-    .form-control.disabled
+    @if (App\User::hasPermissions("Tech"))
+        .form-check .form-check-label {
+            opacity: 0.5!important;
+        }
+    @endif
 </style>
 @endpush

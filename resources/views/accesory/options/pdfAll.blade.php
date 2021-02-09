@@ -101,7 +101,7 @@
 
                     </td>
                     <td align="center">
-                        <h1 style="color:#0b6696">Registro de Materiales IU</h1>
+                        <h1 style="color:#0b6696">Registro de Accesorios IU</h1>
                     </td>
                     <td align="right" style="width: 20%;">
                     </td>
@@ -138,6 +138,9 @@
                         {{ __('Costo unitario') }}
                     </th>
                     <th>
+                        {{ __('Descuento') }}
+                    </th>
+                    <th>
                         {{ __('Fecha') }}
                     </th>
                 </tr>
@@ -153,6 +156,9 @@
                         </td>
                         <td style="text-align: right;">
                             {{ Helper::formatMoney($accesory->unit_cost) }}
+                        </td>
+                        <td>
+                            {{ $accesory->discount }}%
                         </td>
                         <td style="white-space: nowrap">
                             {{ $accesory->created_at->format('Y-m-d') }}

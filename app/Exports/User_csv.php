@@ -15,7 +15,7 @@ class User_csv implements FromCollection, WithCustomCsvSettings, WithHeadings
         return DB::table('users as us')
             ->where('status', '1')
             ->join('roles as r','r.id','=','us.role_id')
-            ->select('us.name','us.email','r.name as rol','us.created_at')
+            ->select('us.name','us.email','r.name as rol', 'us.phone as phone', 'us.created_at')
             ->orderby('us.name', 'asc')->get();
 
     }
@@ -26,6 +26,7 @@ class User_csv implements FromCollection, WithCustomCsvSettings, WithHeadings
             __('Name'),
             __('Email'),
             __('Role'),
+            __('Teléfono'),
             __('Creation Date'),
         ];
     }

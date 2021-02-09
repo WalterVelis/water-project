@@ -24,7 +24,7 @@
                 <tr class="cc">
                     <th>ID</th>
                     <th>Material</th>
-                    <th>Cantidad</th>
+                    <th>Piezas</th>
                     @if (!App\User::hasPermissions("Vendor"))<th>Acciones</th>@endif
                 </tr>
             </thead>

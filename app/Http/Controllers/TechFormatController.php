@@ -84,7 +84,7 @@ class TechFormatController extends Controller
         // return view('techformat._materials', compact('project_materials', 'materialProvider'));
 
         $pdf =  PDF::loadView('layouts.pdf.techMat', compact('project_materials', 'materialProvider'));
-        $name = Carbon::now()->toDateTimeString().'.pdf';
+        $name = 'Materiales Tecnico.pdf';
         return $pdf->setPaper('letter', 'landscape')->download($name);
     }
 
@@ -93,7 +93,7 @@ class TechFormatController extends Controller
 
         $kit = AccesoryFormat::with('accesory')->where('format_id', $id)->get();
         $pdf =  PDF::loadView('layouts.pdf.techKit', compact('kit'));
-        $name = Carbon::now()->toDateTimeString().'.pdf';
+        $name = 'Accesorios Tecnico.pdf';
         return $pdf->setPaper('letter', 'landscape')->download($name);
     }
 
@@ -105,7 +105,7 @@ class TechFormatController extends Controller
         $tech = TechFormat::with('format.user')->where('format_id', $id)->first();
         // return view('layouts.pdf.tech', compact('format', 'entities', 'tech'));
         $pdf =  PDF::loadView('layouts.pdf.tech', compact('format', 'entities', 'tech'));
-        $name = Carbon::now()->toDateTimeString().'.pdf';
+        $name = 'Formato Tecnico.pdf';
         return $pdf->setPaper('letter', 'landscape')->download($name);
     }
     /**

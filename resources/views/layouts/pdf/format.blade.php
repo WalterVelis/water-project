@@ -172,8 +172,8 @@ use Carbon\Carbon;
         </tr>
         <tr>
             <td width="35%" class="right b">Volumen de almacenamiento (CISTERNA)</td>
-            <td width="15%"> </td>
-            <td width="15%" class="b-blue">litros</td>
+            <td width="15%">{{ @$format->environment ? 30 * @$format->rainwater_area : 20 * @$format->rainwater_area }}</td>
+            <td width="15%" class="b-blue">m3</td>
             <td width="35%" colspan="3"></td>
         </tr>
 

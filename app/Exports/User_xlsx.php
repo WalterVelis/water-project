@@ -23,7 +23,7 @@ class User_xlsx implements FromCollection, ShouldAutoSize, WithHeadings, WithCus
         return DB::table('users as us')
             ->where('status', '1')
             ->join('roles as r','r.id','=','us.role_id')
-            ->select('us.name','us.email','r.name as rol','us.created_at')
+            ->select('us.name','us.email','r.name as rol', 'us.phone','us.created_at')
             ->orderby('us.name', 'asc')->get();
     }
 
@@ -33,6 +33,7 @@ class User_xlsx implements FromCollection, ShouldAutoSize, WithHeadings, WithCus
             __('Name'),
             __('Email'),
             __('Role'),
+            __('Teléfono'),
             __('Creation date'),
         ];
     }
@@ -71,7 +72,7 @@ class User_xlsx implements FromCollection, ShouldAutoSize, WithHeadings, WithCus
 
     		AfterSheet::class => function(AfterSheet $event) {
 
-    			$col='D';  // We pass the column where it ends the headers
+    			$col='E';  // We pass the column where it ends the headers
 
                 $event->sheet->mergeCells('A1:'.$col.'5');    // combine cells
 	            $event->sheet->setCellValue('A1', __('Users'));    // Insert text

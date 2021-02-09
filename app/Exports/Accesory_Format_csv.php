@@ -6,6 +6,7 @@ use App\AccesoryFormat;
 use App\CostFormat;
 use App\MaterialFormat;
 use App\Role;
+use App\User;
 use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -31,6 +32,13 @@ class Accesory_Format_csv implements FromCollection, WithCustomCsvSettings, With
 
     public function headings(): array   // Function where the headers are specified.
     {
+        if(User::hasPermissions("Tech")){
+            return [
+                __('ID'),
+                __('Material'),
+                __('Piezas')
+            ];
+        }
         return [
             __('ID'),
             __('Material'),
@@ -46,6 +54,14 @@ class Accesory_Format_csv implements FromCollection, WithCustomCsvSettings, With
 
     public function map($data): array
     {
+        if(User::hasPermissions("Tech")){
+            return [
+                $data->id,
+                $data->accesory->name,
+                $data->qty,
+            ];
+        }
+
         return [
             $data->id,
             $data->accesory->name,

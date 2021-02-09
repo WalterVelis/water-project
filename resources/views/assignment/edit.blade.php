@@ -99,16 +99,16 @@
                                 @endforeach --}}
                                 <div class="row mt-2">
 
-                                    <div class="mt-5 d-none d-lg-block col-12 col-md-6">
-                                        <h3>Personas Asignadas</h3>
+                                    <div class="mt-5 d-none d-md-block col-12 col-md-6">
+                                        <h4>Personas Asignadas</h4>
                                     </div>
-                                    <div class="mt-5 d-none d-lg-block col-12 col-md-6">
-                                        <h3>Estatus Asignado</h3>
+                                    <div class="mt-5 d-none d-md-block col-12 col-md-6">
+                                        <h4>Estatus Asignado</h4>
                                     </div>
                                     <div class="mt-5 col-12 col-md-6">
                                         <span>Proyecto creado por: </span> <input class="w-100" readonly disabled type="text" value="{{ $assignmentData->user->name }}">
                                     </div>
-                                    <div class="mt-5 .d-block .d-md-none col-12 col-md-6">
+                                    <div class="mt-5 d-block d-md-none col-12 col-md-6">
                                         <h4>Estatus Asignado</h4>
                                     </div>
                                     <div class="mt-5 col-12 col-md-6">
@@ -125,7 +125,7 @@
                                             @include('alerts.feedback', ['field' => 'status'])
                                         </div>
                                     </div>
-                                    <div class="mt-5 .d-block .d-md-none col-12 col-md-6">
+                                    <div class="mt-5 d-block d-md-none col-12 col-md-6">
                                         <br/>
                                         <br/>
                                         <h4>Personas Asignadas</h4>

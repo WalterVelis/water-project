@@ -129,7 +129,7 @@
             <thead style="background: #bacfda;">
                 <tr>
                     <th>
-                        {{ __('Denominación') }}
+                        {{ __('Razón social') }}
                     </th>
                     <th>
                         {{ __('Contacto Principal') }}

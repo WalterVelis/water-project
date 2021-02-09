@@ -2,6 +2,9 @@
 @extends('layouts.app', ['activePage' => 'budgetaccount-management', 'menuParent' => 'catalog', 'sublevel' => 'budget', 'titlePage' => __('Gestión de Proyectos')])
 <style>
 
+.form-check .form-check-label {
+    white-space: nowrap;
+}
 form label, .col-form-label {
     font-size: 15px!important;
 }
@@ -160,8 +163,7 @@ form .col-12 {
                                                     <div class="col-12 col-md-3">
                                                         <div class="form-check">
                                                             <label class="form-check-label">
-                                                                <input required {{ in_array(__('Hygiene and personal care'), @$water_quality) ? 'checked' : '' }} id="water_quality-personal" name="water_quality[]" class="form-check-input" type="checkbox" value="{{ __('Hygiene and personal care') }}">
-                                                                <div style="white-space: nowrap">{{ __('Hygiene and personal care') }}</div>
+                                                                <input required {{ in_array(__('Hygiene and personal care'), @$water_quality) ? 'checked' : '' }} id="water_quality-personal" name="water_quality[]" class="form-check-input" type="checkbox" value="{{ __('Hygiene and personal care') }}">{{ __('Hygiene and personal care') }}
                                                                 <span class="form-check-sign">
                                                                     <span class="check"></span>
                                                                 </span>
