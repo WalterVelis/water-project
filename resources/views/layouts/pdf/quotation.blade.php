@@ -101,7 +101,7 @@
                 <td>ID</td>
                 <td>Descripción</td>
                 <td>Cantidad</td>
-                <td>Costo Unitario</td>
+                <td>Precio Unitario</td>
                 <td>Total</td>
             </tr>
         </thead>

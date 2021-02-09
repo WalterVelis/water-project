@@ -23,7 +23,7 @@
             <th>ID</th>
             <th>Descripción</th>
             <th>Cantidad</th>
-            <th>Costo unitario</th>
+            <th>Precio unitario</th>
             <th>Utilidad</th>
             <th>Indirectos</th>
             <th style="    width: 14.4%;">Total</th>

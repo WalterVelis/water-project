@@ -19,7 +19,7 @@
             <th>ID</th>
             <th>Descripción</th>
             <th>Cantidad</th>
-            <th>Costo unitario</th>
+            <th>Precio unitario</th>
             <th>Total</th>
             <th class="d-none"></th>
         </tr>

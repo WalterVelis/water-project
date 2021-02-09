@@ -16,7 +16,7 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 
 use DB;
 
-class MATERIAL_COST_csv implements FromCollection, WithCustomCsvSettings, WithHeadings, WithMapping
+class Material_COST_csv implements FromCollection, WithCustomCsvSettings, WithHeadings, WithMapping
 {
     public function collection()    // Function containing the query to get the data.
     {

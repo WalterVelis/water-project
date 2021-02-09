@@ -7,8 +7,8 @@ use App\Material;
 use App\MaterialFormat;
 use App\MaterialProvider;
 use App\MaterialProviderFormat;
-use App\Exports\MATERIAL_COST_xlsx;
-use App\Exports\MATERIAL_COST_csv;
+use App\Exports\Material_COST_xlsx;
+use App\Exports\Material_COST_csv;
 use App\Provider;
 use Carbon\Carbon;
 use PDF;
@@ -42,14 +42,14 @@ class MaterialController extends Controller
     {
         $date=new Carbon();
         $fecha = $date->format('d-m-Y');
-        return Excel::download(new MATERIAL_COST_xlsx, ''.$fecha.'.xlsx');
+        return Excel::download(new Material_COST_xlsx, ''.$fecha.'.xlsx');
     }
 
     public function queryCsv()
     {
         $date=new Carbon();
         $fecha = $date->format('d-m-Y');
-        return Excel::download(new MATERIAL_COST_csv, ''.$fecha.'.csv');
+        return Excel::download(new Material_COST_csv, ''.$fecha.'.csv');
     }
 
     /**

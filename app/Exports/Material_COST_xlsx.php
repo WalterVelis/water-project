@@ -66,7 +66,7 @@ class Material_COST_xlsx implements FromCollection, ShouldAutoSize, WithHeadings
 
     public function title(): string  // Is where the file name is specified.
     {
-        return "Accesorios IU";
+        return "Materiales Extra";
     }
 
     public function drawings()
@@ -96,7 +96,7 @@ class Material_COST_xlsx implements FromCollection, ShouldAutoSize, WithHeadings
     			$col='I';  // We pass the column where it ends the headers
 
                 $event->sheet->mergeCells('A1:'.$col.'5');    // combine cells
-	            $event->sheet->setCellValue('A1', ' Accesorios IU');    // Insert text
+	            $event->sheet->setCellValue('A1', ' Materiales Extra');    // Insert text
 				$event->sheet->getRowDimension('5')->setRowHeight(20);
 				$event->sheet->getRowDimension('6')->setRowHeight(23);  // Assign cell height
 

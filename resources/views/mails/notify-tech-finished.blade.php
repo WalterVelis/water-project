@@ -11,7 +11,7 @@
     </div>
     <br>
     <div style="background: #dde9f2; padding:20px;    max-width: 600px; margin: 0 auto;border-radius:4px;">
-        <span><b>{{ $data->tech->name }}</b> finalizó el registro de levantamiento técnico del proyecto <b>{{ $data->page }}</b> {{ $data->client }} asignado. Presione el siguiente botón para ingresar al proyecto.</span>
+        <span><b>{{ $data->tech->name }}</b> finalizó el registro de levantamiento técnico del proyecto <b>{{ $data->page }} {{ $data->client }}</b> asignado. Presione el siguiente botón para ingresar al proyecto.</span>
         <br>
         <a  href="{{ url("techformat/$data->id/edit") }}"><button style="padding: 10px 20px; background: #32526f; color: white; display: block; border-radius: 4px; margin: 0 auto; margin-top: 25px;">Ingresar</button></a>
         <br>

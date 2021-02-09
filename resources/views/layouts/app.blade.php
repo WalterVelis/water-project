@@ -42,6 +42,13 @@
 
   <style>
 
+.dropdown-menu.show a.dropdown-item p {
+    margin-bottom: 0px;
+}
+
+.dropdown-item:hover p {
+    color:white;
+}
 .sidebar[data-background-color="black"] .nav li .dropdown-menu .dropdown-item {
     color: #607D8B;
 }
