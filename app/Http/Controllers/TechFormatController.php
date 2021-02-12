@@ -23,6 +23,7 @@ use App\Mail\TechFormatNotification;
 use App\MaterialFormat;
 use App\MaterialProvider;
 use App\Notify;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -230,14 +231,15 @@ class TechFormatController extends Controller
 
             // Update IU
 
-            $accesoryFormat = AccesoryFormat::with('accesory')->where('format_id', $id)->get();
+            if(User::hasPermissions("Admin")){
+                $accesoryFormat = AccesoryFormat::with('accesory')->where('format_id', $id)->get();
 
-            foreach($accesoryFormat as $af) {
-                $accesory = AccesoryUrban::find($af->accesory_id);
-                $nqty = $accesory->qty - $af->qty;
-                AccesoryUrban::find($af->accesory_id)->update(["qty" => $nqty]);
+                foreach($accesoryFormat as $af) {
+                    $accesory = AccesoryUrban::find($af->accesory_id);
+                    $nqty = $accesory->qty - $af->qty;
+                    AccesoryUrban::find($af->accesory_id)->update(["qty" => $nqty]);
+                }
             }
-
 
 
             // dd("as");
