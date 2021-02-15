@@ -46,10 +46,10 @@
                 <div class="card">
                     <div class="card-header card-header-rose card-header-icon">
                         <div class="card-icon">
-                            <i class="material-icons">build</i>
+                            <i style="font-size: 2.4em;" class="material-icons">pie_chart</i>
                         </div>
-                        <span style="    font-size: 2em; margin-top: 20px; display: inline-block;">Venta y utilidad</span>
-    <iframe style="border-radius: 15px;border: 0; width: 98%; height: 85vh; margin-top: 80px;" src="https://datastudio.google.com/embed/reporting/abf4bc48-fecb-4350-aac9-8e803ca9231a/page/yRetB" frameborder="0" allowfullscreen></iframe>
+                        <h4 class="card-title"> Venta y utilidad</h4>
+    <iframe style="border-radius: 15px;border: 0; width: 98%; height: 85vh; margin: 0 auto; display: block; margin-top: 20px;    margin-bottom: 20px;" src="https://datastudio.google.com/embed/reporting/abf4bc48-fecb-4350-aac9-8e803ca9231a/page/yRetB" frameborder="0" allowfullscreen></iframe>
 </div>
 </div>
 </div>
