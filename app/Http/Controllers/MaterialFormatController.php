@@ -108,7 +108,11 @@ class MaterialFormatController extends Controller
      */
     public function store(Request $request)
     {
-        return MaterialFormat::create($request->all());
+        $exists = MaterialFormat::where('material_id', $request->material_id)->where('format_id', $request->format_id)->get();
+        if ( $exists->isEmpty())
+            return MaterialFormat::create($request->all());
+        $response = "Ya se encuentra el material";
+        return response()->json( $response, 401 );
     }
 
     /**

@@ -966,6 +966,12 @@ function addMaterial() {
     }).done(function(data) {
         loadMaterials();
         $('#form-materialformat').trigger("reset");
+    }).fail(function(data){
+        $.notify(
+            { message: 'Ha ocurrido un error: verifique que el material no se encuentre ya ingresado' },
+            { type: 'danger' }
+        );
+        $('#form-materialformat').trigger("reset");
     });
 
 };
