@@ -21,7 +21,7 @@
             <tr style="background:#8db3e2" class="cc">
                 <th>Días</th>
                 <th>Especialidad</th>
-                <th>Costo Unitario</th>
+                <th>Precio unitario</th>
                 <th>Total</th>
             </tr>
         </thead>

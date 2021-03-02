@@ -201,7 +201,7 @@ use Carbon\Carbon;
             <td>{{ @$tech->tube }}</td>
             <td class="b-blue">tipo/diametro</td>
             <td class="b-blue">Red diametro (pulgadas):</td>
-            <td></td>
+            <td>{{ @$tech->diameter_inch }}</td>
         </tr>
         <tr>
             <td class="right b"></td>
@@ -209,7 +209,7 @@ use Carbon\Carbon;
             <td>{{ @$tech->pump }}</td>
             <td class="b-blue">potencia/diametro</td>
             <td class="b-blue">Succión diametro (1"):</td>
-            <td>{{ @$tech->diameter_inch }}</td>
+            <td>{{ @$tech->diameter }}</td>
         </tr>
         <tr>
             <td class="right b"></td>

@@ -40,7 +40,7 @@ class Material_COST_xlsx implements FromCollection, ShouldAutoSize, WithHeadings
             __('Existencia'),
             __('Nombre material'),
             __('Tipo material'),
-            __('Costo Unitario'),
+            __('Precio unitario'),
             __('Fecha actualización'),
             __('Proveedor'),
         ];

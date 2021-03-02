@@ -38,6 +38,6 @@ class AssignmentController extends Controller
         Mail::to($data->tech->email)->send(new TechNotification($data));
 
         Notify::create(["user_id" => $data->tech->id, "msg" => "<a href='/projects/".$format->id."/edit'><div class='c-not'>".$data->admin->name. "asignó un técnico al proyecto ".$data->page." para realizar un levantamiento técnico.". $format->page."</a></div>"]);
-        return back();
+        return back()->with('success', 'Cambios realizados correctamente');
     }
 }

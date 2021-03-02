@@ -108,7 +108,7 @@
                                         <div class="row mt-4">
                                             <div class="col-12 col-md-4">Proveedores</div>
                                             <div class="col-12 col-md-3">Existencia</div>
-                                            <div class="col-12 col-md-3">Costo Unitario</div>
+                                            <div class="col-12 col-md-3">Precio unitario</div>
                                             <div class="col-12 col-md-2"></div>
                                         </div>
                                         <div class="bg-w" id="providers" style="height:300px;overflow-y: scroll; overflow-x: hidden;">

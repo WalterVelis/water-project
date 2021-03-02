@@ -41,7 +41,7 @@ class Cost_Format_xlsx implements FromCollection, ShouldAutoSize, WithHeadings, 
         return [
             __('Días'),
             __('Especialidad'),
-            __('Costo Unitario'),
+            __('Precio unitario'),
             __('Total'),
         ];
     }

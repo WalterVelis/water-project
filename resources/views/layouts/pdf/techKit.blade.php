@@ -43,13 +43,13 @@
                 <th>Material</th>
                 <th>Piezas</th>
                 @if(App\User::hasPermissions("Admin"))
-                <th style="width:5%;">Costo Unitario</th>
+                <th style="width:5%;">Precio unitario</th>
                 <th>Costo (sin IVA)</th>
                 <th  style="width:5%;">Descuento (%)</th>
                 <th>Costo con descuento</th>
                 @endif
-                <th>Total</th>
                 @if(App\User::hasPermissions("Admin"))
+                <th>Total</th>
                 <th>Observaciones</th>
                 @endif
                 {{-- <th>Acciones</th> --}}
@@ -69,8 +69,8 @@
                     <td>{{ $item->discount }}%</td>
                     <td>{{ Helper::formatMoney(($item->cost - ($item->discount / 100) * $item->cost)) }}</td>
                     @endif
-                    <td>{{ Helper::formatMoney((($item->cost - ($item->discount / 100) * $item->cost)) * $item->qty) }}</td>
                     @if(App\User::hasPermissions("Admin"))
+                    <td>{{ Helper::formatMoney((($item->cost - ($item->discount / 100) * $item->cost)) * $item->qty) }}</td>
                     <td>{{ $item->details }}</td>
                     @endif
                     {{-- <td><i class="fa fa-trash" aria-hidden="true" onclick="removeAccesory({{ $item->id }})"></i></td> --}}

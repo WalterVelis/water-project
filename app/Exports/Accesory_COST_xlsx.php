@@ -38,7 +38,7 @@ class Accesory_COST_xlsx implements FromCollection, ShouldAutoSize, WithHeadings
             __('ID'),
             __('Existencia'),
             __('Nombre'),
-            __('Costo Unitario'),
+            __('Precio unitario'),
             __('Descuento (%)'),
             __('Fecha actualización'),
         ];

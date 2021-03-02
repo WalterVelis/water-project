@@ -52,7 +52,7 @@
                     <th>ID</th>
                     <th>Material</th>
                     <th>Piezas</th>
-                    <th style="width:5%;">Costo Unitario</th>
+                    <th style="width:5%;">Precio unitario</th>
                     <th>Costo (sin IVA)</th>
                     <th  style="width:5%;">Descuento (%)</th>
                     <th>Costo con descuento</th>

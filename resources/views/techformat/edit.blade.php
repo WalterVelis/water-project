@@ -571,11 +571,11 @@ form .col-12 {
                                     <form action="" id="form-costformat">
                                         @csrf
                                         <div class="row">
-                                            <div class="col-4">
+                                            <div class="col-12 col-md-4">
                                                 <input required type="text" name="day" class="form-control" placeholder="Días" required>
                                                 <input required type="hidden" name="format_id" class="form-control" value="{{ $techFormat->id }}" required>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-12 col-md-4">
                                                 <select required name="cost_id" id="" class="form-control">
                                                     <option disabled selected value="">Seleccione una opción</option>
                                                     @foreach($costs as $cost)
@@ -583,7 +583,7 @@ form .col-12 {
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            <div class="col-2">
+                                            <div class="col-12 col-md-2">
                                                 <button type="button" onclick="addCost()" class="btn btn-primary">Agregar</button>
                                             </div>
                                         </div>
@@ -603,7 +603,7 @@ form .col-12 {
                                     <form action="" id="form-materialformat">
                                         @csrf
                                         <div class="row">
-                                            <div class="col-4">
+                                            <div class="col-12 col-md-4">
                                                 <select required name="material_id" id="" class="form-control">
                                                     <option disabled selected value="">Seleccione una opción</option>
                                                     @foreach($materials as $material)
@@ -611,11 +611,11 @@ form .col-12 {
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-12 col-md-4">
                                                 <input required type="number" name="qty" class="form-control" placeholder="Cantidad" required>
                                                 <input required type="hidden" name="format_id" class="form-control" value="{{ $techFormat->id }}" required>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-12 col-md-4">
                                                 <button type="button" onclick="addMaterial()" class="btn btn-primary">Agregar</button>
                                             </div>
                                         </div>
@@ -674,7 +674,7 @@ form .col-12 {
                                     <form action="" id="form-accesoryformat">
                                         @csrf
                                         <div class="row">
-                                            <div class="col-4">
+                                            <div class="col-12 col-md-4">
                                                 <select name="accesory_id" id="" class="form-control" required>
                                                     <option disabled selected value="">Seleccione una opción</option>
                                                     @foreach($accesories as $accesory)
@@ -682,11 +682,11 @@ form .col-12 {
                                                     @endforeach
                                                 </select>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-12 col-md-4">
                                                 <input required type="text" name="qty" class="form-control" placeholder="Piezas">
                                                 <input required type="hidden" name="format_id" class="form-control" value="{{ $techFormat->id }}">
                                             </div>
-                                            <div class="col-2">
+                                            <div class="col-12 col-md-2">
                                                 <button type="button" onclick="addAccesory()" class="btn btn-primary">Agregar</button>
                                             </div>
                                         </div>
@@ -968,7 +968,7 @@ function addMaterial() {
         $('#form-materialformat').trigger("reset");
     }).fail(function(data){
         $.notify(
-            { message: 'Ha ocurrido un error: verifique que el material no se encuentre ya ingresado' },
+            { message: 'El material seleccionado ya ha sido listado, por favor, seleccione otro.' },
             { type: 'danger' }
         );
         $('#form-materialformat').trigger("reset");
@@ -1172,7 +1172,7 @@ function sendForm() {
     $('#form-techformat').submit();
     $.notify({
             // options
-            message: 'Formulario finalizado exitosamente'
+            message: 'Formulario guardado exitosamente'
     },{
         // settings
         type: 'success'

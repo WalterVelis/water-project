@@ -85,7 +85,7 @@
                                             {{ __('Nombre') }}
                                         </th>
                                         <th>
-                                            {{ __('Costo Unitario') }}
+                                            {{ __('Precio unitario') }}
                                         </th>
                                         <th>
                                             {{ __('Fecha de Actualización') }}

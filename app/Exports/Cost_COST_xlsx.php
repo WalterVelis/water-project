@@ -38,7 +38,7 @@ class Cost_COST_xlsx implements FromCollection, ShouldAutoSize, WithHeadings, Wi
         return [
             __('ID'),
             __('Nombre'),
-            __('Costo Unitario'),
+            __('Precio unitario'),
             __('Fecha actualización'),
         ];
     }

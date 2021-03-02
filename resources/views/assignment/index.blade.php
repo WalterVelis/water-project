@@ -208,5 +208,19 @@
     function pressResetData(value){
       document.getElementById('btnResetData'+value).click()
     }
+
+
+    @if (session()->has('message'))
+    {
+        list($type, $message) = explode('|', session()->get('message'));
+
+        $.notify(
+            { message: '{{ $message }}' },
+            { type: 'success' }
+        );
+
+    }
+
     </script>
+    @dd(session()->get('success'))
     @endpush

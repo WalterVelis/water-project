@@ -33,7 +33,7 @@ class Cost_Format_csv implements FromCollection, WithCustomCsvSettings, WithHead
         return [
             __('Días'),
             __('Especialidad'),
-            __('Costo Unitario'),
+            __('Precio unitario'),
             __('Total'),
         ];
     }

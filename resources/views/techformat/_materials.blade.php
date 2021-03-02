@@ -107,7 +107,7 @@
                         <tr class="cc c-2">
                             <th>Proveedor</th>
                             <th>Existencia</th>
-                            <th>Costo Unitario</th>
+                            <th>Precio unitario</th>
                             <th style="width:8%;">Cantidad</th>
                             <th>Total</th>
                         </tr>

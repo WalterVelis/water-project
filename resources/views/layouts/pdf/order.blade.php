@@ -89,7 +89,7 @@ use Carbon\Carbon;
             <th style="width:40%;">Descripción</th>
             <th style="width:12%;">Unidad</th>
             <th style="width:12%;">Tipo de material</th>
-            <th style="width:12%;">Costo unitario</th>
+            <th style="width:12%;">Precio unitario</th>
             <th style="width:14%;">Total</th>
         </tr>
     </thead>

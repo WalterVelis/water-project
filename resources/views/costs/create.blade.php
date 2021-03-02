@@ -32,7 +32,7 @@
                                         </div>
                                     </div>
                                     <div class="col-6">
-                                        <label class="col-12" style="margin-bottom:-12px; font-weight:bold;">{{ __('Costo Unitario') }}</label>
+                                        <label class="col-12" style="margin-bottom:-12px; font-weight:bold;">{{ __('Precio unitario') }}</label>
                                         <div class="col-sm-12">
                                             <div class="form-group{{ $errors->has('unit_cost') ? ' has-danger' : '' }}">
                                                 <input class="form-control{{ $errors->has('unit_cost') ? ' is-invalid' : '' }}" name="unit_cost" id="input-unit_cost" type="text" value="{{ old('unit_cost') }}"  />

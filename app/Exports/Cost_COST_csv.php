@@ -30,7 +30,7 @@ class Cost_COST_csv implements FromCollection, WithCustomCsvSettings, WithHeadin
         return [
             __('ID'),
             __('Nombre'),
-            __('Costo Unitario'),
+            __('Precio unitario'),
             __('Fecha actualización'),
         ];
     }

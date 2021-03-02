@@ -959,7 +959,7 @@ function saveWork(re = false) {
 if(re)
 $.notify({
             // options
-            message: 'Formulario finalizado exitosamente'
+            message: 'Formulario guardado exitosamente'
         },{
             // settings
             type: 'success'

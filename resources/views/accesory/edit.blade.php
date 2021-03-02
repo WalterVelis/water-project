@@ -42,7 +42,7 @@
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-4">
-                                        <label class="col-12" style="    white-space: nowrap;margin-bottom:-12px; font-weight:bold;">{{ __('Costo unitario con IVA') }}</label>
+                                        <label class="col-12" style="    white-space: nowrap;margin-bottom:-12px; font-weight:bold;">{{ __('Precio unitario con IVA') }}</label>
                                         <div class="col-sm-12">
                                             <div class="form-group{{ $errors->has('unit_cost') ? ' has-danger' : '' }}">
                                                 <input class="form-control{{ $errors->has('unit_cost') ? ' is-invalid' : '' }}" name="unit_cost" id="input-unit_cost" type="text" value="{{ $accesoryUrban->unit_cost }}"  />

@@ -30,7 +30,7 @@ class Accesory_COST_csv implements FromCollection, WithCustomCsvSettings, WithHe
             __('ID'),
             __('Existencia'),
             __('Nombre'),
-            __('Costo Unitario'),
+            __('Precio unitario'),
             __('Descuento (%)'),
             __('Fecha actualización'),
         ];

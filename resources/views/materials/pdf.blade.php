@@ -141,7 +141,7 @@
                         {{ __('Tipo de material') }}
                     </th>
                     <th>
-                        {{ __('Costo unitario') }}
+                        {{ __('Precio unitario') }}
                     </th>
                     <th>
                         {{ __('Última actualización') }}

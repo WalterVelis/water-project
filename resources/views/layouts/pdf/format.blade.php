@@ -110,7 +110,7 @@ use Carbon\Carbon;
         </tr>
         <tr>
             <td width="35%" class="right b">Ubicación geográfica del predio: </td>
-            <td width="15%"><b>País:</b> {{ @$format->country_id }}</td>
+            <td width="15%"><b>País:</b> {{ @$format->country->name }}</td>
             <td width="15%"><b>Estado:</b> {{ @$format->state }}</td>
             <td width="15%"><b>Municipio:</b> {{ @$format->municipality }}</td>
             <td width="12%"><b>Colonia:</b> {{ @$format->colony }}</td>
@@ -122,11 +122,6 @@ use Carbon\Carbon;
             <td width="15%"><b>Número ext:</b> {{ @$format->n_ext }}</td>
             <td width="15%"><b>Número int:</b> {{ @$format->n_int }}</td>
             <td width="20%" colspan="2"></td>
-        </tr>
-        <tr>
-            <td width="35%" class="right b">Número de usuarios: </td>
-            <td width="15%">{{ @$format->users }}</td>
-            <td width="15%" colspan="4"></td>
         </tr>
         <tr>
             <td width="35%" class="right b">Hay escasez de agua</td>
@@ -164,7 +159,7 @@ use Carbon\Carbon;
             <td width="50%" colspan="4"></td>
         </tr>
         <tr>
-            <td width="35%" class="right b">Area de captación de agua de lluvia (estimada m2)</td>
+            <td width="35%" class="right b">Área de captación de agua de lluvia (estimada m2)</td>
             <td width="15%" class="b-blue">Techo</td>
             <td width="15%">{{ @$format->rainwater_area }}</td>
             <td width="15%" class="b-blue">m2</td>

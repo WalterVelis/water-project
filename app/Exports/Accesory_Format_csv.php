@@ -43,7 +43,7 @@ class Accesory_Format_csv implements FromCollection, WithCustomCsvSettings, With
             __('ID'),
             __('Material'),
             __('Piezas'),
-            __('Costo Unitario'),
+            __('Precio unitario'),
             __('Costo (sin IVA'),
             __('Descuento (%)'),
             __('Costo con descuento'),

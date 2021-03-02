@@ -223,6 +223,19 @@
     });
     @endif
 
+    @if (session()->has('success'))
+        $.notify({
+            icon: "done",
+            message: 'Formulario guardado exitosamente.'
+        }, {
+            type: 'success',
+            timer: 3000,
+            placement: {
+                from: 'top',
+                align: 'right'
+            }
+        });
+    @endif
 </script>
-
+{{-- @dd(session()->has('success')) --}}
 @endpush

@@ -24,7 +24,7 @@
                 <tr class="cc">
                     <th>Días</th>
                     <th>Especialidad</th>
-                    <th>Costo Unitario</th>
+                    <th>Precio unitario</th>
                     <th>Total</th>
                     @if (!App\User::hasPermissions("Vendor"))<th>Acciones</th>@endif
                 </tr>
@@ -55,7 +55,7 @@
                 <tr class="cc">
                     <th>Días</th>
                     <th>Especialidad</th>
-                    <th style="    width: 90px;">Costo Unitario</th>
+                    <th style="    width: 90px;">Precio unitario</th>
                     <th>Total</th>
                     {{-- <th>Acciones</th> --}}
                 </tr>

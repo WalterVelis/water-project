@@ -135,7 +135,7 @@
                         {{ __('Existencia') }}
                     </th>
                     <th>
-                        {{ __('Costo unitario') }}
+                        {{ __('Precio unitario') }}
                     </th>
                     <th>
                         {{ __('Descuento') }}
