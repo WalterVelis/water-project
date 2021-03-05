@@ -10,7 +10,7 @@
         </li> --}}
     </ul>
     </nav>
-    <div class="copyright" style="    color: #607D8B!important;">
+    <div class="copyright" style="display: block; position: absolute; bottom: 0;color: #607D8B!important;">
     &copy;
     <script>
       document.write(new Date().getFullYear())

@@ -20,7 +20,7 @@
 @section('content')
 <div class="container" style="    padding-top: 0px!important;">
   <div class="row justify-content-center">
-    <img src="{{asset("material").'/img/licons/agua-logo-1.png'}}" width="15%">
+    <img src="{{asset("material").'/img/licons/agua-logo-1.png'}}" width="15%" style="height: 150px; width: 150px;">
   </div>
 
     <div class="row">
