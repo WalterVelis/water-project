@@ -124,6 +124,7 @@ Route::group(['middleware' => ['auth','change']], function () {
     Route::get('getMO/{projectId}', 'CostFormatController@getCostsPdf');
     Route::get('getKit/{projectId}', 'TechFormatController@getKitPdf');
     Route::get('getMat/{id}', 'TechFormatController@getMatPdf');
+    Route::get('getMatAdmin/{id}', 'TechFormatController@getMatAdminPdf');
     Route::put('quotationschool', 'QuotationController@updateSchool');
     Route::patch('applyutility/{id}', 'QuotationController@applyUtility');
     Route::patch('applyindividualutility', 'QuotationController@applyIndividualUtility');

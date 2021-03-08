@@ -89,6 +89,19 @@ class TechFormatController extends Controller
         return $pdf->setPaper('letter', 'landscape')->download($name);
     }
 
+    public function getMatAdminPdf($projectId)
+    {
+        $project_materials = MaterialFormat::with('materials.providers.provider')->with('materials.providers.materialProvider')->where('format_id', $projectId)->get();
+
+        foreach($project_materials as $pm) {
+            $materialProvider[$pm->material_id] = MaterialProvider::with('provider')->with(['materialProvider' => function ($query) use ($projectId) { $query->where("format_id", $projectId); }])->where('material_id', $pm->material_id)->get();
+        }
+
+        $pdf =  PDF::loadView('layouts.pdf.techMatAdmin', compact('project_materials', 'materialProvider'));
+        $name = 'Materiales Tecnico.pdf';
+        return $pdf->setPaper('letter', 'landscape')->download($name);
+    }
+
 
     public function getKitPdf($id) {
 

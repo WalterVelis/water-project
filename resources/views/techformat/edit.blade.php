@@ -636,7 +636,11 @@ form .col-12 {
                                             <div class="dropdown-menu" aria-labelledby="materialmenu">
                                                 <a class="dropdown-item" href="/materialProjectCsv/{{ $format->id }}"><p class=""><i class="fa fa-file-code-o" aria-hidden="true"></i>&nbsp; CSV</p></a>
                                                 <a class="dropdown-item" href="/materialProjectExcel/{{ $format->id }}"><p class=""><i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp; XLSX</p></a>
-                                                <a class="dropdown-item" href="/getMat/{{ $format->id }}"><p class=""><i class="fa fa-file-pdf-o" aria-hidden="true"></i>&nbsp; PDF</p></a>
+                                                @if (App\User::hasPermissions("Admin"))
+                                                    <a class="dropdown-item" href="/getMatAdmin/{{ $format->id }}"><p class=""><i class="fa fa-file-pdf-o" aria-hidden="true"></i>&nbsp; PDF</p></a>
+                                                @else
+                                                    <a class="dropdown-item" href="/getMat/{{ $format->id }}"><p class=""><i class="fa fa-file-pdf-o" aria-hidden="true"></i>&nbsp; PDF</p></a>
+                                                @endif
                                             </div>
                                         </div>
 
