@@ -85,7 +85,7 @@ class TechFormatController extends Controller
         // return view('techformat._materials', compact('project_materials', 'materialProvider'));
 
         $pdf =  PDF::loadView('layouts.pdf.techMat', compact('project_materials', 'materialProvider'));
-        $name = 'Materiales Tecnico.pdf';
+        $name = 'Listado de materiales.pdf';
         return $pdf->setPaper('letter', 'landscape')->download($name);
     }
 
@@ -98,7 +98,7 @@ class TechFormatController extends Controller
         }
 
         $pdf =  PDF::loadView('layouts.pdf.techMatAdmin', compact('project_materials', 'materialProvider'));
-        $name = 'Materiales Tecnico.pdf';
+        $name = 'Listado de materiales.pdf';
         return $pdf->setPaper('letter', 'landscape')->download($name);
     }
 
@@ -107,7 +107,7 @@ class TechFormatController extends Controller
 
         $kit = AccesoryFormat::with('accesory')->where('format_id', $id)->get();
         $pdf =  PDF::loadView('layouts.pdf.techKit', compact('kit'));
-        $name = 'Accesorios Tecnico.pdf';
+        $name = 'Kit isla urbana.pdf';
         return $pdf->setPaper('letter', 'landscape')->download($name);
     }
 
@@ -119,7 +119,7 @@ class TechFormatController extends Controller
         $tech = TechFormat::with('format.user')->where('format_id', $id)->first();
         // return view('layouts.pdf.tech', compact('format', 'entities', 'tech'));
         $pdf =  PDF::loadView('layouts.pdf.tech', compact('format', 'entities', 'tech'));
-        $name = 'Formato Tecnico.pdf';
+        $name = 'Levantamiento técnico.pdf';
         return $pdf->setPaper('letter', 'landscape')->download($name);
     }
     /**

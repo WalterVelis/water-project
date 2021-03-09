@@ -143,7 +143,7 @@
                                 <div class="col-12 col-md-4">
                                     <label class="c_label col-12 col-form-label">{{ __('Página web') }}</label>
                                     <div class="col-sm-12">
-                                        <input class="vali form-control" id="" name="web" type="text" value="{{ $quotation->web }}" />
+                                        <input class="form-control" id="" name="web" type="text" value="{{ $quotation->web }}" />
                                     </div>
                                 </div>
                                 <div class="col-12 col-md-4">
@@ -161,7 +161,7 @@
                                 <div class="col-12 col-md-8">
                                     <label class="c_label col-12 col-form-label">{{ __('Notas') }}</label>
                                     <div class="col-sm-12">
-                                        <input class="vali form-control" id="" name="notes" type="text" value="{{ $quotation->notes }}" />
+                                        <input class="form-control" id="" name="notes" type="text" value="{{ $quotation->notes }}" />
                                     </div>
                                 </div>
                             </div>

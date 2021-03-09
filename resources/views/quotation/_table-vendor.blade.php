@@ -55,7 +55,7 @@
             <td>{{ $id + 1 }} @php($id += 1)</td>
             <td>Programa completo de escuelas de lluvia - Capacitación, supervisión y seguimiento técnica y propuesta participativa y educativa completa</td>
             <td>{{ $escuela->children }}</td>
-            <td style="text-align: right;">{{ Helper::formatMoney($escuela->children * ( ($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) + (($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) * ((($schoolCost->indirect) / 100))))) }}</td>
+            <td style="text-align: right;">{{ Helper::formatMoney(( ($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) + (($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) * ((($schoolCost->indirect) / 100))))) }}</td>
             <td style="text-align: right;">{{ Helper::formatMoney($escuela->children * ( ($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) + (($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) * ((($schoolCost->indirect) / 100))))) }}</td>
             @php($subTotal += $escuela->children * ( ($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) + (($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) * ((($schoolCost->indirect) / 100)))))
         </tr>

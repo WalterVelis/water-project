@@ -75,7 +75,7 @@ class CostFormatController extends Controller
         // dd($project_costs);
         // return view('layouts.pdf.mo', compact('project_costs'));
         $pdf =  PDF::loadView('layouts.pdf.mo', compact('project_costs'));
-        $name = 'Costos.pdf';
+        $name = 'Mano de obra y herramientas.pdf';
         return $pdf->setPaper('letter')->download($name);
     }
 

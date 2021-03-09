@@ -264,7 +264,7 @@ class ProjectController extends Controller
         $format = Format::with('country')->find($id);
         // return view('layouts.pdf.format', compact('format', 'entities'));
         $pdf =  PDF::loadView('layouts.pdf.format', compact('format', 'entities'));
-        $name = 'Diagnostico de Necesidades.pdf';
+        $name = 'Diagnóstico de Necesidades.pdf';
         return $pdf->setPaper('letter', 'landscape')->download($name);
     }
 
