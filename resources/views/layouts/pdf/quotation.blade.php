@@ -110,7 +110,7 @@
                 <td style="text-align: center;">{{ $id + 1 }} @php($id += 1)</td>
                 <td>Mano de obra y operaciones</td>
                 <td style="text-align: center;">1</td>
-                <td style="text-align: right" class="currency"><span>$</span>{{ Helper::formatMoney($totalManoDeObra, false) }}</td>
+                <td style="text-align: right" class="currency"><span>$</span>{{ Helper::formatMoney(( ($totalManoDeObra / (((100 - $costsUtility->utility) / 100))) + (($totalManoDeObra / (((100 - $costsUtility->utility) / 100))) * ((($costsUtility->indirect) / 100)))), false) }}</td>
                 <td style="text-align: right" class="currency"><span>$</span>{{ Helper::formatMoney(( ($totalManoDeObra / (((100 - $costsUtility->utility) / 100))) + (($totalManoDeObra / (((100 - $costsUtility->utility) / 100))) * ((($costsUtility->indirect) / 100)))), false) }}</td>
                 @php($subTotal += ( ($totalManoDeObra / (((100 - $costsUtility->utility) / 100))) + (($totalManoDeObra / (((100 - $costsUtility->utility) / 100))) * ((($costsUtility->indirect) / 100)))))
                 {{-- <td>{{ Helper::formatMoney($totalManoDeObra) }}</td> --}}
@@ -121,8 +121,8 @@
                 <td>Programa completo de escuelas de lluvia - Capacitación, supervisión y seguimiento técnica y propuesta participativa y educativa completa</td>
                 <td style="text-align: center;">{{ $escuela->children }}</td>
                 {{-- <td style="text-align: right" class="currency"><span>$</span>{{ Helper::formatMoney($schoolCost->cost) }}</td> --}}
-                <td style="text-align: right; " class="currency"><span style="margin-top:10px;">$</span>{{ Helper::formatMoney( ($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) + (($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) * ((($schoolCost->indirect) / 100))), false) }}</td>
                 <td style="text-align: right; " class="currency"><span style="margin-top:10px;">$</span>{{ Helper::formatMoney($escuela->children * round( ($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) + (($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) * ((($schoolCost->indirect) / 100))), 2), false) }}</td>
+                <td style="text-align: right; " class="currency"><span style="margin-top:10px;">$</span>{{ Helper::formatMoney(round( ($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) + (($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) * ((($schoolCost->indirect) / 100))), 2), false) }}</td>
                 @php($subTotal += $escuela->children * ( ($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) + (($schoolCost->cost / (((100 - $schoolCost->utility) / 100))) * ((($schoolCost->indirect) / 100)))))
             </tr>
             @endif
