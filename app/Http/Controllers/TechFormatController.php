@@ -96,7 +96,8 @@ class TechFormatController extends Controller
         foreach($project_materials as $pm) {
             $materialProvider[$pm->material_id] = MaterialProvider::with('provider')->with(['materialProvider' => function ($query) use ($projectId) { $query->where("format_id", $projectId); }])->where('material_id', $pm->material_id)->get();
         }
-
+        if(!isset($materialProvider))
+            $materialProvider = [];
         $pdf =  PDF::loadView('layouts.pdf.techMatAdmin', compact('project_materials', 'materialProvider'));
         $name = 'Listado de materiales.pdf';
         return $pdf->setPaper('letter', 'landscape')->download($name);

@@ -60,9 +60,9 @@
             @php($currentId = $item->id)
 
                 <div class="" style="margin-bottom:20px;display: inline-block;background: #fafafa; padding-top: 10px; padding-bottom: 10px;">
-                    <div style="display: inline-block; margin-right:16px;"><b>Material:</b> {{ $item->materials->name }}</div>
-                    <div style="display: inline-block; margin-right:16px;"><b>Unidad:</b> {{ $item->materials->unitLabel() }}</div>
-                    <div style="display: inline-block; margin-right:16px;"><b>Tipo:</b> {{ $item->materials->type }}</div>
+                    <div style="display: inline-block; margin-right:16px;"><b>Material:</b> {{ @$item->materials->name }}</div>
+                    <div style="display: inline-block; margin-right:16px;"><b>Unidad:</b> {{ @$item->materials->unitLabel() }}</div>
+                    <div style="display: inline-block; margin-right:16px;"><b>Tipo:</b> {{ @$item->materials->type }}</div>
                 </div>
 
 
