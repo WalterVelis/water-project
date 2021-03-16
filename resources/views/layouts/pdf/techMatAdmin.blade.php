@@ -1,4 +1,8 @@
 <style>
+
+    .whide {
+        display: none;
+    }
     .table thead tr.cc th {
         font-size: 0.9rem;
         background: #2195f357;
@@ -59,25 +63,44 @@
 
             @php($currentId = $item->id)
 
-                <div class="" style="margin-bottom:20px;display: inline-block;background: #fafafa; padding-top: 10px; padding-bottom: 10px;">
+                {{-- <div class="" style="margin-bottom:20px;display: inline-block;background: #fafafa; padding-top: 10px; padding-bottom: 10px;">
                     <div style="display: inline-block; margin-right:16px;"><b>Material:</b> {{ @$item->materials->name }}</div>
                     <div style="display: inline-block; margin-right:16px;"><b>Unidad:</b> {{ @$item->materials->unitLabel() }}</div>
                     <div style="display: inline-block; margin-right:16px;"><b>Tipo:</b> {{ @$item->materials->type }}</div>
-                </div>
+                </div> --}}
 
 
-                <div id="t-{{ $item->id }}" style="margin-bottom:24px;margin-top:0px;" class="mt-2 mb-4">
+                <div id="t-{{ $item->id }}" style="margin-top:0px;" class="mt-2 mb-4">
 
                     <table class="table c-table" style="margin-top:0px;">
-                        <thead>
+                        @if($iffed == true)
+                        <thead >
                             <tr class="cc c-2">
-                                <th style="width:20%;">Proveedor</th>
-                                <th style="width:20%;">Existencia</th>
-                                <th style="width:20%;">Precio unitario</th>
-                                <th style="width:20%;">Cantidad</th>
-                                <th style="width:20%;">Total</th>
+                                <th style="width: 12.5%">Material</th>
+                                <th style="width: 12.5%">Unidad</th>
+                                <th style="width: 12.5%">Cantidad</th>
+                                <th style="width: 12.5%">Tipo material</th>
+                                <th style="width: 12.5%">Proveedor</th>
+                                {{-- <th style="width: 12.5%">Existencia</th> --}}
+                                <th style="width: 12.5%">Precio unitario</th>
+                                <th style="width: 12.5%">Total</th>
                             </tr>
                         </thead>
+                        @else
+                        <thead style="height:1px!important;background:white!important;border-top:none;border-bottom:none;">
+                            <tr  class="cc c-2">
+                                <th style="width: 12.5%;background: white;height:0px;line-height:0px;padding:0px;"></th>
+                                {{-- <th style="width: 12.5%;background: white;height:0px;line-height:0px;padding:0px;"></th> --}}
+                                <th style="width: 12.5%;background: white;height:0px;line-height:0px;padding:0px;"></th>
+                                <th style="width: 12.5%;background: white;height:0px;line-height:0px;padding:0px;"></th>
+                                <th style="width: 12.5%;background: white;height:0px;line-height:0px;padding:0px;"></th>
+                                <th style="width: 12.5%;background: white;height:0px;line-height:0px;padding:0px;"></th>
+                                <th style="width: 12.5%;background: white;height:0px;line-height:0px;padding:0px;"></th>
+                                <th style="width: 12.5%;background: white;height:0px;line-height:0px;padding:0px;"></th>
+                            </tr>
+                        </thead>
+                        @endif
+                        @php($iffed = false)
                         <tbody>
 
                             @php($subtotal = 0)
@@ -91,14 +114,8 @@
                             @endif
 
                                 <tr>
-                                    <td scope="row">{{ $mp->provider->denomination }}</td>
-                                    <td>{{ $mp->qty }}</td>
-                                    {{-- @if($mp->materialProvider) --}}
-                                    {{-- @php($uc = $mp->materialProvider->unit_cost) --}}
-                                    {{-- @else --}}
-                                    @php($uc = $mp->unit_cost)
-                                    {{-- @endif --}}
-                                    <td style="text-align:right;">{{ Helper::formatMoney($uc) }}</td>
+                                    <td scope="row">{{ @$item->materials->name }}</td>
+                                    <td>{{ @$item->materials->unitLabel() }}</td>
                                     <td>
                                         @if($mp->materialProvider)
                                             {{ $mp->materialProvider->qty }}
@@ -108,6 +125,15 @@
                                             @php($tqty = 0)
                                         @endif
                                     </td>
+                                    <td>{{ @$item->materials->type }}</td>
+                                    <td>{{ $mp->provider->denomination }}</td>
+                                    {{-- @if($mp->materialProvider) --}}
+                                    {{-- @php($uc = $mp->materialProvider->unit_cost) --}}
+                                    {{-- @else --}}
+                                    @php($uc = $mp->unit_cost)
+                                    {{-- @endif --}}
+                                    <td style="text-align:right;">{{ Helper::formatMoney($uc) }}</td>
+
                                     @php($subtotal += $tqty  * $mp->unit_cost)
 
                                     @php($total += $tqty  * $mp->unit_cost)
