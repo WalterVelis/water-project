@@ -100,7 +100,7 @@ class TechFormatController extends Controller
             $materialProvider = [];
         $pdf =  PDF::loadView('layouts.pdf.techMatAdmin', compact('project_materials', 'materialProvider'));
         $name = 'Listado de materiales.pdf';
-        return $pdf->setPaper('letter', 'landscape')->stream($name);
+        return $pdf->setPaper('letter', 'landscape')->download($name);
     }
 
 
