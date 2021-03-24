@@ -5,7 +5,7 @@
     }
     .table thead tr.cc th {
         font-size: 0.9rem;
-        background: #2195f357;
+        background: #bacfda;
         color: black;
         padding: 12px 10px;
         font-weight: bold;
@@ -76,6 +76,7 @@
                         @if($iffed == true)
                         <thead >
                             <tr class="cc c-2">
+                                <th style="width: 12.5%">ID Mat.</th>
                                 <th style="width: 12.5%">Material</th>
                                 <th style="width: 12.5%">Unidad</th>
                                 <th style="width: 12.5%">Cantidad</th>
@@ -114,6 +115,7 @@
                             @endif
 
                                 <tr>
+                                    <td scope="row">{{ @$item->id }}</td>
                                     <td scope="row">{{ @$item->materials->name }}</td>
                                     <td>{{ @$item->materials->unitLabel() }}</td>
                                     <td>
