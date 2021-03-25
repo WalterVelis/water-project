@@ -76,7 +76,7 @@
                         @if($iffed == true)
                         <thead >
                             <tr class="cc c-2">
-                                <th style="width: 12.5%">ID Mat.</th>
+                                <th style="width: 12.5%">ID</th>
                                 <th style="width: 12.5%">Material</th>
                                 <th style="width: 12.5%">Unidad</th>
                                 <th style="width: 12.5%">Cantidad</th>
