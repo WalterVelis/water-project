@@ -125,7 +125,7 @@
                         </div>
                         <div class="card-footer d-flex flex-row-reverse" style="justify-content: end;">
                             <p onclick="validationSave();" class="btn btn-primary">{{ __('Save') }}</p>
-                            <a href="{{ route('user.index') }}" class="btn-rose btn">{{ __('Cancelar') }}</a>
+                            <a href="{{ route('providers.index') }}" class="btn-rose btn">{{ __('Cancelar') }}</a>
                             <button id="saveUser" type="submit" class="btn btn-rose btn-round d-none">{{ __('Save') }}</button>
                         </div>
                     </div>
